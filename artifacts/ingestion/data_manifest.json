@@ -1,0 +1,27 @@
+{
+  "source_file": "spotify_reviews_18months.csv",
+  "source_sha256": "1fc85de68a304dd8978b537cfa58793d5f41cbaf417fa32cb53899f83a2fcef6",
+  "source_bytes": 97400616,
+  "source": {
+    "title": "3.4 Million Spotify Google Store Reviews",
+    "creator": "BwandoWando",
+    "url": "https://www.kaggle.com/datasets/bwandowando/3-4-million-spotify-google-store-reviews",
+    "download_url": "https://www.kaggle.com/api/v1/datasets/download/bwandowando/3-4-million-spotify-google-store-reviews?datasetVersionNumber=2",
+    "version": 2,
+    "publisher_license": "CC0: Public Domain",
+    "archive_sha256": "7b351f41fef9de9d8cba07ac40a300d20fd605ff0298a1885df0dbf0d66b3cbc",
+    "archive_bytes": 273598020,
+    "records": 3377423
+  },
+  "course_manifest_sha256": "07afdd96dd7f97ff5fbf967961e14d6d9f48170ba3f417399e20d5b620291011",
+  "checker_sha256": "d60bd66d84922d934c65b3d42b2c7d36cc738e8c75e2d6f2b2f58bca3141c26d",
+  "fields": [
+    "review_id",
+    "review_text",
+    "review_rating",
+    "review_likes",
+    "app_version",
+    "review_timestamp"
+  ],
+  "checksum_matches_course_manifest": true
+}

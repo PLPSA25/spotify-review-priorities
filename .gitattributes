@@ -1,0 +1,4 @@
+* text=auto eol=lf
+# Preserve exact bytes of supplied course files on every checkout.
+data/** -text
+*.pdf -text

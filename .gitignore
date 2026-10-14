@@ -1,0 +1,29 @@
+.env
+.env.*
+!.env.example
+*.pdf
+
+# Raw course dataset (97 MB) - never commit; checksum is in manifest.json
+spotify_reviews_18months.csv
+data/spotify_reviews_18months.csv
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Local checker outputs (keep outside grading/)
+local-reference.json
+self-check.json
+
+# Local state and transient files
+*.sqlite3
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm
+*.sqlite3.tmp
+*.tmp
+artifacts/test-temp*/
+*.csv.lock

@@ -1,0 +1,80 @@
+[scope]
+sample_size = 100000
+seed = "spotify-final-2026-v1"
+force_golden = true
+mode = "partial"
+out_of_scope_reason = "not_classified_partial_run"
+
+[ingestion]
+chunk_size = 5000
+
+[models]
+jev = "jev-1.13.0"
+luna = "gpt-6-luna"
+effort = "none"
+service_tier = "default"
+allow_flex = false
+allow_batch = false
+flag_returned_model_change = true
+output_token_cap = 4096
+
+[controls]
+project_api_cap_usd = 10.0
+pilot_api_cap_usd = 0.5
+max_workers = 1
+fallback_fraction = 0.1
+jev_requests_per_second = 60
+jev_input_tokens_per_second = 100000
+max_transient_attempts = 3
+invalid_output_retries = 1
+run_api_cap_usd = 0.5
+ledger_path = "artifacts/spend.sqlite3"
+token_overhead_bound = 2048
+request_timeout_seconds = 60.0
+lease_seconds = 300.0
+backoff_base_seconds = 1.0
+backoff_max_seconds = 30.0
+backoff_jitter_seconds = 0.5
+
+[enrichment]
+confidence_threshold = 0.75
+short_review_chars = 240
+entity_terms = ["Spotify", "Premium", "playlist", "playlists", "lyrics", "downloads", "offline", "ads"]
+
+[rate_limits.typesafe]
+rpm = 3600
+tpm = 6000000
+
+[rate_limits.openai]
+rps = 1
+tps = 100000
+rpm = 60
+tpm = 100000
+
+[verification]
+sample_size = 500
+batch_size = 50
+exclude_golden = true
+human_review_cap = 20
+
+[evaluation]
+sentiment_tolerance = 0.25
+
+[grouping]
+allow_multi_issue = false
+require_succeeded_group_call_each_full_run = true
+
+[deployment]
+frontend_backend = "vercel"
+database = "neon"
+deployment_protection = false
+require_signed_out_check = true
+
+[planning_rates]
+confirmed_date = "2026-10-13"
+jev_input_per_million = 0.042
+jev_output_per_million = 0.0
+luna_input_per_million = 0.10
+luna_cached_input_per_million = 0.01
+luna_output_per_million = 0.50
+luna_cache_write_per_million = 0.125
