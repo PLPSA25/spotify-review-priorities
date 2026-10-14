@@ -44,6 +44,7 @@ class State:
                 CREATE TABLE IF NOT EXISTS stage_results(
                     work_key TEXT NOT NULL, stage TEXT NOT NULL, result TEXT NOT NULL,
                     PRIMARY KEY(work_key,stage));
+                CREATE TABLE IF NOT EXISTS artifacts(key TEXT PRIMARY KEY,result TEXT NOT NULL);
                 CREATE INDEX IF NOT EXISTS reviews_work ON reviews(work_key);
                 CREATE INDEX IF NOT EXISTS work_pending ON work(status,key);
             """)
@@ -171,6 +172,14 @@ class State:
                 return result
             row = db.execute("SELECT result FROM stage_results WHERE work_key=? AND stage=?",
                              (key, stage)).fetchone()
+            return json.loads(row[0]) if row else None
+
+    def artifact(self, key: str, result: dict[str, Any] | None = None) -> dict[str, Any] | None:
+        with self.connect() as db:
+            if result is not None:
+                db.execute("INSERT OR REPLACE INTO artifacts VALUES (?,?)", (key, canonical(result)))
+                return result
+            row = db.execute("SELECT result FROM artifacts WHERE key=?", (key,)).fetchone()
             return json.loads(row[0]) if row else None
 
     def observed_model(self, provider: str, model: str) -> None:

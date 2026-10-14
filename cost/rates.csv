@@ -1,0 +1,7 @@
+provider,model,tier,item,price_per_million,currency,price_date,source
+typesafe,jev-1.13.0,standard,input,0.042,USD,2026-10-13,https://docs.typesafe.ai/models
+typesafe,jev-1.13.0,standard,output,0,USD,2026-10-13,https://docs.typesafe.ai/models
+openai,gpt-6-luna,default,input,0.10,USD,2026-10-13,https://developers.openai.com/api/docs/models/gpt-6-luna
+openai,gpt-6-luna,default,cached_input,0.01,USD,2026-10-13,https://developers.openai.com/api/docs/models/gpt-6-luna
+openai,gpt-6-luna,default,cache_write,0.125,USD,2026-10-13,https://developers.openai.com/api/docs/models/gpt-6-luna
+openai,gpt-6-luna,default,output,0.50,USD,2026-10-13,https://developers.openai.com/api/docs/models/gpt-6-luna

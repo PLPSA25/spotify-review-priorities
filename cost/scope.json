@@ -1,0 +1,13 @@
+{
+  "seed": "spotify-final-2026-v1",
+  "method": "Ascending SHA-256(seed + ':' + review_id), ID tie-break; all nonempty IDs",
+  "permutation_sha256": "cffc97a0a51b8b32440c4615326a721b6bd4074851cb6da2717688c8c70193e8",
+  "permutation_count": 660609,
+  "random_prefix_count": 100000,
+  "forced_golden_additions": 41,
+  "selected_review_ids": 100041,
+  "selected_distinct_texts": 77913,
+  "potential_exact_text_completed_rows": 237764,
+  "coverage_fraction_estimated": 0.3599163801885836,
+  "classification_performed": false
+}

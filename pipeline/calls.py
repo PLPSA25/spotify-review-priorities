@@ -1,6 +1,7 @@
 """One auditable dispatch path for reservations, rate limits, usage and retries."""
 
 import copy
+import json
 import random
 import time
 import uuid
@@ -10,7 +11,7 @@ from typing import Any
 
 from pipeline.providers import ProviderError, Transport
 from pipeline.schema import canonical
-from pipeline.spend import Ledger, SpendStop, token_cost
+from pipeline.spend import Ledger, SpendStop, token_cost, usage_cost
 from pipeline.state import ConfigMismatch, State
 
 
@@ -28,10 +29,12 @@ class Calls:
         self.fallback_scope = str(state.path.resolve()) + ":" + state.label_config
         self.sleep, self.jitter = sleep, jitter
         self.stop = Event()
+        self.max_calls: int | None = None
 
     def invoke(self, provider: str, payload: dict[str, Any], ids: list[str], stage: str,
                parse: Callable[[dict[str, Any]], dict[str, Any]], role: str = "enrich",
-               prompt_version: str | None = None, schema_version: str = "record-v1") -> dict[str, Any]:
+               prompt_version: str | None = None, schema_version: str = "record-v1",
+               repair_output: bool = True) -> dict[str, Any]:
         if role not in {"enrich", "verify", "group", "memo"}:
             raise ValueError("Unsupported model role")
         minimum = 1 if role in {"enrich", "verify"} else 0
@@ -55,6 +58,11 @@ class Calls:
             if self.stop.is_set():
                 raise SpendStop("Admission stopped by another worker")
             attempt += 1
+            if self.max_calls is not None:
+                with self.state.connect() as db:
+                    used = sum(json.loads(row[0]).get("run_id") == self.run_id for row in db.execute("SELECT event FROM calls"))
+                if used >= self.max_calls:
+                    raise SpendStop("Approved paid-step call count exhausted")
             request_id = str(uuid.uuid4())
             # Conservative byte-based token envelope, plus editable protocol overhead.
             tokens = len(canonical(payload).encode("utf-8")) + controls["token_overhead_bound"]
@@ -87,7 +95,7 @@ class Calls:
                 "review_ids": ids, "provider": provider, "model": payload["model"],
                 "phase": self.phase, "outcome": "failed", "label_config": self.state.label_config,
                 "input_tokens": None, "output_tokens": None, "attempt": attempt,
-                "prompt_version": prompt_version or ("jev-v1" if provider == "typesafe" else "luna-enrich-v1"),
+                "prompt_version": prompt_version or (self.config["enrichment"].get("jev_prompt", "jev-v1.json").removesuffix(".json") if provider == "typesafe" else "luna-enrich-v1"),
                 "schema_version": schema_version, "settings": self.config["models"],
                 "service_tier_requested": payload.get("service_tier", "standard"),
                 "service_tier": None, "simulated": self.simulated,
@@ -110,8 +118,8 @@ class Calls:
                 if any(type(value) is not int or value < 0 for value in (inputs, outputs)):
                     raise ProviderError("Usage unavailable/invalid; reservation retained", unknown_charge=True)
                 event.update(input_tokens=inputs, output_tokens=outputs)
-                actual = token_cost(inputs, outputs, rates, provider)
-                event.update(cost_nanodollars=actual, accounting="calculated_standard_no_cache_savings")
+                actual = usage_cost(usage, rates, provider)
+                event.update(cost_nanodollars=actual, accounting="calculated_from_reported_billing_categories")
                 self.ledger.settle(request_id, actual, event["accounting"])
                 settled = True
                 event["reservation_settled"] = True
@@ -127,6 +135,14 @@ class Calls:
                     raise SpendStop("Billed service tier missing/changed; stop to reconcile rates")
                 result = parse(response)
                 event.update(outcome="succeeded", error=None)
+                if "valid" in result and "errors" in result:
+                    event.update(valid_review_ids=list(result["valid"]),
+                                 invalid_review_ids=list(result["errors"]),
+                                 validated_results=result["valid"],
+                                 validation_errors=result["errors"],
+                                 unexpected_ids=result.get("unexpected_ids", []))
+                    if not result["valid"]:
+                        event.update(outcome="failed", error="Invalid batch results")
                 return result
             except ProviderError as exc:
                 event["error"] = str(exc)
@@ -149,7 +165,7 @@ class Calls:
                     raise
                 event["error"] = "Invalid output: " + str(exc)
                 malformed += 1
-                if malformed > controls["invalid_output_retries"]:
+                if not repair_output or malformed > controls["invalid_output_retries"]:
                     raise InvalidOutput(event["error"]) from None
                 if provider == "typesafe":
                     payload["state"]["validation_error"] = event["error"]

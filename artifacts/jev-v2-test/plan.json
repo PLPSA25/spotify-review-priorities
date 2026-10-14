@@ -1,0 +1,14 @@
+{
+  "step": "jev-v2-measurement",
+  "maximum_calls": 1,
+  "automatic_retries": 0,
+  "provider": "typesafe",
+  "model": "jev-1.13.0",
+  "synthetic_text": "Music will not play.",
+  "input_token_bound": 4615,
+  "target_billed_input_tokens": 1000,
+  "worst_case_nanodollars": 193830,
+  "payload_sha256": "c94ba7aa7db6cf39e990fa9eeb60ff3336e31f54ad657aaa5274b721cbbe532a",
+  "configuration": "b0cc1ce0b0a518f391490a61ac00a1e0c0f8181f6feb3c143a1f2890ea7e8318",
+  "status": "awaiting_explicit_yes"
+}

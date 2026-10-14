@@ -1,0 +1,38 @@
+{
+  "status": "succeeded",
+  "models": [
+    "jev-1.13.0",
+    "gpt-6-luna"
+  ],
+  "usage": [
+    {
+      "input_tokens": 2290,
+      "output_tokens": 259
+    },
+    {
+      "input_tokens": 577,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 61,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 638
+    }
+  ],
+  "limit_headers": [
+    {},
+    {
+      "x-ratelimit-limit-requests": "5000",
+      "x-ratelimit-limit-tokens": "2000000",
+      "x-ratelimit-remaining-requests": "4999",
+      "x-ratelimit-remaining-tokens": "2000000",
+      "x-ratelimit-reset-requests": "12ms",
+      "x-ratelimit-reset-tokens": "0s",
+      "x-request-id": "req_1c13d27273b54abba19c205d3ca00004"
+    }
+  ],
+  "note": "One success does not establish sustained capacity; console/headers govern limits."
+}

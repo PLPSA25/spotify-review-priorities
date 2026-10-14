@@ -22,3 +22,16 @@ def test_declared_rules_are_present_in_both_model_prompts() -> None:
     luna = Path("prompts/luna-enrich-v1.txt").read_text()
     assert "charged after cancelling" in luna
     assert "otherwise other/unclear/1" in luna
+
+
+def test_four_question_prompt_states_declared_rules_once() -> None:
+    import tomllib
+
+    config = tomllib.loads(Path("config.toml").read_text())
+    assert config["enrichment"]["jev_prompt"] == "jev-v2.json"
+    candidate = jev_payload("synthetic input", config)
+    assert set(candidate["questions"]) == {"topic", "intent", "severity", "sentiment"}
+    assert json.dumps(candidate).count("concrete financial loss") == 1
+    config["enrichment"]["jev_prompt"] = "jev-v1.json"
+    original = jev_payload("synthetic input", config)
+    assert len(json.dumps(candidate)) < len(json.dumps(original))

@@ -1,0 +1,17 @@
+{
+  "step": "pilot_memo_v2_only",
+  "provider": "openai",
+  "model": "gpt-6-luna",
+  "maximum_calls": 2,
+  "initial_calls": 1,
+  "invalid_output_repairs": 1,
+  "transient_retries": 0,
+  "input_token_bound_per_call": 12489,
+  "output_token_cap_per_call": 1200,
+  "payload_sha256": "8fd07dc77ff6c31819186675702b83668d4ed9e3a01b24242ab323b03718bda4",
+  "configuration": "b0cc1ce0b0a518f391490a61ac00a1e0c0f8181f6feb3c143a1f2890ea7e8318",
+  "worst_case_nanodollars": 4578250,
+  "enrichment_and_verifier_and_group_calls": 0,
+  "warm_replay_calls": 0,
+  "status": "awaiting_explicit_yes"
+}

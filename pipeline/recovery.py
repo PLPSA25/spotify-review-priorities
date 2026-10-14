@@ -2,8 +2,8 @@
 
 from typing import Any
 
-from pipeline.classify import parse_jev, parse_luna
-from pipeline.spend import Ledger, token_cost
+from pipeline.classify import parse_jev, parse_luna_batch
+from pipeline.spend import Ledger, usage_cost
 from pipeline.state import State
 
 
@@ -26,7 +26,7 @@ def recover(state: State, config: dict[str, Any], ledger: Ledger) -> dict[str, i
                 if not valid_usage:
                     uncertain = True
                     continue
-                actual = token_cost(inputs, outputs, config["planning_rates"], event["provider"])
+                actual = usage_cost(usage, config["planning_rates"], event["provider"])
                 ledger.settle(event["request_id"], actual, "recovered_saved_usage")
             event["reservation_settled"] = True
             if event.get("error") == "dispatch_started_outcome_unresolved" and response:
@@ -52,15 +52,21 @@ def recover(state: State, config: dict[str, Any], ledger: Ledger) -> dict[str, i
                 continue
             try:
                 if stage == "jev":
-                    result = parse_jev(event["response"], config["enrichment"]["confidence_threshold"])
+                    result = parse_jev(event["response"], config["enrichment"]["confidence_threshold"], config["enrichment"].get("probability_margin_threshold", 0.15))
                 else:
                     if event["service_tier"] not in {"default", "standard"}:
                         raise ValueError("Luna recovery tier requires rate reconciliation")
                     labels = state.stage_result(item["key"], "jev")
                     if labels is None:
                         raise ValueError("Luna recovery lacks saved Jev labels")
-                    result = parse_luna(event["response"], item["source"], labels,
-                                        stage == "extract", state.label_config)
+                    rid = item["source"]["review_id"]
+                    batch = parse_luna_batch(event["response"], {rid: item["source"]},
+                                            {rid: labels}, stage == "extract", state.label_config)
+                    if rid not in batch["valid"]:
+                        event.setdefault("invalid_review_ids", []).append(rid)
+                        state.save_call(event)
+                        continue
+                    result = batch["valid"][rid]
             except (ValueError, KeyError, TypeError) as exc:
                 if not candidate:
                     raise

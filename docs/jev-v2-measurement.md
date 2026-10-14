@@ -1,0 +1,19 @@
+# Jev v2 measurement gate
+
+The rejected cold pilot remains pending. Following separate explicit approval, exactly one Jev v2 measurement call succeeded on 2026-10-14; no pilot calls have run.
+
+The active candidate `jev-v2.json` asks only topic, intent, severity and sentiment. Declared rules appear once in shared trusted state. The six-question v1 and its original preflight evidence are preserved. The changed prompt produces a different label_config; no old predictions may be reused under it.
+
+Routing uses minimum reported confidence below 0.75 or a choice probability margin below 0.15. These are provisional development thresholds, not calibrated results. Calibration must use development reviews, never golden texts, and finish before checkpoint_500. Removing language and missing-context questions means confidence alone cannot guarantee detection of understandable non-English text or missing context. Include those cases in development evaluation; do not claim universal language detection.
+
+The separate `python -m pipeline jev-measure` command saves an offline approval plan. Executing requires explicit yes, `--confirm-spend` and the unchanged saved plan. It allows one Jev call, no retries, on the exact original synthetic text, `Music will not play.` Its input reservation is 4,615 tokens including the configured conservative overhead; worst-case cost is $0.000193830. The target of at most 1,000 billed input tokens is unverified until the response arrives. A single synthetic test does not measure real review length variation or classifier quality.
+
+Measured result: pinned `jev-1.13.0`, 1,003 billed input tokens and 197 free output tokens, costing $0.000042126. Topic playback, intent complaint and severity 4 were returned. The 1,000-token target was missed by three tokens; this is not claimed as a passing target. The synthetic-length scope estimate is $3.282163038. No prompt edits or further paid experiments followed this measurement.
+
+The reproducible offline `python -m pipeline.budget_projection` writes `cost/project_budget.json`. It counts 84,366 distinct texts in the union of the pilot, 500, 10k and selected scope, assuming unchanged-configuration cache transfer. Jev scope estimates including review-length allowance are $3.345641 base and $3.532117 conservative, before retries. Project totals are $6.879357 base and $10.345356 conservative, including actual spend, development, 1,510 verification reviews, four group/memo runs and retry allowances. These are estimates, not hard worst-case guarantees. Base assumes four extra UTF-8 bytes per token and 10% retry cost; conservative assumes one byte and 50%. Luna envelopes and allowed fallback incidence remain assumptions. The conservative estimate exceeds $10; the shared cap prevents overspend but cannot guarantee completion. Refresh from the pilot before authorizing larger runs.
+
+The rebuilt pilot plan is $0.225112492 maximum: 100 Jev initial calls, up to 17 initial Luna enrichment calls and three initial downstream calls; maximum 416 including repairs. Warm replay forbids new calls. Accepting this pilot plan explicitly accepts the measured 1,003-token candidate; otherwise a further trim and separately approved measurement are needed. Neither the pilot nor checkpoint_500 is approved by the measurement approval.
+
+OpenAI limits are 3,000 requests/minute and 1,200,000 input tokens/minute, below measured header limits of 5,000 and 2,000,000. One worker remains configured.
+
+Subsequent status: the user explicitly accepted the 1,003-token candidate and approved the pilot, then separately approved memo-v2 continuation after the original memo failed. Pilot and zero-call warm replay are now complete; see docs/phase4-status.md. Earlier pending references above describe the measurement gate at that time.

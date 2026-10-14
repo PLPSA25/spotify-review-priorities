@@ -31,6 +31,22 @@ def token_cost(input_tokens: int, output_tokens: int, rates: dict[str, Any], pro
     return money(cost)
 
 
+def usage_cost(usage: dict[str, Any], rates: dict[str, Any], provider: str) -> int:
+    inputs, outputs = usage["input_tokens"], usage["output_tokens"]
+    base = token_cost(inputs, outputs, rates, provider)
+    if provider == "typesafe":
+        return base
+    detail = usage.get("input_tokens_details", {})
+    cached, writes = detail.get("cached_tokens", 0), detail.get("cache_write_tokens", 0)
+    if any(type(value) is not int or value < 0 for value in (cached, writes)) or cached + writes > inputs:
+        raise ValueError("Invalid mutually exclusive cached/write input usage")
+    cost = (Decimal(inputs - cached - writes) * Decimal(str(rates["luna_input_per_million"]))
+            + Decimal(cached) * Decimal(str(rates["luna_cached_input_per_million"]))
+            + Decimal(writes) * Decimal(str(rates["luna_cache_write_per_million"]))
+            + Decimal(outputs) * Decimal(str(rates["luna_output_per_million"]))) / 1000000
+    return money(cost)
+
+
 class Ledger:
     def __init__(self, path: Path, cap: float) -> None:
         self.path, self.cap = path, money(cap)

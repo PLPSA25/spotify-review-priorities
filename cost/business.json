@@ -1,0 +1,534 @@
+{
+  "membership": [
+    {
+      "issue_id": "issue-usability",
+      "review_id": "035213ba-b1b9-411c-b028-70296e5f0e73"
+    },
+    {
+      "issue_id": "issue-catalog",
+      "review_id": "0658feaa-5bec-416e-b6b0-3de2a4c14580"
+    },
+    {
+      "issue_id": "issue-other",
+      "review_id": "06a45bd5-3ed9-43af-b7f2-8b9487e2ffff"
+    },
+    {
+      "issue_id": "issue-other",
+      "review_id": "178c3b49-b689-4fe4-92a2-2257a58e6d95"
+    },
+    {
+      "issue_id": "issue-catalog",
+      "review_id": "1807cc68-ba99-4edc-b6f1-2a1478e69109"
+    },
+    {
+      "issue_id": "issue-billing",
+      "review_id": "21915fcd-9a35-48ba-b277-6296c4154603"
+    },
+    {
+      "issue_id": "issue-other",
+      "review_id": "2d5cdd20-3094-40a5-bc6e-653302b59b56"
+    },
+    {
+      "issue_id": "issue-downloads",
+      "review_id": "2ffdf599-a0d5-4c01-bf26-025215d44c06"
+    },
+    {
+      "issue_id": "issue-access",
+      "review_id": "32fb340f-4f9f-4551-8dae-755221e58d6a"
+    },
+    {
+      "issue_id": "issue-support",
+      "review_id": "33526c6f-7a49-4b3d-bd20-d1bc191c494c"
+    },
+    {
+      "issue_id": "issue-billing",
+      "review_id": "3e82cf28-6b0a-4980-902c-b6aa154d353a"
+    },
+    {
+      "issue_id": "issue-usability",
+      "review_id": "3e8bdc92-4934-457e-85cc-8b9d14bf51c0"
+    },
+    {
+      "issue_id": "issue-usability",
+      "review_id": "45c561b9-cc47-4d80-95d3-f0d20bc84af3"
+    },
+    {
+      "issue_id": "issue-playback",
+      "review_id": "46ff0c74-5e86-4e5b-b4cd-36201aab0f9e"
+    },
+    {
+      "issue_id": "issue-catalog",
+      "review_id": "47becad0-8ae5-4a10-9731-fde8f2091862"
+    },
+    {
+      "issue_id": "issue-other",
+      "review_id": "486d1d7a-d6f6-41ea-81ad-ed875452729c"
+    },
+    {
+      "issue_id": "issue-playback",
+      "review_id": "4ab2089a-ffa8-49e7-a8a3-aeb583a96796"
+    },
+    {
+      "issue_id": "issue-other",
+      "review_id": "51bfd887-24a0-4741-8b59-68e0a726dd7a"
+    },
+    {
+      "issue_id": "issue-playback",
+      "review_id": "55cc3abf-c295-4591-8c3a-78085cfdefaa"
+    },
+    {
+      "issue_id": "issue-usability",
+      "review_id": "5c9c17d3-9d6a-4fa1-a2a4-ae98eefbbd25"
+    },
+    {
+      "issue_id": "issue-catalog",
+      "review_id": "618d1dbb-0186-4537-923a-7b4dabf19afb"
+    },
+    {
+      "issue_id": "issue-playback",
+      "review_id": "66a29b3c-c14d-440e-b722-b23e0c99ae82"
+    },
+    {
+      "issue_id": "issue-playback",
+      "review_id": "6c257eba-3dca-49f6-b7f0-4c4484d81e26"
+    },
+    {
+      "issue_id": "issue-usability",
+      "review_id": "7084ced1-0428-4093-9328-442f74719b4f"
+    },
+    {
+      "issue_id": "issue-usability",
+      "review_id": "85383985-844d-4f9b-bcd9-d6016ac35f6b"
+    },
+    {
+      "issue_id": "issue-billing",
+      "review_id": "88439ec2-7c49-4c57-bedb-c5e098692aff"
+    },
+    {
+      "issue_id": "issue-usability",
+      "review_id": "89a8e180-7846-4421-a2b6-fa7787e9d0d2"
+    },
+    {
+      "issue_id": "issue-billing",
+      "review_id": "89ea2c30-db8b-459d-8ab7-bbcb7f92c774"
+    },
+    {
+      "issue_id": "issue-other",
+      "review_id": "8b6e028a-5f63-4011-9841-cbbade4830eb"
+    },
+    {
+      "issue_id": "issue-usability",
+      "review_id": "94c9f2f9-36fa-4c11-936e-660514fe7a35"
+    },
+    {
+      "issue_id": "issue-playback",
+      "review_id": "9c9757da-6b99-4c95-a0e7-0661ee858027"
+    },
+    {
+      "issue_id": "issue-playback",
+      "review_id": "9e5f9745-f8be-48d3-b9de-4d118507d94a"
+    },
+    {
+      "issue_id": "issue-catalog",
+      "review_id": "a1a28752-3256-4f81-b888-3e943343529f"
+    },
+    {
+      "issue_id": "issue-billing",
+      "review_id": "a3605554-5c3a-441d-836e-e9fdea83eb2e"
+    },
+    {
+      "issue_id": "issue-billing",
+      "review_id": "a78d831a-69f4-428a-9235-cfdd9775c509"
+    },
+    {
+      "issue_id": "issue-usability",
+      "review_id": "ab67a772-c3b7-42ba-9b80-8d21d3857018"
+    },
+    {
+      "issue_id": "issue-billing",
+      "review_id": "ad730d1a-829a-4dc4-9561-7e1cd07e2c30"
+    },
+    {
+      "issue_id": "issue-other",
+      "review_id": "b47c203f-366e-4409-922d-cd52aa8bbef6"
+    },
+    {
+      "issue_id": "issue-other",
+      "review_id": "b92a7381-b5cd-4c77-9176-e5c4b4818c8a"
+    },
+    {
+      "issue_id": "issue-other",
+      "review_id": "b9a3e661-0eac-4cc9-a30e-7b1e11ef1315"
+    },
+    {
+      "issue_id": "issue-other",
+      "review_id": "c1ab120a-f91f-4ee3-87f5-66f352e2d47f"
+    },
+    {
+      "issue_id": "issue-usability",
+      "review_id": "c2738a4f-e57c-46bc-a4ad-8ec5a4b5d5cd"
+    },
+    {
+      "issue_id": "issue-other",
+      "review_id": "ca16e65d-d2ff-4453-a495-b8c422809330"
+    },
+    {
+      "issue_id": "issue-usability",
+      "review_id": "cf6166ae-d71a-4839-9add-088645ad3b78"
+    },
+    {
+      "issue_id": "issue-billing",
+      "review_id": "d146397f-4a94-4980-be00-ae9212eca3a7"
+    },
+    {
+      "issue_id": "issue-usability",
+      "review_id": "d455c11e-c530-4c03-a395-38f5a5cdb8d3"
+    },
+    {
+      "issue_id": "issue-downloads",
+      "review_id": "dcff57c6-abd6-413b-b255-aec3dc34fcbd"
+    },
+    {
+      "issue_id": "issue-access",
+      "review_id": "de0a9cdf-8974-48bc-802f-331228df4619"
+    },
+    {
+      "issue_id": "issue-catalog",
+      "review_id": "e0127547-4edd-44a0-8d5e-e8398bc07086"
+    },
+    {
+      "issue_id": "issue-playback",
+      "review_id": "e16a4550-43e7-4ae1-b538-a65cc652c31b"
+    },
+    {
+      "issue_id": "issue-usability",
+      "review_id": "e5e6c55f-3069-4b7c-9807-f8b5d5bf2726"
+    },
+    {
+      "issue_id": "issue-usability",
+      "review_id": "ebc64fe2-9553-4528-87d5-cb4bb9783be6"
+    }
+  ],
+  "ranking": [
+    {
+      "rank": "1",
+      "issue_id": "issue-usability",
+      "complaint_count": "14",
+      "severity_sum": "35",
+      "priority_score": "35",
+      "mean_severity": "2.500000"
+    },
+    {
+      "rank": "2",
+      "issue_id": "issue-playback",
+      "complaint_count": "8",
+      "severity_sum": "27",
+      "priority_score": "27",
+      "mean_severity": "3.375000"
+    },
+    {
+      "rank": "3",
+      "issue_id": "issue-billing",
+      "complaint_count": "8",
+      "severity_sum": "23",
+      "priority_score": "23",
+      "mean_severity": "2.875000"
+    },
+    {
+      "rank": "4",
+      "issue_id": "issue-other",
+      "complaint_count": "11",
+      "severity_sum": "15",
+      "priority_score": "15",
+      "mean_severity": "1.363636"
+    },
+    {
+      "rank": "5",
+      "issue_id": "issue-catalog",
+      "complaint_count": "6",
+      "severity_sum": "13",
+      "priority_score": "13",
+      "mean_severity": "2.166667"
+    },
+    {
+      "rank": "6",
+      "issue_id": "issue-access",
+      "complaint_count": "2",
+      "severity_sum": "8",
+      "priority_score": "8",
+      "mean_severity": "4.000000"
+    },
+    {
+      "rank": "7",
+      "issue_id": "issue-downloads",
+      "complaint_count": "2",
+      "severity_sum": "7",
+      "priority_score": "7",
+      "mean_severity": "3.500000"
+    },
+    {
+      "rank": "8",
+      "issue_id": "issue-support",
+      "complaint_count": "1",
+      "severity_sum": "2",
+      "priority_score": "2",
+      "mean_severity": "2.000000"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "issue-usability:complaint_count",
+      "issue_id": "issue-usability",
+      "metric": "complaint_count",
+      "value": "14"
+    },
+    {
+      "claim_id": "issue-usability:severity_sum",
+      "issue_id": "issue-usability",
+      "metric": "severity_sum",
+      "value": "35"
+    },
+    {
+      "claim_id": "issue-usability:mean_severity",
+      "issue_id": "issue-usability",
+      "metric": "mean_severity",
+      "value": "2.500000"
+    },
+    {
+      "claim_id": "issue-usability:priority_score",
+      "issue_id": "issue-usability",
+      "metric": "priority_score",
+      "value": "35"
+    },
+    {
+      "claim_id": "issue-playback:complaint_count",
+      "issue_id": "issue-playback",
+      "metric": "complaint_count",
+      "value": "8"
+    },
+    {
+      "claim_id": "issue-playback:severity_sum",
+      "issue_id": "issue-playback",
+      "metric": "severity_sum",
+      "value": "27"
+    },
+    {
+      "claim_id": "issue-playback:mean_severity",
+      "issue_id": "issue-playback",
+      "metric": "mean_severity",
+      "value": "3.375000"
+    },
+    {
+      "claim_id": "issue-playback:priority_score",
+      "issue_id": "issue-playback",
+      "metric": "priority_score",
+      "value": "27"
+    },
+    {
+      "claim_id": "issue-billing:complaint_count",
+      "issue_id": "issue-billing",
+      "metric": "complaint_count",
+      "value": "8"
+    },
+    {
+      "claim_id": "issue-billing:severity_sum",
+      "issue_id": "issue-billing",
+      "metric": "severity_sum",
+      "value": "23"
+    },
+    {
+      "claim_id": "issue-billing:mean_severity",
+      "issue_id": "issue-billing",
+      "metric": "mean_severity",
+      "value": "2.875000"
+    },
+    {
+      "claim_id": "issue-billing:priority_score",
+      "issue_id": "issue-billing",
+      "metric": "priority_score",
+      "value": "23"
+    },
+    {
+      "claim_id": "issue-other:complaint_count",
+      "issue_id": "issue-other",
+      "metric": "complaint_count",
+      "value": "11"
+    },
+    {
+      "claim_id": "issue-other:severity_sum",
+      "issue_id": "issue-other",
+      "metric": "severity_sum",
+      "value": "15"
+    },
+    {
+      "claim_id": "issue-other:mean_severity",
+      "issue_id": "issue-other",
+      "metric": "mean_severity",
+      "value": "1.363636"
+    },
+    {
+      "claim_id": "issue-other:priority_score",
+      "issue_id": "issue-other",
+      "metric": "priority_score",
+      "value": "15"
+    },
+    {
+      "claim_id": "issue-catalog:complaint_count",
+      "issue_id": "issue-catalog",
+      "metric": "complaint_count",
+      "value": "6"
+    },
+    {
+      "claim_id": "issue-catalog:severity_sum",
+      "issue_id": "issue-catalog",
+      "metric": "severity_sum",
+      "value": "13"
+    },
+    {
+      "claim_id": "issue-catalog:mean_severity",
+      "issue_id": "issue-catalog",
+      "metric": "mean_severity",
+      "value": "2.166667"
+    },
+    {
+      "claim_id": "issue-catalog:priority_score",
+      "issue_id": "issue-catalog",
+      "metric": "priority_score",
+      "value": "13"
+    },
+    {
+      "claim_id": "issue-access:complaint_count",
+      "issue_id": "issue-access",
+      "metric": "complaint_count",
+      "value": "2"
+    },
+    {
+      "claim_id": "issue-access:severity_sum",
+      "issue_id": "issue-access",
+      "metric": "severity_sum",
+      "value": "8"
+    },
+    {
+      "claim_id": "issue-access:mean_severity",
+      "issue_id": "issue-access",
+      "metric": "mean_severity",
+      "value": "4.000000"
+    },
+    {
+      "claim_id": "issue-access:priority_score",
+      "issue_id": "issue-access",
+      "metric": "priority_score",
+      "value": "8"
+    },
+    {
+      "claim_id": "issue-downloads:complaint_count",
+      "issue_id": "issue-downloads",
+      "metric": "complaint_count",
+      "value": "2"
+    },
+    {
+      "claim_id": "issue-downloads:severity_sum",
+      "issue_id": "issue-downloads",
+      "metric": "severity_sum",
+      "value": "7"
+    },
+    {
+      "claim_id": "issue-downloads:mean_severity",
+      "issue_id": "issue-downloads",
+      "metric": "mean_severity",
+      "value": "3.500000"
+    },
+    {
+      "claim_id": "issue-downloads:priority_score",
+      "issue_id": "issue-downloads",
+      "metric": "priority_score",
+      "value": "7"
+    },
+    {
+      "claim_id": "issue-support:complaint_count",
+      "issue_id": "issue-support",
+      "metric": "complaint_count",
+      "value": "1"
+    },
+    {
+      "claim_id": "issue-support:severity_sum",
+      "issue_id": "issue-support",
+      "metric": "severity_sum",
+      "value": "2"
+    },
+    {
+      "claim_id": "issue-support:mean_severity",
+      "issue_id": "issue-support",
+      "metric": "mean_severity",
+      "value": "2.000000"
+    },
+    {
+      "claim_id": "issue-support:priority_score",
+      "issue_id": "issue-support",
+      "metric": "priority_score",
+      "value": "2"
+    }
+  ],
+  "names": {
+    "issues": [
+      {
+        "issue_id": "issue-usability",
+        "name": "Too many ads"
+      },
+      {
+        "issue_id": "issue-playback",
+        "name": "Playback and connectivity problems"
+      },
+      {
+        "issue_id": "issue-billing",
+        "name": "Premium features and pricing complaints"
+      },
+      {
+        "issue_id": "issue-other",
+        "name": "Unspecified negative feedback"
+      },
+      {
+        "issue_id": "issue-catalog",
+        "name": "Missing or outdated music catalog"
+      },
+      {
+        "issue_id": "issue-access",
+        "name": "Account login problems"
+      },
+      {
+        "issue_id": "issue-downloads",
+        "name": "Offline downloads not working"
+      },
+      {
+        "issue_id": "issue-support",
+        "name": "Negative feedback about app support"
+      }
+    ]
+  },
+  "memo": {
+    "priority_issue": "issue-usability",
+    "recommendation": "Prioritize reducing ad interruptions: this issue leads the saved priority ranking, and reviews describe ads appearing after only a song or two. Playback and connectivity is the strongest alternative, with fewer complaints but higher average severity; billing complaints rank next. Treat uninstall language as stated intent, not confirmed churn. This small pilot does not establish population-wide impact.",
+    "alternatives": [
+      "Playback and connectivity problems: fewer complaints, but higher average severity and the next-highest priority score. Investigate reported assistant playback failures and Wi-Fi connectivity.",
+      "Premium features and pricing complaints: third in the priority ranking; review examples object to features being moved behind premium access."
+    ],
+    "limitations": "Evidence comes from a development pilot and cannot establish population-wide impact or actual churn. Reviews are illustrative, not proof of causality.",
+    "claim_ids": [
+      "issue-usability:complaint_count",
+      "issue-usability:priority_score",
+      "issue-playback:complaint_count",
+      "issue-playback:mean_severity",
+      "issue-playback:priority_score",
+      "issue-billing:priority_score"
+    ],
+    "review_ids": [
+      "035213ba-b1b9-411c-b028-70296e5f0e73",
+      "3e8bdc92-4934-457e-85cc-8b9d14bf51c0",
+      "46ff0c74-5e86-4e5b-b4cd-36201aab0f9e",
+      "4ab2089a-ffa8-49e7-a8a3-aeb583a96796",
+      "21915fcd-9a35-48ba-b277-6296c4154603"
+    ]
+  },
+  "scope": "100-review pilot",
+  "grouping": "stable topic-level issues"
+}

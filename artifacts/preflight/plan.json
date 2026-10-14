@@ -1,0 +1,30 @@
+{
+  "step": "provider_preflight",
+  "maximum_calls": 2,
+  "automatic_retries": 0,
+  "calls": [
+    {
+      "provider": "typesafe",
+      "model": "jev-1.13.0",
+      "calls": 1,
+      "input_token_bound": 10872,
+      "output_token_cap": 0,
+      "worst_case_nanodollars": 456624,
+      "payload_sha256": "7ba9f9b341c0cf7dc843a3361faf8085c484a62b52f0d58b3148f8c50039edcf"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-6-luna",
+      "calls": 1,
+      "input_token_bound": 5224,
+      "output_token_cap": 256,
+      "worst_case_nanodollars": 781000,
+      "payload_sha256": "e646b80d794ca6808d9477f74ac7671050aa8c873b5044506cb37b1a7f84e714"
+    }
+  ],
+  "worst_case_nanodollars": 1237624,
+  "credentials_present": true,
+  "configuration": "563eefeff6a52741b9c571d16382f858ae29a963cbf8414174856657c943db67",
+  "status": "awaiting_explicit_yes",
+  "synthetic_text": "Music will not play."
+}

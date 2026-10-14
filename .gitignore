@@ -27,3 +27,6 @@ self-check.json
 *.tmp
 artifacts/test-temp*/
 *.csv.lock
+
+# Private notes (never commit)
+HANDOFF_NOTES.md

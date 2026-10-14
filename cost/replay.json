@@ -1,0 +1,687 @@
+{
+  "status": "ready",
+  "api_spend_usd": "0.007171879",
+  "by_role_usd": {
+    "enrich": "0.005133954",
+    "verify": "0.000470600",
+    "group": "0.000195550",
+    "memo": "0.001371775"
+  },
+  "unresolved_usage": [],
+  "measured_time_seconds": {
+    "cold": 58.622409100004006,
+    "memo_continuation": 5.265658999996958,
+    "warm": 0.021283199996105395
+  },
+  "local_compute_cost_usd": null,
+  "jev_input_tokens_per_call": [
+    {
+      "request_id": "fd395131-1300-4433-9900-4cd6be12d7c5",
+      "input_tokens": 1063,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "8f90b3e1-67e0-49e8-9c75-db164ad5e6e6",
+      "input_tokens": 1001,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "e0cf13fa-23ce-4517-9fb8-ea39d984bb1e",
+      "input_tokens": 1011,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "afebfd24-eb93-40ab-be7a-c5f9d4288521",
+      "input_tokens": 1006,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "2829875a-1656-4a1d-93f1-11140b12bb54",
+      "input_tokens": 1004,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "8e5cc910-f139-43f8-ae0a-2e95c7cc59d8",
+      "input_tokens": 1001,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "b4af8ecb-552d-4c61-9ee1-e53c7f3a453b",
+      "input_tokens": 1015,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "5f65f177-a055-4e1a-a0ae-052465fcba15",
+      "input_tokens": 1000,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "07c19713-3be9-4f4a-99ab-5500102b4c54",
+      "input_tokens": 1003,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "104bf523-f110-46fa-8881-dd96038ee7b0",
+      "input_tokens": 1000,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "1e43af7c-0a49-47af-815e-c84e44c56eab",
+      "input_tokens": 1003,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "07e4cf81-d921-4cb6-a435-949e98ca0c2c",
+      "input_tokens": 1011,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "1819a805-2b76-40d0-bc17-403313bbf13a",
+      "input_tokens": 1022,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "259e590f-7665-4a97-b4f1-86144fc009a4",
+      "input_tokens": 1039,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "77faddf9-d42f-4cfb-b75a-1d91e1c86046",
+      "input_tokens": 1001,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "79a795d3-61d4-4c89-8802-582cad40dde2",
+      "input_tokens": 1005,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "e77288f1-504f-4071-b47d-4b5c84714c5a",
+      "input_tokens": 1034,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "f7caa86c-9995-47ee-b162-39880cb73940",
+      "input_tokens": 1004,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "0724c536-7a03-47a9-b31e-5ceec8d8a841",
+      "input_tokens": 1003,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "86889d17-006c-44cb-a31d-d0a11ab97f18",
+      "input_tokens": 1030,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "cb8e555f-cf2b-455d-a33f-374dddfa8f33",
+      "input_tokens": 1006,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "89b43ef2-d1d2-4bb2-9b49-c8619365ce14",
+      "input_tokens": 1035,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "8eb450cd-154f-4ac3-a73b-d85062e8a109",
+      "input_tokens": 1022,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "9eed4667-a42d-44a5-8c6d-bd5b836c8664",
+      "input_tokens": 1012,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "5e7a4dea-8676-4eb2-906c-c9dd560474a1",
+      "input_tokens": 1036,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "409d61f9-c207-4471-b0e9-44f5936430d0",
+      "input_tokens": 999,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "46bf1f82-6b3c-4a3c-a4f0-00f08b9bd6f7",
+      "input_tokens": 1053,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "2b4c5050-df92-446b-9fae-cb15ab61b4f0",
+      "input_tokens": 1002,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "12d47825-5fb2-489d-9740-1c3eb4029608",
+      "input_tokens": 1045,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "95ab20b1-41e9-4638-bcf2-d9cad2d5e70f",
+      "input_tokens": 1098,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "bbd5fec3-2ee2-4629-b8c4-7528cfcecc41",
+      "input_tokens": 1003,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "f808abce-d1f5-43bc-aa57-cd573043e540",
+      "input_tokens": 1003,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "99c6e5dd-fc90-47de-a01f-d2a88a9bf410",
+      "input_tokens": 1006,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "072d4c08-4499-43c5-841d-5575ef32d928",
+      "input_tokens": 1026,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "6df72ffc-e759-4041-a7a7-0db3dc1a20e0",
+      "input_tokens": 1065,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "423d24e0-4ef0-470c-a01f-929e56adb421",
+      "input_tokens": 1008,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "8570a2ad-9435-4595-a491-25bc60ad7af5",
+      "input_tokens": 1034,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "ebcec0e0-5585-4780-8a33-a7219a17c8e8",
+      "input_tokens": 1013,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "fb8dde2e-1ed0-4a1d-9213-461f8a9fe398",
+      "input_tokens": 1002,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "175c8e4b-b4fb-47d9-b264-fe53d4dae492",
+      "input_tokens": 1019,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "4787f3b1-4c50-48e4-b707-fc2843836fc5",
+      "input_tokens": 1018,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "c93c782c-0a31-47ee-9db4-eded785167ef",
+      "input_tokens": 1010,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "cf014848-280a-4f86-aef4-5ab9b4798173",
+      "input_tokens": 999,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "c2128a48-eb82-4c5b-a68a-3808abaca0c4",
+      "input_tokens": 1021,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "8c8d2e0b-3a94-487e-b823-76d4a54ddfa1",
+      "input_tokens": 1000,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "220046a8-5d89-4dc2-b3eb-4c8cf919454d",
+      "input_tokens": 1040,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "b3367f3b-441e-4a80-b8e1-2e55b19a6427",
+      "input_tokens": 999,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "fdf9973e-2064-4892-bfb4-796c5522832f",
+      "input_tokens": 1001,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "78342298-acd5-467c-837d-d791bf162683",
+      "input_tokens": 1001,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "b5e55cff-8c2a-4e47-a1bc-67ea73717afb",
+      "input_tokens": 1005,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "caf71eb2-a70f-4731-b978-8ae85367cff1",
+      "input_tokens": 1022,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "ef2f3a45-0efe-4b32-85d5-7b9f440da407",
+      "input_tokens": 1008,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "51468eae-19d2-4357-bd95-33520497bd48",
+      "input_tokens": 1009,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "ec522fb4-df71-44a0-8ca1-0dde273f24e9",
+      "input_tokens": 1005,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "bcc9f304-57e7-4430-8530-005eafcf744d",
+      "input_tokens": 1005,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "50a0e244-b7b8-46c1-9297-fed33648d9e5",
+      "input_tokens": 1007,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "b29c4ece-035f-4c1b-9049-42c347aa44e9",
+      "input_tokens": 1016,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "dd892070-31f3-4a38-97f6-43f017208c91",
+      "input_tokens": 1011,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "02041446-b55b-4c2d-b94c-d55129200045",
+      "input_tokens": 1011,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "52e4c3f7-b22c-4249-bad2-52f45cba29d5",
+      "input_tokens": 1000,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "00bcb344-992c-4064-af45-26e8cdfd5b14",
+      "input_tokens": 1003,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "1295740e-eef0-4d3a-8651-73aa2edc54a2",
+      "input_tokens": 1023,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "dd17d3e9-25e6-4232-97cd-3b946a9f0ea6",
+      "input_tokens": 1035,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "ba0e5123-0a8d-4e16-b484-bcf4b3c5520b",
+      "input_tokens": 1001,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "dade7b0e-459b-4c3a-8f46-c2be172bf87e",
+      "input_tokens": 1009,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "16d86cf9-6d1c-4163-8ccd-6e17d77ec3cb",
+      "input_tokens": 1082,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "461e2975-73ce-4fa5-9419-ed68382bffd5",
+      "input_tokens": 1012,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "6a7db88a-4636-41fa-ae58-677974ae593c",
+      "input_tokens": 1010,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "51d0fc5d-871b-41c1-9742-a7e164496506",
+      "input_tokens": 1001,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "62d58c36-40e2-4fc2-866e-6a27608fc169",
+      "input_tokens": 1007,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "62cda4aa-1b65-43e7-9fd2-975ec9796d51",
+      "input_tokens": 1097,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "6b982d48-cf48-48c2-8bef-270d4ed0075a",
+      "input_tokens": 1003,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "08545e59-5509-48be-bba9-e0713a781190",
+      "input_tokens": 1000,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "9541f1bb-9eb8-4f9b-baa9-ee9ab73f1702",
+      "input_tokens": 1143,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "f63e6721-7e59-4e3c-a5e2-0612a9986abb",
+      "input_tokens": 1000,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "1e3976a7-7942-42b1-aacf-2d00f4f4b3c0",
+      "input_tokens": 1000,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "ddb9f9d1-a846-4c27-b42d-ecf23e2d1bdc",
+      "input_tokens": 1001,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "5fbaf84f-8618-4141-9ae6-e1f95b11ba9b",
+      "input_tokens": 1007,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "5aa1a433-a519-445e-ae0e-387ca42242af",
+      "input_tokens": 1049,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "a5cd4ab6-a647-4c43-8e8b-72fd1cd73945",
+      "input_tokens": 1007,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "24f3247f-137f-4924-824e-c6525c44e79b",
+      "input_tokens": 1003,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "cf5b8326-ec6b-4b16-8548-71a67e67d57a",
+      "input_tokens": 1000,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "d120755e-7a4b-48cf-b5dc-8d4f222d26eb",
+      "input_tokens": 1015,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "612f4eda-a5f9-43c9-96a1-a660f8e220e7",
+      "input_tokens": 1002,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "89c10fa2-ceb2-4fb9-aac3-a6f49f8918df",
+      "input_tokens": 1011,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "08e2d1c4-9a47-47f5-bdba-6035653c2988",
+      "input_tokens": 1015,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "329b5222-70cc-4060-aeac-f0d80f787a07",
+      "input_tokens": 1074,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "70d6c8f7-d922-4567-9187-a10c025ebb9b",
+      "input_tokens": 1040,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "00668309-3eb7-42c5-b49d-beb13a110362",
+      "input_tokens": 1007,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "22ec9b96-a90d-4c97-aed0-0badb5cd6dad",
+      "input_tokens": 1002,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "619732e6-3b82-4323-8706-4a92b76e4e13",
+      "input_tokens": 1001,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "459ffec6-2ee1-4cd8-813f-278236ad8c23",
+      "input_tokens": 1008,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "8f36a902-da0f-4f93-9181-263ce45bc516",
+      "input_tokens": 1113,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "0dbb1fd4-325c-4e43-ab3e-65766093ea85",
+      "input_tokens": 1001,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "71e89223-9352-42fe-a664-7347b8da0b9c",
+      "input_tokens": 1028,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "82992fdd-088d-46c0-914f-5b611f8a6b6c",
+      "input_tokens": 1025,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "c0587ba8-a23c-4801-911c-e5d8cf517ba2",
+      "input_tokens": 1002,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "61a53251-0d5a-4763-8dd9-c3861f6d0e52",
+      "input_tokens": 1040,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "97be8db0-8dfb-46fc-b40c-4d9e6f5d3499",
+      "input_tokens": 1023,
+      "outcome": "succeeded"
+    },
+    {
+      "request_id": "707f0ce4-b77a-4ccb-b4d6-0695fec90ee8",
+      "input_tokens": 1056,
+      "outcome": "succeeded"
+    }
+  ],
+  "jev_mean_input_tokens_per_call": 1018.87,
+  "jev_billed_input_tokens_per_distinct_text": 1018.87,
+  "jev_100k_scope_projection_usd": "3.33409516902",
+  "jev_trim_proposal_required": false,
+  "scope": {
+    "seed": "spotify-final-2026-v1",
+    "method": "Ascending SHA-256(seed + ':' + review_id), ID tie-break; all nonempty IDs",
+    "permutation_sha256": "cffc97a0a51b8b32440c4615326a721b6bd4074851cb6da2717688c8c70193e8",
+    "permutation_count": 660609,
+    "random_prefix_count": 100000,
+    "forced_golden_additions": 41,
+    "selected_review_ids": 100041,
+    "selected_distinct_texts": 77913,
+    "potential_exact_text_completed_rows": 237764,
+    "coverage_fraction_estimated": 0.3599163801885836,
+    "classification_performed": false
+  },
+  "measurements": {
+    "local_compute_cost_usd": null,
+    "cold": {
+      "status": "failed",
+      "error": "InvalidOutput: Invalid output: Memo priority issue is unsupported",
+      "input_rows": 100,
+      "distinct_texts": 100,
+      "counts": {
+        "completed": 100
+      },
+      "end_to_end_seconds": 58.622409100004006,
+      "run_id": "53db10c8-f5d3-494b-87d3-a1023f9c9421"
+    },
+    "memo_continuation": {
+      "status": "completed",
+      "end_to_end_seconds": 5.265658999996958,
+      "original_cold_failure_preserved": true
+    },
+    "warm": {
+      "status": "completed",
+      "new_enrich_calls": 0,
+      "new_downstream_calls": 0,
+      "incremental_api_spend_usd": "0",
+      "end_to_end_seconds": 0.021283199996105395,
+      "counts": {
+        "completed": 100
+      }
+    }
+  },
+  "accounting": "Calculated from reported usage and editable dated rates; receipts not reconciled.",
+  "scenarios": [
+    {
+      "scope": "100k sample with exact reuse",
+      "case": "base",
+      "distinct_or_no_reuse_work": 77913,
+      "api_spend_usd": "4.02463773002",
+      "fixed_overhead_usd_counted_once": "0.001090150",
+      "verification_reviews": 500,
+      "estimated_model_stage_seconds": null,
+      "full_preparation_seconds": null,
+      "exceeds_10_usd": false,
+      "assumptions": "Observed pilot mix; conservative variable retries/fallback/output uplift 50%; one worker. Full-corpus scenarios are comparison only."
+    },
+    {
+      "scope": "100k sample with exact reuse",
+      "case": "conservative",
+      "distinct_or_no_reuse_work": 77913,
+      "api_spend_usd": "6.036411520030",
+      "fixed_overhead_usd_counted_once": "0.001090150",
+      "verification_reviews": 500,
+      "estimated_model_stage_seconds": null,
+      "full_preparation_seconds": null,
+      "exceeds_10_usd": false,
+      "assumptions": "Observed pilot mix; conservative variable retries/fallback/output uplift 50%; one worker. Full-corpus scenarios are comparison only."
+    },
+    {
+      "scope": "100k sample without exact reuse",
+      "case": "base",
+      "distinct_or_no_reuse_work": 100041,
+      "api_spend_usd": "5.16067907114",
+      "fixed_overhead_usd_counted_once": "0.001090150",
+      "verification_reviews": 500,
+      "estimated_model_stage_seconds": null,
+      "full_preparation_seconds": null,
+      "exceeds_10_usd": false,
+      "assumptions": "Observed pilot mix; conservative variable retries/fallback/output uplift 50%; one worker. Full-corpus scenarios are comparison only."
+    },
+    {
+      "scope": "100k sample without exact reuse",
+      "case": "conservative",
+      "distinct_or_no_reuse_work": 100041,
+      "api_spend_usd": "7.740473531710",
+      "fixed_overhead_usd_counted_once": "0.001090150",
+      "verification_reviews": 500,
+      "estimated_model_stage_seconds": null,
+      "full_preparation_seconds": null,
+      "exceeds_10_usd": false,
+      "assumptions": "Observed pilot mix; conservative variable retries/fallback/output uplift 50%; one worker. Full-corpus scenarios are comparison only."
+    },
+    {
+      "scope": "full corpus with exact reuse",
+      "case": "base",
+      "distinct_or_no_reuse_work": 484189,
+      "api_spend_usd": "24.88266068306",
+      "fixed_overhead_usd_counted_once": "0.001090150",
+      "verification_reviews": 500,
+      "estimated_model_stage_seconds": null,
+      "full_preparation_seconds": null,
+      "exceeds_10_usd": true,
+      "assumptions": "Observed pilot mix; conservative variable retries/fallback/output uplift 50%; one worker. Full-corpus scenarios are comparison only."
+    },
+    {
+      "scope": "full corpus with exact reuse",
+      "case": "conservative",
+      "distinct_or_no_reuse_work": 484189,
+      "api_spend_usd": "37.323445949590",
+      "fixed_overhead_usd_counted_once": "0.001090150",
+      "verification_reviews": 500,
+      "estimated_model_stage_seconds": null,
+      "full_preparation_seconds": null,
+      "exceeds_10_usd": true,
+      "assumptions": "Observed pilot mix; conservative variable retries/fallback/output uplift 50%; one worker. Full-corpus scenarios are comparison only."
+    },
+    {
+      "scope": "full corpus without exact reuse",
+      "case": "base",
+      "distinct_or_no_reuse_work": 660609,
+      "api_spend_usd": "33.93998232986",
+      "fixed_overhead_usd_counted_once": "0.001090150",
+      "verification_reviews": 500,
+      "estimated_model_stage_seconds": null,
+      "full_preparation_seconds": null,
+      "exceeds_10_usd": true,
+      "assumptions": "Observed pilot mix; conservative variable retries/fallback/output uplift 50%; one worker. Full-corpus scenarios are comparison only."
+    },
+    {
+      "scope": "full corpus without exact reuse",
+      "case": "conservative",
+      "distinct_or_no_reuse_work": 660609,
+      "api_spend_usd": "50.909428419790",
+      "fixed_overhead_usd_counted_once": "0.001090150",
+      "verification_reviews": 500,
+      "estimated_model_stage_seconds": null,
+      "full_preparation_seconds": null,
+      "exceeds_10_usd": true,
+      "assumptions": "Observed pilot mix; conservative variable retries/fallback/output uplift 50%; one worker. Full-corpus scenarios are comparison only."
+    }
+  ],
+  "cost_per_1000_input_rows_usd": "0.071718790",
+  "cost_per_completed_record_usd": "0.00007171879",
+  "throughput_input_rows_per_second": 1.7058323179692245,
+  "calls": {
+    "total_attempts": 109,
+    "succeeded": 107,
+    "failed": 2,
+    "fallback_attempts": 1,
+    "retry_attempts": 1,
+    "actual_models": [
+      "gpt-6-luna",
+      "jev-1.13.0"
+    ],
+    "actual_tiers": [
+      "default",
+      "standard"
+    ]
+  },
+  "cold_exact_text_cache_hits": 0,
+  "warm_saved_completed_reuses": 100,
+  "preflight_api_spend_usd_separate": "0.000184380",
+  "jev_prompt_measurement_usd_separate": "0.000042126",
+  "project_api_spend_accounted_usd": "0.007398385"
+}

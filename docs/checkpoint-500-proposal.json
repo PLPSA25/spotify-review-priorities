@@ -1,0 +1,88 @@
+{
+  "pilot_flagged": 54,
+  "pilot_denominator": 100,
+  "reason_counts_overlapping_flagged": {
+    "low_confidence": 54,
+    "low_margin": 14,
+    "nonenglish": 0,
+    "missing_context": 0
+  },
+  "unexplained_flagged": 0,
+  "jev_reason_union": 64,
+  "luna_calls": [
+    {
+      "request_id": "7f20dfef-03d0-49d8-bb46-48ee90e84ca0",
+      "stage": "fallback",
+      "review_ids": [
+        "21915fcd-9a35-48ba-b277-6296c4154603",
+        "ff14ea84-fdec-4363-9b1b-a23dcab287c5",
+        "b47c203f-366e-4409-922d-cd52aa8bbef6",
+        "7e91d976-20e5-40f0-a6f5-7312eadf7e78",
+        "8cb9d355-e14c-4f55-b026-c6abd7bbce0d",
+        "c2738a4f-e57c-46bc-a4ad-8ec5a4b5d5cd",
+        "9d851b7f-a738-449b-a841-de8076f13276",
+        "916d1cb1-3a9f-42c0-9c36-fee4b1983c68",
+        "a3605554-5c3a-441d-836e-e9fdea83eb2e",
+        "e575daac-46ab-4da3-b9f5-723bf4000234"
+      ],
+      "outcome": "succeeded",
+      "cost_nanodollars": 446500
+    },
+    {
+      "request_id": "13f8bd66-786f-4fb2-921b-9abfe1f96d86",
+      "stage": "extract",
+      "review_ids": [
+        "2ffdf599-a0d5-4c01-bf26-025215d44c06",
+        "618d1dbb-0186-4537-923a-7b4dabf19afb"
+      ],
+      "outcome": "succeeded",
+      "cost_nanodollars": 134200
+    },
+    {
+      "request_id": "dd189fc7-2d9c-476f-be73-9aefee4ac76d",
+      "stage": "extract",
+      "review_ids": [
+        "88439ec2-7c49-4c57-bedb-c5e098692aff",
+        "d455c11e-c530-4c03-a395-38f5a5cdb8d3",
+        "def34476-7bdc-443a-ab3d-475cdd5ca2f6"
+      ],
+      "outcome": "succeeded",
+      "cost_nanodollars": 182300
+    },
+    {
+      "request_id": "55590cdb-158d-4824-8d89-955ffa7518d9",
+      "stage": "extract",
+      "review_ids": [
+        "5c9c17d3-9d6a-4fa1-a2a4-ae98eefbbd25"
+      ],
+      "outcome": "succeeded",
+      "cost_nanodollars": 91700
+    }
+  ],
+  "fallback_unique_ids": 10,
+  "config_hash": "b0cc1ce0b0a518f391490a61ac00a1e0c0f8181f6feb3c143a1f2890ea7e8318",
+  "workers_and_cap_hash_unchanged": true,
+  "checkpoint_rows": 500,
+  "distinct_texts": 479,
+  "long_texts": 38,
+  "golden_overlap": 0,
+  "cache_condition": "cold empty result cache; no pilot reuse for comparison",
+  "workers": 2,
+  "verification_reviews": 500,
+  "verification_initial_batches": 10,
+  "cost_bounds_nanodollars": {
+    "jev": 229476072,
+    "luna_enrich": 155406000,
+    "verify": 755000000
+  },
+  "total_worst_case_nanodollars": 1139882072,
+  "project_spent_nanodollars": 7398385,
+  "project_reserved_nanodollars": 0,
+  "transient_attempts": 1,
+  "invalid_output_repairs": 1,
+  "fallback_ids_upper": 47,
+  "luna_enrich_ids_upper": 85,
+  "initial_calls_upper": 574,
+  "maximum_calls": 1638,
+  "approval_status": "awaiting_yes; no paid calls made"
+}

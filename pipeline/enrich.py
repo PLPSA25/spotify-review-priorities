@@ -10,8 +10,9 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any
 
+from pipeline.batching import enrich_batch
 from pipeline.calls import Calls
-from pipeline.classify import enrich_one, jev_payload, luna_payload
+from pipeline.classify import jev_payload, luna_payload
 from pipeline.prepare import atomic_json
 from pipeline.providers import HTTPTransport, MockTransport, keys_from_env
 from pipeline.recovery import recover
@@ -52,6 +53,9 @@ def validate_settings(config: dict[str, Any]) -> None:
     if not math.isfinite(threshold) or not 0 <= threshold <= 1:
         raise ValueError("Confidence threshold must be finite 0..1")
     fallback_quota(1, controls["fallback_fraction"])
+    batch_size = config["enrichment"]["batch_size"]
+    if type(batch_size) is not int or not 1 <= batch_size <= 50:
+        raise ValueError("Luna batch_size must be an integer 1..50")
 
 
 def export_state(state: State, output: Path, simulated: bool, ledger: Ledger) -> None:
@@ -142,15 +146,23 @@ def run_enrichment(source: Path, output: Path, config_path: Path, manifest: Path
     def worker() -> int:
         completed = 0
         while stop_after is None or completed < stop_after:
-            item = state.claim(controls["lease_seconds"])
-            if item is None:
+            capacity = config["enrichment"]["batch_size"]
+            if stop_after is not None:
+                capacity = min(capacity, stop_after - completed)
+            items = []
+            for _ in range(capacity):
+                item = state.claim(controls["lease_seconds"])
+                if item is None:
+                    break
+                items.append(item)
+            if not items:
                 break
             try:
-                enrich_one(state, calls, item, config, quota)
+                enrich_batch(state, calls, items, config, quota)
             except BaseException:
                 calls.stop.set()
                 raise
-            completed += 1
+            completed += len(items)
         return completed
 
     try:

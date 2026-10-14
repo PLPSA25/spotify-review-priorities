@@ -1,0 +1,18 @@
+{
+  "status": "succeeded",
+  "labels": {
+    "topic": "playback",
+    "intent": "complaint",
+    "severity": 4,
+    "sentiment": -0.5449999999999999,
+    "needs_review": false,
+    "low_confidence": false,
+    "nonenglish": false
+  },
+  "model": "jev-1.13.0",
+  "billed_input_tokens": 1003,
+  "target_met": false,
+  "scope_distinct_texts": 77913,
+  "jev_scope_usd_at_synthetic_length": 3.282163038,
+  "projection_note": "Synthetic-length estimate; real review lengths and retries add cost."
+}

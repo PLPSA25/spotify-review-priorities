@@ -1,0 +1,23 @@
+{
+  "step": "cold_cost_100_pilot",
+  "input_sha256": "c884ac3b9be5066995d5063f96ad9af6e5e082975788c1684c4f6b6ea661dd0e",
+  "input_rows": 100,
+  "distinct_texts": 100,
+  "configuration": "b0cc1ce0b0a518f391490a61ac00a1e0c0f8181f6feb3c143a1f2890ea7e8318",
+  "worker_count": 1,
+  "expected_initial_calls_upper": 120,
+  "calls": {
+    "jev_initial": 100,
+    "luna_enrich_initial_upper": 17,
+    "verify_initial": 1,
+    "group_initial": 1,
+    "memo_initial": 1,
+    "maximum_including_repairs_and_transient_retries": 416
+  },
+  "verification_reviews": 10,
+  "batch_size": 20,
+  "transient_attempts": 1,
+  "worst_case_nanodollars": 225112492,
+  "approval_status": "awaiting_explicit_yes",
+  "warm_run": "Offline reuse; stop rather than dispatch any new call."
+}

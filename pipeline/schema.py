@@ -28,7 +28,7 @@ def cache_key(text: str, label_config: str) -> str:
 def configuration(config: dict[str, Any], simulated: bool = False) -> str:
     root = Path(__file__).resolve().parents[1]
     prompts = {name: (root / "prompts" / name).read_text(encoding="utf-8")
-               for name in ("jev-v1.json", "luna-enrich-v1.txt")}
+               for name in (config["enrichment"].get("jev_prompt", "jev-v1.json"), "luna-enrich-v1.txt")}
     return digest({"models": config["models"], "routing": config["enrichment"],
                    "prompts": prompts, "schema_version": "record-v1", "extractor": "exact-v1",
                    "simulated": simulated})

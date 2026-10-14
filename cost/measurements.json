@@ -1,0 +1,29 @@
+{
+  "local_compute_cost_usd": null,
+  "cold": {
+    "status": "failed",
+    "error": "InvalidOutput: Invalid output: Memo priority issue is unsupported",
+    "input_rows": 100,
+    "distinct_texts": 100,
+    "counts": {
+      "completed": 100
+    },
+    "end_to_end_seconds": 58.622409100004006,
+    "run_id": "53db10c8-f5d3-494b-87d3-a1023f9c9421"
+  },
+  "memo_continuation": {
+    "status": "completed",
+    "end_to_end_seconds": 5.265658999996958,
+    "original_cold_failure_preserved": true
+  },
+  "warm": {
+    "status": "completed",
+    "new_enrich_calls": 0,
+    "new_downstream_calls": 0,
+    "incremental_api_spend_usd": "0",
+    "end_to_end_seconds": 0.021283199996105395,
+    "counts": {
+      "completed": 100
+    }
+  }
+}

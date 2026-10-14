@@ -80,6 +80,20 @@ class MockTransport:
     """Only for explicit simulated runs; never use its outputs as grading predictions."""
     def request(self, provider: str, payload: dict[str, Any]) -> dict[str, Any]:
         if provider == "openai":
+            name = payload.get("text", {}).get("format", {}).get("name")
+            if name in {"issue_names", "pilot_memo"}:
+                data = json.loads(payload["input"])
+                if name == "issue_names":
+                    result = {"issues": [{"issue_id": row["issue_id"], "name": row["issue_id"].replace("issue-", "")} for row in data["issues"]]}
+                else:
+                    priority = data["ranking"][0]["issue_id"] if data["ranking"] else ""
+                    result = {"priority_issue": priority, "recommendation": "Review the observed evidence before choosing product work.",
+                              "alternatives": ["Compare other categories."], "limitations": "Historical pilot evidence has limited coverage.",
+                              "claim_ids": [row["claim_id"] for row in data["claims"] if row["issue_id"] == priority],
+                              "review_ids": [row["review_id"] for row in data["evidence"] if row["issue_id"] == priority]}
+                return {"model": payload["model"], "service_tier": "default", "status": "completed",
+                        "usage": {"input_tokens": 100, "output_tokens": 20},
+                        "output": [{"content": [{"type": "output_text", "text": json.dumps(result)}]}], "_simulated": True}
             packed = payload["input"].split("BEGIN_UNTRUSTED_REVIEWS_JSON\n", 1)[1].split(
                 "\nEND_UNTRUSTED_REVIEWS_JSON", 1)[0]
             items = json.loads(packed)

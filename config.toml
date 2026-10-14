@@ -37,9 +37,34 @@ backoff_max_seconds = 30.0
 backoff_jitter_seconds = 0.5
 
 [enrichment]
+jev_prompt = "jev-v2.json"
+batch_size = 20
+luna_input_token_bound = 24000
+luna_output_tokens_per_review = 200
 confidence_threshold = 0.75
+probability_margin_threshold = 0.15
 short_review_chars = 240
 entity_terms = ["Spotify", "Premium", "playlist", "playlists", "lyrics", "downloads", "offline", "ads"]
+
+[pilot]
+transient_attempts = 1
+verification_sample_size = 10
+seed = "spotify-cost-pilot-v1"
+memo_output_token_cap = 1200
+group_output_token_cap = 512
+preflight_output_token_cap = 256
+jev_scope_cost_threshold_usd = 4.0
+
+[provider_preflight]
+verified_date = "2026-10-14"
+jev_returned_model = "jev-1.13.0"
+luna_returned_model = "gpt-6-luna"
+typesafe_console_requests_per_second = 80
+typesafe_console_input_tokens_per_second = 100000
+openai_reported_request_limit = 5000
+openai_reported_token_limit = 2000000
+evidence = "artifacts/preflight/result.json"
+note = "TypeSafe limits from user console; OpenAI limits from response headers; runtime remains conservative."
 
 [rate_limits.typesafe]
 rpm = 3600
@@ -48,8 +73,8 @@ tpm = 6000000
 [rate_limits.openai]
 rps = 1
 tps = 100000
-rpm = 60
-tpm = 100000
+rpm = 3000
+tpm = 1200000
 
 [verification]
 sample_size = 500

@@ -1,6 +1,7 @@
 # Spotify Insight Pipeline
 
-Phase 3: offline labeler and mocked-tested enrichment infrastructure. No live model calls yet.
+Phases 1–3 are complete. Phase 4 provider preflight and the recovered cold/warm
+100-review pilot are complete; see docs/phase4-status.md and cost/report.md.
 Python 3.11+; developed on Windows with Python 3.12.
 
 ## Approved scope
@@ -61,21 +62,23 @@ See `docs/approved-plan.md` and `config.toml` for accepted controls and unresolv
 Phase 4 begins only after Phase 3 approval. The final README will add actual evaluation,
 cost and resume evidence, rubric links, a traced review, memo and live dashboard URL.
 
-## Golden labels (human work pending)
+## Golden labels (final human evaluation set)
 
-Read `docs/labels.md`, then use `python -m pipeline label-golden` to fill the seven fields in
-`evals/golden_50_human.csv` yourself. It is an exact blank copy of the supplied golden
-file. Do not edit the original CSVs or use Excel. Validate offline:
+The owner completed and froze all 50 human labels. Offline validation on October 14,
+2026 passed 50/50 records. Do not edit the original CSVs or use Excel. Validate offline:
 
 ```powershell
 python -m pipeline validate-golden
 ```
 
-Exit 1 and `needs_human_labels_or_correction` are expected until all 50 are labeled.
 The report identifies IDs and field errors, without proposing answers. A successful
 schema check does not establish semantic accuracy. Golden answers are evaluation-only
 and never model inputs. `golden-template` can create a new copy at an explicitly chosen
 output path and refuses to overwrite existing human work.
+
+Entities were not hand-labeled: empty arrays are intentional and entities must be
+excluded from golden evaluation. Golden labels are never threshold/routing calibration
+data. No golden agreement evaluation has been run in this continuation.
 
 Tests use per-test workspace temporary directories and remove them automatically,
 including after failures. PDFs are ignored. Jev's configured request limit is 60/s;
