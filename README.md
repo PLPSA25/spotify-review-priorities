@@ -64,6 +64,8 @@ cost and resume evidence, rubric links, a traced review, memo and live dashboard
 
 ## Golden labels (final human evaluation set)
 
+Four golden labels were revised after an AI-assisted check against the contract rules; final labels are my decisions.
+
 The owner completed and froze all 50 human labels. Offline validation on October 14,
 2026 passed 50/50 records. Do not edit the original CSVs or use Excel. Validate offline:
 
@@ -88,6 +90,10 @@ the account's published 80/s limit is recorded separately in the approved plan.
 
 See `docs/enrichment.md` for explicit mock/live commands, controls, cache provenance,
 interruption/resume and charge reconciliation. Providers use standard-library HTTP
-with no hidden retries. Keys, model access and actual limits still require Phase 4's
-separately approved tiny calls. The Class 7 date is unknown; prioritize the 500-review run.
-No real cost, accuracy or completed 500-review result is claimed yet.
+with no hidden retries. Provider preflight and the 100-review pilot are complete.
+The Class 7 date is unknown. The two-worker enricher completed all 500 checkpoint
+reviews; verifier recovery completed all 500 valid predictions. See
+`docs/checkpoint-500-recovery-gate.md` for measured cost/time, terminal-failure policy,
+full-field calibration and the smaller scaling proposal. The initial quota/failure
+audit remains in `docs/checkpoint-500-gate.md`. Stopped at the checkpoint gate;
+no golden evaluation or analysis_10000 run occurred.

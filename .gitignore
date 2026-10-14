@@ -30,3 +30,4 @@ artifacts/test-temp*/
 
 # Private notes (never commit)
 HANDOFF_NOTES.md
+evals/golden_50_human.backup.csv
