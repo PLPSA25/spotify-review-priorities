@@ -1,0 +1,1548 @@
+{
+  "run_id": "7180188e-0938-4d2f-8e2b-6bf412cf77ca",
+  "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "hash_still_matches": true,
+  "halt_error": "SystemicFailure: Terminal failures 3/20 exceed 5% rolling threshold",
+  "new_work_counts": {
+    "pending": 75847,
+    "quarantined": 3,
+    "completed": 24
+  },
+  "saved_new_jev_scores": 75871,
+  "saved_scores_equal_succeeded_jev_keys": true,
+  "calls": {
+    "initial/typesafe/jev/succeeded": 5570,
+    "initial/typesafe/jev/failed": 7,
+    "resume/typesafe/jev/succeeded": 70301,
+    "resume/typesafe/jev/failed": 71,
+    "resume/openai/extract/succeeded": 8
+  },
+  "failure_errors": {
+    "Invalid output: Choice differs from highest-probability option": 75,
+    "connection error, charge unknown, accounted as charged": 3
+  },
+  "failed_calls": [
+    {
+      "request_id": "ccf6fcf9-2097-4548-96f3-cc9424fc200a",
+      "review_ids": [
+        "39f4bc22-acda-4745-b3a1-7e168b7b248f"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "initial",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T02:54:40.297062+00:00",
+      "finished_at_utc": "2026-10-15T02:54:40.489865+00:00",
+      "cost_nanodollars": 48594
+    },
+    {
+      "request_id": "dae290af-cf9b-425a-9648-4c8b69446624",
+      "review_ids": [
+        "882386bc-4ae6-4021-9459-7599f16cb76a"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "initial",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T02:55:01.589640+00:00",
+      "finished_at_utc": "2026-10-15T02:55:02.009191+00:00",
+      "cost_nanodollars": 53088
+    },
+    {
+      "request_id": "9c4f9972-ec2b-4653-8e96-4ad52f0fda1f",
+      "review_ids": [
+        "7bdefb2f-1e64-4149-b15a-56c69361b614"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "initial",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T02:55:30.321710+00:00",
+      "finished_at_utc": "2026-10-15T02:55:30.620768+00:00",
+      "cost_nanodollars": 47838
+    },
+    {
+      "request_id": "92c29374-4325-4d3e-b3f0-747a9c88819c",
+      "review_ids": [
+        "6c86d557-2b24-45a2-9b85-4ac1ca9940d6"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "initial",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T02:56:15.951691+00:00",
+      "finished_at_utc": "2026-10-15T02:56:16.266416+00:00",
+      "cost_nanodollars": 47964
+    },
+    {
+      "request_id": "b0fa6a35-3ea5-434b-b860-67c4d0ddb430",
+      "review_ids": [
+        "bf1fbb65-63c3-4557-8094-96ea521c4170"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "initial",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T02:56:23.803410+00:00",
+      "finished_at_utc": "2026-10-15T02:56:23.908977+00:00",
+      "cost_nanodollars": 47964
+    },
+    {
+      "request_id": "361a749f-f0a3-4d02-bcad-7b0a680c9519",
+      "review_ids": [
+        "6ddb238f-5e8a-41ad-b42e-1b0c784ef6eb"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "initial",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T02:56:35.023573+00:00",
+      "finished_at_utc": "2026-10-15T02:56:35.354580+00:00",
+      "cost_nanodollars": 49224
+    },
+    {
+      "request_id": "ddcbe988-f619-442f-92e9-c2b4b10c8ac2",
+      "review_ids": [
+        "8005f4c6-e4aa-4cce-8d9d-1711e254d14d"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "initial",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T02:58:32.006489+00:00",
+      "finished_at_utc": "2026-10-15T02:58:32.285081+00:00",
+      "cost_nanodollars": 47964
+    },
+    {
+      "request_id": "9e172762-629b-47a9-9ff0-cd0e0eda6d9b",
+      "review_ids": [
+        "15ff219b-8e1e-4a85-9f4c-d10d8de73662"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:01:44.324809+00:00",
+      "finished_at_utc": "2026-10-15T03:01:44.494125+00:00",
+      "cost_nanodollars": 49140
+    },
+    {
+      "request_id": "bf14d3d7-9f79-4a7d-b801-9c8da7611ece",
+      "review_ids": [
+        "018aa322-1c34-4492-9d44-e30e63fb1235"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:02:09.360401+00:00",
+      "finished_at_utc": "2026-10-15T03:02:09.674473+00:00",
+      "cost_nanodollars": 48132
+    },
+    {
+      "request_id": "d1920920-06f5-48e6-a71e-78ae215c0e9d",
+      "review_ids": [
+        "d66c35d3-5712-4172-bfa5-a93ad0e2a76a"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:03:25.076562+00:00",
+      "finished_at_utc": "2026-10-15T03:03:25.220373+00:00",
+      "cost_nanodollars": 47880
+    },
+    {
+      "request_id": "d5982632-4283-4233-aaf8-4a3004cd188c",
+      "review_ids": [
+        "fcd4ad4a-31d5-40e6-8ea6-186d61f0cddd"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:03:51.506820+00:00",
+      "finished_at_utc": "2026-10-15T03:03:51.767975+00:00",
+      "cost_nanodollars": 48006
+    },
+    {
+      "request_id": "77786795-2836-43d0-8f3e-e51041cca8bb",
+      "review_ids": [
+        "bd219ee7-6801-44e8-bb81-a4ce66fe3fa2"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:07:39.418971+00:00",
+      "finished_at_utc": "2026-10-15T03:07:40.222288+00:00",
+      "cost_nanodollars": 48342
+    },
+    {
+      "request_id": "b22ced7f-d7e5-40db-a1ea-926df8374811",
+      "review_ids": [
+        "04b889be-98f4-489a-9470-74981b9fe174"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:07:57.859462+00:00",
+      "finished_at_utc": "2026-10-15T03:07:58.182811+00:00",
+      "cost_nanodollars": 49266
+    },
+    {
+      "request_id": "5d56b656-676c-4376-852f-80975153786f",
+      "review_ids": [
+        "23c5b516-3bbb-4f90-bd5d-42f232b215c2"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:08:02.894536+00:00",
+      "finished_at_utc": "2026-10-15T03:08:03.028543+00:00",
+      "cost_nanodollars": 47838
+    },
+    {
+      "request_id": "6e689416-0642-43c4-a475-144c983f0ccf",
+      "review_ids": [
+        "9ce1125c-c4fa-4f49-b62c-87f9ec3c492b"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:08:04.396809+00:00",
+      "finished_at_utc": "2026-10-15T03:08:04.660306+00:00",
+      "cost_nanodollars": 47964
+    },
+    {
+      "request_id": "438896e9-2f79-4dcd-acec-9ecd5cc7b27a",
+      "review_ids": [
+        "18f7212d-c63c-40d1-ae49-368df039df72"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:09:52.909418+00:00",
+      "finished_at_utc": "2026-10-15T03:09:53.192690+00:00",
+      "cost_nanodollars": 48006
+    },
+    {
+      "request_id": "11a5c132-cf5d-4aef-a22c-fcf02684779d",
+      "review_ids": [
+        "2ea2375f-9363-4aa2-854a-402e937bccbf"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:11:41.630842+00:00",
+      "finished_at_utc": "2026-10-15T03:11:42.201619+00:00",
+      "cost_nanodollars": 48258
+    },
+    {
+      "request_id": "f2337143-c9be-4a57-9a16-5e0231f8bc61",
+      "review_ids": [
+        "4db59bd6-ec86-4c72-90d4-58343dfec85b"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:12:31.719797+00:00",
+      "finished_at_utc": "2026-10-15T03:12:31.897464+00:00",
+      "cost_nanodollars": 48006
+    },
+    {
+      "request_id": "ecfa2961-9498-475c-b95d-82cd2b8e4281",
+      "review_ids": [
+        "d8b42bfe-297f-4565-9981-826906900378"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:13:47.068750+00:00",
+      "finished_at_utc": "2026-10-15T03:13:47.167718+00:00",
+      "cost_nanodollars": 48972
+    },
+    {
+      "request_id": "0b7fdff4-5341-41b2-b068-186288991a28",
+      "review_ids": [
+        "c506abb1-2344-4b03-8ac2-0ec177064690"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:14:39.503614+00:00",
+      "finished_at_utc": "2026-10-15T03:14:39.943199+00:00",
+      "cost_nanodollars": 48258
+    },
+    {
+      "request_id": "3e3c9504-1f92-47ef-8af0-344ff15d1c02",
+      "review_ids": [
+        "e8bc5369-eb3d-4df3-8d6b-17956e37a9a4"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:15:11.390961+00:00",
+      "finished_at_utc": "2026-10-15T03:15:11.680719+00:00",
+      "cost_nanodollars": 50106
+    },
+    {
+      "request_id": "c63f5eb3-621e-4376-8cb5-936035f8a9b1",
+      "review_ids": [
+        "72c2e24d-ef5e-4d47-9005-981f0b218747"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:15:38.135973+00:00",
+      "finished_at_utc": "2026-10-15T03:15:38.421704+00:00",
+      "cost_nanodollars": 49098
+    },
+    {
+      "request_id": "a504ede9-b530-43e5-9126-6bd4b80e8c7f",
+      "review_ids": [
+        "70875056-939d-4935-961d-f0505f8ad7ff"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:16:00.274264+00:00",
+      "finished_at_utc": "2026-10-15T03:16:00.710813+00:00",
+      "cost_nanodollars": 50568
+    },
+    {
+      "request_id": "9121d003-a9b4-4751-8823-cef1d9471691",
+      "review_ids": [
+        "26ffceef-8446-4f91-aa5b-0634f9ed9ab3"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:16:43.036531+00:00",
+      "finished_at_utc": "2026-10-15T03:16:43.481641+00:00",
+      "cost_nanodollars": 49098
+    },
+    {
+      "request_id": "17d60758-1f07-4712-98b4-bf4bfcdbabc3",
+      "review_ids": [
+        "c279f67d-3986-4792-b3d0-e78d46d43a51"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:17:07.629035+00:00",
+      "finished_at_utc": "2026-10-15T03:17:07.846547+00:00",
+      "cost_nanodollars": 50316
+    },
+    {
+      "request_id": "67c129f8-f780-489b-abe8-6b4f2d158c15",
+      "review_ids": [
+        "fa22b909-c7a3-4f21-b612-7c7df9ad9d7c"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:17:10.924592+00:00",
+      "finished_at_utc": "2026-10-15T03:17:11.301847+00:00",
+      "cost_nanodollars": 47838
+    },
+    {
+      "request_id": "59512b43-4ef4-48b8-8b2d-aaf1ac093f65",
+      "review_ids": [
+        "88299f74-96f0-4bfe-85d7-069cc95de795"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:18:32.555967+00:00",
+      "finished_at_utc": "2026-10-15T03:18:33.003101+00:00",
+      "cost_nanodollars": 47796
+    },
+    {
+      "request_id": "e7263841-5a0e-42ea-bc60-6098d0af306f",
+      "review_ids": [
+        "3bd4fdd9-f0c9-4c24-9c5f-1e1b619033a7"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:19:56.081107+00:00",
+      "finished_at_utc": "2026-10-15T03:19:56.277019+00:00",
+      "cost_nanodollars": 48930
+    },
+    {
+      "request_id": "960013b4-1403-49b6-86c3-f651fcca16b6",
+      "review_ids": [
+        "b26be2b5-9d08-473c-b64d-711c6d29c4d8"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:22:54.407409+00:00",
+      "finished_at_utc": "2026-10-15T03:22:54.566871+00:00",
+      "cost_nanodollars": 48258
+    },
+    {
+      "request_id": "52bb1983-67fa-42a3-8acb-53c72f90fc87",
+      "review_ids": [
+        "34a5b8b7-ae73-48de-a4af-9e2d6f77bdb7"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:22:56.563863+00:00",
+      "finished_at_utc": "2026-10-15T03:22:56.953560+00:00",
+      "cost_nanodollars": 48930
+    },
+    {
+      "request_id": "4ea52151-c76f-4cf5-ae6a-7dd1d4b4d2b4",
+      "review_ids": [
+        "ceb5b8f5-06af-474c-9c69-6f70ac1d0fb3"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:27:40.124883+00:00",
+      "finished_at_utc": "2026-10-15T03:27:40.294612+00:00",
+      "cost_nanodollars": 49896
+    },
+    {
+      "request_id": "3c496aa0-1901-469b-8219-e273dfd8116e",
+      "review_ids": [
+        "de412eab-eee2-42f8-9157-151f48db5659"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:27:57.870389+00:00",
+      "finished_at_utc": "2026-10-15T03:27:58.154583+00:00",
+      "cost_nanodollars": 48804
+    },
+    {
+      "request_id": "e92aa0d9-7ed9-4ef3-b547-1ba00a102b3a",
+      "review_ids": [
+        "d3a4095d-a3a1-4416-ac8b-b7bef606cb46"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:29:04.571845+00:00",
+      "finished_at_utc": "2026-10-15T03:29:05.213105+00:00",
+      "cost_nanodollars": 49140
+    },
+    {
+      "request_id": "1dd3467b-1740-490a-9f7c-b1305b75ff3e",
+      "review_ids": [
+        "1bb14ad2-2b8d-48b2-ac03-fb6c346f7e08"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:31:44.386891+00:00",
+      "finished_at_utc": "2026-10-15T03:31:44.580731+00:00",
+      "cost_nanodollars": 48174
+    },
+    {
+      "request_id": "17a814ea-9b44-4931-8784-c5222cee3bc3",
+      "review_ids": [
+        "bfb73ec6-567d-4157-abce-2e90350993d4"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:32:20.533539+00:00",
+      "finished_at_utc": "2026-10-15T03:32:20.695500+00:00",
+      "cost_nanodollars": 49854
+    },
+    {
+      "request_id": "b3d42f51-b120-4219-953b-9ede91c1526a",
+      "review_ids": [
+        "51c189ea-5d19-4604-8c68-79a4ffa2cdc8"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:34:27.063339+00:00",
+      "finished_at_utc": "2026-10-15T03:34:27.187291+00:00",
+      "cost_nanodollars": 49476
+    },
+    {
+      "request_id": "02644130-5165-44d2-a375-ad431008fcfa",
+      "review_ids": [
+        "bf63c344-d351-4158-a2d7-9530ff162aae"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:34:43.082703+00:00",
+      "finished_at_utc": "2026-10-15T03:34:43.338466+00:00",
+      "cost_nanodollars": 47796
+    },
+    {
+      "request_id": "5670c4e0-484d-40f9-af2d-f928ca56f701",
+      "review_ids": [
+        "2d69c153-800d-46d8-ad9d-e1edd3daf735"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:35:03.464644+00:00",
+      "finished_at_utc": "2026-10-15T03:35:04.123578+00:00",
+      "cost_nanodollars": 48216
+    },
+    {
+      "request_id": "7a957dcf-0d99-42b7-a1f3-6b742e7f9a16",
+      "review_ids": [
+        "4cf4655c-e5c1-4906-8a5f-33b1aa3de465"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:35:17.215504+00:00",
+      "finished_at_utc": "2026-10-15T03:35:17.329703+00:00",
+      "cost_nanodollars": 48090
+    },
+    {
+      "request_id": "788b952c-e5c5-4166-8f0e-60e15eb3844d",
+      "review_ids": [
+        "cd63c7f6-8cff-4c52-88fe-0e7910374175"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:35:20.874694+00:00",
+      "finished_at_utc": "2026-10-15T03:35:21.553566+00:00",
+      "cost_nanodollars": 48132
+    },
+    {
+      "request_id": "367aee9c-0cd0-415f-ac7f-2f94dcab0055",
+      "review_ids": [
+        "547aab3e-f1a4-4771-939a-0b8177a148f3"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "connection error, charge unknown, accounted as charged",
+      "original_error": "HTTP 499",
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:36:03.142348+00:00",
+      "finished_at_utc": "2026-10-15T03:36:04.491531+00:00",
+      "cost_nanodollars": 220668
+    },
+    {
+      "request_id": "b2a32376-e3a8-4d01-82ec-6bd73652f9e6",
+      "review_ids": [
+        "e5a07223-7b5d-4eec-95f9-fd827ba9de09"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "connection error, charge unknown, accounted as charged",
+      "original_error": "HTTP 499",
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:38:51.394900+00:00",
+      "finished_at_utc": "2026-10-15T03:38:52.658752+00:00",
+      "cost_nanodollars": 216678
+    },
+    {
+      "request_id": "fd7af84c-d83d-41c8-99e7-6cb56d042684",
+      "review_ids": [
+        "48d844c1-fb87-4e80-9943-07fdb6f1c2e0"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:40:54.262582+00:00",
+      "finished_at_utc": "2026-10-15T03:40:54.380486+00:00",
+      "cost_nanodollars": 47880
+    },
+    {
+      "request_id": "91bd852c-bfa8-4481-b7fe-66604e03c40d",
+      "review_ids": [
+        "1176e8cf-c813-4b68-a4db-58bcd0ffa22a"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:43:39.493857+00:00",
+      "finished_at_utc": "2026-10-15T03:43:39.604353+00:00",
+      "cost_nanodollars": 47964
+    },
+    {
+      "request_id": "2da52674-f5ad-4843-9311-439fb7253458",
+      "review_ids": [
+        "6aaa823f-7fa5-4823-a09d-fe0ecd56deca"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:47:04.663996+00:00",
+      "finished_at_utc": "2026-10-15T03:47:06.151365+00:00",
+      "cost_nanodollars": 48048
+    },
+    {
+      "request_id": "4c59fef0-191d-4276-9097-effbc1563878",
+      "review_ids": [
+        "f6c3f99b-75b1-408f-820f-17f5a81a2306"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:48:26.011689+00:00",
+      "finished_at_utc": "2026-10-15T03:48:26.223963+00:00",
+      "cost_nanodollars": 48132
+    },
+    {
+      "request_id": "e7db3f1f-a6fb-472f-9d29-10de4aeab14d",
+      "review_ids": [
+        "ae149d82-76b3-433e-9de1-71eb458c8b90"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:48:56.384528+00:00",
+      "finished_at_utc": "2026-10-15T03:48:56.629407+00:00",
+      "cost_nanodollars": 49014
+    },
+    {
+      "request_id": "ea5b056f-8e06-457d-b6b3-e5011ccc69a2",
+      "review_ids": [
+        "29bb076b-71d0-4796-8c43-025056a22bb5"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:51:38.938856+00:00",
+      "finished_at_utc": "2026-10-15T03:51:39.054510+00:00",
+      "cost_nanodollars": 48006
+    },
+    {
+      "request_id": "7c0e5819-c6c1-4cee-bbd3-863ca6e7e90d",
+      "review_ids": [
+        "761baa34-541c-499e-8ef4-4b743ab5d684"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:52:18.008453+00:00",
+      "finished_at_utc": "2026-10-15T03:52:18.168742+00:00",
+      "cost_nanodollars": 47838
+    },
+    {
+      "request_id": "f20c7ab8-a3be-4fb8-8d7a-7c732292243e",
+      "review_ids": [
+        "07a5265a-cfef-4523-8cf6-e8a931bda2b0"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:53:09.121866+00:00",
+      "finished_at_utc": "2026-10-15T03:53:09.404813+00:00",
+      "cost_nanodollars": 51240
+    },
+    {
+      "request_id": "b39b5bf5-6f09-4d9c-8773-574a90d89149",
+      "review_ids": [
+        "304f8837-430b-4c0f-bb77-016f52571a5e"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:54:15.269944+00:00",
+      "finished_at_utc": "2026-10-15T03:54:16.941336+00:00",
+      "cost_nanodollars": 47964
+    },
+    {
+      "request_id": "56d60585-b5b5-45c6-8126-a1a753c706c3",
+      "review_ids": [
+        "fe642cfd-9ae3-44df-bff9-98f8208d477e"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:55:14.907098+00:00",
+      "finished_at_utc": "2026-10-15T03:55:15.245931+00:00",
+      "cost_nanodollars": 48846
+    },
+    {
+      "request_id": "0e494ff5-aad3-4b3e-8ebf-a7bb45b2b87e",
+      "review_ids": [
+        "c3a0fb8a-fa0a-4e6a-807a-f0f802a1d224"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:55:17.142919+00:00",
+      "finished_at_utc": "2026-10-15T03:55:17.304756+00:00",
+      "cost_nanodollars": 48636
+    },
+    {
+      "request_id": "6f90616f-2a4e-4f0a-ac05-cdb8d6b9527e",
+      "review_ids": [
+        "df578054-4c46-4ae2-9cc2-78b9ea71ece9"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:56:09.484224+00:00",
+      "finished_at_utc": "2026-10-15T03:56:10.388485+00:00",
+      "cost_nanodollars": 47838
+    },
+    {
+      "request_id": "d5cd7d5f-ea28-4708-a973-25985504d959",
+      "review_ids": [
+        "3bbab369-2722-48ea-8ab2-0739a9b3d5f7"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:56:33.801435+00:00",
+      "finished_at_utc": "2026-10-15T03:56:33.939059+00:00",
+      "cost_nanodollars": 48930
+    },
+    {
+      "request_id": "d46d7ffa-67de-4c32-a5a5-3644637ae765",
+      "review_ids": [
+        "3bbab369-2722-48ea-8ab2-0739a9b3d5f7"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 2,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:56:34.050076+00:00",
+      "finished_at_utc": "2026-10-15T03:56:34.215268+00:00",
+      "cost_nanodollars": 49728
+    },
+    {
+      "request_id": "48455d40-2e82-4476-8890-8dd3bf9485b6",
+      "review_ids": [
+        "cc491f4e-2b19-49a1-b2cc-79f25dac00c4"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:57:07.656947+00:00",
+      "finished_at_utc": "2026-10-15T03:57:07.788796+00:00",
+      "cost_nanodollars": 48300
+    },
+    {
+      "request_id": "967b9f31-8b4d-4e00-805f-63d509d7e4a5",
+      "review_ids": [
+        "ce21dd66-b7e9-44c8-b4f5-82799d053e86"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:57:43.173327+00:00",
+      "finished_at_utc": "2026-10-15T03:57:44.019413+00:00",
+      "cost_nanodollars": 51408
+    },
+    {
+      "request_id": "6faf8c61-880a-4628-96f5-cb8a210a4a5f",
+      "review_ids": [
+        "2fe2c475-49ec-4b1c-ab3d-830b61adc3fa"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "connection error, charge unknown, accounted as charged",
+      "original_error": "HTTP 499",
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:58:33.506253+00:00",
+      "finished_at_utc": "2026-10-15T03:58:34.852707+00:00",
+      "cost_nanodollars": 217392
+    },
+    {
+      "request_id": "978b96a9-e261-4a2f-af5f-83b3de9a3cad",
+      "review_ids": [
+        "6ee89fe5-6900-43ce-9c54-43078ac506e1"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T04:00:14.350752+00:00",
+      "finished_at_utc": "2026-10-15T04:00:14.525990+00:00",
+      "cost_nanodollars": 49140
+    },
+    {
+      "request_id": "4ecdab0b-6b3a-4cb5-8d5a-bd8fd669b41d",
+      "review_ids": [
+        "6ee89fe5-6900-43ce-9c54-43078ac506e1"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 2,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T04:00:14.625453+00:00",
+      "finished_at_utc": "2026-10-15T04:00:14.857946+00:00",
+      "cost_nanodollars": 49938
+    },
+    {
+      "request_id": "c38d7481-0dfb-4937-8971-e5d3adf78376",
+      "review_ids": [
+        "027295a8-be1d-4706-80de-bd3074c598cf"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T04:00:17.868887+00:00",
+      "finished_at_utc": "2026-10-15T04:00:18.175564+00:00",
+      "cost_nanodollars": 48384
+    },
+    {
+      "request_id": "5cd0e678-e4ba-40a1-b094-62194e34fe42",
+      "review_ids": [
+        "781a192e-dab3-4a4b-a780-9d451d8bbfc2"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T04:03:12.262634+00:00",
+      "finished_at_utc": "2026-10-15T04:03:12.471334+00:00",
+      "cost_nanodollars": 48804
+    },
+    {
+      "request_id": "7193ae4f-9d46-4346-b0aa-e09254dc5a4a",
+      "review_ids": [
+        "f5f1d8dc-0497-4931-bd96-eb7a3eff6561"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T04:03:20.120288+00:00",
+      "finished_at_utc": "2026-10-15T04:03:20.312802+00:00",
+      "cost_nanodollars": 51366
+    },
+    {
+      "request_id": "f508ef9d-9bc0-4749-b895-86d810780abb",
+      "review_ids": [
+        "349371f6-41d6-45c4-a932-4fb856936520"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T04:03:25.039345+00:00",
+      "finished_at_utc": "2026-10-15T04:03:25.287963+00:00",
+      "cost_nanodollars": 48678
+    },
+    {
+      "request_id": "0a9d92b9-9be9-4b76-946d-437ee8efb32e",
+      "review_ids": [
+        "3afe26d1-50d4-4bd3-85ac-8cb966fc9941"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T04:05:09.006869+00:00",
+      "finished_at_utc": "2026-10-15T04:05:09.373057+00:00",
+      "cost_nanodollars": 48048
+    },
+    {
+      "request_id": "6314b925-2b37-41b3-8e70-2b53cffa6d9f",
+      "review_ids": [
+        "767652ec-68df-435e-a7de-3d3161cc765b"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T04:06:25.814385+00:00",
+      "finished_at_utc": "2026-10-15T04:06:25.982053+00:00",
+      "cost_nanodollars": 49266
+    },
+    {
+      "request_id": "5da1f213-e326-448d-9db6-db3886d909d9",
+      "review_ids": [
+        "ee99042f-af69-498d-85bd-d699b60dd6a0"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T04:08:06.683094+00:00",
+      "finished_at_utc": "2026-10-15T04:08:07.013617+00:00",
+      "cost_nanodollars": 48090
+    },
+    {
+      "request_id": "b3e515f2-3ce5-44fc-895d-ca7e07b89131",
+      "review_ids": [
+        "014df5d4-c2dc-4e7c-9a18-d874bd80fef5"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T04:10:22.860578+00:00",
+      "finished_at_utc": "2026-10-15T04:10:23.067326+00:00",
+      "cost_nanodollars": 47796
+    },
+    {
+      "request_id": "3f5462cc-c897-4b13-a5b0-b9257e88d3dc",
+      "review_ids": [
+        "014df5d4-c2dc-4e7c-9a18-d874bd80fef5"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 2,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T04:10:23.238892+00:00",
+      "finished_at_utc": "2026-10-15T04:10:23.380014+00:00",
+      "cost_nanodollars": 48594
+    },
+    {
+      "request_id": "24091296-9fba-4001-a8e4-1882b927b1d7",
+      "review_ids": [
+        "9e141cd6-1d20-487d-8bf3-3bf29ecc1de7"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T04:13:09.196211+00:00",
+      "finished_at_utc": "2026-10-15T04:13:09.461809+00:00",
+      "cost_nanodollars": 48300
+    },
+    {
+      "request_id": "7cd5e006-8935-4f24-a7e2-17fcaceb8a1b",
+      "review_ids": [
+        "0d679511-3d57-4463-87f2-bbdceab30c16"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T04:18:24.862251+00:00",
+      "finished_at_utc": "2026-10-15T04:18:25.024401+00:00",
+      "cost_nanodollars": 48510
+    },
+    {
+      "request_id": "2172e78f-991d-46ba-95c3-2272406d3768",
+      "review_ids": [
+        "07aa9843-384f-408a-9570-f11a268d6ba3"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T04:18:24.649866+00:00",
+      "finished_at_utc": "2026-10-15T04:18:25.169478+00:00",
+      "cost_nanodollars": 48678
+    },
+    {
+      "request_id": "7233c0f7-4d76-49de-94a1-9b39cd746c50",
+      "review_ids": [
+        "6618851c-3a60-4410-90de-c04b16b0b0e6"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T04:21:25.317524+00:00",
+      "finished_at_utc": "2026-10-15T04:21:25.441682+00:00",
+      "cost_nanodollars": 48132
+    },
+    {
+      "request_id": "a7168060-9ac3-4bb1-8a6b-325ceac280c7",
+      "review_ids": [
+        "6c195e1f-f547-4af3-a445-131de93b5384"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T04:25:15.273638+00:00",
+      "finished_at_utc": "2026-10-15T04:25:15.430417+00:00",
+      "cost_nanodollars": 48636
+    },
+    {
+      "request_id": "2e9aaa57-def5-402d-908f-63165afdae03",
+      "review_ids": [
+        "1149a77c-3b57-4864-89ee-95b7d4d70639"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T04:25:37.331003+00:00",
+      "finished_at_utc": "2026-10-15T04:25:37.441532+00:00",
+      "cost_nanodollars": 48804
+    },
+    {
+      "request_id": "c214bfa4-d55c-4ada-b763-27c1f018ef6f",
+      "review_ids": [
+        "bb5c5067-a91f-4364-b334-b6e508a9c34e"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T04:30:35.979533+00:00",
+      "finished_at_utc": "2026-10-15T04:30:36.202784+00:00",
+      "cost_nanodollars": 47922
+    },
+    {
+      "request_id": "ff36b2ca-1e30-4de5-8da1-d41385e448a4",
+      "review_ids": [
+        "40070ab1-a93a-4d7f-ad27-e4b619b09617"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "original_error": null,
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T04:35:09.602578+00:00",
+      "finished_at_utc": "2026-10-15T04:35:09.785406+00:00",
+      "cost_nanodollars": 48006
+    }
+  ],
+  "connections": [
+    {
+      "request_id": "367aee9c-0cd0-415f-ac7f-2f94dcab0055",
+      "review_ids": [
+        "547aab3e-f1a4-4771-939a-0b8177a148f3"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "connection error, charge unknown, accounted as charged",
+      "original_error": "HTTP 499",
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:36:03.142348+00:00",
+      "finished_at_utc": "2026-10-15T03:36:04.491531+00:00",
+      "cost_nanodollars": 220668
+    },
+    {
+      "request_id": "b2a32376-e3a8-4d01-82ec-6bd73652f9e6",
+      "review_ids": [
+        "e5a07223-7b5d-4eec-95f9-fd827ba9de09"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "connection error, charge unknown, accounted as charged",
+      "original_error": "HTTP 499",
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:38:51.394900+00:00",
+      "finished_at_utc": "2026-10-15T03:38:52.658752+00:00",
+      "cost_nanodollars": 216678
+    },
+    {
+      "request_id": "6faf8c61-880a-4628-96f5-cb8a210a4a5f",
+      "review_ids": [
+        "2fe2c475-49ec-4b1c-ab3d-830b61adc3fa"
+      ],
+      "provider": "typesafe",
+      "stage": "jev",
+      "phase": "resume",
+      "attempt": 1,
+      "error": "connection error, charge unknown, accounted as charged",
+      "original_error": "HTTP 499",
+      "transport_diagnostic": null,
+      "started_at_utc": "2026-10-15T03:58:33.506253+00:00",
+      "finished_at_utc": "2026-10-15T03:58:34.852707+00:00",
+      "cost_nanodollars": 217392
+    }
+  ],
+  "new_terminal_items": [
+    {
+      "review_id": "3bbab369-2722-48ea-8ab2-0739a9b3d5f7",
+      "reason": "invalid_model_output_after_retry"
+    },
+    {
+      "review_id": "6ee89fe5-6900-43ce-9c54-43078ac506e1",
+      "reason": "invalid_model_output_after_retry"
+    },
+    {
+      "review_id": "014df5d4-c2dc-4e7c-9a18-d874bd80fef5",
+      "reason": "invalid_model_output_after_retry"
+    }
+  ],
+  "luna_invalid_items": {
+    "9c26c4a3-3935-4668-b51f-e2ff62172499": {
+      "error": "Quote must be a nonempty exact source substring",
+      "request_id": "e7d1e692-846c-4dd5-99af-bd808cf3f4ec",
+      "stage": "extract"
+    },
+    "982b0813-1eae-479b-93d9-bf39aa319e37": {
+      "error": "Quote must be a nonempty exact source substring",
+      "request_id": "cb616fae-2708-42c7-91f0-7bc78de44c17",
+      "stage": "extract"
+    },
+    "a34b6a36-c503-4be8-86ba-0a6423dab967": {
+      "error": "Quote must be a nonempty exact source substring",
+      "request_id": "e2774bf5-389e-41a7-a7f0-f403b692deec",
+      "stage": "extract"
+    }
+  },
+  "luna_valid_outputs": 157,
+  "valid_pending_replay_count": 133,
+  "valid_pending_replay_ids": [
+    "05713310-4d1a-4a71-97bd-41c5cf7b9b82",
+    "068219ec-87d9-4f72-85c2-6378b264c0ca",
+    "079bbda0-6f0a-41ea-8192-3d8a2d8c78e3",
+    "09803762-1c4a-4392-82b4-e47a66b38333",
+    "0ce8e449-d033-4af9-8d8d-2c33bdf652ad",
+    "0cf2064b-5956-47fd-a621-59b51d14e455",
+    "0faa6553-9299-4e1f-833e-6b1de957834e",
+    "150915dc-2406-41a2-847d-bd54e3ed56fc",
+    "17d0a100-7c7d-4c6b-91a3-bf7f144e402d",
+    "18ef175e-54e9-4e19-984d-fd9edf910bee",
+    "1d27d2c6-6253-4689-9afe-cfcfe76c116c",
+    "1edb9f87-5cc0-4e4c-8c89-21b7e70e2750",
+    "200f0613-abe7-4311-9ce7-9b98f608cee7",
+    "20ac7448-21dd-4ae1-943d-2c778f10da05",
+    "20b0dd55-88be-45fd-97cc-3cf027daec50",
+    "21e95d7f-08c7-47e9-a065-90ca27af2362",
+    "22b0e13c-f2e3-444e-8935-acb98b62b23d",
+    "23f19178-6238-4f46-98e6-fc24137bbd00",
+    "26416466-36bc-4bdc-a664-9ea971dfe136",
+    "28f4c1d2-aef3-4c72-a25d-370cf23947c0",
+    "2b4ba9d5-2818-4f15-9936-89722417b504",
+    "2bee0467-4d92-41a2-8dd0-b756cb6a8abf",
+    "2c8832f2-afee-469c-9b19-0eabaf666283",
+    "2d43c377-f676-425a-85bf-8df5a0a2028e",
+    "2d5802cc-5408-4290-89dd-e03efe82e82e",
+    "2f9f851f-141e-4a6b-bb4a-4367b14219ea",
+    "31b6afd0-7e9d-4dfe-8082-a67dffa74aa6",
+    "367908c8-8b71-4230-b073-2408e1e70b8f",
+    "36f89d32-15e3-4b90-aa02-932543ac20ea",
+    "374dee33-b49c-49c2-abbe-4dcb88ff67eb",
+    "37da6d07-611b-46b9-8689-fa739a820b36",
+    "3980d609-4c09-4dd8-a0c3-c393046f2423",
+    "3b6dd34d-7f30-46d1-9bd6-18b64546cc8e",
+    "3d0b6809-ded9-43b5-ae94-ba515d68c436",
+    "3ed26e42-0a48-4329-b31e-03539fb0e037",
+    "440db84e-44c3-4b0f-83df-702b566ff83b",
+    "44135a5c-2773-457f-b773-97a4a44fc34b",
+    "442e8ea2-5bc6-4580-987c-9000717f9cd2",
+    "45050477-80ca-41db-9e1c-db713e90ae86",
+    "499276ae-7f6f-4abd-a9cc-59844f1e6084",
+    "508bfd7e-b834-4ef5-916b-b9f46cbdefc1",
+    "531c4996-49ab-4543-9f28-5f7765a4a8c2",
+    "54149b05-5657-4c36-bd43-67950578260a",
+    "547a804b-e8f3-4720-b169-32c4215ab8a8",
+    "54b51928-9903-4421-915a-c352f19428bf",
+    "55845b58-750a-4a87-9347-144daa348e4d",
+    "56b53f89-7786-420b-b82f-2d033bbbbadf",
+    "57a53bbf-9476-4dfe-902e-fd82a22c6131",
+    "5c2ce75f-484e-4b5a-80b4-f72aef519a53",
+    "5e5817bf-edfe-4276-b578-84074e9c363f",
+    "677f0fb3-d2fa-43b9-8356-8e6165d3bba1",
+    "67e05986-c7f1-41fd-8c0c-e91b961c0c3d",
+    "6899a3f3-9256-434d-b2cc-8bd2b1533b81",
+    "6a93cdc1-9f45-4a87-97c6-2e449d9cdb28",
+    "6cfa27b6-c4cc-4e7e-b7b2-1843e3bcba6b",
+    "73633fa8-7b2a-4a2a-b9be-0716098a9908",
+    "74350408-8490-41e6-a393-fbe89bbd7120",
+    "786db01e-43c4-42c9-9935-b51ba98ce252",
+    "7be0355c-1cf7-4bca-8102-7370f2732855",
+    "7dc3e5b3-96e4-4bfa-84bd-30008b942009",
+    "7e57f9f4-a451-4373-b928-44bf1126d7f7",
+    "7f84d5ab-a459-4214-8ad7-589cc94e1cab",
+    "81b836de-8e20-4151-90b5-d075b9cdc1e9",
+    "83b050be-cc89-4e52-8a98-f0d0e85b0659",
+    "84738e67-eab8-4b6d-8585-9cbcbade26c9",
+    "89106554-803b-46db-9099-0f9e3fd79c79",
+    "8963a30d-54f3-4f3e-866c-c1e7c89bc364",
+    "8affbed0-f8aa-4787-8520-0dbd1977132e",
+    "8b9c517d-d5f0-4600-a2ae-fe259674e92d",
+    "8e1bb271-d877-43ac-bbf3-d6ee38a1fcf4",
+    "8e86262d-a394-4795-9152-032b814bf646",
+    "8fff93cf-b82a-480b-a1ea-0088189cb4e3",
+    "904c3bc3-0898-457a-a654-01a78381e6a1",
+    "93137c1a-575c-41ee-bf82-36681157dd81",
+    "992f40c1-2d64-4ca0-a8c2-d9f9fce1850b",
+    "9a5e583a-0002-4fcc-be88-05499269b286",
+    "9cfbd0b0-de0f-47cc-8b75-b186da222b5e",
+    "9ebd371d-954a-4d47-886b-a61fd7b2e966",
+    "a0c44209-b378-4fbd-b445-89d60affe73e",
+    "a51cb2a4-4972-407d-81d9-f61a944df23d",
+    "a60a129f-222e-4c24-9224-7e4880587e7f",
+    "a79cea1e-4cf0-4f07-a7f8-2c628b931f31",
+    "a840c71c-974c-4edd-8c65-b8b529555ace",
+    "a9085279-0547-4eaf-b740-502cfba73483",
+    "a9e2f8d6-3011-47ae-b308-b3f9bd3843c7",
+    "aab9ec78-b611-49cb-bcda-259c41218721",
+    "abf77b2f-d784-49f0-aa21-29adf46fabe8",
+    "ac8c1a88-806b-402d-8cba-e26b6c7fd187",
+    "af2f170c-2a71-48da-a477-652da7b34d84",
+    "afec7d64-6852-4505-9f23-a33f15909ea0",
+    "aff24ffd-5225-4676-80f5-c599d528bed3",
+    "b0672f65-8e9e-4801-a87e-75a4f6ec458c",
+    "b070b143-8815-474e-a929-0248726f2a9c",
+    "b34c1283-253f-48ac-be51-a6dec4e8ccf5",
+    "b37c1e04-f932-4d0b-9763-89438575c67b",
+    "b67c72a5-3178-4e26-855b-0bf51b9bd380",
+    "b91f2647-cbb7-4108-a7de-4ce5d7e39719",
+    "ba4e5540-d5fc-4033-9c11-408d77f9a33f",
+    "baac01d3-48ba-4e85-b489-2eb61b4d2812",
+    "c1f50173-2682-43fa-b826-61d4f8aef993",
+    "c3103681-b938-4753-8e5d-830ed6f2b627",
+    "c3e040db-d2be-4034-bb75-5003d7713388",
+    "c6529213-d3c1-4cf1-9207-f8674df9aeeb",
+    "c9c53b95-2e4a-455b-bd04-c675399d0685",
+    "cf975b7b-a96f-41ed-b451-4ff806bb7b5f",
+    "d3b6e489-03e1-4e5e-a785-d81d00dce356",
+    "d416d5a8-c386-4042-a17c-cc68eddbdbfe",
+    "d5bf6631-195b-4952-8b56-b692cc6bf6a6",
+    "d731754b-b727-4fe0-9395-e0ff3ad8b452",
+    "d829f55d-fd75-4747-a926-399f504b8092",
+    "d903c5c1-3231-4b91-a523-4cd832075fb5",
+    "d9fcaf6e-187a-4d93-ac4a-8685e424f66b",
+    "dad9a8c5-5679-48bc-b81d-2204022e9d1f",
+    "dc6b44b9-508a-4998-8d4b-11b09d065460",
+    "de4960db-febb-4e7e-89f9-5efd3cc55a2a",
+    "df156a72-c4c1-47b0-9557-7626632eb4ef",
+    "e02f93b8-4996-4946-aa5d-5fcd698268a7",
+    "e1b3e979-913f-4b5f-ada3-798918a44364",
+    "e51174e6-f001-4dfe-babf-a02026ff7aac",
+    "e56a84bc-2471-4df1-a5bb-d11a22f07520",
+    "e5ae4143-6a5d-4ff5-9c80-71e83e33fc45",
+    "e9be8306-3218-4413-b624-7fcaf272f052",
+    "eb04f429-3274-40b8-9b69-7435942f3554",
+    "eb63dea8-cbfa-4dae-ac8b-4a0586f8082e",
+    "ec310bb4-2e13-4ec3-aff9-ff10ac4dd876",
+    "ec41c3f4-f753-412b-981f-115dd4413601",
+    "ec5986f2-a50f-4620-b20a-65293397c8dc",
+    "ed0cd89f-6c25-4286-bffc-1b2aab292212",
+    "efe42446-d14b-405f-bca3-c561c82c9a9c",
+    "f82dba43-8c87-4a57-a0d5-d0cce778e5a2",
+    "f9b7b3c2-ebcf-42ad-a6f4-43606f4be7fc",
+    "fa430707-f371-44aa-a813-c4a16707ee94",
+    "fa91bfed-38b0-4d20-8bd9-7193fcb05ac7"
+  ],
+  "remaining_modes_after_proposed_offline_replay": {
+    "extract": 5769,
+    "fallback": 15174,
+    "local": 54771
+  },
+  "remaining_root_requests_upper": {
+    "extract": 292,
+    "fallback": 759
+  },
+  "remaining_all_retries_byte_envelope_usd": 87.017121,
+  "remaining_root_batch_byte_envelope_usd": 3.65371725,
+  "remaining_base_estimate_usd": 1.1652051360006555,
+  "remaining_invocation_cap_usd": 3.575524047,
+  "project_spent_usd": 4.474552938,
+  "project_reserved_usd": 0.0,
+  "invocation_spent_usd": 3.704475953,
+  "calls_usage_equals_ledger": true,
+  "provider_cost_usd": {
+    "typesafe": 3.696326928,
+    "openai": 0.008149025
+  },
+  "cap_latched": false,
+  "unresolved_call_outcomes": 0,
+  "integrity": "ok",
+  "leases": 0,
+  "completed_validated": 28248,
+  "scoped_completed": 19743,
+  "unscoped_imported_completed": 8505,
+  "call_log_count": 84585,
+  "sqlite_call_count": 84585,
+  "call_log_matches_sqlite_exactly": true,
+  "monitor_windows": {
+    "classification_window": {
+      "n": 100,
+      "failures": 0
+    },
+    "terminal_window": {
+      "n": 27,
+      "failures": 3
+    },
+    "connection_window": {
+      "n": 100,
+      "failures": 0
+    }
+  },
+  "before_snapshot_exists": false,
+  "recoverable_before_ids_count": 19719,
+  "posthoc_reconstruction_only": true,
+  "before_reconstruction_sha256": "52273eeee2fa4e3194d09080857ec0695523436a7ba50f3c8ed45303fe27adb6",
+  "resume_enrich_ids_in_reconstructed_before": [],
+  "no_live_state_or_windows_modified": true,
+  "api_calls_made_by_audit": 0,
+  "offline_replay_of_failed_jev_attempts_under_numeric_fix": {
+    "still_invalid_under_fixed_validator": 67,
+    "machine_precision_tie_passes_fixed_validator": 8
+  }
+}

@@ -27,7 +27,7 @@ def window_restore(window, saved):
     return window
 
 
-def run_segment(state, calls, config, output: Path, resume=False, poll_seconds=.05):
+def run_segment(state, calls, config, output: Path, resume=False, poll_seconds=.05, recovery=False):
     """Run a prepared store; caller supplies mocked or explicitly authorized Calls.
 
     Refuse stale stop files, outstanding leases/reservations and cap-hit resumes.
@@ -50,7 +50,8 @@ def run_segment(state, calls, config, output: Path, resume=False, poll_seconds=.
     if resume:
         if not saved or any(saved[k] != v for k,v in identity.items()):
             raise ValueError('Resume must preserve invocation ID, cap, hash and fallback fraction')
-        if saved['status'] != 'stopped_user' or calls.ledger.run_stop(calls.run_id):
+        allowed = saved['status']=='stopped_user' or (recovery and saved['status']=='recovery_ready')
+        if not allowed or calls.ledger.run_stop(calls.run_id):
             raise ValueError('Only a drained voluntary pause can resume without a new gate')
     elif saved:
         raise ValueError('Invocation exists; use explicit resume')

@@ -151,6 +151,7 @@ def status(output=OUTPUT):
                   invocation_remaining_usd=(round(result['shared_cap_usd']*1e9)-own)/1e9,
                   cap_latched=bool(stop))
     result['safe_to_resume'] = saved.get('status')=='stopped_user' and not leases and not reserved and not stop
+    result['safe_to_continue_recovery'] = saved.get('status')=='recovery_ready' and not leases and not reserved and not stop
     return result
 
 
@@ -167,15 +168,16 @@ def evidence(which, output=OUTPUT):
     if which=='before' and (receipt['status']!='stopped_user' or not receipt['drained']):
         raise ValueError('Before snapshot requires a drained voluntary pause')
     if which=='after':
-        before = set(json.loads((output/'checkpoint_before.json').read_text(encoding='utf-8'))['completed_ids'])
+        before = set(json.loads(before_checkpoint(output).read_text(encoding='utf-8'))['completed_ids'])
         with closing(sqlite3.connect(f'file:{(output/"state.sqlite3").as_posix()}?mode=ro',uri=True)) as db:
             completed = {rid for rid, in db.execute("SELECT r.review_id FROM reviews r JOIN production_scope s USING(review_id) WHERE r.status='completed'")}
-            events = [json.loads(e) for e, in db.execute('SELECT event FROM calls')]
-        if not before < completed or not any(e['run_id']==receipt['run_id'] and e['phase']=='resume' and e['outcome']=='succeeded' and not e.get('simulated') and e.get('cost_nanodollars',0)>0 and set(e['review_ids']) & (completed-before) for e in events):
+            events = (json.loads(e) for e, in db.execute('SELECT event FROM calls ORDER BY rowid DESC'))
+            paid = any(e['run_id']==receipt['run_id'] and e['phase']=='resume' and e['outcome']=='succeeded' and not e.get('simulated') and e.get('cost_nanodollars',0)>0 and set(e['review_ids']) & (completed-before) for e in events)
+        if not before < completed or not paid:
             raise ValueError('After checkpoint not ready: wait for new completed rows and a real paid resume call; no snapshot written')
     result = snapshot(output/'state.sqlite3',target,Path(plan['scope_csv']))
     try:
-        proof = audit(output/'state.sqlite3',output/'checkpoint_before.json',target,{receipt['run_id']},output/'resume-audit.json') if which=='after' else None
+        proof = audit(output/'state.sqlite3',before_checkpoint(output),target,{receipt['run_id']},output/'resume-audit.json') if which=='after' else None
     except ValueError:
         # Preserve the attempted snapshot for diagnosis; never overwrite evidence.
         raise ValueError('After proof failed; preserve evidence and stop at a recovery gate') from None
@@ -187,6 +189,16 @@ def evidence(which, output=OUTPUT):
 def proof(output=OUTPUT):
     with closing(sqlite3.connect(f'file:{(output/"state.sqlite3").as_posix()}?mode=ro',uri=True)) as db:
         receipt = json.loads(db.execute("SELECT result FROM artifacts WHERE key='graceful-invocation'").fetchone()[0])
-    result = audit(output/'state.sqlite3',output/'checkpoint_before.json',output/'checkpoint_after.json',
+    result = audit(output/'state.sqlite3',before_checkpoint(output),output/'checkpoint_after.json',
                    {receipt['run_id']},output/'resume-audit.json')
     return {key:result[key] for key in ('status','before_count','after_count','before_strict_subset_after','after_subset_completed','resume_enrich_ids_in_before')} | {'new_direct_paid_resume_count':len(result['new_direct_paid_resume_ids'])}
+
+
+def before_checkpoint(output=OUTPUT):
+    reconstructed = output/'checkpoint_before.reconstructed.json'
+    if reconstructed.exists():
+        provenance = json.loads((output/'checkpoint_before.reconstructed.provenance.json').read_text(encoding='utf-8'))
+        if sha(reconstructed)!=provenance['reconstructed_sha256']:
+            raise ValueError('Reconstructed before checkpoint changed')
+        return reconstructed
+    return output/'checkpoint_before.json'

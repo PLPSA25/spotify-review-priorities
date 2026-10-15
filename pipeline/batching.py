@@ -10,6 +10,7 @@ from pipeline.classify import (
     parse_jev,
     parse_luna_batch,
 )
+from pipeline.failure_policy import SystemicFailure
 from pipeline.providers import ProviderError
 from pipeline.schema import canonical, record_schema
 from pipeline.spend import SpendStop
@@ -42,6 +43,26 @@ def pack(items: list[dict[str, Any]], labels: dict[str, dict[str, Any]], config:
     if current:
         batches.append(current)
     return batches
+
+
+def commit_validated(state, calls, items, valid, stage):
+    """Save all valid paid siblings before a monitor can interrupt finalization.
+
+    Stop new admissions immediately on systemic failure, but drain every valid
+    sibling already paid for. Invalid siblings remain pending; no repair is admitted.
+    """
+    accepted = [item for item in items if item['source']['review_id'] in valid]
+    for item in accepted:
+        state.stage_result(item['key'],stage,valid[item['source']['review_id']])
+    failure = None
+    for item in accepted:
+        try:
+            state.complete(item,valid[item['source']['review_id']])
+        except SystemicFailure as exc:
+            calls.stop.set()
+            failure = failure or exc
+    if failure:
+        raise failure
 
 
 def resolve_luna(state: State, calls: Calls, items: list[dict[str, Any]],
@@ -85,13 +106,10 @@ def resolve_luna(state: State, calls: Calls, items: list[dict[str, Any]],
         result = send(batch)
         if result.get("terminal"):
             continue
+        commit_validated(state,calls,batch,result['valid'],stage)
         for item in batch:
             rid = item["source"]["review_id"]
-            if rid in result["valid"]:
-                record = result["valid"][rid]
-                state.stage_result(item["key"], stage, record)
-                state.complete(item, record)
-            else:
+            if rid not in result["valid"]:
                 repair.append(item)
     # Every repair contains only one previously missing/invalid ID, never valid siblings.
     for item in repair:

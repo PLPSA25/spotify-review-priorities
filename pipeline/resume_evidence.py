@@ -33,14 +33,18 @@ def audit(state, before_path, after_path, run_ids, output):
     before = json.loads(before_path.read_text(encoding='utf-8'))
     after = json.loads(after_path.read_text(encoding='utf-8'))
     b, a = set(before['completed_ids']), set(after['completed_ids'])
+    added = a-b
     with closing(sqlite3.connect(f'file:{state.as_posix()}?mode=ro',uri=True)) as db:
         config = db.execute("SELECT value FROM metadata WHERE key='label_config'").fetchone()[0]
         records = {rid:json.loads(record) for rid,record in db.execute("SELECT review_id,result FROM reviews WHERE status='completed'")}
-        events = [json.loads(e) for e, in db.execute('SELECT event FROM calls')]
-    resumed = [e for e in events if e['run_id'] in run_ids and e['phase']=='resume' and e['role']=='enrich']
-    touched = {rid for e in resumed for rid in e['review_ids']}
-    new_paid = {rid for e in resumed if e['outcome']=='succeeded' and e['label_config']==config and not e.get('simulated',False) and e.get('cost_nanodollars',0)>0
-                for rid in e['review_ids'] if rid in a-b and not records.get(rid,{}).get('cache_source_id')}
+        touched, new_paid = set(), set()
+        for raw, in db.execute('SELECT event FROM calls'):
+            e = json.loads(raw)
+            if e['run_id'] not in run_ids or e['phase']!='resume' or e['role']!='enrich':
+                continue
+            touched.update(e['review_ids'])
+            if e['outcome']=='succeeded' and e['label_config']==config and not e.get('simulated',False) and e.get('cost_nanodollars',0)>0:
+                new_paid.update(rid for rid in e['review_ids'] if rid in added and not records.get(rid,{}).get('cache_source_id'))
     result = {'status':'pass' if b<a<=set(records) and not b&touched and bool(new_paid) and before['label_config']==after['label_config']==config else 'fail',
               'before_count':len(b),'after_count':len(a),'new_completed_ids':len(a-b),
               'before_strict_subset_after':b<a,'after_subset_completed':a<=set(records),

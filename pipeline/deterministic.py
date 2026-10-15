@@ -142,11 +142,11 @@ def run_deterministic(state, calls, config, stop_after=None, admission_stop=None
                 state.release(item)
                 stage_monitor.record(item['key'],False)
             except InvalidOutput:
-                state.quarantine(item,'invalid_model_output_after_retry')
+                state.quarantine(item,'invalid_model_output_after_retry',monitor=False)
                 stage_monitor.record(item['key'],True)
             except ProviderError as exc:
                 if exc.transient and not exc.unknown_charge:
-                    state.quarantine(item,'api_retries_exhausted')
+                    state.quarantine(item,'api_retries_exhausted',monitor=False)
                     stage_monitor.record(item['key'],True)
                 else:
                     if not exc.unknown_charge:

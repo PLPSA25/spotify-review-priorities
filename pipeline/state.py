@@ -260,7 +260,7 @@ class State:
         if self.failure_window is not None:
             self.failure_window.record(item['key'], False)
 
-    def quarantine(self, item: dict[str, Any], reason: str) -> None:
+    def quarantine(self, item: dict[str, Any], reason: str, *, monitor: bool = True) -> None:
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
             cursor = db.execute("UPDATE work SET status='quarantined',reason=?,lease=NULL "
@@ -269,7 +269,7 @@ class State:
                 raise ValueError("Stale queue quarantine")
             db.execute("UPDATE reviews SET status='quarantined',reason=? WHERE work_key=? "
                        "AND status='pending'", (reason, item["key"]))
-        if self.failure_window is not None:
+        if monitor and self.failure_window is not None:
             self.failure_window.record(item['key'], True)
 
     def checkpoint(self, path: Path) -> None:

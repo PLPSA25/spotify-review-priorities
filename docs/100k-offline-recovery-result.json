@@ -1,0 +1,28 @@
+{
+  "status": "offline recovery complete; owner continuation only",
+  "recovered_outputs": 133,
+  "run_id": "7180188e-0938-4d2f-8e2b-6bf412cf77ca",
+  "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "counts": {
+    "completed": 28381,
+    "pending": 80160,
+    "quarantined": 10
+  },
+  "before_count": 19719,
+  "before_sha256": "39252683567643d0c967477f874739aa0a65bb98a0faee47752f3435c140fef3",
+  "after_count": 19876,
+  "resume_proof": "pass",
+  "new_direct_paid_resume_count": 157,
+  "supplied_checker_resume_rules": "pass",
+  "checker_other_flags": {
+    "invalid_usage": 20
+  },
+  "remaining_invocation_cap_usd": 3.575524047,
+  "project_spend_usd": 4.474552938,
+  "ledger_unchanged": true,
+  "terminal_items_unchanged": true,
+  "original_failed_receipt_unchanged": true,
+  "raw_call_log_bytes_unchanged": true,
+  "api_calls": 0,
+  "state_after_recovery_sha256": "710c64be46ec9395b03c977898b498378fee52d16aae24e101f37084590d0d9b"
+}

@@ -82,7 +82,8 @@ def parse_jev(response: dict[str, Any], threshold: float, margin_threshold: floa
         else:
             if answer["choice"] not in choices:
                 raise ValueError("Invalid choice")
-            if probabilities[answer["choice"]] < max(distribution):
+            if probabilities[answer["choice"]] < max(distribution) and not math.isclose(
+                    probabilities[answer["choice"]], max(distribution), rel_tol=0, abs_tol=1e-12):
                 raise ValueError("Choice differs from highest-probability option")
             values[name] = answer["choice"]
             ordered = sorted(distribution, reverse=True)

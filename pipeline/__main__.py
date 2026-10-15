@@ -23,6 +23,9 @@ def main() -> None:
     scope.add_argument('--plan',type=Path,required=True)
     scope.add_argument('--confirm-spend',action='store_true')
     scope.add_argument('--resume',action='store_true')
+    continuation = stages.add_parser('scope-continue',help='Owner-run continuation of the audited recovery; offline by default')
+    continuation.add_argument('--recovery',type=Path,default=Path('artifacts/scope-100k/recovery/continuation.json'))
+    continuation.add_argument('--confirm-spend',action='store_true')
     stages.add_parser('scope-prepare',help='Offline prepare the reviewed production scope; never dispatch')
     approval = stages.add_parser('scope-authorize',help='Offline authorization receipt after owner yes and balance recheck')
     approval.add_argument('--plan',type=Path,default=Path('docs/100k-production-plan.json'))
@@ -137,10 +140,14 @@ def main() -> None:
                 return
         print(json.dumps(result,indent=2),flush=True)
         return
-    if args.stage=='scope-run':
+    if args.stage in {'scope-run','scope-continue'}:
         from pipeline.graceful import run_plan
         try:
-            result = run_plan(args.plan,args.confirm_spend,args.resume)
+            if args.stage=='scope-continue':
+                from pipeline.production_recovery import run_continuation
+                result = run_continuation(args.recovery,args.confirm_spend)
+            else:
+                result = run_plan(args.plan,args.confirm_spend,args.resume)
         except Exception as exc:  # noqa: BLE001 -- never expose payloads or exception messages on video
             print('Stopped safely: '+type(exc).__name__+'. Inspect offline status; do not auto-resume.',flush=True)
             raise SystemExit(2) from None

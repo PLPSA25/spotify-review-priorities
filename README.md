@@ -169,7 +169,58 @@ preflight check; project spend alone is not an org balance.
 
 ### Offline pre-production clarification
 
-#### Confirmed rule-violation limitations (frozen prompt retained)
+#### Terminal near-tie validation failures in the 100k scoring pass
+
+Three distinct exact texts remain terminal after two rejected Jev attempts each
+(six failed attempts; four source IDs including one exact-text alias). All carry
+`invalid_model_output_after_retry`; they are retained, excluded from calibration,
+and not retried or reclassified during recovery:
+
+- `3bbab369-2722-48ea-8ab2-0739a9b3d5f7`: topic choice billing 0.42 versus
+  highest-probability usability 0.43, twice.
+- `6ee89fe5-6900-43ce-9c54-43078ac506e1`: billing 0.46 versus usability
+  0.47000000000000003, twice.
+- `014df5d4-c2dc-4e7c-9a18-d874bd80fef5`: language choice nonenglish_understood
+  0.45999999999999996 versus english 0.46, twice. This was a machine-precision
+  false rejection; alias `ad5f72c8-46a5-4d6c-8dea-2469ee0b2ed0` shares the terminal
+  result. The numerical validator is fixed for future work, but this frozen run's
+  existing terminal status is deliberately retained. This is not a semantic label
+  disagreement or a new golden error.
+
+#### Clip-1 checkpoint disclosure
+
+Clip-1 shows the interruption and resume, but the before-checkpoint command did
+not succeed: a paste produced `scope-evidence beforeSet-Location C:\dev\Spotify`,
+which argparse rejected. **No before checkpoint file was saved during that clip.**
+The owner reports that the clip shows `stopped_user`, `drained: True`, scoped
+completed 19,719, saved new Jev scores 5,570 and invocation `7180188e-…`; the saved
+initial pause receipt corroborates the state. The video has not been independently
+inspected by the assistant and remains local/ignored pending publication choice.
+
+After the later halt, `checkpoint_before.reconstructed.json` was reconstructed
+offline by intersecting the pinned selected IDs with completed exact texts in the
+preserved pre-run base. It contains **19,719 IDs**, SHA-256
+`39252683567643d0c967477f874739aa0a65bb98a0faee47752f3435c140fef3`.
+The separate provenance note records the paste error, reconstruction timestamp,
+base/selection/pause-receipt hashes and method. **This is post-hoc evidence, not a
+claim that the file existed during the recording.**
+
+The offline-recovery after snapshot is separately named
+`checkpoint_after.offline-recovery.json`; it includes only validated existing paid
+responses. `scope-evidence after` will create the later continuation snapshot and
+automatically use the reconstructed before file. Resume audits check strict set
+growth, inclusion in completed records, zero before IDs in production resume calls,
+and new paid non-cache originals. The supplied checker's resume section is tested
+using the declared grading view: historical imported calls retain source phase/run
+identity and are mapped to initial relative to this recording; incompatible old
+enrichment configurations remain raw provenance. Raw call logs are unchanged.
+Passing those consistency rules does not attest when a file was created, certify
+the recording, or constitute a full grading-submission pass.
+The checker separately reports 20 unavailable token-usage fields on ten
+pessimistically accounted calls. These are not resume-rule failures; no token usage
+is fabricated and no provider reconciliation is performed.
+
+#### Semantic rule-violation audit counts
 
 The semantic audit counts confirmed pipeline rule violations separately from model
 disagreement. These are reviewed subsets, **not corpus accuracy estimates**:

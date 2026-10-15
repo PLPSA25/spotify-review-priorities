@@ -2,6 +2,7 @@
 .env.*
 !.env.example
 *.pdf
+*.mp4
 
 # Raw course dataset (97 MB) - never commit; checksum is in manifest.json
 spotify_reviews_18months.csv
