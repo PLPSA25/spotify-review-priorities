@@ -1,0 +1,562 @@
+{
+  "status": "offline proposed preview; no production membership/ranking modified; no model calls",
+  "version": "topic-subissue-lexical-v1-proposed",
+  "rule_hash": "f75aba57f835d62501f3f69b0e4d302717d16ac13d6212a7159efee07c2419c2",
+  "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "rules": {
+    "access": [
+      [
+        "account-security",
+        "\\bhack\\w*|\\bstolen\\b|\\bsuspicious\\b"
+      ],
+      [
+        "login-credentials",
+        "\\blog[ -]?(?:in|out)\\b|\\bsign[ -]?in\\b|\\bpassword\\b|\\blogging\\b"
+      ],
+      [
+        "signup-registration",
+        "\\bsign[ -]?up\\b|\\bregister\\w*|\\bregistration\\b|\\bcreat\\w*\\s+(?:an?\\s+)?account\\b"
+      ],
+      [
+        "account-restrictions",
+        "\\b(?:account|profile)\\b.{0,30}\\b(?:blocked|disabled|suspended|locked|deleted)\\b"
+      ]
+    ],
+    "usability": [
+      [
+        "ad-interruptions",
+        "\\bads?\\b|\\badvert\\w*|\\bcommercials?\\b"
+      ],
+      [
+        "shuffle-controls",
+        "\\bshuffle\\w*|\\brepeat\\b"
+      ],
+      [
+        "queue-playlist-controls",
+        "\\bqueue\\b|\\bplaylist\\w*|\\bliked songs\\b"
+      ],
+      [
+        "interface-navigation",
+        "\\b(?:ui|ux|interface|layout|navigation|buttons?|menus?|widgets?)\\b|\\bredesign\\w*"
+      ]
+    ],
+    "playback": [
+      [
+        "crashes-freezes",
+        "\\bcrash\\w*|\\bfreez\\w*|\\bfrozen\\b|\\bforce clos\\w*"
+      ],
+      [
+        "buffering-connectivity",
+        "\\bbuffer\\w*|\\blag\\w*|\\bconnection\\b|\\bconnectivity\\b|\\bload\\w*|\\binternet\\b"
+      ],
+      [
+        "audio-quality-volume",
+        "\\b(?:audio|sound) quality\\b|\\bvolume\\b|\\bdistort\\w*|\\bequaliz\\w*|\\bbluetooth\\b"
+      ],
+      [
+        "background-resources",
+        "\\bbackground\\b|\\bbattery\\b|\\bmemory\\b|\\boverheat\\w*|\\bscreen (?:off|lock)\\b"
+      ],
+      [
+        "stops-skips-wont-play",
+        "\\b(?:stop|paus|skip)\\w*|\\b(?:won.t|can.t|cannot|doesn.t|not|no longer)\\s+play\\w*|\\bplay\\w*\\s+(?:anything|nothing)\\b"
+      ]
+    ],
+    "downloads": [
+      [
+        "missing-downloads",
+        "\\bdisappear\\w*|\\bmissing\\b|\\bdeleted\\b|\\bremoved\\b|\\blost\\b"
+      ],
+      [
+        "offline-access",
+        "\\boffline\\b|\\bwithout (?:internet|wi[ -]?fi|data)\\b"
+      ],
+      [
+        "download-failure",
+        "\\bdownload\\w*"
+      ]
+    ],
+    "catalog": [
+      [
+        "lyrics",
+        "\\blyrics?\\b"
+      ],
+      [
+        "discovery-recommendations",
+        "\\brecommend\\w*|\\bdiscover\\w*|\\b(?:daily|song|artist) mix\\w*|\\bradio\\b"
+      ],
+      [
+        "search-results",
+        "\\bsearch\\w*|\\bfind\\w*"
+      ],
+      [
+        "availability-selection",
+        "\\bmissing\\b|\\bunavailable\\b|\\bremoved\\b|\\bselection\\b|\\bvariety\\b|\\bcatalog\\w*"
+      ]
+    ],
+    "billing": [
+      [
+        "charges-refunds",
+        "\\bcharg\\w*|\\brefund\\w*|\\bpayment\\w*|\\bbill\\w*|\\bdouble\\s+pa\\w*"
+      ],
+      [
+        "premium-upgrade-mentions",
+        "\\bpremium\\b|\\bactivat\\w*|\\bupgrad\\w*|\\bsubscrib\\w*"
+      ],
+      [
+        "price-paywalls",
+        "\\bpric\\w*|\\bcost\\w*|\\bexpensive\\b|\\bpaywall\\w*|\\bpay\\w*"
+      ],
+      [
+        "subscription-cancellation",
+        "\\bcancel\\w*|\\brenew\\w*|\\bsubscription\\w*"
+      ]
+    ],
+    "support": [
+      [
+        "contact-response",
+        "\\bcontact\\w*|\\brespond\\w*|\\bresponse\\b|\\brepl\\w*|\\bemail\\w*|\\bchat\\w*"
+      ],
+      [
+        "resolution-quality",
+        "\\bhelp\\w*|\\bresolv\\w*|\\bfix\\w*|\\bsupport\\b"
+      ]
+    ],
+    "other": []
+  },
+  "within_topic_selection": "earliest regex match; rule order breaks same-position ties; otherwise unspecified",
+  "coarse_topic_issue_count": 8,
+  "finer_possible_issue_count": 34,
+  "finer_nonempty_issue_count": 34,
+  "group_root_calls": 2,
+  "issues_per_group_call": 25,
+  "group_role": "Luna names/assesses fixed proposed issue groups from bounded evidence; cannot alter primary labels or membership",
+  "full_completed_rows": 237722,
+  "eligible_complaint_cancellation_rows": 70239,
+  "coarse_ranking": [
+    {
+      "rank": 1,
+      "issue_id": "other",
+      "size": 36229,
+      "severity_sum": 58642,
+      "example_review_ids": [
+        "d2878e82-4c9d-4632-9173-c55b12aad98a",
+        "b394602a-0c0b-47e1-975c-57378ace5804"
+      ]
+    },
+    {
+      "rank": 2,
+      "issue_id": "usability",
+      "size": 14917,
+      "severity_sum": 37057,
+      "example_review_ids": [
+        "f2e4bd01-74ca-4ac1-99e4-3d70aa8ea2a8",
+        "2b3a32b6-1a75-43b8-baa6-f0d97869aee3"
+      ]
+    },
+    {
+      "rank": 3,
+      "issue_id": "playback",
+      "size": 6588,
+      "severity_sum": 21570,
+      "example_review_ids": [
+        "47288746-0440-4af3-a56e-5af24930b811",
+        "6ef53494-b985-4b46-ae36-bb7f28d7d8a7"
+      ]
+    },
+    {
+      "rank": 4,
+      "issue_id": "billing",
+      "size": 7229,
+      "severity_sum": 20109,
+      "example_review_ids": [
+        "16aee738-325c-447e-b33b-a2a2beb51d82",
+        "8dae6d1b-9126-4944-afdc-742e33dc48b1"
+      ]
+    },
+    {
+      "rank": 5,
+      "issue_id": "catalog",
+      "size": 2558,
+      "severity_sum": 7250,
+      "example_review_ids": [
+        "db8bd722-9fbd-418b-9882-59af2e43f250",
+        "bf13f074-6333-4fc9-9669-2d8028041772"
+      ]
+    },
+    {
+      "rank": 6,
+      "issue_id": "access",
+      "size": 1650,
+      "severity_sum": 6486,
+      "example_review_ids": [
+        "f3c1f73f-e1e1-4578-97e4-e2d9ed97b2ec",
+        "8b41ae1e-b06a-45ae-9ddc-cdc715bc6510"
+      ]
+    },
+    {
+      "rank": 7,
+      "issue_id": "downloads",
+      "size": 962,
+      "severity_sum": 3171,
+      "example_review_ids": [
+        "1de11e7e-7bc0-41d2-b313-83db8b8ba47f",
+        "8932cff1-f33b-4e6c-a7e4-3988e2e0d91c"
+      ]
+    },
+    {
+      "rank": 8,
+      "issue_id": "support",
+      "size": 106,
+      "severity_sum": 243,
+      "example_review_ids": [
+        "6529bdf5-0936-4584-9a2e-f2b0d3278ab9",
+        "2ab8b76f-c111-4c07-9b79-793fbc71a84a"
+      ]
+    }
+  ],
+  "fine_ranking": [
+    {
+      "rank": 1,
+      "issue_id": "other--unspecified",
+      "size": 36229,
+      "severity_sum": 58642,
+      "example_review_ids": [
+        "d2878e82-4c9d-4632-9173-c55b12aad98a",
+        "b394602a-0c0b-47e1-975c-57378ace5804"
+      ]
+    },
+    {
+      "rank": 2,
+      "issue_id": "usability--ad-interruptions",
+      "size": 6355,
+      "severity_sum": 13924,
+      "example_review_ids": [
+        "f2e4bd01-74ca-4ac1-99e4-3d70aa8ea2a8",
+        "33f2ee17-cd1a-405c-8d82-6e79fb83e16b"
+      ]
+    },
+    {
+      "rank": 3,
+      "issue_id": "billing--premium-upgrade-mentions",
+      "size": 4465,
+      "severity_sum": 12800,
+      "example_review_ids": [
+        "16aee738-325c-447e-b33b-a2a2beb51d82",
+        "8dae6d1b-9126-4944-afdc-742e33dc48b1"
+      ]
+    },
+    {
+      "rank": 4,
+      "issue_id": "usability--unspecified",
+      "size": 4765,
+      "severity_sum": 12177,
+      "example_review_ids": [
+        "2b3a32b6-1a75-43b8-baa6-f0d97869aee3",
+        "9bd5ba25-d9ef-40c4-9af1-4172bd4b97f6"
+      ]
+    },
+    {
+      "rank": 5,
+      "issue_id": "playback--unspecified",
+      "size": 3018,
+      "severity_sum": 9678,
+      "example_review_ids": [
+        "6e73e650-29c2-4592-ac20-2bc2c0c8dfa4",
+        "7f1c87c6-0d1c-4300-9124-61efb93bb2ee"
+      ]
+    },
+    {
+      "rank": 6,
+      "issue_id": "playback--stops-skips-wont-play",
+      "size": 1952,
+      "severity_sum": 6533,
+      "example_review_ids": [
+        "47288746-0440-4af3-a56e-5af24930b811",
+        "6ef53494-b985-4b46-ae36-bb7f28d7d8a7"
+      ]
+    },
+    {
+      "rank": 7,
+      "issue_id": "usability--queue-playlist-controls",
+      "size": 2061,
+      "severity_sum": 6199,
+      "example_review_ids": [
+        "c03e8f41-83c0-4bc1-bcc4-7d0a99a99c70",
+        "a8047c81-47dc-4b61-9667-6eebaf81aa7b"
+      ]
+    },
+    {
+      "rank": 8,
+      "issue_id": "access--login-credentials",
+      "size": 1154,
+      "severity_sum": 4537,
+      "example_review_ids": [
+        "f3c1f73f-e1e1-4578-97e4-e2d9ed97b2ec",
+        "8b41ae1e-b06a-45ae-9ddc-cdc715bc6510"
+      ]
+    },
+    {
+      "rank": 9,
+      "issue_id": "catalog--unspecified",
+      "size": 1151,
+      "severity_sum": 3197,
+      "example_review_ids": [
+        "bf13f074-6333-4fc9-9669-2d8028041772",
+        "02be6031-bf6e-4db1-a7cd-f3d86b926401"
+      ]
+    },
+    {
+      "rank": 10,
+      "issue_id": "billing--price-paywalls",
+      "size": 1103,
+      "severity_sum": 2914,
+      "example_review_ids": [
+        "69e7336b-502a-4ad4-840b-9ddfe44a16bd",
+        "cd6077ad-ef68-492c-946f-f0dc981f61f1"
+      ]
+    },
+    {
+      "rank": 11,
+      "issue_id": "billing--unspecified",
+      "size": 1137,
+      "severity_sum": 2821,
+      "example_review_ids": [
+        "2927533d-17a6-4346-a220-836541c0b5bc",
+        "b1ea86fe-e263-4239-bc6c-3aedce2bffae"
+      ]
+    },
+    {
+      "rank": 12,
+      "issue_id": "usability--shuffle-controls",
+      "size": 943,
+      "severity_sum": 2722,
+      "example_review_ids": [
+        "c1529fef-6199-4767-9729-1603bc08fb9e",
+        "3f9099f2-6901-4b6b-88b6-8b2a25124a56"
+      ]
+    },
+    {
+      "rank": 13,
+      "issue_id": "playback--crashes-freezes",
+      "size": 622,
+      "severity_sum": 2228,
+      "example_review_ids": [
+        "e4895a8b-5c59-439b-9af1-581fa2e8eb25",
+        "7ccd4524-b98d-46b4-bc52-3460ee749f4d"
+      ]
+    },
+    {
+      "rank": 14,
+      "issue_id": "playback--buffering-connectivity",
+      "size": 679,
+      "severity_sum": 2222,
+      "example_review_ids": [
+        "5339ce00-adea-495f-961b-5adbf589dd34",
+        "daf38bbe-2100-4c99-b54e-def0e1202e74"
+      ]
+    },
+    {
+      "rank": 15,
+      "issue_id": "downloads--download-failure",
+      "size": 642,
+      "severity_sum": 2108,
+      "example_review_ids": [
+        "1de11e7e-7bc0-41d2-b313-83db8b8ba47f",
+        "2156ea06-b5fb-49a7-946d-b70a04cbf0cc"
+      ]
+    },
+    {
+      "rank": 16,
+      "issue_id": "usability--interface-navigation",
+      "size": 793,
+      "severity_sum": 2035,
+      "example_review_ids": [
+        "58ea061e-0f00-49a8-bbb1-a3f6e845d29b",
+        "9e1e3d63-b6e8-4ab8-956f-a2f186cfa73a"
+      ]
+    },
+    {
+      "rank": 17,
+      "issue_id": "catalog--lyrics",
+      "size": 686,
+      "severity_sum": 1975,
+      "example_review_ids": [
+        "78aa55af-7a7f-4452-9deb-9004a1da7abe",
+        "9095aa4c-2da8-4a20-84f9-803ab47a3db4"
+      ]
+    },
+    {
+      "rank": 18,
+      "issue_id": "access--unspecified",
+      "size": 426,
+      "severity_sum": 1653,
+      "example_review_ids": [
+        "0e2e7c4f-790d-4497-8e7e-53c9108712c9",
+        "c4cf5200-bc7b-442c-9036-348057f623b5"
+      ]
+    },
+    {
+      "rank": 19,
+      "issue_id": "catalog--search-results",
+      "size": 324,
+      "severity_sum": 998,
+      "example_review_ids": [
+        "db8bd722-9fbd-418b-9882-59af2e43f250",
+        "1c9604b8-9cc8-4cfb-85ee-bd74c4f9e946"
+      ]
+    },
+    {
+      "rank": 20,
+      "issue_id": "billing--subscription-cancellation",
+      "size": 334,
+      "severity_sum": 974,
+      "example_review_ids": [
+        "1ccc984d-6f9b-49fd-8057-88529b25096a",
+        "0e9471ff-1ac5-49c3-b4c3-ce05737c7290"
+      ]
+    },
+    {
+      "rank": 21,
+      "issue_id": "billing--charges-refunds",
+      "size": 190,
+      "severity_sum": 600,
+      "example_review_ids": [
+        "3db64203-b9d1-4de1-9858-d9094ad92208",
+        "6b8fa48e-92f5-48bd-a907-d74081a74361"
+      ]
+    },
+    {
+      "rank": 22,
+      "issue_id": "downloads--offline-access",
+      "size": 186,
+      "severity_sum": 599,
+      "example_review_ids": [
+        "622e4913-9d04-4c9d-ac3d-151a637dff6e",
+        "4d571a57-622e-4ebc-ae0b-8dd1984fd280"
+      ]
+    },
+    {
+      "rank": 23,
+      "issue_id": "playback--audio-quality-volume",
+      "size": 207,
+      "severity_sum": 576,
+      "example_review_ids": [
+        "35f3f975-6a04-40b8-80a3-41b3fe673346",
+        "5726b5a4-afc6-4f20-a652-28ff5109cc6f"
+      ]
+    },
+    {
+      "rank": 24,
+      "issue_id": "catalog--availability-selection",
+      "size": 198,
+      "severity_sum": 574,
+      "example_review_ids": [
+        "d9600791-22f9-4fd8-8f8d-fca205717ccf",
+        "cc491f4e-2b19-49a1-b2cc-79f25dac00c4"
+      ]
+    },
+    {
+      "rank": 25,
+      "issue_id": "catalog--discovery-recommendations",
+      "size": 199,
+      "severity_sum": 506,
+      "example_review_ids": [
+        "31386b95-c4fb-4c8f-81d3-fc2f8d4749dd",
+        "07ed190a-f1eb-46d8-9c7e-d77e0d02fc5b"
+      ]
+    },
+    {
+      "rank": 26,
+      "issue_id": "downloads--unspecified",
+      "size": 106,
+      "severity_sum": 355,
+      "example_review_ids": [
+        "6f1b4152-62da-4727-96e9-06796a529cc5",
+        "508107cc-dc1f-481a-8672-ca562966cfca"
+      ]
+    },
+    {
+      "rank": 27,
+      "issue_id": "playback--background-resources",
+      "size": 110,
+      "severity_sum": 333,
+      "example_review_ids": [
+        "1c532235-c66b-4d6f-aceb-f02146c3b5fe",
+        "576bcdbb-4256-4a13-8cb5-39e62eb11096"
+      ]
+    },
+    {
+      "rank": 28,
+      "issue_id": "support--unspecified",
+      "size": 75,
+      "severity_sum": 153,
+      "example_review_ids": [
+        "31089f16-d587-49a8-83c5-d0b0ca4f3352",
+        "46d3aaef-bcbb-44b9-93ac-407d1a54eae6"
+      ]
+    },
+    {
+      "rank": 29,
+      "issue_id": "access--account-security",
+      "size": 31,
+      "severity_sum": 149,
+      "example_review_ids": [
+        "0299f9e3-c76e-48d4-9287-1c2d5b0803cd",
+        "c367b0bd-278e-4ae8-b4c8-3f05c09d0e90"
+      ]
+    },
+    {
+      "rank": 30,
+      "issue_id": "access--signup-registration",
+      "size": 36,
+      "severity_sum": 136,
+      "example_review_ids": [
+        "53f112d7-eb7a-4ac6-bd6f-4e6f493bda2b",
+        "1ff67421-5117-4855-824f-8eccb17819e5"
+      ]
+    },
+    {
+      "rank": 31,
+      "issue_id": "downloads--missing-downloads",
+      "size": 28,
+      "severity_sum": 109,
+      "example_review_ids": [
+        "8932cff1-f33b-4e6c-a7e4-3988e2e0d91c",
+        "6688c089-bd44-4816-8d86-fe1ff8ebea0e"
+      ]
+    },
+    {
+      "rank": 32,
+      "issue_id": "support--resolution-quality",
+      "size": 20,
+      "severity_sum": 56,
+      "example_review_ids": [
+        "6529bdf5-0936-4584-9a2e-f2b0d3278ab9",
+        "2ab8b76f-c111-4c07-9b79-793fbc71a84a"
+      ]
+    },
+    {
+      "rank": 33,
+      "issue_id": "support--contact-response",
+      "size": 11,
+      "severity_sum": 34,
+      "example_review_ids": [
+        "f4aab3d0-62d2-4a55-b38d-0ff6181a69c8",
+        "98f0868b-316c-4fce-9616-ccb8ec0a4290"
+      ]
+    },
+    {
+      "rank": 34,
+      "issue_id": "access--account-restrictions",
+      "size": 3,
+      "severity_sum": 11,
+      "example_review_ids": [
+        "73d63553-b6d5-4457-907a-cbec95bc911f",
+        "e4882d34-4e43-4c3f-817f-78cf803c61e5"
+      ]
+    }
+  ],
+  "golden_examples": "Golden exact texts excluded from all preview example IDs; golden labels never used",
+  "example_review_ids_are": "Deterministic pair of distinct exact-text reviews per issue; previews require semantic review before treating lexical cohorts as validated defect clusters."
+}

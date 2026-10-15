@@ -1,7 +1,9 @@
 from pathlib import Path
 
+import pytest
+
 from pipeline.prepare import course_helper
-from pipeline.scope_export import propagated
+from pipeline.scope_export import export, propagated
 
 
 def test_propagation_preserves_direct_origin_reasons_and_source_identity():
@@ -25,3 +27,11 @@ def test_scope_limit_and_terminal_failures_are_distinct():
     assert propagated(row, helper, {}, {'outside': 'invalid output'})['reason'] == 'invalid output'
     row['review_text'] = '  '
     assert propagated(row, helper, {}, {})['reason'] == 'empty_review_text'
+
+
+def test_export_cannot_create_ambiguous_plain_and_gzip_files(tmp_path):
+    (tmp_path/'records.jsonl.gz').write_bytes(b'preserved-package')
+    with pytest.raises(ValueError, match='Compressed grading export exists'):
+        export(destination=tmp_path, source=tmp_path/'nonexistent.csv')
+    assert not (tmp_path/'records.jsonl').exists()
+    assert (tmp_path/'records.jsonl.gz').read_bytes() == b'preserved-package'

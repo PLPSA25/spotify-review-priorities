@@ -18,8 +18,11 @@ __pycache__/
 # Local checker outputs (keep outside grading/)
 local-reference.json
 self-check.json
+self-check-*.json
 grading/*.jsonl
 grading/*.jsonl.gz
+!grading/calls.jsonl.gz
+!grading/records.jsonl.gz
 
 # Local state and transient files
 *.sqlite3

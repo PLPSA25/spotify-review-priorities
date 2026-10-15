@@ -35,6 +35,8 @@ def propagated(row, helper, cache, failed):
 
 def export(state_dir=Path('artifacts/scope-100k'), destination=Path('grading'),
            source=Path('data/spotify_reviews_18months.csv')):
+    if any((destination/(name+'.gz')).exists() for name in ('records.jsonl', 'calls.jsonl')):
+        raise ValueError('Compressed grading export exists; use a fresh staging directory, then repackage. Never create ambiguous plain/gzip pairs.')
     helper = course_helper(Path('data/check_submission.py'))
     source_hash = sha(source)
     manifest = json.loads(Path('data/manifest.json').read_text(encoding='utf-8'))

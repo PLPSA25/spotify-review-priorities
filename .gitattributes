@@ -2,3 +2,4 @@
 # Preserve exact bytes of supplied course files on every checkout.
 data/** -text
 *.pdf -text
+grading/*.jsonl.gz -text

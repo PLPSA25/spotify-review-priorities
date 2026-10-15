@@ -90,5 +90,14 @@
     "production_invocation_cap_usd": 7.28,
     "reserved_usd": 0,
     "status": "production enrichment complete; offline propagation audited; next gate pending"
+  },
+  "next_gate_proposal": {
+    "status": "not approved; no calls",
+    "production_verifier_worst_case_usd": 1.5238865,
+    "group_worst_case_usd": 0.032192,
+    "memo_worst_case_usd": 0.0144,
+    "combined_worst_case_usd": 1.5704785,
+    "proposed_invocation_cap_usd": 1.58,
+    "project_at_proposed_cap_usd": 7.184212288
   }
 }

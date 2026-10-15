@@ -1,0 +1,25 @@
+{
+  "maximum_compression": true,
+  "files": [
+    {
+      "file": "grading/calls.jsonl.gz",
+      "bytes": 26686127,
+      "compresslevel": 9,
+      "mtime": 0,
+      "sha256": "04edb5664e691ec6c954cf2fa1657fde4aae3f9dbc76ea51c1be07cade1c8df1",
+      "uncompressed_sha256": "066f997a5ce7228e0b7e5c3ba28d3377cd68a90936d0559ed5c4580256596918",
+      "raw_local": "artifacts/scope-100k/submission-raw/calls.jsonl"
+    },
+    {
+      "file": "grading/records.jsonl.gz",
+      "bytes": 52450579,
+      "compresslevel": 9,
+      "mtime": 0,
+      "sha256": "7adf3b3491fde42589fc3f340956c4ec9800eb56a5c3b95fb2e14bdeb569dd95",
+      "uncompressed_sha256": "4638e9fc178f86a9c3d842fad04566190793b50ccf540eafdba589363015d75b",
+      "raw_local": "artifacts/scope-100k/submission-raw/records.jsonl"
+    }
+  ],
+  "field_removal": false,
+  "decompressed_bytes_verified": true
+}

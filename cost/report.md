@@ -88,3 +88,15 @@ Next proposed group/memo gate is two root Luna calls, up to eight attempts under
 **$0.027424 worst-case / $0.03 proposed invocation cap**. No new verifier/Jev calls.
 Project at that proposed cap: **$5.634212288**. See docs/phase7-proposal.md for bounded
 inputs, retry assumptions, deterministic secondary ranking and approval boundary.
+
+
+### Revised Phase 7 proposal — no new spend
+
+Owner requests fresh production verification, not development evidence import:
+500 uniformly sampled completed IDs excluding golden IDs; 10 batches of 50.
+Actual fixed-payload byte/output reservation sum for roots is **$0.065724125**;
+all permitted repairs/connection retries yield a **$1.5238865 verifier envelope**.
+Two proposed group naming calls add **$0.032192** worst case; memo **$0.0144**.
+Combined **$1.5704785**, proposed separate cap **$1.58**. Project at that cap
+would be **$7.184212288 / $10**. Current actual ledger spend is still **$5.604212288**.
+This supersedes the prior $0.03 two-role gate; no provider dispatch occurred.

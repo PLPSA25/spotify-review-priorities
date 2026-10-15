@@ -113,5 +113,6 @@
       "compressed_file_created": false
     }
   ],
-  "external_backup_accessed": false
+  "external_backup_accessed": false,
+  "snapshot_kind": "Historical pre-gzip Phase 6 inventory. Current gzip files/sizes are in docs/submission-gzip-manifest.json; original grading plain JSONLs moved to ignored artifacts/scope-100k/submission-raw/."
 }

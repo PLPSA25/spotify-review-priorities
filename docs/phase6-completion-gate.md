@@ -174,3 +174,11 @@ See `phase7-proposal.md`. Stop here; no group/memo calls or business aggregates 
 Validation at this gate: **173 pytest tests passed**; `ruff check pipeline tests`
 passed. All tests forbid network connections. Local commit excludes recordings,
 secrets, raw CSV, PDFs, backups and every file above 50,000,000 bytes.
+
+
+Subsequent owner-directed packaging update: gzip level 9 files are now committed
+directly under grading/ (26,686,127 and 52,450,579 bytes), superseding the unapplied
+release-asset proposal above. Raw exports remain local. The gzip checker result is
+identical except file hashes. The owner also replaced historical verifier import
+with a fresh production-500 verifier proposal. Current paid gate is the revised
+`phase7-proposal.md`, not the earlier $0.03 proposal. No paid Phase 7 calls ran.

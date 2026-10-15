@@ -1,0 +1,20 @@
+{
+  "status": "proposed only; no paid calls",
+  "verifier_root_calls": 10,
+  "group_root_calls": 2,
+  "memo_root_calls": 1,
+  "normal_root_call_count": 13,
+  "maximum_calls": 1522,
+  "verifier_worst_case_usd": 1.5238865,
+  "group_worst_case_usd": 0.032192,
+  "memo_worst_case_usd": 0.0144,
+  "combined_worst_case_usd": 1.5704785,
+  "proposed_invocation_cap_usd": 1.58,
+  "project_spent_usd": 5.604212288,
+  "project_at_worst_case_usd": 7.174690788,
+  "project_at_invocation_cap_usd": 7.184212288,
+  "project_cap_usd": 10,
+  "classifier_hash_changes": false,
+  "historical_verifier_import": false,
+  "packaging_done_offline": true
+}

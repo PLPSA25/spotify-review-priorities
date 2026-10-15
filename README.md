@@ -283,8 +283,9 @@ production invocation spend **$4.834135303 / $7.28**, including pessimistic fail
 The full supplied checker ran and returns `review_required`. Besides unavailable
 usage and partial scope, this interim export flags pending grouping for 70,239
 complaint/cancellation IDs, missing claims, and missing verify/group/memo calls in
-the current production export. Prior blinded verifier evidence is stored separately;
-its transparent import is proposed at the next gate. Business CSVs currently contain
+the current production export. Prior blinded verifier evidence remains separate. The owner requested a fresh
+500-record production verifier proposal instead; no development verifier evidence
+will be imported to satisfy the production role. Business CSVs currently contain
 headers only and run.json declares them pending. This is not a final submission.
 No duplicate, missing, invalid record, cache-origin or resume-proof errors were found.
 
@@ -301,5 +302,97 @@ no video is committed or uploaded.
 
 See [full completion and checker explanations](docs/phase6-completion-gate.md),
 [large-file inventory and unapplied gzip measurements](docs/submission-large-files.json),
-and [the next paid gate proposal](docs/phase7-proposal.md). Large JSONLs are currently
-ignored and uncompressed. Gzip/release packaging is proposed, not applied.
+and [the next paid gate proposal](docs/phase7-proposal.md). The two full grading JSONLs are now gzip level 9 and committed directly below
+100 MB each; raw originals remain local and ignored. No release asset is needed.
+
+
+## Current grading package and exact grader command
+
+`grading/calls.jsonl.gz` (**26,686,127 bytes**) and `grading/records.jsonl.gz`
+(**52,450,579 bytes**) are complete, maximum gzip level 9 exports, committed directly.
+No JSON fields were removed. Decompressed SHA-256 values match the raw originals;
+see [the gzip manifest](docs/submission-gzip-manifest.json). The explicit owner
+instruction permits the records gzip above the earlier 50 MB commit limit.
+Raw originals remain local/untracked under `artifacts/scope-100k/submission-raw/`.
+
+The supplied `data/check_submission.py:152–158` reads these `.gz` files from
+`grading/` **as-is**, with no manual extraction. Do not put a plain counterpart in
+that folder: providing both causes `ambiguous_file`. From `C:\dev\Spotify`, with
+the unchanged full course CSV available, create the local reference if necessary:
+
+```powershell
+.venv\Scripts\python.exe data\check_submission.py reference --full data\spotify_reviews_18months.csv --analysis data\spotify_reviews_18months.csv --out local-reference.json
+```
+
+Exact grader command:
+
+```powershell
+.venv\Scripts\python.exe data\check_submission.py check --reference local-reference.json --submission grading --out self-check.json
+```
+
+This check ran against the gzip files. All coverage, call/token totals and flags
+match the earlier plain export; only the input-file hash inventory changes.
+Current status remains `review_required` because Phase 7 is still pending, scope
+is deliberately partial, and failed-call usage is genuinely unavailable. See
+[the gzip check](docs/submission-gzip-self-check.json) and
+[the equivalence proof](docs/submission-gzip-check-equivalence.json).
+
+### Failed-call token usage disclosure
+
+Ten TypeSafe connection attempts failed without a response containing usage.
+Their `input_tokens` and `output_tokens` remain `null` (20 unavailable fields).
+Every attempt is logged as failed and pessimistically charged at its reserved
+worst case. These charges are **accounting bounds, not measured token usage**.
+No zeroes or estimates have been substituted into token fields.
+
+`data/GRADING_CONTRACT.md:90` says: “Usage/cost claims must be real or clearly
+marked unavailable in the README; the checker reports missing usage rather than
+inventing it.” The supplied checker at lines 345–347 requires nonnegative integer
+usage on **every** event, with no exception for failed calls. Therefore these
+20 `invalid_usage` flags are retained honestly. Compression does not clear them.
+New production verification/group/memo calls will have their own actual usage or
+similarly disclosed unknown values; historical failed-call evidence is not rewritten.
+
+### Recording description draft — links/commit pending owner decision
+
+The descriptions below follow the owner's account; the recordings have not been
+opened or inspected. All three are ignored and uncommitted at this gate.
+
+- **Clip 1:** `Recording 2026-10-14 200325.mp4` — **281,644,901 bytes**.
+  Shows start, voluntary interruption/drain and resume. A pasted command became
+  `scope-evidence beforeSet-Location C:\dev\Spotify` and argparse rejected it;
+  no before checkpoint file was saved in this clip. The later, explicitly named
+  `checkpoint_before.reconstructed.json` contains 19,719 IDs reconstructed from the
+  retained pause receipt and pinned pre-run completed-state intersection with scope.
+  It is **post-hoc evidence**, not a file written during the recording. Provenance
+  accompanies the canonical grading copy. Proposed delivery: owner-supplied unlisted
+  link (pending), referenced here after upload.
+- **Clip 2:** `Recording 2026-10-14 225019.mp4` — **156,550,325 bytes**.
+  Shows continuation and after-checkpoint attempts. A successful snapshot write
+  preserved 22,227 after IDs, but audit encountered a live SQLite lock; a later
+  attempt refused to overwrite the immutable checkpoint. Proposed delivery:
+  owner-supplied unlisted link (pending), referenced here after upload.
+- **Clip 3:** `Recording 2026-10-15 120822.mp4` — **7,246,223 bytes**.
+  Shows `scope-proof` passing against unchanged checkpoints: reconstructed before
+  19,719 strictly contained in after 22,227, after contained in completed, no before
+  IDs in resume enrich calls, and 2,508 newly completed direct paid resume records.
+  Proposed delivery: commit this small clip after explicit owner approval; then
+  replace this draft delivery note with its repository link. An unlisted link is
+  also acceptable if the owner prefers all three hosted together.
+
+The first two files exceed GitHub's 100 MB limit. No uploads, video reads, video
+commits or fabricated hosted links occurred. See [metadata inventory](docs/recording-inventory.md).
+
+### Revised Phase 7 proposal (not approved)
+
+Fresh blinded verification of 500 completed production IDs, ten batches of 50,
+golden IDs excluded; do not substitute development verifier logs. The estimate is
+Luna agreement with final records, not human accuracy, because fallback also uses
+Luna. The frozen classifier and hash stay unchanged. The proposed finer taxonomy
+has 34 topic/sub-issue cohorts; 46,907 of 70,239 eligible rows remain unspecified.
+No production membership, rank, claim or memo has been applied.
+
+[Full taxonomy/top-ten examples](docs/phase7-taxonomy-preview.md);
+[verifier bounds](docs/phase7-production-verifier-proposal.json);
+[combined gate](docs/phase7-proposal.md). Combined worst case **$1.5704785**,
+proposed separate cap **$1.58**; no paid calls before new approval.

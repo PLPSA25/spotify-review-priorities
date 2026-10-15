@@ -1,0 +1,20 @@
+{
+  "status": "pass",
+  "compared_against": "self-check.json from uncompressed Phase 6 export",
+  "different_fields_except_input_file_hash_inventory": [],
+  "same_coverage": true,
+  "same_issue_counts": true,
+  "gzip_filenames": [
+    "calls.jsonl.gz",
+    "records.jsonl.gz"
+  ],
+  "plain_counterparts_absent": true,
+  "checker_status": "review_required",
+  "issue_counts": {
+    "invalid_usage": 20,
+    "missing_claims": 1,
+    "missing_model_roles": 1,
+    "unfinished_classification": 1,
+    "ungrouped_complaints": 1
+  }
+}
