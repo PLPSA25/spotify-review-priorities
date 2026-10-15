@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
+import humanCheck from "../lib/human-check.json";
 import { filteredRanking, type Scope, type Snapshot } from "../lib/model";
 
 const CONTROLS = "cross-topic--free-tier-premium-controls";
@@ -9,14 +10,27 @@ const number = (value: number | string) =>
   Number(value).toLocaleString("en-US");
 const percent = (numerator: number, denominator: number) =>
   ((100 * numerator) / denominator).toFixed(1) + "%";
-const pretty = (value: string) =>
-  value.replaceAll("_", " ").replaceAll("--", " · ");
-const reasonNames: Record<string, string> = {
-  language_non_english: "Non-English language",
-  language_not_understood: "Language not understood",
-  missing_context: "Missing context",
-  low_confidence: "Low confidence",
+const readable: Record<string, string> = {
+  other: "Other / no specific topic",
+  usability: "Usability",
+  catalog: "Catalog & lyrics",
+  billing: "Billing & Premium",
+  playback: "Playing music",
+  access: "Account access",
+  downloads: "Downloads & offline listening",
+  support: "Customer support",
+  severity: "Severity — exact",
+  severity_exact: "Severity — exact",
+  severity_within_one: "Severity — within one level",
+  sentiment_sign: "Sentiment",
+  needs_review: "Flag for a human check",
 };
+const pretty = (value: string) =>
+  readable[value] ??
+  value
+    .replaceAll("_", " ")
+    .replaceAll("--", " · ")
+    .replace(/^./, (c) => c.toUpperCase());
 
 function Distribution({
   title,
@@ -137,9 +151,17 @@ export default function Dashboard() {
     children?: React.ReactNode;
   }) => {
     if (href === "phase7/claims.csv")
-      return <a href="/api/claims?scope=baseline">{children}</a>;
+      return (
+        <sup className="claim-reference">
+          <a href="/api/claims?scope=baseline">{children}</a>
+        </sup>
+      );
     if (href === "phase7/secondary-claims.csv")
-      return <a href="/api/claims?scope=secondary">{children}</a>;
+      return (
+        <sup className="claim-reference">
+          <a href="/api/claims?scope=secondary">{children}</a>
+        </sup>
+      );
     if (href?.includes("phase7-cohort-spotcheck-v3"))
       return (
         <a
@@ -161,42 +183,70 @@ export default function Dashboard() {
             <h1>What should Spotify fix first?</h1>
             <p>
               Reviews from {p.meta.review_period.from.slice(0, 10)} to{" "}
-              {p.meta.review_period.to.slice(0, 10)} · frozen classification and
-              final grouping rules
+              {p.meta.review_period.to.slice(0, 10)} · Spotify Google Play
+              reviews
             </p>
           </div>
-          <a href="#memo" className="button-link">
-            Read the approved memo <span aria-hidden="true">↗</span>
-          </a>
         </div>
-        <aside className="scope-banner" aria-label="Partial scope disclosure">
-          <strong>
-            Partial scope ·{" "}
-            {percent(counts.completed_rows, counts.nonempty_rows)} coverage
-          </strong>
+        <section className="answer-card" data-section="01-answer">
+          <p>
+            <strong>Biggest fixable complaint:</strong> free users lost basic
+            playback controls (forced shuffle; can't go back, skip forward,
+            seek, repeat or pick a song). <strong>Recommendation:</strong> test
+            restoring some of these controls for free users, weighing Premium
+            conversion against complaints. Ads are a close second.
+          </p>
+          <a href="#memo">Read the full product memo →</a>
+        </section>
+        <section className="reading-guide" data-section="02-how-to-read">
+          <h2>How to read this page</h2>
+          <p>
+            We analyzed {number(counts.completed_rows)} of{" "}
+            {number(counts.nonempty_rows)} Spotify Google Play reviews (36%)
+            with AI labels for topic, intent, severity (1 = No reported problem;
+            5 = Explicit serious financial, privacy or data harm) and sentiment.
+          </p>
+          <p>
+            Complaints were grouped into 35 themes and ranked by
+            severity-weighted total (number of complaints × average severity).
+          </p>
+          <p>
+            Two views are shown: all analyzed reviews, and a random sample of
+            100,000 reviews, which is the most representative because the first
+            view counts identical copies of short reviews like 'Too many ads'
+            many times.
+          </p>
+        </section>
+        <aside
+          className="scope-banner"
+          aria-label="Partial scope disclosure"
+          data-section="03-scope"
+        >
+          <strong>Partial analysis: 36% of reviews.</strong>
           <span>
-            {number(counts.completed_rows)} of {number(counts.nonempty_rows)}{" "}
-            nonempty rows classified. {number(counts.out_of_scope_rows)} outside
-            the classified scope; {number(counts.terminal_rows)} terminal
-            failures; {number(counts.empty_rows)} empty texts. Missing
-            predictions remain a limitation.
+            {number(counts.completed_rows)} reviews analyzed;{" "}
+            {number(counts.out_of_scope_rows)} not analyzed (outside our
+            budgeted scope); {number(counts.terminal_rows)} could not be
+            processed; {number(counts.empty_rows)} were empty. Results describe
+            the analyzed reviews, not every review.
           </span>
         </aside>
-        <section className="kpis" aria-label="Dataset summary">
+        <section
+          className="kpis"
+          aria-label="Dataset summary"
+          data-section="04-key-numbers"
+        >
           <div>
-            <span>Classified original rows</span>
-            <strong>{number(counts.completed_rows)}</strong>
-            <small>Includes exact-text propagated rows</small>
-          </div>
-          <div>
-            <span>Direct result originals</span>
-            <strong>{number(counts.direct_original_rows)}</strong>
+            <span>Reviews analyzed</span>
+            <strong>{number(counts.completed_rows)} (36%)</strong>
             <small>
-              {number(counts.cache_reused_rows)} additional cache aliases
+              {number(counts.direct_original_rows)} unique texts read by AI;
+              labels reused for {number(counts.cache_reused_rows)} identical
+              copies
             </small>
           </div>
           <div>
-            <span>Complaint / cancellation rows</span>
+            <span>Complaints and cancellations</span>
             <strong>
               {number(
                 p.rankings.baseline.reduce(
@@ -205,32 +255,29 @@ export default function Dashboard() {
                 ),
               )}
             </strong>
-            <small>Eligible for the baseline ranking</small>
-          </div>
-          <div>
-            <span>Needs human review</span>
-            <strong>
-              {percent(counts.needs_review_rows, counts.completed_rows)}
-            </strong>
-            <small>
-              {number(counts.needs_review_rows)} classified rows flagged
-            </small>
+            <small>Used for the ranking</small>
           </div>
         </section>
-        <section className="comparison" aria-labelledby="comparison-heading">
+        <section
+          className="comparison"
+          aria-labelledby="comparison-heading"
+          data-section="05-controls-vs-ads"
+        >
           <div className="section-head">
             <div>
               <h2 id="comparison-heading">
-                Controls stay ahead of ads in both views
+                Free users' lost playback controls outrank ads in both views
               </h2>
               <p>
-                Severity-weighted complaint points · count × mean severity =
-                severity_sum
+                Severity-weighted total = number of complaints × average
+                severity (1–5)
               </p>
             </div>
             <div className="legend">
-              <span className="baseline-key">Propagated baseline</span>
-              <span className="sample-key">Random prefix only</span>
+              <span className="baseline-key">All analyzed reviews</span>
+              <span className="sample-key">
+                Random sample (most representative)
+              </span>
             </div>
           </div>
           {[CONTROLS, ADS].map((id) => (
@@ -253,7 +300,7 @@ export default function Dashboard() {
                       <span>
                         {number(row.severity_sum)}{" "}
                         <small>
-                          points · {number(row.complaint_count)} rows
+                          total · {number(row.complaint_count)} reviews
                         </small>
                       </span>
                     </div>
@@ -263,19 +310,23 @@ export default function Dashboard() {
             </div>
           ))}
           <p className="caption">
-            Same linear scale for both views. Comparison shows two specific
-            issues; Other—unspecified ranks first overall. The baseline adds
-            exact-text matches outside the random prefix, weighting repeated
-            texts more heavily.
+            Ads complaints shrink in the random sample because short identical
+            reviews ('Too many ads') are counted many times in the all-reviews
+            view; controls complaints are long and unique, so they barely
+            change.
           </p>
         </section>
-        <section id="rankings" className="ranking-section">
+        <section
+          id="rankings"
+          className="ranking-section"
+          data-section="06-ranking"
+        >
           <div className="section-head">
             <div>
-              <h2>Issue ranking</h2>
+              <h2>Complaint themes, ranked</h2>
               <p>
-                Completed complaints and cancellations only · click an issue to
-                inspect selected examples
+                Complaints and cancellations only · choose a theme to inspect
+                selected examples
               </p>
             </div>
             <div className="switch" aria-label="Ranking view">
@@ -283,19 +334,19 @@ export default function Dashboard() {
                 aria-pressed={scope === "baseline"}
                 onClick={() => setScope("baseline")}
               >
-                Propagated baseline
+                All analyzed reviews
               </button>
               <button
                 aria-pressed={scope === "random_prefix"}
                 onClick={() => setScope("random_prefix")}
               >
-                Random prefix only
+                Random sample
               </button>
             </div>
           </div>
           <div className="table-tools">
             <label>
-              Search issues
+              Search themes
               <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
@@ -303,25 +354,24 @@ export default function Dashboard() {
               />
             </label>
             <span>
-              {issues.length} of {p.rankings[scope].length} issues · priority =
-              severity_sum
+              {issues.length} of {p.rankings[scope].length} themes
             </span>
           </div>
           <div className="table-scroll">
             <table>
               <caption className="sr-only">
                 {scope === "baseline"
-                  ? "Propagated baseline"
-                  : "Random prefix only"}{" "}
+                  ? "All analyzed reviews"
+                  : "Random sample"}{" "}
                 issue ranking
               </caption>
               <thead>
                 <tr>
                   <th scope="col">Rank</th>
-                  <th scope="col">Issue</th>
+                  <th scope="col">Complaint theme</th>
                   <th scope="col">Reviews</th>
-                  <th scope="col">Severity sum / priority</th>
-                  <th scope="col">Mean severity</th>
+                  <th scope="col">Severity-weighted total</th>
+                  <th scope="col">Average severity (1–5)</th>
                 </tr>
               </thead>
               <tbody>
@@ -339,6 +389,16 @@ export default function Dashboard() {
                       >
                         {row.name}
                       </button>
+                      {row.rank === "1" && (
+                        <span className="rank-tag">
+                          general — not a fix target
+                        </span>
+                      )}
+                      {row.issue_id === CONTROLS && (
+                        <span className="rank-tag recommended">
+                          recommended
+                        </span>
+                      )}
                     </th>
                     <td>{number(row.complaint_count)}</td>
                     <td>{number(row.severity_sum)}</td>
@@ -348,7 +408,7 @@ export default function Dashboard() {
                 {!issues.length && (
                   <tr>
                     <td colSpan={5}>
-                      No issues match this search. Clear the search to restore
+                      No themes match this search. Clear the search to restore
                       the ranking.
                     </td>
                   </tr>
@@ -357,37 +417,57 @@ export default function Dashboard() {
             </table>
           </div>
           <p className="caption">
-            Baseline counts every completed original row, including aliases.
-            Random prefix uses classified members of the seeded first 100,000
-            nonempty IDs; 40 terminally failed IDs are absent. Sort:
-            severity_sum descending, then issue ID ascending.
+            Sorted by severity-weighted total, as required by the course
+            contract.
           </p>
-          <div className="examples" id="examples">
-            <h3>Selected examples · {current?.name}</h3>
-            <p>
-              Bounded, selected evidence. These examples are not a random
-              accuracy sample.
-            </p>
-            <div className="quote-grid">
-              {examples.map((row) => (
-                <blockquote
-                  id={"review-" + row.review_id.slice(0, 8)}
-                  key={row.review_id}
-                >
-                  <p>{row.text}</p>
-                  <cite>{row.review_id}</cite>
-                </blockquote>
-              ))}
-            </div>
+          <p className="watch-list">
+            <strong>Watch list: rare but severe.</strong> Hacked or compromised
+            accounts (
+            {number(
+              p.rankings.baseline.find(
+                (r) => r.issue_id === "access--account-security",
+              )!.complaint_count,
+            )}{" "}
+            reviews, average severity{" "}
+            {Number(
+              p.rankings.baseline.find(
+                (r) => r.issue_id === "access--account-security",
+              )!.mean_severity,
+            ).toFixed(2)}
+            ); login problems (average{" "}
+            {Number(
+              p.rankings.baseline.find(
+                (r) => r.issue_id === "access--login-credentials",
+              )!.mean_severity,
+            ).toFixed(2)}
+            ). All analyzed reviews.
+          </p>
+        </section>
+        <section className="examples" id="examples" data-section="07-examples">
+          <h2>
+            Example reviews (chosen to illustrate the theme; not a random
+            sample)
+          </h2>
+          <p>{current?.name}</p>
+          <div className="quote-grid">
+            {examples.map((row) => (
+              <blockquote
+                id={"review-" + row.review_id.slice(0, 8)}
+                key={row.review_id}
+              >
+                <p>{row.text}</p>
+                <cite>{row.review_id.slice(0, 8)}</cite>
+              </blockquote>
+            ))}
           </div>
         </section>
-        <section className="breakdowns">
+        <section className="breakdowns" data-section="08-review-mix">
           <div className="section-head">
             <div>
-              <h2>What the classified rows contain</h2>
+              <h2>What the analyzed reviews say</h2>
               <p>
-                Each distribution uses {number(counts.completed_rows)} completed
-                original rows. Cache aliases count separately.
+                Most reviews are short praise like 'Great app', which is why
+                'Other' and 'Praise' dominate.
               </p>
             </div>
           </div>
@@ -408,69 +488,128 @@ export default function Dashboard() {
               denominator={counts.completed_rows}
             />
             <Distribution
-              title="Sentiment sign"
+              title="Sentiment"
               rows={p.summary.distributions.sentiment_sign}
               denominator={counts.completed_rows}
             />
           </div>
-        </section>
-        <section className="review-quality">
-          <div>
-            <h2>Review flags</h2>
-            <p>
-              Final stored reasons among {number(counts.needs_review_rows)}{" "}
-              flagged rows. Reasons overlap; they do not sum to the number of
-              flagged rows.
-            </p>
-            <ul className="reason-list">
-              {Object.entries(p.summary.flag_reasons)
-                .sort((a, b) => b[1] - a[1])
-                .map(([reason, count]) => (
-                  <li key={reason}>
-                    <span>{reasonNames[reason] ?? pretty(reason)}</span>
-                    <strong>{number(count)}</strong>
-                  </li>
-                ))}
-            </ul>
+          <div className="severity-legend">
+            <strong>Severity scale (from the label guide)</strong>
+            <ol>
+              <li>
+                No reported problem: praise, neutral/unclear text or a pure
+                feature request.
+              </li>
+              <li>
+                Dislike, generic criticism, minor annoyance or cosmetic issue
+                without functional loss.
+              </li>
+              <li>
+                Degraded/restricted function, with some use or workaround
+                remaining.
+              </li>
+              <li>
+                Clearly blocked core task, such as inability to log in or play
+                music.
+              </li>
+              <li>
+                Explicit serious financial, privacy or data harm. High price,
+                crashes, anger and cancellation intent alone do not support
+                level 5.
+              </li>
+            </ol>
           </div>
-          <div>
-            <h2>Blinded verifier comparison</h2>
-            <p>
-              {p.artifacts.verifier.sampled} final records;{" "}
-              {p.artifacts.verifier.terminal_verifier_items} terminal verifier
-              items. Agreement ≠ human accuracy. Verifier and fallback use Luna,
-              so agreement partly reflects self-agreement. Entities excluded.
-            </p>
-            <table>
-              <caption className="sr-only">Verifier agreement by field</caption>
-              <thead>
-                <tr>
-                  <th>Field</th>
-                  <th>Agreement</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.entries(p.artifacts.verifier.overall.fields).map(
-                  ([field, v]) => (
+        </section>
+        <section className="human-flags" data-section="09-human-flags">
+          <h2>Reviews flagged for a human check (78%)</h2>
+          <p>
+            Most flags ({number(p.summary.flag_reasons.missing_context)}) are
+            'missing context': very short reviews that don't say why, which the
+            course contract requires us to flag. Others: low model confidence (
+            {number(p.summary.flag_reasons.low_confidence)}), language not
+            understood ({number(p.summary.flag_reasons.language_not_understood)}
+            ), non-English (
+            {number(p.summary.flag_reasons.language_non_english)}). Reasons
+            overlap.
+          </p>
+        </section>
+        <section className="quality-section" data-section="10-quality">
+          <h2>How accurate are the labels?</h2>
+          <div className="quality-grid">
+            <div>
+              <h3>Human check: 50 reviews hand-labeled by the author</h3>
+              <table>
+                <caption className="sr-only">
+                  Human-label agreement by field
+                </caption>
+                <thead>
+                  <tr>
+                    <th>Field</th>
+                    <th>Agreement</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.entries(humanCheck.fields).map(([field, v]) => (
                     <tr key={field}>
-                      <th>{pretty(field)}</th>
+                      <th scope="row">{pretty(field)}</th>
                       <td>
-                        {percent(v.agree, v.denominator)}{" "}
+                        {Math.round(100 * v.agreement)}%{" "}
                         <small>
                           ({v.agree}/{v.denominator})
                         </small>
                       </td>
                     </tr>
-                  ),
-                )}
-              </tbody>
-            </table>
+                  ))}
+                </tbody>
+              </table>
+              <p className="caption">
+                Saved human evaluation; a small, fixed set of 50 reviews.
+                Entities are excluded.
+              </p>
+            </div>
+            <div>
+              <h3>
+                Consistency check: a second AI model re-labeled 500 random
+                reviews
+              </h3>
+              <table>
+                <caption className="sr-only">
+                  Verifier agreement by field
+                </caption>
+                <thead>
+                  <tr>
+                    <th>Field</th>
+                    <th>Agreement</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.entries(p.artifacts.verifier.overall.fields).map(
+                    ([field, v]) => (
+                      <tr key={field}>
+                        <th scope="row">{pretty(field)}</th>
+                        <td>
+                          {percent(v.agree, v.denominator)}{" "}
+                          <small>
+                            ({v.agree}/{v.denominator})
+                          </small>
+                        </td>
+                      </tr>
+                    ),
+                  )}
+                </tbody>
+              </table>
+              <p className="caption">
+                Agreement shows consistency between models, not correctness. The
+                second model also handled fallback classifications, so some
+                agreement is self-agreement. Entities are excluded.
+              </p>
+            </div>
           </div>
         </section>
-        <section id="memo" className="memo-section">
+        <section id="memo" className="memo-section" data-section="11-memo">
           <div className="section-head">
             <div>
-              <h2>Product decision</h2>
+              <h2>Full product memo</h2>
               <p>
                 Owner-approved revision of the saved model draft · approved{" "}
                 {p.meta.memo_approval.approved_on}
@@ -484,69 +623,197 @@ export default function Dashboard() {
             </Markdown>
           </article>
           <div className="downloads">
+            <span>
+              Claim references: B ={" "}
+              <a href="/api/claims?scope=baseline">all analyzed reviews</a>; S ={" "}
+              <a href="/api/claims?scope=secondary">
+                random-sample and secondary evidence
+              </a>
+              .
+            </span>
             <a href="/api/claims?scope=baseline">Baseline claims CSV</a>
             <a href="/api/claims?scope=secondary">Secondary evidence CSV</a>
           </div>
         </section>
-        <section className="provenance">
-          <h2>Stored outputs and provenance</h2>
-          <p>
-            This page reads a saved aggregate snapshot. No model is called on
-            page load, refresh, search or scope switching. Full records and
-            provider call logs are not included in this public snapshot.
-          </p>
-          <details>
-            <summary>Group-call outputs</summary>
-            {Object.entries(p.artifacts.groups).map(([stage, value]) => (
-              <div key={stage}>
-                <h3>{stage}</h3>
-                <ul>
-                  {value.issues.map((row) => (
-                    <li key={row.issue_id}>
-                      <code>{row.issue_id}</code> — {row.name}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </details>
-          <details>
-            <summary>Original model memo and owner-edit provenance</summary>
+        <section className="provenance" data-section="12-methodology">
+          <details id="methodology">
+            <summary>
+              <h2>Methodology &amp; definitions</h2>
+            </summary>
             <p>
-              The approved memo above includes owner-directed editorial edits.
-              The original response below is preserved as generated.
+              Frozen classification: the saved prompt, thresholds and label
+              configuration were held fixed. Exact-text result caching reuses
+              completed labels for identical text; this is our result cache, not
+              provider prompt caching. Complaint themes use final lexical
+              grouping v3, based on text rules and random spot-checks.
             </p>
-            <pre>{JSON.stringify(p.artifacts.original_memo, null, 2)}</pre>
-          </details>
-          <details>
-            <summary>Verifier agreement by flag and fallback split</summary>
-            <pre>{JSON.stringify(p.artifacts.verifier, null, 2)}</pre>
-          </details>
-          <details>
-            <summary>Definitions and source hashes</summary>
-            <dl>
-              {Object.entries(p.meta.definitions).map(([key, value]) => (
-                <div key={key}>
-                  <dt>{pretty(key)}</dt>
-                  <dd>{value}</dd>
-                </div>
-              ))}
+            <h3>Glossary</h3>
+            <dl className="glossary">
+              <dt>Propagated baseline</dt>
+              <dd>
+                The all-analyzed-reviews view: direct AI results plus labels
+                reused for identical copies, including copies outside the random
+                sample.
+              </dd>
+              <dt>Random prefix</dt>
+              <dd>
+                The seeded, uniformly drawn first 100,000 nonempty review IDs.
+                The ranking includes successfully analyzed members; 40 failed
+                items are absent.
+              </dd>
+              <dt>Cache alias</dt>
+              <dd>
+                A review whose text exactly matches another review and reuses
+                its saved labels.
+              </dd>
+              <dt>Terminal failure</dt>
+              <dd>
+                A review that could not be processed after the permitted repair
+                and retry policy. It is excluded from the results.
+              </dd>
+              <dt>Cohort</dt>
+              <dd>
+                A complaint theme formed by a final text-matching rule; each
+                complaint belongs to one theme.
+              </dd>
+              <dt>severity_sum</dt>
+              <dd>
+                The sum of severity levels in a theme: complaint count × average
+                severity. This is the severity-weighted total used for ranking.
+              </dd>
             </dl>
             <p>
-              Snapshot <code>{data.snapshot_id}</code>
+              This page reads a saved aggregate snapshot. No model is called on
+              page load, refresh, search or scope switching. Full records and
+              provider call logs are not included in this public snapshot.
             </p>
+            <details>
+              <summary>Group-call outputs</summary>
+              <p>
+                Display names were finalized by the owner; the model's proposed
+                names are shown here.
+              </p>
+              {Object.entries(p.artifacts.groups).map(([stage, value]) => (
+                <div key={stage}>
+                  <h3>{stage}</h3>
+                  <ul>
+                    {value.issues.map((row) => (
+                      <li key={row.issue_id}>
+                        <code>{row.issue_id}</code> — {row.name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </details>
+            <details>
+              <summary>Original model memo and owner-edit provenance</summary>
+              <p>
+                The approved memo above includes owner-directed editorial edits.
+                The original response below is preserved as generated.
+              </p>
+              <pre>{JSON.stringify(p.artifacts.original_memo, null, 2)}</pre>
+            </details>
+            <details>
+              <summary>Verifier agreement by flag and fallback split</summary>
+              <p>
+                Agreement with the second AI model, grouped by the final
+                record's flag and fallback status. These are overlapping
+                comparisons, not separate samples.
+              </p>
+              <div className="table-scroll">
+                <table>
+                  <caption className="sr-only">
+                    Verifier agreement by flag and fallback split
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Field</th>
+                      {(
+                        [
+                          ["flagged", "Flagged for a human check"],
+                          ["unflagged", "Not flagged"],
+                          ["fallback", "With fallback"],
+                          ["no_fallback", "Without fallback"],
+                        ] as const
+                      ).map(([key, label]) => (
+                        <th scope="col" key={key}>
+                          {label}
+                          <br />
+                          <small>{p.artifacts.verifier[key].n} reviews</small>
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(p.artifacts.verifier.overall.fields).map(
+                      (field) => (
+                        <tr key={field}>
+                          <th scope="row">{pretty(field)}</th>
+                          {(
+                            [
+                              "flagged",
+                              "unflagged",
+                              "fallback",
+                              "no_fallback",
+                            ] as const
+                          ).map((key) => {
+                            const v = p.artifacts.verifier[key].fields[field];
+                            return (
+                              <td key={key}>
+                                {v && v.denominator ? (
+                                  <>
+                                    {percent(v.agree, v.denominator)}{" "}
+                                    <small>
+                                      ({v.agree}/{v.denominator})
+                                    </small>
+                                  </>
+                                ) : (
+                                  "Not available"
+                                )}
+                              </td>
+                            );
+                          })}
+                        </tr>
+                      ),
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <p className="caption">
+                Agreement shows consistency, not human accuracy. Verifier and
+                fallback use the same model.
+              </p>
+            </details>
+            <details>
+              <summary>Definitions and source hashes</summary>
+              <dl>
+                {Object.entries(p.meta.definitions).map(([key, value]) => (
+                  <div key={key}>
+                    <dt>{pretty(key)}</dt>
+                    <dd>{value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p>
+                Snapshot <code>{data.snapshot_id}</code>
+              </p>
+              <p>
+                Classifier <code>{p.meta.label_config}</code>
+              </p>
+              <p>
+                Grouping <code>{p.meta.grouping_hash}</code>
+              </p>
+              <pre>{JSON.stringify(p.meta.source_hashes, null, 2)}</pre>
+            </details>
             <p>
-              Classifier <code>{p.meta.label_config}</code>
+              Human-evaluation summary source: <code>{humanCheck.source}</code>;
+              SHA-256 <code>{humanCheck.source_sha256}</code>.
             </p>
-            <p>
-              Grouping <code>{p.meta.grouping_hash}</code>
-            </p>
-            <pre>{JSON.stringify(p.meta.source_hashes, null, 2)}</pre>
           </details>
         </section>
         <footer>
-          Partial-scope course analysis · exact-text result caching · frozen
-          labels and final v3 lexical grouping
+          Spotify Google Play reviews · partial analysis · no live AI calls
         </footer>
       </main>
     </>

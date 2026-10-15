@@ -1,0 +1,35 @@
+{
+  "sample_size": 50,
+  "fields": {
+    "topic": {
+      "agree": 37,
+      "denominator": 50,
+      "agreement": 0.74
+    },
+    "intent": {
+      "agree": 42,
+      "denominator": 50,
+      "agreement": 0.84
+    },
+    "severity": {
+      "agree": 36,
+      "denominator": 50,
+      "agreement": 0.72
+    },
+    "severity_within_one": {
+      "agree": 48,
+      "denominator": 50,
+      "agreement": 0.96
+    },
+    "sentiment_sign": {
+      "agree": 41,
+      "denominator": 50,
+      "agreement": 0.82
+    }
+  },
+  "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "source": "evals/golden-final-evaluation/report.json",
+  "source_sha256": "3f99c2a2449153aac871358a503df651fd4ce300ccec85302cd8ef754e6f83c6",
+  "entities_evaluated": false,
+  "note": "Saved evaluation summary only; no human labels read and no evaluation rerun."
+}
