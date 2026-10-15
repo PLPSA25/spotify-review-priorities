@@ -47,3 +47,13 @@ artifacts/scope-100k/
 artifacts/phase7/
 artifacts/scaling-proposal/*.csv
 artifacts/scaling/verifier-transfer-sample.csv
+
+# Dashboard dependencies, local aggregate preview, build and test output
+node_modules/
+.next/
+.vercel/
+*.tsbuildinfo
+web/.local/
+web/test-results/
+web/playwright-report/
+artifacts/dashboard/

@@ -1,0 +1,18 @@
+{
+  "snapshot_bytes": 72076,
+  "snapshot_sha256": "70bed5f69d9f3515bc252bd5cf50fc541658b4ed9adfd62ef1365904e23b419b",
+  "snapshot_id": "2d29566238c93179d4518f4eb08cc5c0e45e0f125fe1a9d103a0ce0ff6b0282e",
+  "deterministic_rebuild": true,
+  "python_tests_passed": 223,
+  "app_contract_tests_passed": 6,
+  "browser_tests_passed": 4,
+  "production_build": "passed",
+  "typescript": "passed",
+  "ruff": "passed",
+  "production_npm_audit_vulnerabilities": 0,
+  "database_connection_test": "deferred: no provisioning authorized",
+  "readonly_permissions_test": "deferred until Neon provisioning",
+  "cloud_deployed": false,
+  "new_model_calls": 0,
+  "history_secrets_scan": "deferred to final submission"
+}

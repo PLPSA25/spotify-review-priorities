@@ -1,0 +1,43 @@
+{
+  "snapshot_id": "2d29566238c93179d4518f4eb08cc5c0e45e0f125fe1a9d103a0ce0ff6b0282e",
+  "file_sha256": "70bed5f69d9f3515bc252bd5cf50fc541658b4ed9adfd62ef1365904e23b419b",
+  "snapshot_bytes": 72076,
+  "free_plan_storage_limit_bytes": 1000000000,
+  "size_is_import_payload_not_postgres_disk_usage": true,
+  "examples": 71,
+  "issues_per_view": {
+    "baseline": 35,
+    "random_prefix": 35
+  },
+  "contains_full_records": false,
+  "summary_counts": {
+    "total_rows": 660622,
+    "completed_rows": 237722,
+    "direct_original_rows": 77874,
+    "needs_review_rows": 185396,
+    "cache_reused_rows": 159848,
+    "empty_rows": 13,
+    "nonempty_rows": 660609,
+    "out_of_scope_rows": 422845,
+    "terminal_rows": 42
+  },
+  "sources": {
+    "grading/records.jsonl.gz": "7adf3b3491fde42589fc3f340956c4ec9800eb56a5c3b95fb2e14bdeb569dd95",
+    "grading/ingestion.json": "68f7995588296dc3e2cce2674e9aa44009b1d5b1c489be021e981d2c6e3323d3",
+    "docs/phase7-memo-draft.md": "51a5ac40c839d4d1bda75eb453aaeb28d39e8fba9857644197787f765a463c98",
+    "docs/frozen-grouping-v3.json": "10cc4b4347b883bbc1d86627355fa87f24d427c9cab5b7df9387b7ddee4b44c1",
+    "docs/phase7/memo-owner-approval.json": "c3183a8d1e4c3dd784caf67925a4ff9197eb1e70d58d6aff6a514fa59a9b5fed",
+    "docs/phase7/ranking.csv": "939bce5c0a239a9dccc0c8d92f885d4bbc04973eca83205105d9ad10dd16f725",
+    "docs/phase7/sample_ranking.csv": "0ca39dbb8ff8c5d1ffcbd5a6e26dba938a7c9c2c9914f88a7f6316e3006ff502",
+    "docs/phase7/claims.csv": "f0c289dfa4ed37f4aefa490a5a74db7cee7f3e5eb8c5f642227ceac0fecf5bbe",
+    "docs/phase7/secondary-claims.csv": "3ae82fec4784fe94970bca2df05767ca77cd869664df007fee6ece1628ab246a",
+    "docs/phase7/group-names.json": "7c3a4805dc2ae9591946455add6840a52bbdce10953b2f7b773fddf0ade7198e",
+    "docs/phase7/group-outputs.json": "9735083b8438d58550e0c46fdb198cc1d449056e84219f697db925b93785315d",
+    "docs/phase7/verifier-agreement.json": "4f3ce0c45c7f92b6e34781cb660429c7c502db8fc50740cfbf338ea09b3dc0fb",
+    "docs/phase7/memo-draft.json": "4c1cbb12f0d580fb2788717de5ad78089b760ef4c28d6966e0d083f10156de5c",
+    "docs/phase7-cohort-v3-analysis.json": "d5f27e509257406ef894c6f064b8e358b3c435cc16f762b545d61dbaf31e06d2",
+    "docs/phase7/memo-revision-evidence.json": "e22232f23a04b0e1e7a164abc1d49bec85c1dc64a4f086d48969d388e266521a",
+    "data/spotify_reviews_18months.csv": "1fc85de68a304dd8978b537cfa58793d5f41cbaf417fa32cb53899f83a2fcef6"
+  },
+  "new_api_calls": 0
+}

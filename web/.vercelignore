@@ -1,0 +1,11 @@
+.env*
+.local/**
+node_modules/**
+.next/**
+tests/**
+test-results/**
+playwright-report/**
+scripts/**
+*.tsbuildinfo
+playwright.config.ts
+README.md

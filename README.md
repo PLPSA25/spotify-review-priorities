@@ -481,3 +481,20 @@ or classifier change is involved.
 dashboard dataset + Vercel, both rankings, approved memo and stored AI outputs,
 visible partial scope, no live model calls. Console instructions and free-plan
 cost assumptions are included. Deployment has not started.
+
+### Dashboard local build — step 1 complete
+
+The [local build gate](docs/phase8-step1-gate.md) records the tested Next.js app,
+snapshot and limited deployment/client-bundle secret scan. The snapshot is
+**72,076 bytes**, containing aggregates, both rankings, saved AI outputs, claims
+and 71 selected examples—not full records. No cloud setup or model calls occurred.
+Local preview: `http://127.0.0.1:3000`; commands are in [web/README.md](web/README.md).
+
+Later, use **Berkeley Granata (Hobby)** and the owner's browser-based
+`vercel login`; never request a token. The owner privately creates ignored
+`C:\dev\Spotify\.env.neon-import.local` with `NEON_IMPORT_DATABASE_URL=` for
+the import credential, never pasting it into chat. Vercel runtime receives only
+the read-only server credential. Deployment Protection must be OFF and the final
+URL tested incognito/signed-out. The [final submission checklist](docs/final-submission-checklist.md)
+retains the full files + Git-history secrets scan before the public GitHub push,
+the live-URL/evidence README, final gzip export and owner-reviewed compressed videos.

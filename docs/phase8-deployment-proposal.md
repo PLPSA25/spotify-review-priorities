@@ -1,7 +1,8 @@
 # Phase 8 proposal — Neon + Vercel
 
-Status: proposal only. No accounts, cloud resources, database imports, dependency
-installs, Git pushes or deployments have been performed for this phase.
+Status: step 1 (local app/snapshot build and tests) approved. Cloud steps remain
+unstarted: no login, account changes, provisioning, import, Git push or deployment.
+See [the local build gate](phase8-step1-gate.md) for measured results.
 
 ## Result to build
 
@@ -36,10 +37,11 @@ texts and model prose; render approved Markdown without executing HTML.
 ## Data and access design
 
 Import a compact dashboard read model, not the entire 660k-row source table or
-the 488 MB call log. Tables: `dashboard.runs`, `issue_metrics` (view/scope column),
-`claims` (scope and allowed-vs-secondary marker), `summary_metrics`,
-`review_examples`, and `saved_artifacts` (approved memo, original memo, group and
-verifier summaries). Preserve source hashes, classifier/grouping hashes, dates,
+the 488 MB call log. Implementation uses one versioned `dashboard.snapshots`
+JSONB table containing run metadata, both issue-metric views, scoped claims,
+summary metrics, review examples and saved artifacts. This simplifies the earlier
+multi-table sketch while preserving its content and read-only access boundary.
+Preserve source hashes, classifier/grouping hashes, dates,
 approval status and original review IDs. Full records stay in grading/local
 artifacts. This scope meets the requested dashboard without promising a full
 corpus review-search service.
@@ -48,8 +50,8 @@ The export/import command will be offline and deterministic, with idempotent
 transactional import keyed by artifact hash/run ID. Validate row totals, both
 rankings, claims and memo hashes against saved files before activating a snapshot.
 Compute aggregate metrics offline once, never by rescanning source rows per page.
-Expected dashboard payload below 10 MB is an estimate; measure before import and
-record actual Postgres size afterward.
+Measured dashboard payload: **72,076 bytes**, aggregate/sample-only. This is not
+Postgres disk usage; record actual database size after the later import.
 
 Create `dashboard_reader` **via SQL**, without `neon_superuser`, ownership,
 CREATE or write privileges. Grant only database CONNECT, dashboard schema USAGE
@@ -92,7 +94,9 @@ is a planning estimate, not measured runtime.
 Do these only after the deployment phase is approved and the app/scripts exist.
 Labels below follow current official documentation and may vary slightly by account.
 
-1. **Vercel:** sign in and choose your personal Hobby scope. We will prepare the
+1. **Vercel:** the owner signs in personally using `vercel login` and its browser
+   flow; never request a token. Choose **Berkeley Granata (Hobby)**, which worked
+   for Assignment 1. We will prepare the
    pinned project-local CLI and link `web/` to a new `spotify-review-priorities`
    project, or inspect/reuse an explicitly suitable existing project. With no Git
    remote, a local CLI deployment avoids requiring a repository push. The project
@@ -116,7 +120,9 @@ Labels below follow current official documentation and may vary slightly by acco
 5. **Neon → Connect:** select the published branch/database and SQL-created
    `dashboard_reader` role; enable pooling and TLS. Copy that connection string
    directly into Vercel's secret input, not into a message or tracked file.
-   The separate owner/import URL stays in an ignored local deployment env file.
+   The owner privately creates **`C:\dev\Spotify\.env.neon-import.local`** and
+   pastes the owner URL into **`NEON_IMPORT_DATABASE_URL`** there, never in chat.
+   That exact file is ignored; no agent-created secret value or token is needed.
    Run the prepared one-time import locally with owner permissions; confirm its
    aggregate reconciliation and hash report, then perform the read-only-role test.
 6. **Vercel → Settings → Environment Variables:** add `DATABASE_URL_READONLY`
@@ -132,7 +138,7 @@ Labels below follow current official documentation and may vary slightly by acco
 8. **Vercel → Deployments:** open the Ready deployment; verify both rankings,
    coverage banner, claims links, saved memo and AI outputs. Check Runtime Logs
    for sanitized errors, and Neon Monitoring/Usage for connection/size figures.
-9. **Vercel → Settings → Deployment Protection:** ensure the final submitted
+9. **Vercel → Settings → Deployment Protection: OFF.** Ensure the final submitted
    production URL is accessible to the instructor without your account, as already
    required by the approved project plan. Confirm in a signed-out/incognito window.
    Keep secrets server-side; the public page contains only the intended report data.
@@ -150,6 +156,12 @@ actual plan picker. A small aggregate-only dataset is expected to fit, but that
 has not been measured. Hobby is restricted to personal/noncommercial use and can
 pause features on quota exhaustion. This is a quota-limited deployment, not a
 promise of unlimited free availability. No paid upgrades or overage-based plan.
+
+After deployment, the final submission phase still includes the full secrets scan
+of files and Git history **before the public GitHub push**, final README evidence,
+the one-time gzip refresh and owner-reviewed compressed videos. These are not
+replaced by the step-1 deployment/client-bundle scan. See
+[final submission checklist](final-submission-checklist.md).
 
 Project model spend stays **$5.629964013 / $10**. Hosting is a separate cost category;
 it is not charged through the model ledger. If free provisioning is unavailable

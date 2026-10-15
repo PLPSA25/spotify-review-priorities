@@ -1,0 +1,9 @@
+{
+  "expected": 4,
+  "unexpected": 0,
+  "skipped": 0,
+  "flaky": 0,
+  "duration_ms": 5650.19,
+  "browser": "installed Microsoft Edge",
+  "external_model_calls": 0
+}

@@ -1,0 +1,4 @@
+# Copy this template to C:/dev/Spotify/.env.neon-import.local yourself later.
+# Paste the Neon OWNER/import connection string only into that ignored file.
+# Never paste it in chat. Never copy this variable to Vercel runtime settings.
+NEON_IMPORT_DATABASE_URL=
