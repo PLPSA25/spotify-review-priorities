@@ -1,0 +1,19 @@
+{
+  "rows": 3000,
+  "initial_overlapping_reason_counts": {
+    "missing_context": 1369,
+    "low_confidence": 1242,
+    "language": 265
+  },
+  "final_overlapping_attributable_counts": {
+    "missing_context": 1198,
+    "low_confidence": 942,
+    "language": 265,
+    "fallback_judgment_unattributed": 109
+  },
+  "cleared_initial_flags": 191,
+  "final_reason_incomplete": 109,
+  "label_config": "c79a70421de9caad53c9932393f0eb6420f6d80e249cb9097dd5af3eb9d8eba9",
+  "calls": 0,
+  "note": "Observability only. Initial reason signals are not necessarily the cause of a final fallback flag. Original labels/calls/config unchanged."
+}

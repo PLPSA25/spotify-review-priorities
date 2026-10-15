@@ -1,0 +1,639 @@
+{
+  "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "golden_accuracy_used": false,
+  "recommendation_frozen_at_utc": "2026-10-15T01:30:51.443735+00:00",
+  "recommendation": {
+    "fallback_fraction": 0.2,
+    "status": "proposal only; not applied",
+    "rationale": "Moderate expansion: existing fallback improves blinded-verifier agreement on paired rows and the 10–20% rank band still has substantial disagreement. Human adjudication warns that Luna/verifier changes can be wrong, especially intent; no measured benefit for wider routing and no justification to spend for30% now. Golden accuracy is excluded from this recommendation.",
+    "proposed_invocation_cap_usd": 7.28
+  },
+  "development_state_sha256": "a37ae49e7844fe630040b9ebd281172325661cacea6fee69fc1cadea9cf7c9bc",
+  "human_verdicts_sha256": "cf9d92a8c3d435a88fc50efe6a2a20554f2647161ef8ebe4c826c71092c82515",
+  "eligible_development_unique_texts": 3422,
+  "clean_completed_development_unique_texts": 8437,
+  "actual_fallback_eligible_label_changes": {
+    "n": 840,
+    "any_core_label_changed": 630,
+    "any_core_change_rate": 0.75,
+    "by_field": {
+      "topic": {
+        "different": 232,
+        "n": 840,
+        "rate": 0.2761904761904762
+      },
+      "intent": {
+        "different": 233,
+        "n": 840,
+        "rate": 0.2773809523809524
+      },
+      "severity_exact": {
+        "different": 288,
+        "n": 840,
+        "rate": 0.34285714285714286
+      },
+      "severity_within_one": {
+        "different": 55,
+        "n": 840,
+        "rate": 0.06547619047619048
+      },
+      "sentiment_sign": {
+        "different": 152,
+        "n": 840,
+        "rate": 0.18095238095238095
+      },
+      "needs_review": {
+        "different": 345,
+        "n": 840,
+        "rate": 0.4107142857142857
+      }
+    }
+  },
+  "eligible_verifier_rows": 402,
+  "eligible_verifier_unique_texts": 400,
+  "eligible_jev_vs_blinded_luna_verifier": {
+    "n": 400,
+    "any_core_label_changed": 235,
+    "any_core_change_rate": 0.5875,
+    "by_field": {
+      "topic": {
+        "different": 94,
+        "n": 400,
+        "rate": 0.235
+      },
+      "intent": {
+        "different": 71,
+        "n": 400,
+        "rate": 0.1775
+      },
+      "severity_exact": {
+        "different": 96,
+        "n": 400,
+        "rate": 0.24
+      },
+      "severity_within_one": {
+        "different": 8,
+        "n": 400,
+        "rate": 0.02
+      },
+      "sentiment_sign": {
+        "different": 40,
+        "n": 400,
+        "rate": 0.1
+      },
+      "needs_review": {
+        "different": 279,
+        "n": 400,
+        "rate": 0.6975
+      }
+    }
+  },
+  "incremental_rank_bands_verifier_proxy": {
+    "0%–10%": {
+      "n": 69,
+      "any_core_label_changed": 47,
+      "any_core_change_rate": 0.6811594202898551,
+      "by_field": {
+        "topic": {
+          "different": 21,
+          "n": 69,
+          "rate": 0.30434782608695654
+        },
+        "intent": {
+          "different": 17,
+          "n": 69,
+          "rate": 0.2463768115942029
+        },
+        "severity_exact": {
+          "different": 24,
+          "n": 69,
+          "rate": 0.34782608695652173
+        },
+        "severity_within_one": {
+          "different": 5,
+          "n": 69,
+          "rate": 0.07246376811594203
+        },
+        "sentiment_sign": {
+          "different": 5,
+          "n": 69,
+          "rate": 0.07246376811594203
+        },
+        "needs_review": {
+          "different": 43,
+          "n": 69,
+          "rate": 0.6231884057971014
+        }
+      }
+    },
+    "10%–20%": {
+      "n": 51,
+      "any_core_label_changed": 29,
+      "any_core_change_rate": 0.5686274509803921,
+      "by_field": {
+        "topic": {
+          "different": 15,
+          "n": 51,
+          "rate": 0.29411764705882354
+        },
+        "intent": {
+          "different": 10,
+          "n": 51,
+          "rate": 0.19607843137254902
+        },
+        "severity_exact": {
+          "different": 7,
+          "n": 51,
+          "rate": 0.13725490196078433
+        },
+        "severity_within_one": {
+          "different": 0,
+          "n": 51,
+          "rate": 0.0
+        },
+        "sentiment_sign": {
+          "different": 4,
+          "n": 51,
+          "rate": 0.0784313725490196
+        },
+        "needs_review": {
+          "different": 37,
+          "n": 51,
+          "rate": 0.7254901960784313
+        }
+      }
+    },
+    "20%–30%": {
+      "n": 52,
+      "any_core_label_changed": 31,
+      "any_core_change_rate": 0.5961538461538461,
+      "by_field": {
+        "topic": {
+          "different": 12,
+          "n": 52,
+          "rate": 0.23076923076923078
+        },
+        "intent": {
+          "different": 10,
+          "n": 52,
+          "rate": 0.19230769230769232
+        },
+        "severity_exact": {
+          "different": 12,
+          "n": 52,
+          "rate": 0.23076923076923078
+        },
+        "severity_within_one": {
+          "different": 0,
+          "n": 52,
+          "rate": 0.0
+        },
+        "sentiment_sign": {
+          "different": 5,
+          "n": 52,
+          "rate": 0.09615384615384616
+        },
+        "needs_review": {
+          "different": 38,
+          "n": 52,
+          "rate": 0.7307692307692307
+        }
+      }
+    },
+    "30%–100%": {
+      "n": 50,
+      "any_core_label_changed": 25,
+      "any_core_change_rate": 0.5,
+      "by_field": {
+        "topic": {
+          "different": 9,
+          "n": 50,
+          "rate": 0.18
+        },
+        "intent": {
+          "different": 10,
+          "n": 50,
+          "rate": 0.2
+        },
+        "severity_exact": {
+          "different": 6,
+          "n": 50,
+          "rate": 0.12
+        },
+        "severity_within_one": {
+          "different": 0,
+          "n": 50,
+          "rate": 0.0
+        },
+        "sentiment_sign": {
+          "different": 7,
+          "n": 50,
+          "rate": 0.14
+        },
+        "needs_review": {
+          "different": 36,
+          "n": 50,
+          "rate": 0.72
+        }
+      }
+    }
+  },
+  "actual_fallback_paired_against_verifier": {
+    "n": 115,
+    "jev_vs_verifier": {
+      "n": 115,
+      "any_core_label_changed": 82,
+      "any_core_change_rate": 0.7130434782608696,
+      "by_field": {
+        "topic": {
+          "different": 29,
+          "n": 115,
+          "rate": 0.25217391304347825
+        },
+        "intent": {
+          "different": 28,
+          "n": 115,
+          "rate": 0.24347826086956523
+        },
+        "severity_exact": {
+          "different": 40,
+          "n": 115,
+          "rate": 0.34782608695652173
+        },
+        "severity_within_one": {
+          "different": 7,
+          "n": 115,
+          "rate": 0.06086956521739131
+        },
+        "sentiment_sign": {
+          "different": 15,
+          "n": 115,
+          "rate": 0.13043478260869565
+        },
+        "needs_review": {
+          "different": 69,
+          "n": 115,
+          "rate": 0.6
+        }
+      }
+    },
+    "fallback_vs_verifier": {
+      "n": 115,
+      "any_core_label_changed": 51,
+      "any_core_change_rate": 0.4434782608695652,
+      "by_field": {
+        "topic": {
+          "different": 20,
+          "n": 115,
+          "rate": 0.17391304347826086
+        },
+        "intent": {
+          "different": 25,
+          "n": 115,
+          "rate": 0.21739130434782608
+        },
+        "severity_exact": {
+          "different": 23,
+          "n": 115,
+          "rate": 0.2
+        },
+        "severity_within_one": {
+          "different": 1,
+          "n": 115,
+          "rate": 0.008695652173913044
+        },
+        "sentiment_sign": {
+          "different": 10,
+          "n": 115,
+          "rate": 0.08695652173913043
+        },
+        "needs_review": {
+          "different": 23,
+          "n": 115,
+          "rate": 0.2
+        }
+      }
+    },
+    "by_field": {
+      "topic": {
+        "corrected_relative_to_verifier": 20,
+        "regressed_relative_to_verifier": 11
+      },
+      "intent": {
+        "corrected_relative_to_verifier": 14,
+        "regressed_relative_to_verifier": 11
+      },
+      "severity_exact": {
+        "corrected_relative_to_verifier": 28,
+        "regressed_relative_to_verifier": 11
+      },
+      "severity_within_one": {
+        "corrected_relative_to_verifier": 7,
+        "regressed_relative_to_verifier": 1
+      },
+      "sentiment_sign": {
+        "corrected_relative_to_verifier": 10,
+        "regressed_relative_to_verifier": 5
+      },
+      "needs_review": {
+        "corrected_relative_to_verifier": 48,
+        "regressed_relative_to_verifier": 2
+      }
+    }
+  },
+  "human_all_verdicts": {
+    "jev_right": 5,
+    "verifier_right": 12,
+    "both_wrong": 3
+  },
+  "human_eligible_count": 12,
+  "human_eligible_verdicts": {
+    "jev_right": 4,
+    "verifier_right": 6,
+    "both_wrong": 2
+  },
+  "human_eligible_details": [
+    {
+      "review_id": "68107809-52c1-469d-a78a-569280e49ed6",
+      "field": "topic",
+      "verdict": "jev_right",
+      "actual_fallback": false,
+      "jev_flag_reasons": [
+        "low_confidence"
+      ]
+    },
+    {
+      "review_id": "7d5ddaf5-2f4f-4883-9ddb-e46a2b584ac0",
+      "field": "intent",
+      "verdict": "jev_right",
+      "actual_fallback": true,
+      "jev_flag_reasons": [
+        "missing_context",
+        "low_confidence"
+      ],
+      "fallback_matches_human_preferred_shown_label": true
+    },
+    {
+      "review_id": "8216dafb-b5e2-47e2-b342-9f73c203b56e",
+      "field": "severity",
+      "verdict": "verifier_right",
+      "actual_fallback": false,
+      "jev_flag_reasons": [
+        "missing_context",
+        "low_confidence"
+      ]
+    },
+    {
+      "review_id": "d455c11e-c530-4c03-a395-38f5a5cdb8d3",
+      "field": "sentiment_sign",
+      "verdict": "both_wrong",
+      "actual_fallback": false,
+      "jev_flag_reasons": [
+        "low_confidence"
+      ]
+    },
+    {
+      "review_id": "a7b7539a-c8d3-4f4e-9edd-d46cd1b1fd12",
+      "field": "topic",
+      "verdict": "verifier_right",
+      "actual_fallback": false,
+      "jev_flag_reasons": [
+        "low_confidence"
+      ]
+    },
+    {
+      "review_id": "8faa4895-3ee7-4360-a20c-529042b2330b",
+      "field": "intent",
+      "verdict": "jev_right",
+      "actual_fallback": true,
+      "jev_flag_reasons": [
+        "missing_context",
+        "low_confidence"
+      ],
+      "fallback_matches_human_preferred_shown_label": false
+    },
+    {
+      "review_id": "dcff57c6-abd6-413b-b255-aec3dc34fcbd",
+      "field": "severity",
+      "verdict": "verifier_right",
+      "actual_fallback": false,
+      "jev_flag_reasons": [
+        "missing_context",
+        "low_confidence"
+      ]
+    },
+    {
+      "review_id": "b0d0660d-b859-4d87-97e8-7420f05d1f94",
+      "field": "intent",
+      "verdict": "jev_right",
+      "actual_fallback": false,
+      "jev_flag_reasons": [
+        "missing_context",
+        "low_confidence"
+      ]
+    },
+    {
+      "review_id": "6eb64519-37d4-4591-a47a-bbb96357de36",
+      "field": "severity",
+      "verdict": "both_wrong",
+      "actual_fallback": true,
+      "jev_flag_reasons": [
+        "language_non_english",
+        "low_confidence"
+      ],
+      "fallback_matches_human_preferred_shown_label": null
+    },
+    {
+      "review_id": "084077ee-f9be-446a-9935-9e58550d5153",
+      "field": "sentiment_sign",
+      "verdict": "verifier_right",
+      "actual_fallback": true,
+      "jev_flag_reasons": [
+        "language_non_english",
+        "missing_context",
+        "low_confidence"
+      ],
+      "fallback_matches_human_preferred_shown_label": true
+    },
+    {
+      "review_id": "02365ec7-f37a-419a-b26d-bf2467d38461",
+      "field": "needs_review",
+      "verdict": "verifier_right",
+      "actual_fallback": true,
+      "jev_flag_reasons": [
+        "language_not_understood",
+        "missing_context",
+        "low_confidence"
+      ],
+      "fallback_matches_human_preferred_shown_label": false
+    },
+    {
+      "review_id": "e85a31f6-786e-4673-94b8-010fea8ce464",
+      "field": "topic",
+      "verdict": "verifier_right",
+      "actual_fallback": true,
+      "jev_flag_reasons": [
+        "low_confidence"
+      ],
+      "fallback_matches_human_preferred_shown_label": true
+    }
+  ],
+  "human_actual_fallback_details": [
+    {
+      "review_id": "7d5ddaf5-2f4f-4883-9ddb-e46a2b584ac0",
+      "field": "intent",
+      "verdict": "jev_right",
+      "actual_fallback": true,
+      "jev_flag_reasons": [
+        "missing_context",
+        "low_confidence"
+      ],
+      "fallback_matches_human_preferred_shown_label": true
+    },
+    {
+      "review_id": "8faa4895-3ee7-4360-a20c-529042b2330b",
+      "field": "intent",
+      "verdict": "jev_right",
+      "actual_fallback": true,
+      "jev_flag_reasons": [
+        "missing_context",
+        "low_confidence"
+      ],
+      "fallback_matches_human_preferred_shown_label": false
+    },
+    {
+      "review_id": "6eb64519-37d4-4591-a47a-bbb96357de36",
+      "field": "severity",
+      "verdict": "both_wrong",
+      "actual_fallback": true,
+      "jev_flag_reasons": [
+        "language_non_english",
+        "low_confidence"
+      ],
+      "fallback_matches_human_preferred_shown_label": null
+    },
+    {
+      "review_id": "084077ee-f9be-446a-9935-9e58550d5153",
+      "field": "sentiment_sign",
+      "verdict": "verifier_right",
+      "actual_fallback": true,
+      "jev_flag_reasons": [
+        "language_non_english",
+        "missing_context",
+        "low_confidence"
+      ],
+      "fallback_matches_human_preferred_shown_label": true
+    },
+    {
+      "review_id": "02365ec7-f37a-419a-b26d-bf2467d38461",
+      "field": "needs_review",
+      "verdict": "verifier_right",
+      "actual_fallback": true,
+      "jev_flag_reasons": [
+        "language_not_understood",
+        "missing_context",
+        "low_confidence"
+      ],
+      "fallback_matches_human_preferred_shown_label": false
+    },
+    {
+      "review_id": "e85a31f6-786e-4673-94b8-010fea8ce464",
+      "field": "topic",
+      "verdict": "verifier_right",
+      "actual_fallback": true,
+      "jev_flag_reasons": [
+        "low_confidence"
+      ],
+      "fallback_matches_human_preferred_shown_label": true
+    }
+  ],
+  "cost_time_reference": {
+    "cost_by_stage_usd": {
+      "jev": 0.389210556,
+      "extract": 0.0416904,
+      "fallback": 0.04220875
+    },
+    "request_counts": {
+      "jev": 7983,
+      "extract": 64,
+      "fallback": 50
+    },
+    "root_counts": {
+      "extract": 667,
+      "fallback": 796,
+      "local": 6506
+    },
+    "unit_luna_cost_per_text_including_repairs": {
+      "extract": 6.250434782608697e-05,
+      "fallback": 5.302606783919598e-05
+    },
+    "repairs_per_text": {
+      "extract": 0.044977511244377814,
+      "fallback": 0.01256281407035176
+    },
+    "note": "Costs/routing from actual final-hash analysis tranche, including failures. Added fallback replaces extraction for long texts or local completion for short texts. New batch counts repacked offline; measured repair rates and 1rps pacing projected. Overlap and scaling/mix uncertainty remain."
+  },
+  "scenarios": [
+    {
+      "fallback_fraction": 0.1,
+      "hash_unchanged": true,
+      "reference_texts": 7969,
+      "reference_quota": 796,
+      "reference_fallback_texts": 796,
+      "reference_extraction_texts": 667,
+      "reference_root_calls": {
+        "extract": 34,
+        "fallback": 40
+      },
+      "reference_expected_luna_calls_including_repairs": 114.0,
+      "future_pending_texts_conditional": 75874,
+      "future_fallback_quota": 7587,
+      "base_cost_usd": 4.504545844277073,
+      "cap_1_5x_rounded_up_cents_usd": 6.76,
+      "base_hours": 1.7833461879725172
+    },
+    {
+      "fallback_fraction": 0.2,
+      "hash_unchanged": true,
+      "reference_texts": 7969,
+      "reference_quota": 1593,
+      "reference_fallback_texts": 1593,
+      "reference_extraction_texts": 575,
+      "reference_root_calls": {
+        "extract": 29,
+        "fallback": 80
+      },
+      "reference_expected_luna_calls_including_repairs": 154.8746317795876,
+      "future_pending_texts_conditional": 75874,
+      "future_fallback_quota": 15174,
+      "base_cost_usd": 4.85217592932805,
+      "cap_1_5x_rounded_up_cents_usd": 7.28,
+      "base_hours": 1.891449874885849
+    },
+    {
+      "fallback_fraction": 0.3,
+      "hash_unchanged": true,
+      "reference_texts": 7969,
+      "reference_quota": 2390,
+      "reference_fallback_texts": 2390,
+      "reference_extraction_texts": 471,
+      "reference_root_calls": {
+        "extract": 24,
+        "fallback": 120
+      },
+      "reference_expected_luna_calls_including_repairs": 195.20953342424264,
+      "future_pending_texts_conditional": 75874,
+      "future_fallback_quota": 22762,
+      "base_cost_usd": 5.192664659297651,
+      "cap_1_5x_rounded_up_cents_usd": 7.79,
+      "base_hours": 1.9981261038629463
+    }
+  ],
+  "quality_limitations": [
+    "Actual fallback outcomes observed only in lowest-confidence 10% selected; no measured 20%/30% run.",
+    "Independent Luna verifier is a different blinded prompt, a proxy for potential label changes on unselected eligible rows, not human correctness or a counterfactual fallback response.",
+    "Human 20 are stratified disagreements, not representative; both-wrong supplies no corrected label. Intent judgments favor Jev in all4 reviewed intent disagreements.",
+    "Golden source IDs/texts are used solely to exclude them from development quality comparisons; no golden human answers or golden evaluation results are read.",
+    "Hash excludes operational fallback_fraction, but raising it can change newly routed predictions; choose before freezing production tranche. Existing completed/cache records are not relabeled."
+  ]
+}

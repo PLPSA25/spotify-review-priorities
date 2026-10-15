@@ -1,0 +1,183 @@
+{
+  "core": {
+    "rows": 500,
+    "distinct_texts": 479,
+    "fields": {
+      "topic": {
+        "rows": 500,
+        "improved": 4,
+        "regressed": 3,
+        "unchanged": 493,
+        "change_percentage_points": -0.2,
+        "difference_cluster_bootstrap_95_pp": [
+          -1.2195121951219512,
+          0.8130495256072724
+        ],
+        "distinct_text_v2_disagreements": 54,
+        "distinct_text_v3_disagreements": 53,
+        "distinct_text_denominator": 479
+      },
+      "intent": {
+        "rows": 500,
+        "improved": 2,
+        "regressed": 4,
+        "unchanged": 494,
+        "change_percentage_points": 0.4,
+        "difference_cluster_bootstrap_95_pp": [
+          -0.40652476280363625,
+          1.443298969072165
+        ],
+        "distinct_text_v2_disagreements": 37,
+        "distinct_text_v3_disagreements": 39,
+        "distinct_text_denominator": 479
+      },
+      "severity_exact": {
+        "rows": 500,
+        "improved": 0,
+        "regressed": 4,
+        "unchanged": 496,
+        "change_percentage_points": 0.8,
+        "difference_cluster_bootstrap_95_pp": [
+          0.197228952150212,
+          1.6526261209052617
+        ],
+        "distinct_text_v2_disagreements": 62,
+        "distinct_text_v3_disagreements": 66,
+        "distinct_text_denominator": 479
+      },
+      "severity_beyond_one": {
+        "rows": 500,
+        "improved": 1,
+        "regressed": 0,
+        "unchanged": 499,
+        "change_percentage_points": -0.2,
+        "difference_cluster_bootstrap_95_pp": [
+          -0.6175018689703454,
+          0.0
+        ],
+        "distinct_text_v2_disagreements": 5,
+        "distinct_text_v3_disagreements": 4,
+        "distinct_text_denominator": 479
+      },
+      "sentiment_sign": {
+        "rows": 500,
+        "improved": 1,
+        "regressed": 3,
+        "unchanged": 496,
+        "change_percentage_points": 0.4,
+        "difference_cluster_bootstrap_95_pp": [
+          -0.39607897171426887,
+          1.2295713131585149
+        ],
+        "distinct_text_v2_disagreements": 39,
+        "distinct_text_v3_disagreements": 41,
+        "distinct_text_denominator": 479
+      },
+      "sentiment_tolerance_025": {
+        "rows": 500,
+        "improved": 5,
+        "regressed": 0,
+        "unchanged": 495,
+        "change_percentage_points": -1.0,
+        "difference_cluster_bootstrap_95_pp": [
+          -2.0366598778004072,
+          -0.20201001955034215
+        ],
+        "distinct_text_v2_disagreements": 61,
+        "distinct_text_v3_disagreements": 56,
+        "distinct_text_denominator": 479
+      }
+    }
+  },
+  "final": {
+    "rows": 499,
+    "distinct_texts": 478,
+    "fields": {
+      "topic": {
+        "rows": 499,
+        "improved": 9,
+        "regressed": 10,
+        "unchanged": 480,
+        "change_percentage_points": 0.2004008016032064,
+        "difference_cluster_bootstrap_95_pp": [
+          -1.5905364624999008,
+          2.0002008032128513
+        ],
+        "distinct_text_v2_disagreements": 54,
+        "distinct_text_v3_disagreements": 55,
+        "distinct_text_denominator": 478
+      },
+      "intent": {
+        "rows": 499,
+        "improved": 1,
+        "regressed": 7,
+        "unchanged": 491,
+        "change_percentage_points": 1.2024048096192386,
+        "difference_cluster_bootstrap_95_pp": [
+          0.2004008016032064,
+          2.376355492692126
+        ],
+        "distinct_text_v2_disagreements": 34,
+        "distinct_text_v3_disagreements": 40,
+        "distinct_text_denominator": 478
+      },
+      "severity_exact": {
+        "rows": 499,
+        "improved": 12,
+        "regressed": 12,
+        "unchanged": 475,
+        "change_percentage_points": 0.0,
+        "difference_cluster_bootstrap_95_pp": [
+          -1.9882699809129256,
+          1.8110481068227546
+        ],
+        "distinct_text_v2_disagreements": 57,
+        "distinct_text_v3_disagreements": 57,
+        "distinct_text_denominator": 478
+      },
+      "severity_beyond_one": {
+        "rows": 499,
+        "improved": 3,
+        "regressed": 0,
+        "unchanged": 496,
+        "change_percentage_points": -0.6012024048096193,
+        "difference_cluster_bootstrap_95_pp": [
+          -1.4000000000000001,
+          0.0
+        ],
+        "distinct_text_v2_disagreements": 4,
+        "distinct_text_v3_disagreements": 1,
+        "distinct_text_denominator": 478
+      },
+      "sentiment_sign": {
+        "rows": 499,
+        "improved": 6,
+        "regressed": 6,
+        "unchanged": 487,
+        "change_percentage_points": 0.0,
+        "difference_cluster_bootstrap_95_pp": [
+          -1.3973455893823576,
+          1.3397625717967518
+        ],
+        "distinct_text_v2_disagreements": 36,
+        "distinct_text_v3_disagreements": 36,
+        "distinct_text_denominator": 478
+      },
+      "sentiment_tolerance_025": {
+        "rows": 499,
+        "improved": 8,
+        "regressed": 8,
+        "unchanged": 483,
+        "change_percentage_points": 0.0,
+        "difference_cluster_bootstrap_95_pp": [
+          -1.5968063872255487,
+          1.6070813867715752
+        ],
+        "distinct_text_v2_disagreements": 54,
+        "distinct_text_v3_disagreements": 54,
+        "distinct_text_denominator": 478
+      }
+    }
+  },
+  "procedure": "1000 exact-text-cluster bootstrap draws, seed spotify-checkpoint-ab-paired-v1 per view; pointwise intervals, not adjusted for multiple fields. User pass criterion uses observed core rates, not these intervals. Fixed blinded verifier, not human accuracy."
+}

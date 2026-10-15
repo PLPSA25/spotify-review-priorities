@@ -1,0 +1,27 @@
+{
+  "status": "failed",
+  "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "run_id": "30435f17-d159-4b48-a9f1-03ccde3afee8",
+  "workers": 8,
+  "imported_provenance_calls_not_new_charges": 485,
+  "initial_counts": {
+    "completed": 1436,
+    "pending": 8563,
+    "quarantined": 1
+  },
+  "approved_invocation_cap_usd": 1.5,
+  "error": "ProviderError: Timeout/connection outcome unknown; reconcile before retry",
+  "wall_seconds": 26.122005999997782,
+  "counts": {
+    "completed": 1436,
+    "pending": 8563,
+    "quarantined": 1
+  },
+  "ledger": {
+    "spent_nanodollars": 298215468,
+    "reserved_nanodollars": 1561182
+  },
+  "new_attempts": 86,
+  "pending_leases": 7,
+  "new_api_cost_usd": 0.00385203
+}

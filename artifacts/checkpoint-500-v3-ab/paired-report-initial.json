@@ -1,0 +1,148 @@
+{
+  "v2": {
+    "rows": 499,
+    "core_jev_fields": {
+      "topic": {
+        "disagreements": 54,
+        "denominator": 499,
+        "rate": 0.10821643286573146
+      },
+      "intent": {
+        "disagreements": 37,
+        "denominator": 499,
+        "rate": 0.07414829659318638
+      },
+      "severity_exact": {
+        "disagreements": 63,
+        "denominator": 499,
+        "rate": 0.12625250501002003
+      },
+      "severity_beyond_one": {
+        "disagreements": 4,
+        "denominator": 499,
+        "rate": 0.008016032064128256
+      },
+      "sentiment_sign": {
+        "disagreements": 40,
+        "denominator": 499,
+        "rate": 0.08016032064128256
+      },
+      "sentiment_tolerance_025": {
+        "disagreements": 61,
+        "denominator": 499,
+        "rate": 0.12224448897795591
+      }
+    },
+    "final_enrichment_fields": {
+      "topic": {
+        "disagreements": 54,
+        "denominator": 499,
+        "rate": 0.10821643286573146
+      },
+      "intent": {
+        "disagreements": 34,
+        "denominator": 499,
+        "rate": 0.06813627254509018
+      },
+      "severity_exact": {
+        "disagreements": 59,
+        "denominator": 499,
+        "rate": 0.11823647294589178
+      },
+      "severity_beyond_one": {
+        "disagreements": 4,
+        "denominator": 499,
+        "rate": 0.008016032064128256
+      },
+      "sentiment_sign": {
+        "disagreements": 37,
+        "denominator": 499,
+        "rate": 0.07414829659318638
+      },
+      "sentiment_tolerance_025": {
+        "disagreements": 54,
+        "denominator": 499,
+        "rate": 0.10821643286573146
+      }
+    },
+    "core_composite_disagreements": 172,
+    "final_composite_disagreements": 160
+  },
+  "v3": {
+    "rows": 499,
+    "core_jev_fields": {
+      "topic": {
+        "disagreements": 53,
+        "denominator": 499,
+        "rate": 0.1062124248496994
+      },
+      "intent": {
+        "disagreements": 39,
+        "denominator": 499,
+        "rate": 0.0781563126252505
+      },
+      "severity_exact": {
+        "disagreements": 67,
+        "denominator": 499,
+        "rate": 0.1342685370741483
+      },
+      "severity_beyond_one": {
+        "disagreements": 3,
+        "denominator": 499,
+        "rate": 0.006012024048096192
+      },
+      "sentiment_sign": {
+        "disagreements": 42,
+        "denominator": 499,
+        "rate": 0.0841683366733467
+      },
+      "sentiment_tolerance_025": {
+        "disagreements": 56,
+        "denominator": 499,
+        "rate": 0.11222444889779559
+      }
+    },
+    "final_enrichment_fields": {
+      "topic": {
+        "disagreements": 55,
+        "denominator": 499,
+        "rate": 0.11022044088176353
+      },
+      "intent": {
+        "disagreements": 40,
+        "denominator": 499,
+        "rate": 0.08016032064128256
+      },
+      "severity_exact": {
+        "disagreements": 59,
+        "denominator": 499,
+        "rate": 0.11823647294589178
+      },
+      "severity_beyond_one": {
+        "disagreements": 1,
+        "denominator": 499,
+        "rate": 0.002004008016032064
+      },
+      "sentiment_sign": {
+        "disagreements": 37,
+        "denominator": 499,
+        "rate": 0.07414829659318638
+      },
+      "sentiment_tolerance_025": {
+        "disagreements": 54,
+        "denominator": 499,
+        "rate": 0.10821643286573146
+      }
+    },
+    "core_composite_disagreements": 173,
+    "final_composite_disagreements": 163
+  },
+  "excluded_terminal_rows": 1,
+  "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "status": "A/B gate; remaining analysis_10000 was not dispatched",
+  "pass_result": {
+    "status": "inconclusive",
+    "passes": false,
+    "reason": "Full shared 500-row criterion unavailable"
+  }
+}

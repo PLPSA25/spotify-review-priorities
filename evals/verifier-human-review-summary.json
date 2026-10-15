@@ -1,0 +1,39 @@
+{
+  "selected": 20,
+  "reviewed": 20,
+  "remaining": 0,
+  "verdicts": {
+    "jev_right": 5,
+    "verifier_right": 12,
+    "both_wrong": 3
+  },
+  "selected_by_field": {
+    "topic": 4,
+    "intent": 4,
+    "severity": 4,
+    "sentiment_sign": 4,
+    "needs_review": 4
+  },
+  "by_field": {
+    "topic": {
+      "jev_right": 1,
+      "verifier_right": 3
+    },
+    "intent": {
+      "jev_right": 4
+    },
+    "severity": {
+      "verifier_right": 2,
+      "both_wrong": 2
+    },
+    "sentiment_sign": {
+      "both_wrong": 1,
+      "verifier_right": 3
+    },
+    "needs_review": {
+      "verifier_right": 4
+    }
+  },
+  "limitation": "Stratified disagreement-only judgments of displayed target field; not corpus accuracy. Unclear is retained. Both-wrong does not invent a replacement label.",
+  "model_calls": 0
+}

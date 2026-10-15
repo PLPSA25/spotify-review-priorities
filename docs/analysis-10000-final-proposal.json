@@ -1,0 +1,62 @@
+{
+  "status": "proposal only; awaiting explicit yes",
+  "workers": 8,
+  "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "input": "data/analysis_10000.csv",
+  "input_sha256": "eaa62ca6d44d717302904a9c922e99b0b4584d174309cb45295ecbc2ba2a91b5",
+  "output": "artifacts/analysis-10000-final",
+  "base_state": "artifacts\\checkpoint-500-v3-ab\\state.sqlite3",
+  "base_state_sha256": "c30552bd84dfcb58790d0ce5d6bd45c7d68e82d57e4e65d477fceb9be4ab16fa",
+  "ab_report_sha256": "cc0e98601c59f6ee5e5bc24665f7af6d71b1875a15ddc1ae9921f9623fcf6cfc",
+  "rows": 10000,
+  "distinct_texts": 8448,
+  "already_completed_original_ids": 499,
+  "reusable_rows_including_exact_text_aliases": 1436,
+  "reusable_distinct_texts": 478,
+  "retained_terminal_rows": 1,
+  "retained_terminal_distinct_texts": 1,
+  "new_pending_rows": 8563,
+  "new_distinct_texts": 7969,
+  "fallback_quota": 796,
+  "long_new_texts": 749,
+  "luna_enrichment_ids_upper": 1545,
+  "initial_jev_calls": 7969,
+  "maximum_calls": 19028,
+  "cost_bounds_nanodollars": {
+    "jev": 4160126292,
+    "luna_enrich": 3281201750,
+    "verify": 0
+  },
+  "worst_case_usd": 7.441328042,
+  "invocation_cap_usd": 1.5,
+  "observed_mix_estimate_usd": 0.45985708431732775,
+  "project_spend_usd": 0.294363438,
+  "project_total_if_full_envelope_spent_usd": 7.73569148,
+  "planning_rates": {
+    "confirmed_date": "2026-10-13",
+    "jev_input_per_million": 0.042,
+    "jev_output_per_million": 0.0,
+    "luna_input_per_million": 0.1,
+    "luna_cached_input_per_million": 0.01,
+    "luna_output_per_million": 0.5,
+    "luna_cache_write_per_million": 0.125
+  },
+  "operational_controls": {
+    "fallback_fraction": 0.1,
+    "token_overhead_bound": 2048,
+    "request_timeout_seconds": 60.0,
+    "project_api_cap_usd": 10.0
+  },
+  "transient_attempts": 1,
+  "invalid_output_repairs": 1,
+  "reuse_method": "Read-only SQLite backup of final-hash A/B state, then validated ingestion of analysis_10000. Original sources/calls/direct cache origins retained. Imported calls are provenance only, not newly billed. Terminal text stays quarantined and is not retried.",
+  "historical_slice_cache": "Old-hash 3000 slice records are not reusable; their source texts are part of the new pending work.",
+  "roles": [
+    "enrich"
+  ],
+  "verifier_group_memo_calls": 0,
+  "failure_policy": "Continue after one permitted repair then quarantine terminal failures; systemic >5% in rolling100 after minimum20, plus spend/auth/unknown-charge integrity stops.",
+  "stop_gate": "After full analysis_10000 enrichment report, before 100k, verifier refresh, golden evaluation or downstream paid work.",
+  "approval_status": "User approved $1.50 invocation cap; stop and report before any resume if hit",
+  "full_envelope_can_exceed_invocation_cap": true
+}

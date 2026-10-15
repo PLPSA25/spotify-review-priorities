@@ -1,0 +1,120 @@
+{
+  "status": "offline recovery complete; resume awaiting yes",
+  "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "receipts": [
+    {
+      "request_id": "bf96f15c-820e-4058-971c-07afa8bafd04",
+      "review_ids": [
+        "c53c9c8e-9a82-42d1-bebb-74b50bd9a4a3"
+      ],
+      "charged_nanodollars": 216426,
+      "reason": "connection error, charge unknown, accounted as charged",
+      "latency_seconds": 21.625,
+      "original_error": "Timeout/connection outcome unknown; reconcile before retry",
+      "provider": "typesafe"
+    },
+    {
+      "request_id": "1c6e24cd-a08f-4af6-ba37-6b459456099f",
+      "review_ids": [
+        "25bbd4e9-f72a-4286-b0a3-12e6572504a3"
+      ],
+      "charged_nanodollars": 227766,
+      "reason": "connection error, charge unknown, accounted as charged",
+      "latency_seconds": 21.625,
+      "original_error": "Timeout/connection outcome unknown; reconcile before retry",
+      "provider": "typesafe"
+    },
+    {
+      "request_id": "93fb8f65-7758-4ed3-9d12-9b8550d34c6a",
+      "review_ids": [
+        "7855d300-7a54-4cc9-ad0c-7cbd619829e0"
+      ],
+      "charged_nanodollars": 215292,
+      "reason": "connection error, charge unknown, accounted as charged",
+      "latency_seconds": 21.625,
+      "original_error": "Timeout/connection outcome unknown; reconcile before retry",
+      "provider": "typesafe"
+    },
+    {
+      "request_id": "b03b662f-4676-41dc-b2f3-12bec1028388",
+      "review_ids": [
+        "ac846659-b129-4bef-b654-39c9c7131b8f"
+      ],
+      "charged_nanodollars": 234486,
+      "reason": "connection error, charge unknown, accounted as charged",
+      "latency_seconds": 21.610000000000582,
+      "original_error": "Timeout/connection outcome unknown; reconcile before retry",
+      "provider": "typesafe"
+    },
+    {
+      "request_id": "963b4fb7-d27c-421f-8b84-07f190871f1e",
+      "review_ids": [
+        "87aaec68-bb73-4111-aaa4-0eea1a60e770"
+      ],
+      "charged_nanodollars": 235284,
+      "reason": "connection error, charge unknown, accounted as charged",
+      "latency_seconds": 21.60899999999674,
+      "original_error": "Timeout/connection outcome unknown; reconcile before retry",
+      "provider": "typesafe"
+    },
+    {
+      "request_id": "48e5eda0-dc66-4292-82f7-f134a151ded3",
+      "review_ids": [
+        "7c2bdc98-b7f2-4753-bfc1-92e32d4cdaf7"
+      ],
+      "charged_nanodollars": 217518,
+      "reason": "connection error, charge unknown, accounted as charged",
+      "latency_seconds": 21.593999999997322,
+      "original_error": "Timeout/connection outcome unknown; reconcile before retry",
+      "provider": "typesafe"
+    },
+    {
+      "request_id": "57200ca5-09b9-4388-9b83-3e987e7113d3",
+      "review_ids": [
+        "0a836fb1-cdce-4c7c-8290-e5aec89eb662"
+      ],
+      "charged_nanodollars": 214410,
+      "reason": "connection error, charge unknown, accounted as charged",
+      "latency_seconds": 21.625,
+      "original_error": "Timeout/connection outcome unknown; reconcile before retry",
+      "provider": "typesafe"
+    }
+  ],
+  "invocation_accounted_nanodollars": 5413212,
+  "remaining_invocation_cap_nanodollars": 1494586788,
+  "project_ledger": {
+    "spent_nanodollars": 299776650,
+    "reserved_nanodollars": 0
+  },
+  "counts": {
+    "completed": 1436,
+    "pending": 8563,
+    "quarantined": 1
+  },
+  "remaining_leases": 0,
+  "diagnosis": {
+    "provider": "typesafe",
+    "endpoint": "https://api.typesafe.ai/v1/systemone",
+    "saved_exception_type": "ProviderError",
+    "saved_exception_message": "Timeout/connection outcome unknown; reconcile before retry",
+    "underlying_exception": "Not retained: TimeoutError or urllib.error.URLError was replaced, from None",
+    "timestamps": "Per-call UTC timestamps were not saved. Measurement file mtime 2026-10-14T22:58:16.669065Z; run duration 26.122006s. This is an approximate run window, not exact call timestamps.",
+    "burst": "Seven adjacent dispatches 77–83; latencies 21.594–21.625s, consistent with an early-run burst rather than spread-out failures.",
+    "pool": "Shared HTTPTransport wrapper; urllib creates HTTPConnection each request and forces Connection: close. No persistent pool or configured pool size; up to eight simultaneous connections.",
+    "likely_cause": "Transient connection-establishment/network or upstream reachability failure. Similar ~21.6s timings suggest transport-level connection timeout; concurrency/TLS churn could amplify it. Exact cause unproven; no HTTP status or response received."
+  },
+  "resume": {
+    "workers": 2,
+    "cap_nanodollars": 1494586788,
+    "jev_pending_distinct_texts": 7890,
+    "saved_new_jev_results_reused": 79,
+    "luna_review_id_upper_bound": 1545,
+    "fallback_quota_original_tranche": 796,
+    "connection_max_attempts": 3,
+    "per_item_call_limit": 4,
+    "health_window": "Explicit operator reset on new approved invocation; >5% of last100 completed calls, minimum20. Old attempt had7/86=8.14%, and remains in audit history.",
+    "call_bound": 37733,
+    "cost": "Hard maximum is remaining invocation cap, including pessimistic charges and outstanding reservations. Larger retry envelope does not authorize larger spending. Budget admission remains latched/resumable.",
+    "scope": "Only remaining analysis_10000 enrichment. No verifier, golden evaluation, 100k, grouping or memo."
+  }
+}

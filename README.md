@@ -80,7 +80,26 @@ output path and refuses to overwrite existing human work.
 
 Entities were not hand-labeled: empty arrays are intentional and entities must be
 excluded from golden evaluation. Golden labels are never threshold/routing calibration
-data. No golden agreement evaluation has been run in this continuation.
+data. Final-hash golden evaluation is complete; see `docs/golden-final-evaluation-gate.md`.
+
+The final-hash human-accuracy gate completed all 50 predictions: six golden IDs
+reused exact-text results and 44 new texts were classified. Actual cost $0.002603841.
+See `evals/golden-final-evaluation/report.html` for overall/fallback splits and all
+confusion tables, and `docs/golden-final-evaluation-gate.md` for measured evidence. Golden metrics
+and confusion CSVs are produced only by the offline `evaluate-golden` command
+after predictions are frozen; golden results never tune prompts, thresholds or routing.
+
+Use `python -m pipeline review-disagreements` for the offline human adjudication
+of up to 20 blinded-verifier disagreements. It shows one review and both labels,
+accepts Jev right / verifier right / both wrong / unclear for the displayed field,
+and saves atomically to `evals/verifier-human-review.json` with a summary sibling.
+`q` stops safely; rerun to resume. Golden IDs/texts and terminal rows are excluded.
+The 100k execution/recording plan is draft-only in `docs/100k-run-plan-draft.md`.
+
+The owner completed all 20 development disagreement verdicts: Jev right 5,
+verifier right 12, both wrong 3, unclear 0. The field breakdown and limitations
+are in `docs/human-verifier-review-gate.md`. This selected disagreement sample
+does not estimate corpus accuracy and did not change the frozen configuration.
 
 Tests use per-test workspace temporary directories and remove them automatically,
 including after failures. PDFs are ignored. Jev's configured request limit is 60/s;
@@ -95,5 +114,96 @@ The Class 7 date is unknown. The two-worker enricher completed all 500 checkpoin
 reviews; verifier recovery completed all 500 valid predictions. See
 `docs/checkpoint-500-recovery-gate.md` for measured cost/time, terminal-failure policy,
 full-field calibration and the smaller scaling proposal. The initial quota/failure
-audit remains in `docs/checkpoint-500-gate.md`. Stopped at the checkpoint gate;
-no golden evaluation or analysis_10000 run occurred.
+audit remains in `docs/checkpoint-500-gate.md`. Three approved disjoint 1,000-row
+analysis_10000 slices have now completed; no golden agreement evaluation has run.
+
+## Frozen calibration and next paid gate
+
+Approved confidence 0.60, margin 0; explicit language/context judgments and deterministic
+fallback allocation are frozen in `docs/frozen-label-config.json`. See
+`docs/frozen-calibration.md` and its 35-pair/field CSVs for verifier comparisons (not
+human accuracy), sentiment near-zero diagnostic and selection/resume tests. Old pilot
+and checkpoint caches retain their historical hash and are not mixed into new outputs.
+`docs/frozen-scaling-proposal.md` records the approved three-slice bounds.
+`docs/scaling-gate.md` reports measured 1/2/8-worker results, v2/v3 flag drift and
+updated costs. Stopped at the scaling gate before remaining 10k work. A proposed
+500-row blinded v3 transfer verifier has now completed with 500 valid predictions.
+See `docs/v3-verifier-gate.md` for auxiliary reasons, language confirmation, the
+35-pair core grid and a proposed final flag rule. The proposal is not applied;
+the frozen hash remains unchanged and remaining analysis_10000 is paused at the gate.
+`docs/checkpoint-500-v3-ab-proposal.md` records the earlier contract/provisional
+flags, proposes a same-row v2/v3 comparison and describes the offline flag-reason
+export. Final fallback reasons include an unattributed category; initial signals
+are not presented as known final causes. No A/B paid run has been approved yet.
+The user subsequently approved explicit reasons and persistent missing-context
+signals from either model. `docs/final-config-gate.md` and
+`docs/frozen-label-config.json` are the current final policy/hash; historical
+snapshots and paid outputs retain their old hashes. The revised A/B proposal is
+$0.430210238 worst case was approved and the A/B has completed. V3 passed the
+predeclared core topic/intent criterion on all 500 rows; final enrichment has
+499 completed and one terminal quote failure. See `docs/checkpoint-v3-ab-gate.md`
+for field comparisons and the proposed 8-worker analysis_10000 gate: $7.441328042
+worst case was superseded by the user's $1.50 invocation approval. The analysis
+attempt stopped on seven unknown-charge connection outcomes before that cap,
+with 79 valid new Jev results saved and no new finalized records. See
+`docs/analysis-10000-stopped-gate.md` for measured accounting, provisional 100k
+estimates and the reconciliation gate. No automatic retry/resume occurred.
+
+The subsequent user-approved eight-worker keep-alive resume has reached its gate:
+9,994 analysis rows completed, six terminal failures total (five new), and no
+pending work. See `docs/analysis-10000-resume-gate.md` for measured timing,
+connect/send/post-send failure counts, retry breakdown, actual usage cost and the
+estimated 100k time/cost. The label hash is unchanged. The seven original unknown
+charges were pessimistically accounted without provider-dashboard reconciliation.
+No golden evaluation, 100k run or downstream paid stage was dispatched.
+
+The owner approved 20% fallback and accepted the frozen prompt; the cap is applied.
+The offline recommendation is to retain the frozen prompt. At eight workers: estimated
+$4.85 / 1.89h, with a $7.28 total invocation cap across interruption/resume. It was
+frozen from development verifier data and human verdicts before golden evaluation.
+It is now applied to controls at 20%, with the frozen prompt and hash unchanged. See
+`docs/100k-run-plan-draft.md` and `docs/100k-run-proposal-draft.json`. No 100k run
+or pre-run commit has occurred. OpenAI organization headroom still requires a live
+preflight check; project spend alone is not an org balance.
+
+
+### Offline pre-production clarification
+
+#### Confirmed rule-violation limitations (frozen prompt retained)
+
+The semantic audit counts confirmed pipeline rule violations separately from model
+disagreement. These are reviewed subsets, **not corpus accuracy estimates**:
+
+- **Golden, 50 records:** one clear severity violation: a pure feature request received
+  severity 3 (`b58dd6f0`), whereas the contract specifies severity 1 (line 43).
+  There are **zero confirmed topic/intent rule violations among the 21 field errors**
+  (13 topic + 8 intent): **0/21 = 0% confirmed**, **20/21 = 95.2% interpretation/judgment
+  disagreements**, and **1/21 = 4.8% conditional, translation-dependent intent violation**
+  (`ac6cd66d`). Do not count that conditional case as confirmed, or silently combine
+  it with judgment calls. Some interpretation disagreements favor the pipeline under
+  the literal contract; disagreement with golden alone is not a pipeline violation.
+- **Development, 975 unique verified texts screened:** manual review confirmed 13 core-Jev
+  cases of generic criticism assigned severity 1 instead of 2 (contract lines 39/44).
+  **12 remain violations in final records; fallback corrected one.** Human verdict 3
+  independently confirms one of these cases; it is not an additional count.
+- **Development Premium mention versus actual defect:** one independently human-confirmed
+  topic violation (`a7b7539a`, review 6): billing rather than playback for music that would
+  not play. The error remains in both core and final output (contract line 36).
+  Zero confirmed golden cases of this same specific error; golden billing disagreements
+  are interpretation disputes. No additional “confirmed” counts are inferred from the
+  broad lexical screens for ads, catalog/lyrics, mixed issues or non-English text.
+
+See [the full golden audit](docs/golden-error-analysis.md),
+[counted limitations](docs/confirmed-rule-limitations.json), and
+[development evidence](docs/development-pattern-evidence.json). Golden labels were not
+revised, and these findings did not tune prompts, thresholds or routing. The owner
+accepted the frozen prompt and hash. A hypothetical prompt improvement remains untested.
+
+Caching means the pipeline's exact-text **result cache** under an unchanged label_config, not provider prompt caching. OpenAI reports 0% prompt-cache hits; no prompt-cache savings are claimed or implemented. Saved Jev stages are reused on resume.
+
+Fallback and verifier both use Luna: blinded verification hides Jev output but remains correlated with fallback. Verifier-agreement gains partly reflect self-agreement; the 20 owner verdicts are independent human evidence, not a random accuracy estimate. The owner approved a 20% fallback cap for 100k pending the prompt decision; the offline recommendation keeps the frozen prompt. Current fallback control is 20%; the paid production invocation still awaits yes. No paid start is authorized.
+
+Updated user-reported preflight: OpenAI October spend $0.18 / $20 org limit; prepaid balance $9.82 is the real ceiling before unposted charges. TypeSafe $10.41. Recheck remaining credits/limits before dispatch. See docs/offline-preproduction-gate.md and docs/100k-run-plan-draft.md.
+
+
+Production setup is prepared offline. Use [the exact PowerShell operator guide](docs/100k-production-commands.md) and [the pinned plan](docs/100k-production-plan.json). The contract explicitly requires a short recording and both checkpoints (data/GRADING_CONTRACT.md:16–17). A graceful stop at about five minutes preserves Jev scores; final completed growth may occur much later after resume. Nothing paid starts before the owner approves the $7.28 shared invocation cap.

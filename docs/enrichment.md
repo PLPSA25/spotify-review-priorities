@@ -1,5 +1,15 @@
 # Phase 3 enrichment and recovery
 
+Current implementation update (offline pre-production gate): `scope-run` now has an
+eight-worker graceful stop-file wrapper for a prepared store. It drains admitted work,
+persists the shared invocation budget and health windows, and resumes only a clean
+voluntary pause. See `docs/offline-preproduction-gate.md`; historical Phase 3 notes
+below describe the earlier interface. Caching means our exact-text **result cache**
+and saved-stage reuse. OpenAI reports 0% provider prompt-cache hits; no savings from
+provider prompt caching are claimed or implemented. Fallback and blinded verifier
+both use Luna, so verifier-agreement gains partly reflect self-agreement; the owner's
+20 judgments supply independent human evidence.
+
 No real provider execution has been performed. Phase 4 must verify the keys, exact
 Jev version, returned Luna model and account limits with separately approved tiny calls.
 The 500-review milestone is urgent; Class 7's actual date is unknown.

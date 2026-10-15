@@ -1,0 +1,19 @@
+{
+  "workers": 8,
+  "cap_nanodollars": 1494586788,
+  "jev_pending_distinct_texts": 7890,
+  "saved_new_jev_results_reused": 79,
+  "luna_review_id_upper_bound": 1545,
+  "fallback_quota_original_tranche": 796,
+  "connection_max_attempts": 3,
+  "per_item_call_limit": 4,
+  "health_window": "Explicit operator reset on new approved invocation; >5% of last100 completed calls, minimum20. Old attempt had7/86=8.14%, and remains in audit history.",
+  "call_bound": 37733,
+  "cost": "Hard maximum is remaining invocation cap, including pessimistic charges and outstanding reservations. Larger retry envelope does not authorize larger spending. Budget admission remains latched/resumable.",
+  "scope": "Only remaining analysis_10000 enrichment. No verifier, golden evaluation, 100k, grouping or memo.",
+  "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "status": "approved by user; conditional on tests passing",
+  "connect_timeout_seconds": 15,
+  "read_timeout_seconds": 60,
+  "persistent_https": "per-worker/per-provider keep-alive, no hidden retries"
+}

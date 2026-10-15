@@ -27,7 +27,7 @@ def test_measurement_is_offline_and_bounded(tmp_path: Path, monkeypatch: pytest.
     monkeypatch.setattr("pipeline.jev_measure.keys_from_env", lambda _: {})
     plan = measurement_plan(Path("config.toml"), tmp_path)
     assert plan["maximum_calls"] == 1 and plan["automatic_retries"] == 0
-    assert plan["worst_case_nanodollars"] < 200000
+    assert plan["worst_case_nanodollars"] < 250000  # active v3 restores language/context judgments
     assert plan["synthetic_text"] == "Music will not play."
     with pytest.raises(ValueError, match="confirm-spend"):
         run_measurement(Path("config.toml"), tmp_path, tmp_path / "plan.json", False)

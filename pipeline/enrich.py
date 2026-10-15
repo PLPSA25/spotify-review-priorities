@@ -13,10 +13,12 @@ from typing import Any
 from pipeline.batching import enrich_batch
 from pipeline.calls import Calls
 from pipeline.classify import jev_payload, luna_payload
+from pipeline.deterministic import run_deterministic
+from pipeline.failure_policy import failure_window
 from pipeline.prepare import atomic_json
 from pipeline.providers import HTTPTransport, MockTransport, keys_from_env
 from pipeline.recovery import recover
-from pipeline.schema import canonical, configuration
+from pipeline.schema import canonical, configuration, record_schema
 from pipeline.spend import Ledger, fallback_quota, token_cost
 from pipeline.state import State
 
@@ -37,6 +39,9 @@ def write_jsonl(path: Path, values) -> None:
 
 def validate_settings(config: dict[str, Any]) -> None:
     models, controls = config["models"], config["controls"]
+    policy = config['enrichment'].get('needs_review_policy')
+    if policy is not None and (policy != 'persistent-context-reasons-v1' or config['enrichment'].get('luna_prompt') != 'luna-enrich-v2.txt'):
+        raise ValueError('Unsupported final reason policy/prompt combination')
     if models["jev"] != "jev-1.13.0" or models["luna"] != "gpt-6-luna":
         raise ValueError("Model is outside the approved Jev/Luna allowlist")
     if models["effort"] not in {"none", "low"}:
@@ -108,7 +113,7 @@ def run_enrichment(source: Path, output: Path, config_path: Path, manifest: Path
     full_name = json.loads(manifest.read_text(encoding="utf-8"))["assignment_scope"]["final_input"]
     if source.name == full_name:
         raise ValueError("Full-source enrichment needs Phase 6's saved 100k permutation; use development CSVs now")
-    state = State(output / "state.sqlite3", configuration(config, simulated))
+    state = State(output / "state.sqlite3", configuration(config, simulated), require_reasons=record_schema(config)=='record-v2')
     state.ingest(source, manifest)
     with state.connect() as db:
         phase = "resume" if db.execute("SELECT COUNT(*) FROM calls").fetchone()[0] else "initial"
@@ -141,6 +146,7 @@ def run_enrichment(source: Path, output: Path, config_path: Path, manifest: Path
     run_id = str(uuid.uuid4())
     calls = Calls(state, ledger, transport, config, run_id, phase, simulated)
     quota = fallback_quota(total, controls["fallback_fraction"])
+    state.failure_window = failure_window(config)
     calls.fallback_scope = str(state.path.resolve()) + ":" + state.label_config
 
     def worker() -> int:
@@ -166,10 +172,15 @@ def run_enrichment(source: Path, output: Path, config_path: Path, manifest: Path
         return completed
 
     try:
-        with ThreadPoolExecutor(max_workers=controls["max_workers"]) as pool:
-            results = [pool.submit(worker) for _ in range(controls["max_workers"])]
-            for result in results:
-                result.result()
+        if config['enrichment'].get('fallback_selection_policy') == 'lowest-confidence-v1':
+            selection = run_deterministic(state,calls,config,stop_after)
+            if selection is not None:
+                atomic_json(output/'routing-selection.json',selection)
+        else:
+            with ThreadPoolExecutor(max_workers=controls["max_workers"]) as pool:
+                results = [pool.submit(worker) for _ in range(controls["max_workers"])]
+                for result in results:
+                    result.result()
     finally:
         if stop_after is not None and phase == "initial":
             state.checkpoint(output / "checkpoint_before.json")

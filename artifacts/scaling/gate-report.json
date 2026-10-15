@@ -1,0 +1,571 @@
+{
+  "frozen_label_config": "c79a70421de9caad53c9932393f0eb6420f6d80e249cb9097dd5af3eb9d8eba9",
+  "measured_slices": [
+    {
+      "workers": 1,
+      "rows": 1000,
+      "counts": {
+        "completed": 1000
+      },
+      "seconds": 303.4097049999982,
+      "completed_rows_per_second": 3.2958734790635846,
+      "api_cost_usd": 0.057228236,
+      "cost_by_stage_usd": {
+        "jev": 0.048580686,
+        "fallback": 0.004923475,
+        "extract": 0.003724075
+      },
+      "attempts": 1011,
+      "failed_attempts": 0,
+      "warm_seconds": 0.0011062000012316275,
+      "warm_new_calls": 0,
+      "fallback_distinct_ids": 100,
+      "extraction_only_distinct_ids": 74,
+      "v3": {
+        "rows_with_valid_jev": 1000,
+        "distinct_texts_with_valid_jev": 1000,
+        "jev_attempts": 1000,
+        "jev_calls_with_reported_input_usage": 1000,
+        "jev_mean_input_tokens_per_reported_call": 1156.683,
+        "jev_mean_input_tokens_per_successful_distinct_text_including_attempts": 1156.683,
+        "jev_total_reported_input_tokens": 1156683,
+        "triage_flagged": 676,
+        "triage_flag_rate": 0.676,
+        "core_confidence_flagged": 417,
+        "nonenglish_flagged": 72,
+        "language_not_understood": 32,
+        "missing_context_flagged": 458,
+        "auxiliary_only_flagged": 259,
+        "language_evidence_available": true,
+        "confidence_distribution_by_row": {
+          "n": 1000,
+          "mean": 0.63897,
+          "min": 0.0,
+          "p10": 0.39,
+          "p25": 0.49,
+          "median": 0.64,
+          "p75": 0.79,
+          "p90": 0.92,
+          "max": 1.0
+        },
+        "confidence_distribution_by_distinct_text": {
+          "n": 1000,
+          "mean": 0.63897,
+          "min": 0.0,
+          "p10": 0.39,
+          "p25": 0.49,
+          "median": 0.64,
+          "p75": 0.79,
+          "p90": 0.92,
+          "max": 1.0
+        },
+        "per_field_confidence": {
+          "topic": {
+            "n": 1000,
+            "mean": 0.84459,
+            "min": 0.26,
+            "p10": 0.52,
+            "p25": 0.74,
+            "median": 0.94,
+            "p75": 0.99,
+            "p90": 1.0,
+            "max": 1.0
+          },
+          "intent": {
+            "n": 1000,
+            "mean": 0.8893,
+            "min": 0.16,
+            "p10": 0.59,
+            "p25": 0.86,
+            "median": 0.99,
+            "p75": 1.0,
+            "p90": 1.0,
+            "max": 1.0
+          },
+          "severity": {
+            "n": 1000,
+            "mean": 0.8199,
+            "min": 0.21,
+            "p10": 0.4880000000000001,
+            "p25": 0.66,
+            "median": 0.92,
+            "p75": 1.0,
+            "p90": 1.0,
+            "max": 1.0
+          },
+          "sentiment": {
+            "n": 1000,
+            "mean": 0.81525,
+            "min": 0.0,
+            "p10": 0.61,
+            "p25": 0.71,
+            "median": 0.86,
+            "p75": 0.95,
+            "p90": 0.98,
+            "max": 1.0
+          }
+        },
+        "confidence_histogram": {
+          "[0,.2)": 6,
+          "[.2,.4)": 104,
+          "[.4,.6)": 307,
+          "[.6,.8)": 344,
+          "[.8,1]": 239
+        },
+        "final_flagged": 617,
+        "final_flag_denominator": 1000,
+        "nonenglish_final_unflagged": 0
+      }
+    },
+    {
+      "workers": 2,
+      "rows": 1000,
+      "counts": {
+        "completed": 1000
+      },
+      "seconds": 155.9970510000021,
+      "completed_rows_per_second": 6.410377591048093,
+      "api_cost_usd": 0.058728234,
+      "cost_by_stage_usd": {
+        "jev": 0.048731634,
+        "fallback": 0.0055095,
+        "extract": 0.0044871
+      },
+      "attempts": 1014,
+      "failed_attempts": 2,
+      "warm_seconds": 0.0023029000003589317,
+      "warm_new_calls": 0,
+      "fallback_distinct_ids": 100,
+      "extraction_only_distinct_ids": 87,
+      "v3": {
+        "rows_with_valid_jev": 1000,
+        "distinct_texts_with_valid_jev": 1000,
+        "jev_attempts": 1002,
+        "jev_calls_with_reported_input_usage": 1002,
+        "jev_mean_input_tokens_per_reported_call": 1157.9610778443114,
+        "jev_mean_input_tokens_per_successful_distinct_text_including_attempts": 1160.277,
+        "jev_total_reported_input_tokens": 1160277,
+        "triage_flagged": 646,
+        "triage_flag_rate": 0.646,
+        "core_confidence_flagged": 411,
+        "nonenglish_flagged": 84,
+        "language_not_understood": 34,
+        "missing_context_flagged": 429,
+        "auxiliary_only_flagged": 235,
+        "language_evidence_available": true,
+        "confidence_distribution_by_row": {
+          "n": 1000,
+          "mean": 0.64047,
+          "min": 0.02,
+          "p10": 0.39,
+          "p25": 0.4975,
+          "median": 0.64,
+          "p75": 0.79,
+          "p90": 0.93,
+          "max": 0.99
+        },
+        "confidence_distribution_by_distinct_text": {
+          "n": 1000,
+          "mean": 0.64047,
+          "min": 0.02,
+          "p10": 0.39,
+          "p25": 0.4975,
+          "median": 0.64,
+          "p75": 0.79,
+          "p90": 0.93,
+          "max": 0.99
+        },
+        "per_field_confidence": {
+          "topic": {
+            "n": 1000,
+            "mean": 0.85978,
+            "min": 0.26,
+            "p10": 0.53,
+            "p25": 0.78,
+            "median": 0.95,
+            "p75": 0.99,
+            "p90": 1.0,
+            "max": 1.0
+          },
+          "intent": {
+            "n": 1000,
+            "mean": 0.89844,
+            "min": 0.25,
+            "p10": 0.6190000000000001,
+            "p25": 0.8674999999999999,
+            "median": 0.99,
+            "p75": 1.0,
+            "p90": 1.0,
+            "max": 1.0
+          },
+          "severity": {
+            "n": 1000,
+            "mean": 0.80004,
+            "min": 0.14,
+            "p10": 0.44,
+            "p25": 0.62,
+            "median": 0.89,
+            "p75": 1.0,
+            "p90": 1.0,
+            "max": 1.0
+          },
+          "sentiment": {
+            "n": 1000,
+            "mean": 0.80985,
+            "min": 0.02,
+            "p10": 0.61,
+            "p25": 0.7,
+            "median": 0.85,
+            "p75": 0.95,
+            "p90": 0.98,
+            "max": 1.0
+          }
+        },
+        "confidence_histogram": {
+          "[0,.2)": 13,
+          "[.2,.4)": 97,
+          "[.4,.6)": 301,
+          "[.6,.8)": 342,
+          "[.8,1]": 247
+        },
+        "final_flagged": 578,
+        "final_flag_denominator": 1000,
+        "nonenglish_final_unflagged": 0
+      }
+    },
+    {
+      "workers": 8,
+      "rows": 1000,
+      "counts": {
+        "completed": 1000
+      },
+      "seconds": 82.74713760000304,
+      "completed_rows_per_second": 12.085010176834965,
+      "api_cost_usd": 0.058545713,
+      "cost_by_stage_usd": {
+        "jev": 0.048718488,
+        "fallback": 0.0050324,
+        "extract": 0.004794825
+      },
+      "attempts": 1016,
+      "failed_attempts": 3,
+      "warm_seconds": 0.0017133000001194887,
+      "warm_new_calls": 0,
+      "fallback_distinct_ids": 100,
+      "extraction_only_distinct_ids": 78,
+      "v3": {
+        "rows_with_valid_jev": 1000,
+        "distinct_texts_with_valid_jev": 1000,
+        "jev_attempts": 1003,
+        "jev_calls_with_reported_input_usage": 1003,
+        "jev_mean_input_tokens_per_reported_call": 1156.494516450648,
+        "jev_mean_input_tokens_per_successful_distinct_text_including_attempts": 1159.964,
+        "jev_total_reported_input_tokens": 1159964,
+        "triage_flagged": 692,
+        "triage_flag_rate": 0.692,
+        "core_confidence_flagged": 414,
+        "nonenglish_flagged": 109,
+        "language_not_understood": 44,
+        "missing_context_flagged": 482,
+        "auxiliary_only_flagged": 278,
+        "language_evidence_available": true,
+        "confidence_distribution_by_row": {
+          "n": 1000,
+          "mean": 0.63672,
+          "min": 0.0,
+          "p10": 0.3990000000000001,
+          "p25": 0.5,
+          "median": 0.64,
+          "p75": 0.7825,
+          "p90": 0.92,
+          "max": 1.0
+        },
+        "confidence_distribution_by_distinct_text": {
+          "n": 1000,
+          "mean": 0.63672,
+          "min": 0.0,
+          "p10": 0.3990000000000001,
+          "p25": 0.5,
+          "median": 0.64,
+          "p75": 0.7825,
+          "p90": 0.92,
+          "max": 1.0
+        },
+        "per_field_confidence": {
+          "topic": {
+            "n": 1000,
+            "mean": 0.85766,
+            "min": 0.15,
+            "p10": 0.55,
+            "p25": 0.77,
+            "median": 0.95,
+            "p75": 0.99,
+            "p90": 1.0,
+            "max": 1.0
+          },
+          "intent": {
+            "n": 1000,
+            "mean": 0.8859,
+            "min": 0.16,
+            "p10": 0.6,
+            "p25": 0.85,
+            "median": 0.97,
+            "p75": 1.0,
+            "p90": 1.0,
+            "max": 1.0
+          },
+          "severity": {
+            "n": 1000,
+            "mean": 0.80795,
+            "min": 0.16,
+            "p10": 0.45,
+            "p25": 0.64,
+            "median": 0.9,
+            "p75": 1.0,
+            "p90": 1.0,
+            "max": 1.0
+          },
+          "sentiment": {
+            "n": 1000,
+            "mean": 0.80973,
+            "min": 0.0,
+            "p10": 0.61,
+            "p25": 0.7,
+            "median": 0.84,
+            "p75": 0.95,
+            "p90": 0.98,
+            "max": 1.0
+          }
+        },
+        "confidence_histogram": {
+          "[0,.2)": 14,
+          "[.2,.4)": 86,
+          "[.4,.6)": 314,
+          "[.6,.8)": 352,
+          "[.8,1]": 234
+        },
+        "final_flagged": 628,
+        "final_flag_denominator": 1000,
+        "nonenglish_final_unflagged": 0
+      }
+    }
+  ],
+  "v2_checkpoint": {
+    "rows_with_valid_jev": 500,
+    "distinct_texts_with_valid_jev": 479,
+    "jev_attempts": 479,
+    "jev_calls_with_reported_input_usage": 479,
+    "jev_mean_input_tokens_per_reported_call": 1018.5365344467641,
+    "jev_mean_input_tokens_per_successful_distinct_text_including_attempts": 1018.5365344467641,
+    "jev_total_reported_input_tokens": 487879,
+    "triage_flagged": 181,
+    "triage_flag_rate": 0.362,
+    "core_confidence_flagged": 181,
+    "nonenglish_flagged": 0,
+    "language_not_understood": 0,
+    "missing_context_flagged": 0,
+    "auxiliary_only_flagged": 0,
+    "language_evidence_available": false,
+    "confidence_distribution_by_row": {
+      "n": 500,
+      "mean": 0.6699,
+      "min": 0.0,
+      "p10": 0.41,
+      "p25": 0.52,
+      "median": 0.68,
+      "p75": 0.85,
+      "p90": 0.9310000000000003,
+      "max": 0.99
+    },
+    "confidence_distribution_by_distinct_text": {
+      "n": 479,
+      "mean": 0.6650730688935281,
+      "min": 0.0,
+      "p10": 0.40800000000000003,
+      "p25": 0.52,
+      "median": 0.67,
+      "p75": 0.85,
+      "p90": 0.94,
+      "max": 0.99
+    },
+    "per_field_confidence": {
+      "topic": {
+        "n": 479,
+        "mean": 0.8636951983298539,
+        "min": 0.28,
+        "p10": 0.5660000000000001,
+        "p25": 0.775,
+        "median": 0.95,
+        "p75": 1.0,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "intent": {
+        "n": 479,
+        "mean": 0.9209185803757829,
+        "min": 0.24,
+        "p10": 0.75,
+        "p25": 0.91,
+        "median": 0.99,
+        "p75": 1.0,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "severity": {
+        "n": 479,
+        "mean": 0.8181419624217119,
+        "min": 0.14,
+        "p10": 0.45,
+        "p25": 0.65,
+        "median": 0.94,
+        "p75": 1.0,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "sentiment": {
+        "n": 479,
+        "mean": 0.8224008350730689,
+        "min": 0.0,
+        "p10": 0.62,
+        "p25": 0.72,
+        "median": 0.87,
+        "p75": 0.96,
+        "p90": 0.98,
+        "max": 1.0
+      }
+    },
+    "confidence_histogram": {
+      "[0,.2)": 5,
+      "[.2,.4)": 37,
+      "[.4,.6)": 137,
+      "[.6,.8)": 156,
+      "[.8,1]": 144
+    },
+    "final_flagged": 264,
+    "final_flag_denominator": 500,
+    "nonenglish_final_unflagged": 0
+  },
+  "v3_slices": {
+    "rows_with_valid_jev": 3000,
+    "distinct_texts_with_valid_jev": 3000,
+    "jev_attempts": 3005,
+    "jev_calls_with_reported_input_usage": 3005,
+    "jev_mean_input_tokens_per_reported_call": 1157.0462562396006,
+    "jev_mean_input_tokens_per_successful_distinct_text_including_attempts": 1158.9746666666667,
+    "jev_total_reported_input_tokens": 3476924,
+    "triage_flagged": 2014,
+    "triage_flag_rate": 0.6713333333333333,
+    "core_confidence_flagged": 1242,
+    "nonenglish_flagged": 265,
+    "language_not_understood": 110,
+    "missing_context_flagged": 1369,
+    "auxiliary_only_flagged": 772,
+    "language_evidence_available": true,
+    "confidence_distribution_by_row": {
+      "n": 3000,
+      "mean": 0.63872,
+      "min": 0.0,
+      "p10": 0.39,
+      "p25": 0.5,
+      "median": 0.64,
+      "p75": 0.79,
+      "p90": 0.92,
+      "max": 1.0
+    },
+    "confidence_distribution_by_distinct_text": {
+      "n": 3000,
+      "mean": 0.63872,
+      "min": 0.0,
+      "p10": 0.39,
+      "p25": 0.5,
+      "median": 0.64,
+      "p75": 0.79,
+      "p90": 0.92,
+      "max": 1.0
+    },
+    "per_field_confidence": {
+      "topic": {
+        "n": 3000,
+        "mean": 0.85401,
+        "min": 0.15,
+        "p10": 0.54,
+        "p25": 0.76,
+        "median": 0.95,
+        "p75": 0.99,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "intent": {
+        "n": 3000,
+        "mean": 0.8912133333333333,
+        "min": 0.16,
+        "p10": 0.6,
+        "p25": 0.86,
+        "median": 0.97,
+        "p75": 1.0,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "severity": {
+        "n": 3000,
+        "mean": 0.8092966666666667,
+        "min": 0.14,
+        "p10": 0.46,
+        "p25": 0.64,
+        "median": 0.91,
+        "p75": 1.0,
+        "p90": 1.0,
+        "max": 1.0
+      },
+      "sentiment": {
+        "n": 3000,
+        "mean": 0.8116099999999999,
+        "min": 0.0,
+        "p10": 0.61,
+        "p25": 0.71,
+        "median": 0.85,
+        "p75": 0.95,
+        "p90": 0.98,
+        "max": 1.0
+      }
+    },
+    "confidence_histogram": {
+      "[0,.2)": 33,
+      "[.2,.4)": 287,
+      "[.4,.6)": 922,
+      "[.6,.8)": 1038,
+      "[.8,1]": 720
+    },
+    "final_flagged": 1823,
+    "final_flag_denominator": 3000,
+    "nonenglish_final_unflagged": 0
+  },
+  "triage_flag_rate_change_percentage_points": 30.933333333333334,
+  "confidence_median_change": -0.030000000000000027,
+  "project_spend_usd": 0.239921461,
+  "project_reserved_usd": 0.0,
+  "projections": {
+    "scope_distinct_texts": 77913,
+    "measured_jev_input_tokens_per_text_including_attempts": 1158.9746666666667,
+    "jev_100k_scope_no_reuse_api_usd": 3.7925661145680007,
+    "old_v2_jev_100k_scope_api_usd": 3.333003954350731,
+    "scope_enrichment_no_reuse_api_base_usd": 4.531996194693,
+    "scope_enrichment_no_reuse_api_50pct_variable_allowance_usd": 6.797994292039499,
+    "slice_completed_texts_reusable_in_scope": 683,
+    "remaining_scope_texts_if_slices_reused": 77230,
+    "scope_incremental_enrichment_if_slices_reused_api_usd": 4.492267864363334,
+    "remaining_analysis_distinct_texts": 5448,
+    "scope_after_all_10k_same_hash_reuse_distinct_texts": 75918,
+    "project_base_api_usd": 5.071544168326,
+    "project_50pct_future_variable_allowance_api_usd": 7.486682796989,
+    "assumptions": "Observed v3 slice token/routing mix extrapolated. Three future 500-row verifier passes use historical cost including failures; two fixed group/memo runs use pilot succeeded-role overhead. Not worst-case guarantees."
+  },
+  "calibration_transfer_recommendation": "Run the proposed verifier transfer sample and repeat development diagnostics before remaining analysis_10000; do not change the frozen threshold based only on flag rates or unlabeled confidence distributions.",
+  "limitations": [
+    "V2 has no language/context answers; 36.2% is confidence-only triage, not final stored flags.",
+    "V2 checkpoint and v3 disjoint unique-text slices differ in input mix. Differences cannot establish a causal prompt effect.",
+    "Language counts are model-identified, not human-verified. No golden labels read.",
+    "Fresh saved-result cache on each slice; provider prompt caching uncontrolled. Measured usage categories retained in calls.",
+    "Current scope costs and time projections are estimates, refreshed from measured v3 usage, not a 100k execution."
+  ]
+}

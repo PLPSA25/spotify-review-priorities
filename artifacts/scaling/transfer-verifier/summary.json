@@ -1,0 +1,12 @@
+{
+  "simulated": false,
+  "label_config": "c79a70421de9caad53c9932393f0eb6420f6d80e249cb9097dd5af3eb9d8eba9",
+  "counts": {
+    "pending": 500
+  },
+  "ledger": {
+    "spent_nanodollars": 266722386,
+    "reserved_nanodollars": 0
+  },
+  "warning": "Not a grading export; pending work remains internal."
+}

@@ -1,0 +1,56 @@
+{
+  "label_config": "c79a70421de9caad53c9932393f0eb6420f6d80e249cb9097dd5af3eb9d8eba9",
+  "models": {
+    "jev": "jev-1.13.0",
+    "luna": "gpt-6-luna",
+    "effort": "none",
+    "service_tier": "default",
+    "allow_flex": false,
+    "allow_batch": false,
+    "flag_returned_model_change": true,
+    "output_token_cap": 4096
+  },
+  "enrichment": {
+    "jev_prompt": "jev-v3.json",
+    "confidence_scope": "classification-fields-v1",
+    "batch_size": 20,
+    "luna_input_token_bound": 24000,
+    "luna_output_tokens_per_review": 200,
+    "confidence_threshold": 0.6,
+    "probability_margin_threshold": 0.0,
+    "fallback_selection_policy": "lowest-confidence-v1",
+    "short_review_chars": 240,
+    "entity_terms": [
+      "Spotify",
+      "Premium",
+      "playlist",
+      "playlists",
+      "lyrics",
+      "downloads",
+      "offline",
+      "ads"
+    ]
+  },
+  "schema_version": "record-v1",
+  "extractor": "exact-v1",
+  "simulated": false,
+  "prompt_file_sha256": {
+    "jev-v3.json": "ef609985b443f04ac01cd9e1f1528948191be59d2411a0675ae1ab16f0657bb4",
+    "luna-enrich-v1.txt": "601c8cc6f8048a842ce8122b9e9fce06e459bcfd3e15a38a949e114c05554340"
+  },
+  "excluded_from_label_hash": [
+    "controls including workers/fallback cap",
+    "scope",
+    "rates",
+    "verification",
+    "pilot"
+  ],
+  "fallback_policy": "All Jev scores persisted; eligible exact texts ranked by minimum confidence, minimum Choice margin, exact-text SHA-256, canonical source ID. Persist selection and batch plan before Luna dispatch. Immutable extension tranches.",
+  "approved_calibration_source": "checkpoint_500 development comparisons against blinded model verifier; not human accuracy",
+  "confidence_scope": "Minimum topic/intent/severity/sentiment confidence; minimum topic/intent/severity Choice margin. Auxiliary language/context do not alter the calibrated confidence trigger.",
+  "auxiliary_flag_policy": "Every returned non-English/not-understood language result or missing_context >= 0.5 forces needs_review; missing auxiliary answers invalidate v3 output.",
+  "new_prompt_evidence": "v3 restores explicit language/missing-context judgments; unchanged v2 core questions. New prompt usage/quality not live-measured yet.",
+  "calibration_record_label_config": "b0cc1ce0b0a518f391490a61ac00a1e0c0f8181f6feb3c143a1f2890ea7e8318",
+  "calibration_evidence_sha256": "663906ae91ec6889dba0cdf32efdaebd01dbe216c670bed0b65e430c1235cf7b",
+  "golden_policy": "No golden labels read for calibration, routing, prompts or design."
+}

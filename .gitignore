@@ -31,3 +31,12 @@ artifacts/test-temp*/
 # Private notes (never commit)
 HANDOFF_NOTES.md
 evals/golden_50_human.backup.csv
+
+# Backups and local production inputs/runtime evidence
+*.bak
+*.backup
+*.backup.*
+*~
+artifacts/scope-100k/
+artifacts/scaling-proposal/*.csv
+artifacts/scaling/verifier-transfer-sample.csv

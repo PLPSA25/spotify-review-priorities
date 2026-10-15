@@ -1,0 +1,97 @@
+{
+  "new_valid_predictions": 18,
+  "conflicting_ids": [],
+  "evidence": [
+    {
+      "review_id": "c1726764-f0ce-4abc-ad9e-6cd143e1b2c7",
+      "request_id": "6b65dcbf-9f31-41e8-bffd-39220a56478a",
+      "output_message_index": 1
+    },
+    {
+      "review_id": "c1991299-2137-4121-afc3-552e0a87a2c2",
+      "request_id": "6b65dcbf-9f31-41e8-bffd-39220a56478a",
+      "output_message_index": 1
+    },
+    {
+      "review_id": "c1ab120a-f91f-4ee3-87f5-66f352e2d47f",
+      "request_id": "6b65dcbf-9f31-41e8-bffd-39220a56478a",
+      "output_message_index": 1
+    },
+    {
+      "review_id": "c1fe1a70-f5ec-4009-bad6-b75437ba1c0b",
+      "request_id": "6b65dcbf-9f31-41e8-bffd-39220a56478a",
+      "output_message_index": 1
+    },
+    {
+      "review_id": "c2738a4f-e57c-46bc-a4ad-8ec5a4b5d5cd",
+      "request_id": "6b65dcbf-9f31-41e8-bffd-39220a56478a",
+      "output_message_index": 1
+    },
+    {
+      "review_id": "c374ef2d-3676-4c5e-a0d2-02242a254f22",
+      "request_id": "6b65dcbf-9f31-41e8-bffd-39220a56478a",
+      "output_message_index": 1
+    },
+    {
+      "review_id": "c3a06276-8d6a-408c-8d8a-000873a2ac62",
+      "request_id": "6b65dcbf-9f31-41e8-bffd-39220a56478a",
+      "output_message_index": 1
+    },
+    {
+      "review_id": "c3fd591f-890c-4721-bd99-57c3600ae82c",
+      "request_id": "6b65dcbf-9f31-41e8-bffd-39220a56478a",
+      "output_message_index": 1
+    },
+    {
+      "review_id": "c55970e2-9223-4e83-92de-9b7e4aac0663",
+      "request_id": "6b65dcbf-9f31-41e8-bffd-39220a56478a",
+      "output_message_index": 1
+    },
+    {
+      "review_id": "c64af4d8-ac17-48fe-ae38-fd54b41b16b1",
+      "request_id": "6b65dcbf-9f31-41e8-bffd-39220a56478a",
+      "output_message_index": 1
+    },
+    {
+      "review_id": "c76dcf3a-f9fa-4173-8129-1d0cb9fcfe6a",
+      "request_id": "6b65dcbf-9f31-41e8-bffd-39220a56478a",
+      "output_message_index": 1
+    },
+    {
+      "review_id": "c7df9cb8-7bec-4036-a6a1-1353d2d705d8",
+      "request_id": "6b65dcbf-9f31-41e8-bffd-39220a56478a",
+      "output_message_index": 1
+    },
+    {
+      "review_id": "ca16e65d-d2ff-4453-a495-b8c422809330",
+      "request_id": "6b65dcbf-9f31-41e8-bffd-39220a56478a",
+      "output_message_index": 1
+    },
+    {
+      "review_id": "caa9bb7e-814c-4895-b872-10637419b9ba",
+      "request_id": "6b65dcbf-9f31-41e8-bffd-39220a56478a",
+      "output_message_index": 1
+    },
+    {
+      "review_id": "cc39673b-e332-4f1d-a6c6-ce378a715dcb",
+      "request_id": "6b65dcbf-9f31-41e8-bffd-39220a56478a",
+      "output_message_index": 1
+    },
+    {
+      "review_id": "cc646d29-b636-43e2-b980-bbbed306ba6b",
+      "request_id": "6b65dcbf-9f31-41e8-bffd-39220a56478a",
+      "output_message_index": 1
+    },
+    {
+      "review_id": "cc7b79ef-bf37-40fc-a02e-4917b86e422c",
+      "request_id": "6b65dcbf-9f31-41e8-bffd-39220a56478a",
+      "output_message_index": 1
+    },
+    {
+      "review_id": "cc915d09-97ce-4d74-a04e-77d8f2d00e85",
+      "request_id": "6b65dcbf-9f31-41e8-bffd-39220a56478a",
+      "output_message_index": 1
+    }
+  ],
+  "method": "Validate each output_text message independently; require identical candidates when multiple valid blocks exist. Original failed call events unchanged."
+}

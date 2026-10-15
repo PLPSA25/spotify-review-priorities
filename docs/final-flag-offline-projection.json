@@ -1,0 +1,24 @@
+{
+  "method": "Offline carry-forward proxy: retain historical final booleans, restore every stored Jev context flag, retain language and nonfallback confidence reasons. No new Luna-v2 outputs; missing context/uncertainty identified by that prompt is unmeasured. Not new-hash completed classifications.",
+  "rows": 3000,
+  "counts": {
+    "proxy_flagged": 1896,
+    "restored_missing_context_flags": 73,
+    "unattributed_flagged_fallback": 4,
+    "historical_flagged_fallback_without_reason_schema": 109,
+    "missing_context": 1369,
+    "low_confidence": 942,
+    "language_non_english": 155,
+    "language_not_understood": 110
+  },
+  "proxy_flag_rate": 0.632,
+  "known_reason_rates": {
+    "language_non_english": 0.051666666666666666,
+    "language_not_understood": 0.03666666666666667,
+    "missing_context": 0.4563333333333333,
+    "low_confidence": 0.314
+  },
+  "old_label_config": "c79a70421de9caad53c9932393f0eb6420f6d80e249cb9097dd5af3eb9d8eba9",
+  "new_label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "api_calls": 0
+}

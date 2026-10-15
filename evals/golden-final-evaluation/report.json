@@ -1,0 +1,1963 @@
+{
+  "agreement": {
+    "topic": {
+      "agree": 37,
+      "denominator": 50,
+      "agreement": 0.74
+    },
+    "intent": {
+      "agree": 42,
+      "denominator": 50,
+      "agreement": 0.84
+    },
+    "severity": {
+      "agree": 36,
+      "denominator": 50,
+      "agreement": 0.72
+    },
+    "sentiment_sign": {
+      "agree": 41,
+      "denominator": 50,
+      "agreement": 0.82
+    },
+    "needs_review": {
+      "agree": 23,
+      "denominator": 50,
+      "agreement": 0.46
+    },
+    "severity_within_one": {
+      "agree": 48,
+      "denominator": 50,
+      "agreement": 0.96
+    },
+    "severity_mae": {
+      "value": 0.34,
+      "denominator_available_predictions": 50
+    },
+    "sentiment_mae": {
+      "value": 0.1857,
+      "denominator_available_predictions": 50
+    },
+    "sentiment_within_025": {
+      "agree": 33,
+      "denominator": 50,
+      "agreement": 0.66
+    }
+  },
+  "confusion": {
+    "topic": {
+      "rows_human": [
+        "access",
+        "usability",
+        "playback",
+        "downloads",
+        "catalog",
+        "billing",
+        "support",
+        "other"
+      ],
+      "columns_prediction": [
+        "access",
+        "usability",
+        "playback",
+        "downloads",
+        "catalog",
+        "billing",
+        "support",
+        "other",
+        "<missing>"
+      ],
+      "counts": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          6,
+          2,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          4,
+          0,
+          0,
+          25,
+          0
+        ]
+      ]
+    },
+    "intent": {
+      "rows_human": [
+        "cancellation",
+        "complaint",
+        "request",
+        "praise",
+        "unclear"
+      ],
+      "columns_prediction": [
+        "cancellation",
+        "complaint",
+        "request",
+        "praise",
+        "unclear",
+        "<missing>"
+      ],
+      "counts": [
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          17,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          20,
+          0,
+          0
+        ],
+        [
+          0,
+          4,
+          1,
+          1,
+          4,
+          0
+        ]
+      ]
+    },
+    "severity": {
+      "rows_human": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "columns_prediction": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        "<missing>"
+      ],
+      "counts": [
+        [
+          26,
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          8,
+          6,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "sentiment_sign": {
+      "rows_human": [
+        "negative",
+        "neutral",
+        "positive"
+      ],
+      "columns_prediction": [
+        "negative",
+        "neutral",
+        "positive",
+        "<missing>"
+      ],
+      "counts": [
+        [
+          20,
+          0,
+          0,
+          0
+        ],
+        [
+          7,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          21,
+          0
+        ]
+      ]
+    },
+    "needs_review": {
+      "rows_human": [
+        false,
+        true
+      ],
+      "columns_prediction": [
+        false,
+        true,
+        "<missing>"
+      ],
+      "counts": [
+        [
+          17,
+          25,
+          0
+        ],
+        [
+          2,
+          6,
+          0
+        ]
+      ]
+    },
+    "severity_within_one": {
+      "rows_human": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "columns_prediction": [
+        "within_one",
+        "beyond_one",
+        "<missing>"
+      ],
+      "counts": [
+        [
+          27,
+          2,
+          0
+        ],
+        [
+          15,
+          0,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ],
+        [
+          4,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    }
+  },
+  "missing_predictions": 0,
+  "fallback_split_available": true,
+  "by_fallback": {
+    "luna_fallback": {
+      "agreement": {
+        "topic": {
+          "agree": 2,
+          "denominator": 4,
+          "agreement": 0.5
+        },
+        "intent": {
+          "agree": 2,
+          "denominator": 4,
+          "agreement": 0.5
+        },
+        "severity": {
+          "agree": 0,
+          "denominator": 4,
+          "agreement": 0.0
+        },
+        "sentiment_sign": {
+          "agree": 3,
+          "denominator": 4,
+          "agreement": 0.75
+        },
+        "needs_review": {
+          "agree": 3,
+          "denominator": 4,
+          "agreement": 0.75
+        },
+        "severity_within_one": {
+          "agree": 2,
+          "denominator": 4,
+          "agreement": 0.5
+        },
+        "severity_mae": {
+          "value": 1.75,
+          "denominator_available_predictions": 4
+        },
+        "sentiment_mae": {
+          "value": 0.30000000000000004,
+          "denominator_available_predictions": 4
+        },
+        "sentiment_within_025": {
+          "agree": 3,
+          "denominator": 4,
+          "agreement": 0.75
+        }
+      },
+      "confusion": {
+        "topic": {
+          "rows_human": [
+            "access",
+            "usability",
+            "playback",
+            "downloads",
+            "catalog",
+            "billing",
+            "support",
+            "other"
+          ],
+          "columns_prediction": [
+            "access",
+            "usability",
+            "playback",
+            "downloads",
+            "catalog",
+            "billing",
+            "support",
+            "other",
+            "<missing>"
+          ],
+          "counts": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "intent": {
+          "rows_human": [
+            "cancellation",
+            "complaint",
+            "request",
+            "praise",
+            "unclear"
+          ],
+          "columns_prediction": [
+            "cancellation",
+            "complaint",
+            "request",
+            "praise",
+            "unclear",
+            "<missing>"
+          ],
+          "counts": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              2,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "severity": {
+          "rows_human": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "columns_prediction": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            "<missing>"
+          ],
+          "counts": [
+            [
+              0,
+              0,
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "sentiment_sign": {
+          "rows_human": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "columns_prediction": [
+            "negative",
+            "neutral",
+            "positive",
+            "<missing>"
+          ],
+          "counts": [
+            [
+              2,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0
+            ]
+          ]
+        },
+        "needs_review": {
+          "rows_human": [
+            false,
+            true
+          ],
+          "columns_prediction": [
+            false,
+            true,
+            "<missing>"
+          ],
+          "counts": [
+            [
+              3,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ]
+        },
+        "severity_within_one": {
+          "rows_human": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "columns_prediction": [
+            "within_one",
+            "beyond_one",
+            "<missing>"
+          ],
+          "counts": [
+            [
+              0,
+              2,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      },
+      "missing_predictions": 0,
+      "n": 4
+    },
+    "no_luna_fallback": {
+      "agreement": {
+        "topic": {
+          "agree": 35,
+          "denominator": 46,
+          "agreement": 0.7608695652173914
+        },
+        "intent": {
+          "agree": 40,
+          "denominator": 46,
+          "agreement": 0.8695652173913043
+        },
+        "severity": {
+          "agree": 36,
+          "denominator": 46,
+          "agreement": 0.782608695652174
+        },
+        "sentiment_sign": {
+          "agree": 38,
+          "denominator": 46,
+          "agreement": 0.8260869565217391
+        },
+        "needs_review": {
+          "agree": 20,
+          "denominator": 46,
+          "agreement": 0.43478260869565216
+        },
+        "severity_within_one": {
+          "agree": 46,
+          "denominator": 46,
+          "agreement": 1.0
+        },
+        "severity_mae": {
+          "value": 0.21739130434782608,
+          "denominator_available_predictions": 46
+        },
+        "sentiment_mae": {
+          "value": 0.17576086956521736,
+          "denominator_available_predictions": 46
+        },
+        "sentiment_within_025": {
+          "agree": 30,
+          "denominator": 46,
+          "agreement": 0.6521739130434783
+        }
+      },
+      "confusion": {
+        "topic": {
+          "rows_human": [
+            "access",
+            "usability",
+            "playback",
+            "downloads",
+            "catalog",
+            "billing",
+            "support",
+            "other"
+          ],
+          "columns_prediction": [
+            "access",
+            "usability",
+            "playback",
+            "downloads",
+            "catalog",
+            "billing",
+            "support",
+            "other",
+            "<missing>"
+          ],
+          "counts": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              4,
+              2,
+              0,
+              1,
+              1,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              2,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              2,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              3,
+              0,
+              0,
+              25,
+              0
+            ]
+          ]
+        },
+        "intent": {
+          "rows_human": [
+            "cancellation",
+            "complaint",
+            "request",
+            "praise",
+            "unclear"
+          ],
+          "columns_prediction": [
+            "cancellation",
+            "complaint",
+            "request",
+            "praise",
+            "unclear",
+            "<missing>"
+          ],
+          "counts": [
+            [
+              1,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              15,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              3,
+              1,
+              1,
+              4,
+              0
+            ]
+          ]
+        },
+        "severity": {
+          "rows_human": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "columns_prediction": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            "<missing>"
+          ],
+          "counts": [
+            [
+              26,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              8,
+              4,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              3,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "sentiment_sign": {
+          "rows_human": [
+            "negative",
+            "neutral",
+            "positive"
+          ],
+          "columns_prediction": [
+            "negative",
+            "neutral",
+            "positive",
+            "<missing>"
+          ],
+          "counts": [
+            [
+              18,
+              0,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              2,
+              0
+            ],
+            [
+              0,
+              0,
+              20,
+              0
+            ]
+          ]
+        },
+        "needs_review": {
+          "rows_human": [
+            false,
+            true
+          ],
+          "columns_prediction": [
+            false,
+            true,
+            "<missing>"
+          ],
+          "counts": [
+            [
+              14,
+              25,
+              0
+            ],
+            [
+              1,
+              6,
+              0
+            ]
+          ]
+        },
+        "severity_within_one": {
+          "rows_human": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "columns_prediction": [
+            "within_one",
+            "beyond_one",
+            "<missing>"
+          ],
+          "counts": [
+            [
+              27,
+              0,
+              0
+            ],
+            [
+              13,
+              0,
+              0
+            ],
+            [
+              2,
+              0,
+              0
+            ],
+            [
+              4,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      },
+      "missing_predictions": 0,
+      "n": 46
+    }
+  },
+  "fallback_group_definition": "Actual independent classification-fallback call ancestry by exact-text work key, including inherited cached results. Extraction-only Luna calls are not classification fallback. Missing predictions remain in their routed group denominator.",
+  "fallback_caution": "Small n, especially fallback; nonrandom confidence-based routing and cache reuse. Group differences are descriptive, not causal fallback benefit. No routing recommendation uses golden results.",
+  "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "entities_evaluated": false,
+  "prediction_sha256": "16ffbb61ccd77c97822efde595a0c4be8ab33cf3de4c07929e58eae93dbae0f1",
+  "human_labels_sha256": "05419228ffc85ff3f9508af492f473e44cc97f58e29c0ac533232ac01a07df22",
+  "model_calls": 0,
+  "disagreements": [
+    {
+      "review_id": "292ce26a-815d-4bce-a3b6-93cb6c9e7e2c",
+      "disagreeing_fields": [
+        "topic",
+        "intent",
+        "severity",
+        "needs_review"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": -1.0,
+        "needs_review": true
+      },
+      "prediction": {
+        "topic": "catalog",
+        "intent": "complaint",
+        "severity": 3,
+        "sentiment": -0.85,
+        "needs_review": false
+      }
+    },
+    {
+      "review_id": "991b6b3a-f511-458a-a5b7-234f78048fb5",
+      "disagreeing_fields": [
+        "topic",
+        "severity",
+        "sentiment_sign"
+      ],
+      "human": {
+        "topic": "billing",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": 0.0,
+        "needs_review": true
+      },
+      "prediction": {
+        "topic": "usability",
+        "intent": "complaint",
+        "severity": 3,
+        "sentiment": -0.32499999999999996,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "599a0d41-989a-40ef-8ed2-e92db76eea46",
+      "disagreeing_fields": [
+        "needs_review"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.97,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "0c6ca545-3f89-4da6-b3db-1a352371fb6e",
+      "disagreeing_fields": [
+        "needs_review"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": -1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": -0.995,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "111f9048-f7bd-4be0-813e-76b8fc49f73f",
+      "disagreeing_fields": [
+        "needs_review"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.8999999999999999,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "b567f70c-edba-4922-ac2a-e945e5eb3472",
+      "disagreeing_fields": [
+        "needs_review"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.7350000000000001,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "b5ee7834-a0eb-4c15-9c7b-935831021922",
+      "disagreeing_fields": [
+        "topic",
+        "needs_review"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "catalog",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.835,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "1fc8b08f-7d6a-472f-b317-8ceb28d00f22",
+      "disagreeing_fields": [
+        "topic",
+        "intent",
+        "needs_review",
+        "sentiment_sign"
+      ],
+      "human": {
+        "topic": "billing",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": 0.0,
+        "needs_review": true
+      },
+      "prediction": {
+        "topic": "usability",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.655,
+        "needs_review": false
+      }
+    },
+    {
+      "review_id": "947821dc-b356-45dc-a0bc-1903728fad40",
+      "disagreeing_fields": [
+        "intent",
+        "sentiment_sign"
+      ],
+      "human": {
+        "topic": "playback",
+        "intent": "request",
+        "severity": 3,
+        "sentiment": 0.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "playback",
+        "intent": "complaint",
+        "severity": 3,
+        "sentiment": -0.125,
+        "needs_review": false
+      }
+    },
+    {
+      "review_id": "723f07de-9881-4049-8680-1a9e25652914",
+      "disagreeing_fields": [
+        "topic",
+        "severity"
+      ],
+      "human": {
+        "topic": "support",
+        "intent": "complaint",
+        "severity": 1,
+        "sentiment": 1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "playback",
+        "intent": "complaint",
+        "severity": 4,
+        "sentiment": 0.1,
+        "needs_review": false
+      }
+    },
+    {
+      "review_id": "47428620-ec21-424d-a515-0b0b0012a5cf",
+      "disagreeing_fields": [
+        "needs_review"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": -1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": -0.645,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "fc344263-308d-48a1-9715-c380d063b6de",
+      "disagreeing_fields": [
+        "needs_review"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.47,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "6112667b-3d71-475c-b1a4-159b87f73d2b",
+      "disagreeing_fields": [
+        "needs_review"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.73,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "ac6cd66d-a9d2-42a4-afb8-2f84beff7fd1",
+      "disagreeing_fields": [
+        "topic",
+        "intent",
+        "sentiment_sign"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": 0.0,
+        "needs_review": true
+      },
+      "prediction": {
+        "topic": "catalog",
+        "intent": "request",
+        "severity": 1,
+        "sentiment": -0.025000000000000022,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "44129679-31a0-4108-9314-086a3456f6ae",
+      "disagreeing_fields": [
+        "sentiment_sign"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": 0.0,
+        "needs_review": true
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": 0.15999999999999992,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "46842184-32f8-4088-ac15-2a700a7e94ed",
+      "disagreeing_fields": [
+        "topic",
+        "intent",
+        "sentiment_sign"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": 0.0,
+        "needs_review": true
+      },
+      "prediction": {
+        "topic": "catalog",
+        "intent": "complaint",
+        "severity": 1,
+        "sentiment": -0.30000000000000004,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "657f1b77-0183-4b06-bf48-5e6d9ab08f9a",
+      "disagreeing_fields": [
+        "needs_review"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": -1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": -0.96,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "5de7f95b-ccad-41b2-9f63-a13f7c1d9f09",
+      "disagreeing_fields": [
+        "severity",
+        "needs_review"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 2,
+        "sentiment": -1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": -0.94,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "47f1406d-4918-4d60-9647-5ca8e610caca",
+      "disagreeing_fields": [
+        "topic",
+        "severity"
+      ],
+      "human": {
+        "topic": "usability",
+        "intent": "complaint",
+        "severity": 3,
+        "sentiment": -1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "playback",
+        "intent": "complaint",
+        "severity": 4,
+        "sentiment": -0.97,
+        "needs_review": false
+      }
+    },
+    {
+      "review_id": "82780cbe-6435-4efb-84f6-8e5fa47ffc3a",
+      "disagreeing_fields": [
+        "needs_review"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.99,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "36609c5c-fe48-4459-86b8-cc78fd3c77cd",
+      "disagreeing_fields": [
+        "sentiment_sign"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": 0.0,
+        "needs_review": true
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": -0.06999999999999995,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "f4c8146a-d5c8-4168-b00e-21af666afc6a",
+      "disagreeing_fields": [
+        "needs_review"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.845,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "3ddb3f4e-f7b9-430b-b335-eadc6d321f46",
+      "disagreeing_fields": [
+        "severity",
+        "needs_review"
+      ],
+      "human": {
+        "topic": "usability",
+        "intent": "cancellation",
+        "severity": 2,
+        "sentiment": -1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "usability",
+        "intent": "cancellation",
+        "severity": 3,
+        "sentiment": -0.985,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "16d640e9-b281-4746-9562-c7dbcf7126b6",
+      "disagreeing_fields": [
+        "severity"
+      ],
+      "human": {
+        "topic": "billing",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": -0.5,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "billing",
+        "intent": "complaint",
+        "severity": 3,
+        "sentiment": -0.5349999999999999,
+        "needs_review": false
+      }
+    },
+    {
+      "review_id": "8cc4fad4-26ec-47b7-96e8-49c7da714eca",
+      "disagreeing_fields": [
+        "intent",
+        "severity",
+        "needs_review"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": -1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": -0.7050000000000001,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "46c0b49f-83a1-427e-8f0b-cef62e3c94b5",
+      "disagreeing_fields": [
+        "severity"
+      ],
+      "human": {
+        "topic": "usability",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": -1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "usability",
+        "intent": "complaint",
+        "severity": 3,
+        "sentiment": -0.95,
+        "needs_review": false
+      }
+    },
+    {
+      "review_id": "283b5843-a992-464f-b1dc-9dc7281ff390",
+      "disagreeing_fields": [
+        "needs_review",
+        "sentiment_sign"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": 0.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": -0.33999999999999997,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "1d15724a-98ff-400a-8083-0d9afc801098",
+      "disagreeing_fields": [
+        "needs_review"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.4950000000000001,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "2aa566c6-b98d-4513-b900-83702a8db8eb",
+      "disagreeing_fields": [
+        "topic"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "usability",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.54,
+        "needs_review": false
+      }
+    },
+    {
+      "review_id": "8c0546b0-ce43-4a36-9d33-9f979e98d522",
+      "disagreeing_fields": [
+        "topic",
+        "severity",
+        "needs_review"
+      ],
+      "human": {
+        "topic": "usability",
+        "intent": "complaint",
+        "severity": 4,
+        "sentiment": -1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "catalog",
+        "intent": "complaint",
+        "severity": 3,
+        "sentiment": -0.945,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "a972945c-6601-4108-882a-afe986866a7b",
+      "disagreeing_fields": [
+        "needs_review"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.98,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "8fd3dd72-5535-40f6-8779-1bd60892131e",
+      "disagreeing_fields": [
+        "needs_review"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.4950000000000001,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "b58dd6f0-ad88-4319-b6db-58afb60c37c1",
+      "disagreeing_fields": [
+        "intent",
+        "severity",
+        "sentiment_sign"
+      ],
+      "human": {
+        "topic": "usability",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": 0.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "usability",
+        "intent": "request",
+        "severity": 3,
+        "sentiment": -0.1,
+        "needs_review": false
+      }
+    },
+    {
+      "review_id": "1a41c7e1-a655-4c63-b4db-c22bdff18003",
+      "disagreeing_fields": [
+        "intent",
+        "needs_review"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 2,
+        "sentiment": -1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": -0.995,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "dceb14e7-2df0-422f-bb2b-73d7c373159a",
+      "disagreeing_fields": [
+        "topic",
+        "severity",
+        "needs_review"
+      ],
+      "human": {
+        "topic": "usability",
+        "intent": "complaint",
+        "severity": 4,
+        "sentiment": -1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "playback",
+        "intent": "complaint",
+        "severity": 3,
+        "sentiment": -0.96,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "ac4e860a-c042-49cc-90f3-189591c336ac",
+      "disagreeing_fields": [
+        "severity",
+        "needs_review"
+      ],
+      "human": {
+        "topic": "downloads",
+        "intent": "complaint",
+        "severity": 4,
+        "sentiment": -1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "downloads",
+        "intent": "complaint",
+        "severity": 3,
+        "sentiment": -0.5700000000000001,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "d2f3874f-d15d-4a2f-bb97-4f1213defa46",
+      "disagreeing_fields": [
+        "topic",
+        "severity",
+        "needs_review"
+      ],
+      "human": {
+        "topic": "usability",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": -1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "billing",
+        "intent": "complaint",
+        "severity": 3,
+        "sentiment": -0.915,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "99b93e31-9f15-4daa-88ac-349ab0419c48",
+      "disagreeing_fields": [
+        "topic",
+        "needs_review"
+      ],
+      "human": {
+        "topic": "usability",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": -1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": -0.895,
+        "needs_review": true
+      }
+    },
+    {
+      "review_id": "083811c7-d469-499b-9bef-5b9fb096653d",
+      "disagreeing_fields": [
+        "needs_review"
+      ],
+      "human": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 1.0,
+        "needs_review": false
+      },
+      "prediction": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.9850000000000001,
+        "needs_review": true
+      }
+    }
+  ],
+  "entities_exclusion": "Entities were not hand-labeled; empty by design. Excluded from all golden metrics.",
+  "limitation": "50 owner-labeled IDs; model agreement is not a guarantee on the corpus. Four labels revised after AI-assisted contract check, final decisions by owner. Golden results never tune prompts, thresholds or routing.",
+  "quote_support": "Exact-substring validity is checked by enrichment; semantic quote support is not inferred from substring validity or equality with a human quote."
+}

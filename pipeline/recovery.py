@@ -61,7 +61,8 @@ def recover(state: State, config: dict[str, Any], ledger: Ledger) -> dict[str, i
                         raise ValueError("Luna recovery lacks saved Jev labels")
                     rid = item["source"]["review_id"]
                     batch = parse_luna_batch(event["response"], {rid: item["source"]},
-                                            {rid: labels}, stage == "extract", state.label_config)
+                                            {rid: labels}, stage == "extract", state.label_config,
+                                            require_reasons=config['enrichment'].get('needs_review_policy')=='persistent-context-reasons-v1')
                     if rid not in batch["valid"]:
                         event.setdefault("invalid_review_ids", []).append(rid)
                         state.save_call(event)

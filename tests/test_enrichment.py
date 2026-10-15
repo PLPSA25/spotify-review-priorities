@@ -12,6 +12,7 @@ import pytest
 from pipeline.calls import Calls
 from pipeline.classify import enrich_one, jev_payload, parse_jev, parse_luna
 from pipeline.enrich import run_enrichment
+from pipeline.failure_policy import failure_window
 from pipeline.providers import MockTransport, ProviderError
 from pipeline.schema import cache_key, configuration, validate_record
 from pipeline.spend import Ledger, SpendStop, money, token_cost
@@ -40,6 +41,28 @@ def record(source, label_config):
             "status": "completed", "topic": "other", "intent": "unclear", "severity": 1,
             "sentiment": 0, "needs_review": False, "entities": [],
             "evidence_quote": source["review_text"], "label_config": label_config}
+
+
+def test_enrichment_failed_item_is_quarantined_and_next_item_completes(tmp_path):
+    _, config, state, _, calls = environment(tmp_path, ('bad', 'good'))
+    state.failure_window = failure_window(config)
+
+    class OneBadText(MockTransport):
+        def request(self, provider, payload):
+            response = super().request(provider, payload)
+            if provider == 'typesafe' and payload['state']['review_text'] == 'bad':
+                response['answers']['topic']['choice'] = 'invalid-topic'
+            return response
+
+    calls.transport = OneBadText()
+    while item := state.claim(300):
+        enrich_one(state, calls, item, config, 0)
+    assert state.counts() == {'completed': 1, 'quarantined': 1}
+    with state.connect() as db:
+        bad = db.execute("SELECT status,reason FROM reviews WHERE text='bad'").fetchone()
+        failures = [json.loads(row[0]) for row in db.execute('SELECT event FROM calls')]
+    assert bad['reason'] == 'invalid_model_output_after_retry'
+    assert sum(event['outcome'] == 'failed' for event in failures) == 2
 
 
 def test_exact_cache_direct_provenance_and_resume(tmp_path: Path) -> None:
@@ -166,6 +189,7 @@ def test_invalid_twice_is_quarantined(tmp_path: Path) -> None:
 
 def test_unknown_timeout_is_not_retried(tmp_path: Path) -> None:
     _, config, state, ledger, calls = environment(tmp_path, ("tiny",))
+    config['controls']['pessimistic_connection_retries'] = False  # historical policy
     calls.transport = ScriptedTransport([ProviderError("timeout", unknown_charge=True)])
     item = state.claim(-1)
     with pytest.raises(ProviderError):

@@ -1,0 +1,153 @@
+{
+  "status": "proposal only; no paid calls",
+  "input": "data/checkpoint_500.csv",
+  "source_sha256": "a94e31663ee7b7eaa77e23b7a8425b530cc0c866ed5e714953172a0afef6a12f",
+  "output": "artifacts/checkpoint-500-v3-ab",
+  "rows": 500,
+  "distinct_texts": 479,
+  "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "v2_label_configs": [
+    "b0cc1ce0b0a518f391490a61ac00a1e0c0f8181f6feb3c143a1f2890ea7e8318"
+  ],
+  "workers": 2,
+  "cache": "Fresh v3 work store; do not import old v2 results. 21 duplicate aliases propagate exact-text results.",
+  "initial_jev_calls": 479,
+  "fallback_quota": 47,
+  "long_distinct_texts": 38,
+  "luna_enrichment_ids_upper": 85,
+  "maximum_calls": 1128,
+  "transient_attempts": 1,
+  "repairs_per_item": 1,
+  "cost_bounds_nanodollars": {
+    "jev": 249835488,
+    "luna_enrich": 180374750,
+    "verify": 0
+  },
+  "worst_case_usd": 0.430210238,
+  "planning_rates": {
+    "confirmed_date": "2026-10-13",
+    "jev_input_per_million": 0.042,
+    "jev_output_per_million": 0.0,
+    "luna_input_per_million": 0.1,
+    "luna_cached_input_per_million": 0.01,
+    "luna_output_per_million": 0.5,
+    "luna_cache_write_per_million": 0.125
+  },
+  "operational_controls": {
+    "fallback_fraction": 0.1,
+    "token_overhead_bound": 2048,
+    "request_timeout_seconds": 60.0,
+    "project_api_cap_usd": 10.0
+  },
+  "frozen_verifier_sha256": "1694d340e3fd5a24eaa3b618699af867b3b40dd93ce67ba5f86d41edbcb13db2",
+  "existing_verifier_independence": {
+    "requests_audited": 95,
+    "request_fields": [
+      "review_id",
+      "review_text"
+    ],
+    "first_predictions_supplied": false,
+    "note": "Blinded to Jev/first enrichment outputs. Same provider/model as fallback; not statistical independence or human truth."
+  },
+  "existing_v2_same_row_baseline": {
+    "rows": 500,
+    "core_jev_fields": {
+      "topic": {
+        "disagreements": 54,
+        "denominator": 500,
+        "rate": 0.108
+      },
+      "intent": {
+        "disagreements": 37,
+        "denominator": 500,
+        "rate": 0.074
+      },
+      "severity_exact": {
+        "disagreements": 64,
+        "denominator": 500,
+        "rate": 0.128
+      },
+      "severity_beyond_one": {
+        "disagreements": 5,
+        "denominator": 500,
+        "rate": 0.01
+      },
+      "sentiment_sign": {
+        "disagreements": 40,
+        "denominator": 500,
+        "rate": 0.08
+      },
+      "sentiment_tolerance_025": {
+        "disagreements": 61,
+        "denominator": 500,
+        "rate": 0.122
+      }
+    },
+    "final_enrichment_fields": {
+      "topic": {
+        "disagreements": 54,
+        "denominator": 500,
+        "rate": 0.108
+      },
+      "intent": {
+        "disagreements": 34,
+        "denominator": 500,
+        "rate": 0.068
+      },
+      "severity_exact": {
+        "disagreements": 60,
+        "denominator": 500,
+        "rate": 0.12
+      },
+      "severity_beyond_one": {
+        "disagreements": 5,
+        "denominator": 500,
+        "rate": 0.01
+      },
+      "sentiment_sign": {
+        "disagreements": 37,
+        "denominator": 500,
+        "rate": 0.074
+      },
+      "sentiment_tolerance_025": {
+        "disagreements": 54,
+        "denominator": 500,
+        "rate": 0.108
+      }
+    },
+    "core_composite_disagreements": 173,
+    "final_composite_disagreements": 161
+  },
+  "primary_ab": "Historical matched-text Jev prompt comparison; compare only core answers with identical decoder in both arms, without v3 auxiliary override. Report raw v3 core and operational v3 outputs separately.",
+  "secondary_comparison": "Operational final enrichment v2 vs final frozen v3. Not prompt-only: old thresholds .75/.15, v3 .60/0; fallback allocation, old quota defect, persistent context and Luna-v2 explicit reason schema/prompt also differ.",
+  "fields": [
+    "topic",
+    "intent",
+    "severity_exact",
+    "severity_beyond_one",
+    "sentiment_sign",
+    "sentiment_tolerance_025"
+  ],
+  "comparison_method": "Same fixed 500 verifier labels, paired per-ID differences and exact-text cluster intervals; show improvements/regressions and alias-weighted vs unique-text summaries. No verifier or golden calls.",
+  "exclusions": [
+    "No verifier refresh",
+    "No grouping/memo",
+    "No golden evaluation",
+    "No remaining analysis_10000 during A/B"
+  ],
+  "invocation_cap_usd": 0.431,
+  "final_flag_policy": "persistent-context-reasons-v1",
+  "failure_policy": "One permitted repair; terminal failure logged/quarantined and excluded from agreement (denominator disclosed); >5% in rolling 100 after minimum20 finalized is systemic halt.",
+  "stop_gate": "After same-row v2/v3 report; explicit yes required before dispatch.",
+  "pass_criterion": {
+    "endpoint": "core-Jev disagreement against fixed blinded verifier on the same 500 rows",
+    "fields": [
+      "topic",
+      "intent"
+    ],
+    "maximum_worsening_percentage_points_each": 3,
+    "required_shared_rows": 500,
+    "decision": "Both fields must satisfy the limit; otherwise fail. Incomplete shared data cannot pass."
+  },
+  "approval_status": "User approved $0.431 invocation cap; criterion declared before paid v3 results"
+}

@@ -1,0 +1,10 @@
+{
+  "status": "valid",
+  "expected_records": 50,
+  "received_records": 50,
+  "valid_records": 50,
+  "blank_records": 0,
+  "errors": [],
+  "model_calls": 0,
+  "limitation": "Schema and substring checks do not establish semantic correctness."
+}

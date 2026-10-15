@@ -1,0 +1,19 @@
+{
+  "ledger_spent_usd": 0.770076985,
+  "accounted_by_provider_usd": {
+    "typesafe": 0.58555476,
+    "openai": 0.184522225
+  },
+  "missing_provider_accounting_usd": 0.0,
+  "golden_cost_by_provider_usd": {
+    "typesafe": 0.002137716,
+    "openai": 0.000466125
+  },
+  "golden_call_count": 46,
+  "golden_terminal_new": 0,
+  "golden_failed_calls": 0,
+  "disk_free_gib": 282.73437118530273,
+  "typesafe_balance_user_reported_usd": 10.41,
+  "openai_org_limit_usd": 20,
+  "openai_actual_org_remaining_usd": null
+}

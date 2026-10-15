@@ -1,0 +1,20 @@
+{
+  "workers": 8,
+  "label_config": "c79a70421de9caad53c9932393f0eb6420f6d80e249cb9097dd5af3eb9d8eba9",
+  "input_sha256": "4f04ab7dd9ec8d46bd6d2cd7ba8b8fdb6aa25ae9871e3cc26121c14c613626c4",
+  "result_cache": "cold empty; no cross-slice reuse",
+  "status": "completed",
+  "run_id": "f225512a-6c00-43de-9710-9de897ed2f08",
+  "enrichment_seconds": 82.74713760000304,
+  "warm_seconds": 0.0017133000001194887,
+  "warm_new_calls": 0,
+  "wall_seconds": 82.7488873000002,
+  "counts": {
+    "completed": 1000
+  },
+  "attempts": 1016,
+  "ledger": {
+    "spent_nanodollars": 239921461,
+    "reserved_nanodollars": 0
+  }
+}

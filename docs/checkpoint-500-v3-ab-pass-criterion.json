@@ -1,0 +1,10 @@
+{
+  "endpoint": "core-Jev disagreement against fixed blinded verifier on the same 500 rows",
+  "fields": [
+    "topic",
+    "intent"
+  ],
+  "maximum_worsening_percentage_points_each": 3,
+  "required_shared_rows": 500,
+  "decision": "Both fields must satisfy the limit; otherwise fail. Incomplete shared data cannot pass."
+}

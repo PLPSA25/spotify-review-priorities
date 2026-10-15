@@ -1,0 +1,17 @@
+{
+  "run_id": "c8efbfbf-3ccf-4fe3-95f9-a30c0e208957",
+  "status": "completed",
+  "approved_cap_usd": 0.154,
+  "initial_valid": 399,
+  "maximum_calls": 104,
+  "worst_case_usd": 0.1537,
+  "terminal_policy": ">5% in last 100 finalized items, minimum 20; seeded with prior valid outcomes",
+  "wall_seconds": 51.036049500002264,
+  "valid_predictions": 500,
+  "terminal_failures": 0,
+  "attempts": 3,
+  "ledger": {
+    "spent_nanodollars": 65419278,
+    "reserved_nanodollars": 0
+  }
+}

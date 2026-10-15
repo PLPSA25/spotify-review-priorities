@@ -1,0 +1,19 @@
+{
+  "workers": 2,
+  "cache_condition": "cold empty result cache; no pilot reuse for comparison",
+  "label_config": "b0cc1ce0b0a518f391490a61ac00a1e0c0f8181f6feb3c143a1f2890ea7e8318",
+  "run_id": "5ba4df18-4f79-46ae-8417-dd116ee5d18e",
+  "approved_cap_usd": 1.14,
+  "status": "failed",
+  "enrichment_seconds": 102.02731210000275,
+  "error": "ValueError: Verifier remains invalid after repair",
+  "end_to_end_seconds": 612.0585888000023,
+  "counts": {
+    "completed": 500
+  },
+  "ledger": {
+    "spent_nanodollars": 60920278,
+    "reserved_nanodollars": 0
+  },
+  "attempts": 592
+}

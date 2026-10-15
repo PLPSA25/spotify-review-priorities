@@ -19,6 +19,41 @@ from pipeline.sampling import scope_profile
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     stages = parser.add_subparsers(dest="stage", required=True)
+    scope = stages.add_parser('scope-run',help='Prepared eight-worker scope runner; offline unless explicitly confirmed')
+    scope.add_argument('--plan',type=Path,required=True)
+    scope.add_argument('--confirm-spend',action='store_true')
+    scope.add_argument('--resume',action='store_true')
+    stages.add_parser('scope-prepare',help='Offline prepare the reviewed production scope; never dispatch')
+    approval = stages.add_parser('scope-authorize',help='Offline authorization receipt after owner yes and balance recheck')
+    approval.add_argument('--plan',type=Path,default=Path('docs/100k-production-plan.json'))
+    approval.add_argument('--acknowledge-spend',action='store_true')
+    progress = stages.add_parser('scope-status',help='Read-only video-safe production counters')
+    progress.add_argument('--watch',action='store_true')
+    evidence = stages.add_parser('scope-evidence',help='Immutable checkpoint and resume proof, offline')
+    evidence.add_argument('which',choices=('before','after'))
+    stages.add_parser('scope-proof',help='Offline rerun of saved checkpoint proof; counters only')
+    snapshot = stages.add_parser('checkpoint',help='Offline completed-ID snapshot from a saved state')
+    snapshot.add_argument('--state',type=Path,required=True)
+    snapshot.add_argument('--output',type=Path,required=True)
+    snapshot.add_argument('--scope-csv',type=Path)
+    audit = stages.add_parser('audit-resume',help='Offline strict-subset and no-paid-relabel demonstration audit')
+    audit.add_argument('--state',type=Path,required=True)
+    audit.add_argument('--before',type=Path,required=True)
+    audit.add_argument('--after',type=Path,required=True)
+    audit.add_argument('--run-id',action='append',required=True)
+    audit.add_argument('--output',type=Path,required=True)
+    golden_plan = stages.add_parser('golden-predictions',help='Offline cost gate by default; approved final-hash golden predictions')
+    golden_plan.add_argument('--confirm-spend',action='store_true')
+    golden_plan.add_argument('--approved-plan',type=Path)
+    golden_eval = stages.add_parser('evaluate-golden',help='Evaluation-only human-label comparison; no API calls')
+    golden_eval.add_argument('--predictions',type=Path,default=Path('artifacts/golden-final/golden-predictions.jsonl'))
+    golden_eval.add_argument('--output',type=Path,default=Path('evals/golden-final-evaluation'))
+    human_review = stages.add_parser('review-disagreements',help='Offline interactive development-verifier adjudication')
+    human_review.add_argument('--output',type=Path,default=Path('evals/verifier-human-review.json'))
+    human_review.add_argument('--limit',type=int,default=20)
+    human_review.add_argument('--next',action='store_true',dest='peek')
+    human_review.add_argument('--verdict',choices=('jev_right','verifier_right','both_wrong','unclear'))
+    human_review.add_argument('--case-id')
     repair = stages.add_parser("pilot-memo-repair", help="Plan memo-only continuation; paid execution requires new yes")
     repair.add_argument("--config", type=Path, default=Path("config.toml"))
     repair.add_argument("--directory", type=Path, default=Path("cost"))
@@ -77,6 +112,70 @@ def main() -> None:
     sample.add_argument("--config", type=Path, default=Path("config.toml"))
     sample.add_argument("--output", type=Path, default=Path("artifacts/sampling"))
     args = parser.parse_args()
+    if args.stage in {'scope-prepare','scope-authorize','scope-status','scope-evidence','scope-proof'}:
+        import json
+        import time
+
+        from pipeline import production
+        if args.stage=='scope-prepare':
+            result = production.prepare()
+        elif args.stage=='scope-authorize':
+            result = production.authorize(args.plan,args.acknowledge_spend)
+        elif args.stage=='scope-evidence':
+            result = production.evidence(args.which)
+        elif args.stage=='scope-proof':
+            result = production.proof()
+        else:
+            try:
+                while True:
+                    result = production.status()
+                    print(json.dumps(result,indent=2),flush=True)
+                    if not args.watch:
+                        return
+                    time.sleep(5)
+            except KeyboardInterrupt:
+                return
+        print(json.dumps(result,indent=2),flush=True)
+        return
+    if args.stage=='scope-run':
+        from pipeline.graceful import run_plan
+        try:
+            result = run_plan(args.plan,args.confirm_spend,args.resume)
+        except Exception as exc:  # noqa: BLE001 -- never expose payloads or exception messages on video
+            print('Stopped safely: '+type(exc).__name__+'. Inspect offline status; do not auto-resume.',flush=True)
+            raise SystemExit(2) from None
+        public = {key:result[key] for key in ('status','run_id','phase','wall_seconds','counts','pending_leases','drained','invocation_spent_nanodollars','ledger') if key in result}
+        print(public or result,flush=True)
+        return
+    if args.stage=='checkpoint':
+        from pipeline.resume_evidence import snapshot
+        result = snapshot(args.state,args.output,args.scope_csv)
+        print(f"Saved {len(result['completed_ids'])} completed IDs; zero model calls.")
+        return
+    if args.stage=='audit-resume':
+        from pipeline.resume_evidence import audit
+        result = audit(args.state,args.before,args.after,set(args.run_id),args.output)
+        print(f"{result['status']}: {result['before_count']} < {result['after_count']}; {len(result['new_direct_paid_resume_ids'])} new direct paid resume IDs.")
+        return
+    if args.stage=='golden-predictions':
+        from pipeline.golden_predictions import build_plan, run
+        if args.confirm_spend:
+            if args.approved_plan is None:
+                raise ValueError('Supply reviewed plan after explicit yes')
+            print(run(args.approved_plan,True))
+        else:
+            plan = build_plan()
+            print(f"Golden predictions: {plan['reusable_golden_ids']} reused IDs; {plan['new_distinct_texts']} new texts; maximum {plan['maximum_calls']} calls; worst case ${plan['worst_case_usd']:.9f}. No calls made; await yes.")
+        return
+    if args.stage=='evaluate-golden':
+        from pipeline.golden_evaluation import evaluate
+        result = evaluate(args.predictions,args.output)
+        print(result['agreement'])
+        return
+    if args.stage=='review-disagreements':
+        from pipeline.disagreement_review import review
+        review(args.output,args.limit,peek=args.peek,verdict=args.verdict,case_id=args.case_id)
+        return
     if args.stage == "pilot-memo-repair":
         if args.confirm_spend:
             if args.approved_plan is None:

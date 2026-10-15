@@ -1,0 +1,565 @@
+{
+  "version": "verifier-human-review-v1",
+  "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "procedure": "Development checkpoint verifier vs final-hash operational Jev before fallback; golden IDs AND exact golden texts excluded; terminal records excluded. Round-robin disagreement fields; unique text per case. Verdict applies only to target field. This selected disagreement sample is not an overall accuracy estimate and never rewrites labels/config.",
+  "source_state_sha256": "a37ae49e7844fe630040b9ebd281172325661cacea6fee69fc1cadea9cf7c9bc",
+  "verifier_sha256": "1694d340e3fd5a24eaa3b618699af867b3b40dd93ce67ba5f86d41edbcb13db2",
+  "candidate_records": 331,
+  "cases": [
+    {
+      "review_id": "68107809-52c1-469d-a78a-569280e49ed6",
+      "review_text": "It's not even a basic music player anymore... Spotify more like Shity-fy",
+      "disagreements": [
+        "topic",
+        "needs_review"
+      ],
+      "jev": {
+        "topic": "other",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": -0.905,
+        "needs_review": true
+      },
+      "verifier": {
+        "topic": "usability",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": -0.7,
+        "needs_review": false
+      },
+      "target_field": "topic",
+      "case_id": "8f3ffaf9ba4e2d8a24ec8abf56ada105ab9defcd6fd075b65085d4b33080051a"
+    },
+    {
+      "review_id": "7d5ddaf5-2f4f-4883-9ddb-e46a2b584ac0",
+      "review_text": "All iz well",
+      "disagreements": [
+        "intent",
+        "sentiment_sign"
+      ],
+      "jev": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.41999999999999993,
+        "needs_review": true
+      },
+      "verifier": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": 0,
+        "needs_review": true
+      },
+      "target_field": "intent",
+      "case_id": "275fe4f214276c5adc8cdd8b5d6bfd719460cfef28c4f7a1cf526f3b9b200bbe"
+    },
+    {
+      "review_id": "8216dafb-b5e2-47e2-b342-9f73c203b56e",
+      "review_text": "sucks",
+      "disagreements": [
+        "severity"
+      ],
+      "jev": {
+        "topic": "other",
+        "intent": "complaint",
+        "severity": 1,
+        "sentiment": -0.9299999999999999,
+        "needs_review": true
+      },
+      "verifier": {
+        "topic": "other",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": -0.8,
+        "needs_review": true
+      },
+      "target_field": "severity",
+      "case_id": "ddde245e99bab65c42caa420cd58b1a31be0cef9f99520b6f272ed8d209f63de"
+    },
+    {
+      "review_id": "d455c11e-c530-4c03-a395-38f5a5cdb8d3",
+      "review_text": "I really have enjoyed the blend feature you've released. I can't wait to see it expanded upon. Like being able to rename the blends you make would be nice. The same issue as 5 years ago when I left a review still persists. Spotify constantly rolls out new major UX updates without any use of their beta program. Rolling out big automatically playing audio elements,without any clear way to disable the automatic playing in the settings? Seriously? That kind of stuff should be opt-in...",
+      "disagreements": [
+        "severity",
+        "sentiment_sign",
+        "needs_review"
+      ],
+      "jev": {
+        "topic": "usability",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": 0.02499999999999991,
+        "needs_review": true
+      },
+      "verifier": {
+        "topic": "usability",
+        "intent": "complaint",
+        "severity": 3,
+        "sentiment": -0.6,
+        "needs_review": false
+      },
+      "target_field": "sentiment_sign",
+      "case_id": "fbb45a17a46bff574125e7d5d07e18bf80e8e46e576a39ef5134dad168d0e5a8"
+    },
+    {
+      "review_id": "35008b46-daf1-497c-ac9b-fe98f120f912",
+      "review_text": "Good app",
+      "disagreements": [
+        "needs_review"
+      ],
+      "jev": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.5049999999999999,
+        "needs_review": true
+      },
+      "verifier": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.7,
+        "needs_review": false
+      },
+      "target_field": "needs_review",
+      "case_id": "278706cf4b3b7bcaba0f4147e244cda647fe6cfb2bbb2cbe447c96757cc7f012"
+    },
+    {
+      "review_id": "a7b7539a-c8d3-4f4e-9edd-d46cd1b1fd12",
+      "review_text": "The very second I signed up for premium it stopped letting me play anything.. lol . Fastest cancelation of a service I've done, ever. Bye bye Spotify. Hello old friend, Bittorrent",
+      "disagreements": [
+        "topic",
+        "needs_review"
+      ],
+      "jev": {
+        "topic": "billing",
+        "intent": "cancellation",
+        "severity": 4,
+        "sentiment": -0.905,
+        "needs_review": true
+      },
+      "verifier": {
+        "topic": "playback",
+        "intent": "cancellation",
+        "severity": 4,
+        "sentiment": -0.8,
+        "needs_review": false
+      },
+      "target_field": "topic",
+      "case_id": "6679d8838a50ac2c857ab9a003f3a1f755c362e0008b128a4302cbec5b6c4928"
+    },
+    {
+      "review_id": "8faa4895-3ee7-4360-a20c-529042b2330b",
+      "review_text": "Beat ever",
+      "disagreements": [
+        "intent",
+        "needs_review"
+      ],
+      "jev": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": 0.405,
+        "needs_review": true
+      },
+      "verifier": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.8,
+        "needs_review": false
+      },
+      "target_field": "intent",
+      "case_id": "569fe1e902e60975a2e1cc4daa4c98843333560e089bfd98e7f3c931f551dff5"
+    },
+    {
+      "review_id": "dcff57c6-abd6-413b-b255-aec3dc34fcbd",
+      "review_text": "Offline not workjng",
+      "disagreements": [
+        "severity",
+        "needs_review"
+      ],
+      "jev": {
+        "topic": "downloads",
+        "intent": "complaint",
+        "severity": 4,
+        "sentiment": -0.5449999999999999,
+        "needs_review": true
+      },
+      "verifier": {
+        "topic": "downloads",
+        "intent": "complaint",
+        "severity": 3,
+        "sentiment": -0.7,
+        "needs_review": false
+      },
+      "target_field": "severity",
+      "case_id": "2b3c29700f892908ad001d4837a0e319e195ae33f7eb766465109fb51b851e7d"
+    },
+    {
+      "review_id": "0d361ea6-3089-41c2-9e0f-4cd6a04f0dd8",
+      "review_text": "aA😩qa1qw1awqqqqaqqa😊qqqw11qqqaq1qW1QAQ1QQQ12qww2aqqqwaqaqaA1aqq2Qqww1qq1qqaaqa☝️qQawww1qaqaqqaq😊q1qq12qq2aq🤩q☝️a1qqQ1qq1aaAawwa1qq1qqwQwqqWaw1aaqqQ",
+      "disagreements": [
+        "sentiment_sign"
+      ],
+      "jev": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": 0.1299999999999999,
+        "needs_review": true
+      },
+      "verifier": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": 0,
+        "needs_review": true
+      },
+      "target_field": "sentiment_sign",
+      "case_id": "4f8bf565b1528be37424a58d993d7219594469480cc6a395338fbfba091aa1b0"
+    },
+    {
+      "review_id": "051540ac-7d80-406a-aad4-87fbf9bb7ce7",
+      "review_text": "Awesome",
+      "disagreements": [
+        "needs_review"
+      ],
+      "jev": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.905,
+        "needs_review": true
+      },
+      "verifier": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.9,
+        "needs_review": false
+      },
+      "target_field": "needs_review",
+      "case_id": "f3d58ff6b5c22daa5a2d37f762c7ab224fffdb78e95297ea055e3649bd615d81"
+    },
+    {
+      "review_id": "5650dbb7-7525-46e7-87b7-a75197c48ec7",
+      "review_text": "I don't have any podcast! But I enjoy it! Very much!",
+      "disagreements": [
+        "topic",
+        "intent",
+        "severity"
+      ],
+      "jev": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.78,
+        "needs_review": true
+      },
+      "verifier": {
+        "topic": "catalog",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": 0.5,
+        "needs_review": true
+      },
+      "target_field": "topic",
+      "case_id": "3d3e9101f17809cd3242f8543a839c1062142805392f57c6ff836a9c557b6b78"
+    },
+    {
+      "review_id": "b0d0660d-b859-4d87-97e8-7420f05d1f94",
+      "review_text": "Time to uninstall.....reason : Indian people knows that.....",
+      "disagreements": [
+        "intent"
+      ],
+      "jev": {
+        "topic": "other",
+        "intent": "cancellation",
+        "severity": 1,
+        "sentiment": -0.795,
+        "needs_review": true
+      },
+      "verifier": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": -0.3,
+        "needs_review": true
+      },
+      "target_field": "intent",
+      "case_id": "2ee11c5a3b8bb9798b26410faa2c00932c007304c38228010f9a28d4d9403d99"
+    },
+    {
+      "review_id": "6eb64519-37d4-4591-a47a-bbb96357de36",
+      "review_text": "useless music app music k naam pe khaali ad dikhata hai.",
+      "disagreements": [
+        "severity"
+      ],
+      "jev": {
+        "topic": "usability",
+        "intent": "complaint",
+        "severity": 4,
+        "sentiment": -0.855,
+        "needs_review": true
+      },
+      "verifier": {
+        "topic": "usability",
+        "intent": "complaint",
+        "severity": 2,
+        "sentiment": -0.8,
+        "needs_review": true
+      },
+      "target_field": "severity",
+      "case_id": "571da92651c3b2527490c99fefd0bad11343a65a9744e50a33ed78472ad96314"
+    },
+    {
+      "review_id": "084077ee-f9be-446a-9935-9e58550d5153",
+      "review_text": "Thik thak hi hai",
+      "disagreements": [
+        "intent",
+        "sentiment_sign"
+      ],
+      "jev": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.17999999999999994,
+        "needs_review": true
+      },
+      "verifier": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": 0,
+        "needs_review": true
+      },
+      "target_field": "sentiment_sign",
+      "case_id": "24533f6b8f0fddec6cb3465860efde71433f75aef19785079c62829d2920dcff"
+    },
+    {
+      "review_id": "02365ec7-f37a-419a-b26d-bf2467d38461",
+      "review_text": "👍",
+      "disagreements": [
+        "intent",
+        "needs_review"
+      ],
+      "jev": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": 0.4750000000000001,
+        "needs_review": true
+      },
+      "verifier": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.8,
+        "needs_review": false
+      },
+      "target_field": "needs_review",
+      "case_id": "3b2a511ceb3b7809f5189d846806e4280431212d1dd3554bf6b997745ed899cf"
+    },
+    {
+      "review_id": "e85a31f6-786e-4673-94b8-010fea8ce464",
+      "review_text": "I love the mixes",
+      "disagreements": [
+        "topic",
+        "needs_review"
+      ],
+      "jev": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.77,
+        "needs_review": true
+      },
+      "verifier": {
+        "topic": "catalog",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.9,
+        "needs_review": false
+      },
+      "target_field": "topic",
+      "case_id": "c0361354f29c09b09f2615ae83d9861dd72fc3296efd840ef4a6eacc1fa5f928"
+    },
+    {
+      "review_id": "991dc66a-aba8-4844-be48-816539680877",
+      "review_text": "Liked songs list is not viewing do something",
+      "disagreements": [
+        "intent"
+      ],
+      "jev": {
+        "topic": "usability",
+        "intent": "complaint",
+        "severity": 3,
+        "sentiment": -0.345,
+        "needs_review": false
+      },
+      "verifier": {
+        "topic": "usability",
+        "intent": "request",
+        "severity": 3,
+        "sentiment": -0.5,
+        "needs_review": false
+      },
+      "target_field": "intent",
+      "case_id": "d928610b1446f73853139dfea1c92773f4c196ac0f517a6d801f9f02e31a8456"
+    },
+    {
+      "review_id": "4d327494-7846-481a-bf00-f4b5abc099c4",
+      "review_text": "Just got back into Spotify. Well.. tried to. Terrible. Look up your favorite music and just a 30 second clip? Use youtube music. You. Are. Welcome. Hope this helped.",
+      "disagreements": [
+        "topic",
+        "severity"
+      ],
+      "jev": {
+        "topic": "catalog",
+        "intent": "complaint",
+        "severity": 3,
+        "sentiment": -0.825,
+        "needs_review": false
+      },
+      "verifier": {
+        "topic": "playback",
+        "intent": "complaint",
+        "severity": 4,
+        "sentiment": -0.9,
+        "needs_review": false
+      },
+      "target_field": "severity",
+      "case_id": "3850c4f85a7a4b8a6c2663ad41bc5e111b4f73d773a67dc669e59ab6ba42458c"
+    },
+    {
+      "review_id": "8decb2ac-5860-49e3-8dce-9ca198ad061e",
+      "review_text": "That's for the QURAN",
+      "disagreements": [
+        "sentiment_sign"
+      ],
+      "jev": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": -0.010000000000000009,
+        "needs_review": true
+      },
+      "verifier": {
+        "topic": "other",
+        "intent": "unclear",
+        "severity": 1,
+        "sentiment": 0,
+        "needs_review": true
+      },
+      "target_field": "sentiment_sign",
+      "case_id": "77a6e91d4769cc1897c8a383051733eec64b5c8e3019d971d75112e92979ed9d"
+    },
+    {
+      "review_id": "2117a268-4c74-4795-9a11-00799e3fc450",
+      "review_text": "amazing",
+      "disagreements": [
+        "needs_review"
+      ],
+      "jev": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.97,
+        "needs_review": true
+      },
+      "verifier": {
+        "topic": "other",
+        "intent": "praise",
+        "severity": 1,
+        "sentiment": 0.9,
+        "needs_review": false
+      },
+      "target_field": "needs_review",
+      "case_id": "663a1e72b16477286266caa36c56fab35c21cda0f2f3d8e06dca56729b70994b"
+    }
+  ],
+  "verdicts": {
+    "8f3ffaf9ba4e2d8a24ec8abf56ada105ab9defcd6fd075b65085d4b33080051a": {
+      "verdict": "jev_right",
+      "recorded_at_utc": "2026-10-15T01:01:46.391064+00:00"
+    },
+    "275fe4f214276c5adc8cdd8b5d6bfd719460cfef28c4f7a1cf526f3b9b200bbe": {
+      "verdict": "jev_right",
+      "recorded_at_utc": "2026-10-15T01:03:48.575157+00:00"
+    },
+    "ddde245e99bab65c42caa420cd58b1a31be0cef9f99520b6f272ed8d209f63de": {
+      "verdict": "verifier_right",
+      "recorded_at_utc": "2026-10-15T01:04:29.743749+00:00"
+    },
+    "fbb45a17a46bff574125e7d5d07e18bf80e8e46e576a39ef5134dad168d0e5a8": {
+      "verdict": "both_wrong",
+      "recorded_at_utc": "2026-10-15T01:05:41.576388+00:00"
+    },
+    "278706cf4b3b7bcaba0f4147e244cda647fe6cfb2bbb2cbe447c96757cc7f012": {
+      "verdict": "verifier_right",
+      "recorded_at_utc": "2026-10-15T01:06:05.663106+00:00"
+    },
+    "6679d8838a50ac2c857ab9a003f3a1f755c362e0008b128a4302cbec5b6c4928": {
+      "verdict": "verifier_right",
+      "recorded_at_utc": "2026-10-15T01:09:52.971910+00:00"
+    },
+    "569fe1e902e60975a2e1cc4daa4c98843333560e089bfd98e7f3c931f551dff5": {
+      "verdict": "jev_right",
+      "recorded_at_utc": "2026-10-15T01:10:34.939117+00:00"
+    },
+    "2b3c29700f892908ad001d4837a0e319e195ae33f7eb766465109fb51b851e7d": {
+      "verdict": "verifier_right",
+      "recorded_at_utc": "2026-10-15T01:13:20.850019+00:00"
+    },
+    "4f8bf565b1528be37424a58d993d7219594469480cc6a395338fbfba091aa1b0": {
+      "verdict": "verifier_right",
+      "recorded_at_utc": "2026-10-15T01:13:49.576250+00:00"
+    },
+    "f3d58ff6b5c22daa5a2d37f762c7ab224fffdb78e95297ea055e3649bd615d81": {
+      "verdict": "verifier_right",
+      "recorded_at_utc": "2026-10-15T01:14:42.207258+00:00"
+    },
+    "3d3e9101f17809cd3242f8543a839c1062142805392f57c6ff836a9c557b6b78": {
+      "verdict": "verifier_right",
+      "recorded_at_utc": "2026-10-15T01:15:08.872676+00:00"
+    },
+    "2ee11c5a3b8bb9798b26410faa2c00932c007304c38228010f9a28d4d9403d99": {
+      "verdict": "jev_right",
+      "recorded_at_utc": "2026-10-15T01:15:51.488152+00:00"
+    },
+    "571da92651c3b2527490c99fefd0bad11343a65a9744e50a33ed78472ad96314": {
+      "verdict": "both_wrong",
+      "recorded_at_utc": "2026-10-15T01:16:21.454488+00:00"
+    },
+    "24533f6b8f0fddec6cb3465860efde71433f75aef19785079c62829d2920dcff": {
+      "verdict": "verifier_right",
+      "recorded_at_utc": "2026-10-15T01:16:41.215324+00:00"
+    },
+    "3b2a511ceb3b7809f5189d846806e4280431212d1dd3554bf6b997745ed899cf": {
+      "verdict": "verifier_right",
+      "recorded_at_utc": "2026-10-15T01:17:06.915683+00:00"
+    },
+    "c0361354f29c09b09f2615ae83d9861dd72fc3296efd840ef4a6eacc1fa5f928": {
+      "verdict": "verifier_right",
+      "recorded_at_utc": "2026-10-15T01:17:44.975254+00:00"
+    },
+    "d928610b1446f73853139dfea1c92773f4c196ac0f517a6d801f9f02e31a8456": {
+      "verdict": "jev_right",
+      "recorded_at_utc": "2026-10-15T01:18:55.303497+00:00"
+    },
+    "3850c4f85a7a4b8a6c2663ad41bc5e111b4f73d773a67dc669e59ab6ba42458c": {
+      "verdict": "both_wrong",
+      "recorded_at_utc": "2026-10-15T01:20:40.617797+00:00"
+    },
+    "77a6e91d4769cc1897c8a383051733eec64b5c8e3019d971d75112e92979ed9d": {
+      "verdict": "verifier_right",
+      "recorded_at_utc": "2026-10-15T01:21:09.372596+00:00"
+    },
+    "663a1e72b16477286266caa36c56fab35c21cda0f2f3d8e06dca56729b70994b": {
+      "verdict": "verifier_right",
+      "recorded_at_utc": "2026-10-15T01:21:31.943446+00:00"
+    }
+  }
+}

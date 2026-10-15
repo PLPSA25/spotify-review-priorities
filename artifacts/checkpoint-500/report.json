@@ -1,0 +1,102 @@
+{
+  "measured": {
+    "run_status": "failed",
+    "verifier_complete": true,
+    "valid_verifier_predictions": 500,
+    "recovery_status": "completed",
+    "recovery_wall_seconds": 51.036049500002264,
+    "rows": 500,
+    "distinct_texts": 479,
+    "cache_aliases": 21,
+    "flagged": 264,
+    "workers": 2,
+    "end_to_end_seconds": 612.0585888000023,
+    "enrichment_seconds": 102.02731210000275,
+    "verification_attempt_seconds": 561.0673262000018,
+    "enrichment_input_rows_per_second": 4.900648558789059,
+    "enrichment_distinct_texts_per_second": 4.694821319319919,
+    "end_to_end_rows_per_second": 0.8169152580315823,
+    "pilot_end_to_end_rows_per_second": 1.7058323179692245,
+    "pilot_enrichment_seconds": null,
+    "comparison": "Same cold result cache, different review sets and verification scope; no isolated worker speedup claim.",
+    "roles": {
+      "enrich": 500,
+      "verify": 95
+    },
+    "stages": {
+      "jev": 479,
+      "fallback": 4,
+      "extract": 17,
+      "checkpoint-verify": 8,
+      "checkpoint-verify-repair": 84,
+      "checkpoint-verify-recovery-initial": 3
+    },
+    "models": [
+      "gpt-6-luna",
+      "jev-1.13.0"
+    ],
+    "fallback_distinct_ids": 57,
+    "extraction_distinct_ids": 31,
+    "cost_by_role_usd": {
+      "enrich": 0.025544543,
+      "verify": 0.03247635
+    },
+    "checkpoint_spend_usd": 0.058020893,
+    "project_spend_usd": 0.065419278,
+    "project_reserved_usd": 0.0,
+    "unresolved_request_ids": [],
+    "invalid_output_events": [
+      {
+        "request_id": "831ccf56-cfbd-4450-a124-29de5df2ec62",
+        "stage": "checkpoint-verify",
+        "invalid_review_ids": [],
+        "error": "Invalid output: Extra data: line 1 column 11036 (char 11035)"
+      },
+      {
+        "request_id": "ce2ca5dd-19aa-4cc3-9e29-956fdd3a78d5",
+        "stage": "checkpoint-verify",
+        "invalid_review_ids": [
+          "89be32ab-664a-4647-a5e3-e4006a67e4e1",
+          "89ea2c30-db8b-459d-8ab7-bbcb7f92c774"
+        ],
+        "error": null
+      },
+      {
+        "request_id": "6b65dcbf-9f31-41e8-bffd-39220a56478a",
+        "stage": "checkpoint-verify",
+        "invalid_review_ids": [],
+        "error": "Invalid output: Expecting value: line 1 column 1 (char 0)"
+      },
+      {
+        "request_id": "571a02aa-3d69-45d0-9129-638b46c57e31",
+        "stage": "checkpoint-verify-repair",
+        "invalid_review_ids": [
+          "c13dcedc-50da-48a8-a90d-cfb037a66478"
+        ],
+        "error": "Invalid batch results"
+      }
+    ]
+  },
+  "estimated": {
+    "scope_distinct_texts": 77913,
+    "scope_enrichment_seconds_no_reuse": 16595.51976544366,
+    "verification_500_seconds": 561.0673262000018,
+    "scope_model_seconds_excluding_unmeasured_fixed_overhead": 17156.58709164366,
+    "scope_enrichment_seconds_50pct_slowdown": 24893.279648165488,
+    "remaining_project_variable_api_usd": 4.538554116787056,
+    "remaining_fixed_two_group_memo_usd": 0.00134545,
+    "project_base_usd": 4.605318844787056,
+    "project_conservative_usd": 6.874595903180584,
+    "extra_two_cold_10k_scaling_runs_api_base_usd": 0.9010450908726514,
+    "project_with_three_cold_10k_runs_base_usd": 5.506363935659707,
+    "project_with_three_cold_10k_runs_conservative_usd": 8.226163539489562
+  },
+  "limitations": [
+    "Usage-rate calculated costs; provider receipts not reconciled.",
+    "Future costs/times extrapolate checkpoint mix and constant sustained throughput, not measured 10k/100k. Verification attempt time sums interrupted and recovery timers, excludes offline repair/setup time; not one uninterrupted pass.",
+    "New threshold/selection policy changes config; cache invalidation and routing mix require recalculation before approval.",
+    "Fixed-stage pilot cost extrapolated; future fixed stage wall time and local compute cost unknown.",
+    "Provider prompt caching was not controlled; raw billed categories retained.",
+    "Saved scope profile keys: ['classification_performed', 'coverage_fraction_estimated', 'forced_golden_additions', 'method', 'permutation_count', 'permutation_sha256', 'potential_exact_text_completed_rows', 'random_prefix_count', 'seed', 'selected_distinct_texts', 'selected_review_ids']"
+  ]
+}

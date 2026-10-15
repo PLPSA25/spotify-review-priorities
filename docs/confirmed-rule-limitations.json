@@ -1,0 +1,33 @@
+{
+  "method": "Manual semantic audit subset, not a complete corpus error rate. Golden counts use frozen evaluation report; development evidence excludes golden IDs and exact texts. Verifier disagreement alone is not confirmed error.",
+  "golden": {
+    "denominator_records": 50,
+    "topic_disagreements": 13,
+    "intent_disagreements": 8,
+    "confirmed_topic_intent_pipeline_rule_violations": 0,
+    "judgment_or_reference_interpretation_disagreements": 20,
+    "conditional_translation_dependent_intent_violation": 1,
+    "conditional_id": "ac6cd66d",
+    "confirmed_severity_rule_violation_pure_request_assigned_3": 1,
+    "severity_id": "b58dd6f0",
+    "confirmed_topic_intent_violation_share": 0,
+    "judgment_share": 0.9523809523809523,
+    "conditional_share": 0.047619047619047616,
+    "denominator_is_field_errors_not_unique_records": true
+  },
+  "development": {
+    "screened_unique_verified_texts": 975,
+    "manually_confirmed_generic_criticism_severity_1_core_jev": 13,
+    "same_cases_still_severity_1_final": 12,
+    "same_cases_fixed_by_fallback": 1,
+    "rule": "GRADING_CONTRACT.md:39,44; generic criticism has severity 2, missing detail does not make it no reported problem",
+    "reviewed_ids": ["00363dc8", "06a45bd5", "2d5cdd20", "2f40c0be", "507bc222", "51bfd887", "5fb51bd0", "8216dafb", "8b6e028a", "a0036cd0", "b92a7381", "bb77bfb2", "c55970e2"],
+    "independent_human_confirmed_member": "8216dafb",
+    "premium_mention_misrouted_to_billing_core_and_final": 1,
+    "premium_id": "a7b7539a",
+    "premium_rule": "GRADING_CONTRACT.md:36; owner review 6 preferred playback for inability to play despite Premium mention",
+    "human_cases_are_not_additional_to_overlapping_development_cases": true
+  },
+  "prompt_changed": false,
+  "golden_labels_changed": false
+}

@@ -1,0 +1,61 @@
+{
+  "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "models": {
+    "jev": "jev-1.13.0",
+    "luna": "gpt-6-luna",
+    "effort": "none",
+    "service_tier": "default",
+    "allow_flex": false,
+    "allow_batch": false,
+    "flag_returned_model_change": true,
+    "output_token_cap": 4096
+  },
+  "enrichment": {
+    "jev_prompt": "jev-v3.json",
+    "luna_prompt": "luna-enrich-v2.txt",
+    "needs_review_policy": "persistent-context-reasons-v1",
+    "confidence_scope": "classification-fields-v1",
+    "batch_size": 20,
+    "luna_input_token_bound": 24000,
+    "luna_output_tokens_per_review": 200,
+    "confidence_threshold": 0.6,
+    "probability_margin_threshold": 0.0,
+    "fallback_selection_policy": "lowest-confidence-v1",
+    "short_review_chars": 240,
+    "entity_terms": [
+      "Spotify",
+      "Premium",
+      "playlist",
+      "playlists",
+      "lyrics",
+      "downloads",
+      "offline",
+      "ads"
+    ]
+  },
+  "schema_version": "record-v2",
+  "extractor": "exact-v1",
+  "simulated": false,
+  "prompt_file_sha256": {
+    "jev-v3.json": "ef609985b443f04ac01cd9e1f1528948191be59d2411a0675ae1ab16f0657bb4",
+    "luna-enrich-v2.txt": "c2aea5289a09b52e7772b708979c0bb7388547b597b057a7399bf8cfeb2d940d"
+  },
+  "excluded_from_label_hash": [
+    "controls including workers/fallback cap",
+    "scope",
+    "rates",
+    "verification",
+    "pilot"
+  ],
+  "fallback_policy": "All Jev scores persisted; eligible exact texts ranked by minimum confidence, minimum Choice margin, exact-text SHA-256, canonical source ID. Persist selection and batch plan before Luna dispatch. Immutable extension tranches.",
+  "approved_calibration_source": "checkpoint_500 development comparisons against blinded model verifier; not human accuracy",
+  "confidence_scope": "Minimum topic/intent/severity/sentiment confidence; minimum topic/intent/severity Choice margin. Auxiliary language/context do not alter the calibrated confidence trigger.",
+  "auxiliary_flag_policy": "Jev emits explicit reasons: nonenglish_understood -> language_non_english; not_understood -> language_not_understood; Noul >=.5 -> missing_context; minimum core confidence <.60 or minimum core Choice margin <0 -> low_confidence. Local completion preserves them. Extraction unions all Jev and Luna reasons. Independent fallback unions Luna reasons with Jev language and missing_context reasons, discarding only Jev low_confidence. Final needs_review equals bool(needs_review_reasons), with canonical unique reason order. An empty list is always present for unflagged completed records and direct cache aliases copy the list.",
+  "new_prompt_evidence": "Jev-v3 measured on 3000 slices; .60/0 core separation confirmed on blinded v3 sample. Luna-v2 reason schema/prompt has no live evidence yet.",
+  "calibration_record_label_config": "b0cc1ce0b0a518f391490a61ac00a1e0c0f8181f6feb3c143a1f2890ea7e8318",
+  "calibration_evidence_sha256": "663906ae91ec6889dba0cdf32efdaebd01dbe216c670bed0b65e430c1235cf7b",
+  "golden_policy": "No golden labels read for calibration, routing, prompts or design.",
+  "previous_label_config": "c79a70421de9caad53c9932393f0eb6420f6d80e249cb9097dd5af3eb9d8eba9",
+  "final_freeze_basis": "User approved explicit final reasons and persistent missing_context from either model, including fallback; language flags unchanged and low confidence may clear at fallback. No historical paid record or call was rehashed.",
+  "verification_transfer_evidence": "artifacts/scaling/transfer-verifier/report.json"
+}

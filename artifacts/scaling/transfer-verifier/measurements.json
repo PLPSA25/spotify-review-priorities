@@ -1,0 +1,15 @@
+{
+  "run_id": "ac6aa745-cd28-48b2-89a8-eb4abfbe5ee0",
+  "status": "completed",
+  "worst_case_usd": 0.755,
+  "sample_digest": "1159abd5a2eea1ebe972babf113f46f60728b558600fdfdc5604beadc7f8ff88",
+  "label_config": "c79a70421de9caad53c9932393f0eb6420f6d80e249cb9097dd5af3eb9d8eba9",
+  "wall_seconds": 274.4453385000015,
+  "valid_predictions": 500,
+  "terminal_failures": 0,
+  "attempts": 11,
+  "ledger": {
+    "spent_nanodollars": 266722386,
+    "reserved_nanodollars": 0
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "status": "offline proposal, not paid execution",
+  "source": "analysis_10000.csv",
+  "selection": "Seeded exact-text hash ordering; one original representative ID per text; mutually disjoint IDs and texts; exclude all checkpoint texts and golden IDs.",
+  "source_sha256": "eaa62ca6d44d717302904a9c922e99b0b4584d174309cb45295ecbc2ba2a91b5",
+  "frozen_label_config": "c79a70421de9caad53c9932393f0eb6420f6d80e249cb9097dd5af3eb9d8eba9",
+  "slices": [
+    {
+      "workers": 1,
+      "rows": 1000,
+      "distinct_texts": 1000,
+      "long_texts": 84,
+      "mean_text_chars": 87.351,
+      "csv": "artifacts\\scaling-proposal\\workers-1-1000.csv",
+      "sha256": "c730fbc971276c2da6274531f331cfee5edd1b25d0f711af8f43680000103db2",
+      "enrichment_expected_api_usd": 0.05864189979123173,
+      "enrichment_conservative_mix_api_usd": 0.0879628496868476,
+      "existing_config_enrichment_envelope_usd": 0.858769558,
+      "cost_bounds_nanodollars": {
+        "jev": 521972808,
+        "luna_enrich": 336796750,
+        "verify": 0
+      },
+      "modeled_enrichment_seconds_linear_workers": 426.00130313153545,
+      "modeled_enrichment_seconds_50pct_slowdown": 639.0019546973032,
+      "initial_jev_calls": 1000,
+      "luna_enrichment_ids_upper": 184,
+      "maximum_calls": 2368
+    },
+    {
+      "workers": 2,
+      "rows": 1000,
+      "distinct_texts": 1000,
+      "long_texts": 95,
+      "mean_text_chars": 92.472,
+      "csv": "artifacts\\scaling-proposal\\workers-2-1000.csv",
+      "sha256": "fba4e0fb370dd5397668597cc03f71708a45a229ae34645b5a78200bbf3f8b80",
+      "enrichment_expected_api_usd": 0.05864189979123173,
+      "enrichment_conservative_mix_api_usd": 0.0879628496868476,
+      "existing_config_enrichment_envelope_usd": 0.879541298,
+      "cost_bounds_nanodollars": {
+        "jev": 522412548,
+        "luna_enrich": 357128750,
+        "verify": 0
+      },
+      "modeled_enrichment_seconds_linear_workers": 213.00065156576773,
+      "modeled_enrichment_seconds_50pct_slowdown": 319.5009773486516,
+      "initial_jev_calls": 1000,
+      "luna_enrichment_ids_upper": 195,
+      "maximum_calls": 2390
+    },
+    {
+      "workers": 8,
+      "rows": 1000,
+      "distinct_texts": 1000,
+      "long_texts": 87,
+      "mean_text_chars": 83.113,
+      "csv": "artifacts\\scaling-proposal\\workers-8-1000.csv",
+      "sha256": "4f04ab7dd9ec8d46bd6d2cd7ba8b8fdb6aa25ae9871e3cc26121c14c613626c4",
+      "enrichment_expected_api_usd": 0.05864189979123173,
+      "enrichment_conservative_mix_api_usd": 0.0879628496868476,
+      "existing_config_enrichment_envelope_usd": 0.86359855,
+      "cost_bounds_nanodollars": {
+        "jev": 521646300,
+        "luna_enrich": 341952250,
+        "verify": 0
+      },
+      "modeled_enrichment_seconds_linear_workers": 53.25016289144193,
+      "modeled_enrichment_seconds_50pct_slowdown": 79.8752443371629,
+      "initial_jev_calls": 1000,
+      "luna_enrichment_ids_upper": 187,
+      "maximum_calls": 2374
+    }
+  ],
+  "total_expected_api_usd": 0.17592569937369518,
+  "total_conservative_mix_api_usd": 0.2638885490605428,
+  "total_existing_config_envelope_usd": 2.601909406,
+  "maximum_calls": 7132,
+  "transient_attempts": 1,
+  "invalid_output_repairs": 1,
+  "planning_rates": {
+    "confirmed_date": "2026-10-13",
+    "jev_input_per_million": 0.042,
+    "jev_output_per_million": 0.0,
+    "luna_input_per_million": 0.1,
+    "luna_cached_input_per_million": 0.01,
+    "luna_output_per_million": 0.5,
+    "luna_cache_write_per_million": 0.125
+  },
+  "operational_controls": {
+    "fallback_fraction": 0.1,
+    "token_overhead_bound": 2048,
+    "project_api_cap_usd": 10.0,
+    "request_timeout_seconds": 60.0
+  },
+  "approval_status": "awaiting_yes",
+  "slice_result_cache": "fresh and empty for each run",
+  "paid_roles": [
+    "enrich"
+  ],
+  "verification_group_memo_calls": 0,
+  "stop_gate": "After the three scaling slices; do not process the remaining analysis_10000 rows.",
+  "new_prompt_expected_cost_assumption": {
+    "extra_payload_bytes_per_jev_call": 506,
+    "assumed_bytes_per_extra_token": 4,
+    "extra_api_usd_per_text": 5.313000000000001e-06,
+    "measured_new_prompt_usage": false,
+    "historical_pilot_config": "b0cc1ce0b0a518f391490a61ac00a1e0c0f8181f6feb3c143a1f2890ea7e8318"
+  },
+  "remaining_analysis_rows": 7000,
+  "remaining_analysis_distinct_texts": 5448,
+  "single_analysis_10k_no_reuse_expected_enrichment_usd": 0.49540676943632567,
+  "single_analysis_10k_reusing_slices_expected_enrichment_usd": 0.3194810700626305,
+  "limitations": [
+    "Time at 1/8 workers is modeled linear scaling, not measured. Rate limits can invalidate it.",
+    "Disjoint inputs confound worker effect with review mix; report lengths/language/routing and avoid causal speedup claims.",
+    "Unique-text representatives exclude duplicate propagation workload; cold saved-result cache required. Provider caching cannot be reset.",
+    "Expected costs extrapolate historical 11.9% fallback mix, not a new-config measured mix. Conservative token envelope uses frozen prompts, 10% quota, long texts and bounded repairs.",
+    "No verification/group/memo calls included. One 10k measurement retained for contract/project instructions; reuse requires validated provenance and frozen config."
+  ]
+}

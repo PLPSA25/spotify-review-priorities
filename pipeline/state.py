@@ -17,8 +17,10 @@ class ConfigMismatch(ValueError):
 
 
 class State:
-    def __init__(self, path: Path, label_config: str) -> None:
+    def __init__(self, path: Path, label_config: str, require_reasons: bool = False) -> None:
         self.path, self.label_config = path, label_config
+        self.require_reasons = require_reasons
+        self.failure_window = None
         path.parent.mkdir(parents=True, exist_ok=True)
         with self.connect() as db:
             columns = {row[1] for row in db.execute("PRAGMA table_info(reviews)")}
@@ -33,7 +35,7 @@ class State:
                 CREATE TABLE IF NOT EXISTS work(
                     key TEXT PRIMARY KEY,text TEXT NOT NULL,origin_id TEXT NOT NULL,
                     status TEXT NOT NULL DEFAULT 'pending', lease TEXT, lease_until REAL,
-                    result TEXT, reason TEXT);
+                    result TEXT, reason TEXT,jev_done INTEGER NOT NULL DEFAULT 0);
                 CREATE TABLE IF NOT EXISTS calls(
                     request_id TEXT PRIMARY KEY,event TEXT NOT NULL);
                 CREATE TABLE IF NOT EXISTS enrich_evidence(review_id TEXT PRIMARY KEY);
@@ -48,10 +50,19 @@ class State:
                 CREATE INDEX IF NOT EXISTS reviews_work ON reviews(work_key);
                 CREATE INDEX IF NOT EXISTS work_pending ON work(status,key);
             """)
+            work_columns = {row[1] for row in db.execute('PRAGMA table_info(work)')}
+            if 'jev_done' not in work_columns:
+                db.execute('ALTER TABLE work ADD COLUMN jev_done INTEGER NOT NULL DEFAULT 0')
+                db.execute("UPDATE work SET jev_done=1 WHERE EXISTS (SELECT 1 FROM stage_results s WHERE s.work_key=work.key AND s.stage='jev')")
+            db.execute('CREATE INDEX IF NOT EXISTS work_jev_pending ON work(status,jev_done,key)')
             existing = db.execute("SELECT value FROM metadata WHERE key='label_config'").fetchone()
             if existing and existing[0] != label_config:
                 raise ConfigMismatch(f"label_config mismatch: stored {existing[0]}, requested {label_config}")
             db.execute("INSERT OR IGNORE INTO metadata VALUES ('label_config',?)", (label_config,))
+            saved = db.execute("SELECT value FROM metadata WHERE key='require_reasons'").fetchone()
+            self.require_reasons = self.require_reasons or bool(saved and saved[0]=='true')
+            if self.require_reasons:
+                db.execute("INSERT OR REPLACE INTO metadata VALUES ('require_reasons','true')")
 
     @contextmanager
     def connect(self):
@@ -105,11 +116,16 @@ class State:
             db.execute("INSERT OR REPLACE INTO metadata VALUES (?,?)",
                        ("input_sha256:" + str(source.resolve()), checksum))
 
-    def claim(self, lease_seconds: float) -> dict[str, Any] | None:
+    def claim(self, lease_seconds: float, unfinished_stage: str | None = None) -> dict[str, Any] | None:
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
-            row = db.execute("SELECT * FROM work WHERE status='pending' AND lease IS NULL "
-                             "ORDER BY key LIMIT 1").fetchone()
+            if unfinished_stage == 'jev':
+                row = db.execute("SELECT * FROM work WHERE status='pending' AND jev_done=0 AND lease IS NULL ORDER BY key LIMIT 1").fetchone()
+            else:
+                row = db.execute("SELECT * FROM work w WHERE status='pending' AND lease IS NULL "
+                                 "AND (? IS NULL OR NOT EXISTS (SELECT 1 FROM stage_results s "
+                                 "WHERE s.work_key=w.key AND s.stage=?)) ORDER BY key LIMIT 1",
+                                 (unfinished_stage, unfinished_stage)).fetchone()
             if not row:
                 return None
             token = str(uuid.uuid4())
@@ -118,6 +134,26 @@ class State:
             source = json.loads(db.execute("SELECT source FROM reviews WHERE review_id=?",
                                            (row["origin_id"],)).fetchone()[0])
             return {"key": row["key"], "lease": token, "source": source}
+
+    def claim_keys(self, keys: list[str], lease_seconds: float) -> list[dict[str, Any]]:
+        """Atomically lease remaining members of one persisted deterministic batch."""
+        with self.connect() as db:
+            db.execute('BEGIN IMMEDIATE')
+            rows = [db.execute('SELECT * FROM work WHERE key=?', (key,)).fetchone() for key in keys]
+            if any(row is None for row in rows):
+                raise ValueError('Persisted batch references unknown work')
+            pending = [row for row in rows if row['status'] == 'pending']
+            if any(row['lease'] is not None for row in pending):
+                raise ValueError('Persisted batch is already leased; reconcile before resume')
+            items = []
+            for row in pending:
+                token = str(uuid.uuid4())
+                db.execute('UPDATE work SET lease=?,lease_until=? WHERE key=?',
+                           (token, time.time()+lease_seconds, row['key']))
+                source = json.loads(db.execute('SELECT source FROM reviews WHERE review_id=?',
+                                               (row['origin_id'],)).fetchone()[0])
+                items.append({'key':row['key'], 'lease':token, 'source':source})
+            return items
 
     def release(self, item: dict[str, Any]) -> None:
         with self.connect() as db:
@@ -169,6 +205,8 @@ class State:
             if result is not None:
                 db.execute("INSERT OR REPLACE INTO stage_results VALUES (?,?,?)",
                            (key, stage, canonical(result)))
+                if stage == 'jev':
+                    db.execute('UPDATE work SET jev_done=1 WHERE key=?',(key,))
                 return result
             row = db.execute("SELECT result FROM stage_results WHERE work_key=? AND stage=?",
                              (key, stage)).fetchone()
@@ -200,17 +238,17 @@ class State:
         for row in db.execute("SELECT * FROM reviews WHERE work_key=? AND status='pending'",
                               (work["key"],)).fetchall():
             source = json.loads(row["source"])
-            result = {field: original[field] for field in LABEL_FIELDS}
+            result = {field: original[field] for field in LABEL_FIELDS if field in original}
             result.update(review_id=row["review_id"], source_sha256=source["source_sha256"],
                           status="completed")
             if row["review_id"] != original["review_id"]:
                 result["cache_source_id"] = original["review_id"]
-            validate_record(result, source, self.label_config)
+            validate_record(result, source, self.label_config, require_reasons=self.require_reasons)
             db.execute("UPDATE reviews SET status='completed',result=?,reason=NULL WHERE review_id=?",
                        (canonical(result), row["review_id"]))
 
     def complete(self, item: dict[str, Any], result: dict[str, Any]) -> None:
-        validate_record(result, item["source"], self.label_config)
+        validate_record(result, item["source"], self.label_config, require_reasons=self.require_reasons)
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
             cursor = db.execute("UPDATE work SET status='completed',result=?,reason=NULL,lease=NULL,"
@@ -219,6 +257,8 @@ class State:
             if cursor.rowcount != 1:
                 raise ValueError("Stale/duplicate queue completion")
             self._propagate(db, db.execute("SELECT * FROM work WHERE key=?", (item["key"],)).fetchone())
+        if self.failure_window is not None:
+            self.failure_window.record(item['key'], False)
 
     def quarantine(self, item: dict[str, Any], reason: str) -> None:
         with self.connect() as db:
@@ -229,6 +269,8 @@ class State:
                 raise ValueError("Stale queue quarantine")
             db.execute("UPDATE reviews SET status='quarantined',reason=? WHERE work_key=? "
                        "AND status='pending'", (reason, item["key"]))
+        if self.failure_window is not None:
+            self.failure_window.record(item['key'], True)
 
     def checkpoint(self, path: Path) -> None:
         with self.connect() as db:

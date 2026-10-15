@@ -6,11 +6,13 @@ import random
 import time
 import uuid
 from collections.abc import Callable
+from datetime import UTC, datetime
 from threading import Event
 from typing import Any
 
+from pipeline.failure_policy import FailureWindow, SystemicFailure
 from pipeline.providers import ProviderError, Transport
-from pipeline.schema import canonical
+from pipeline.schema import canonical, record_schema
 from pipeline.spend import Ledger, SpendStop, token_cost, usage_cost
 from pipeline.state import ConfigMismatch, State
 
@@ -30,6 +32,7 @@ class Calls:
         self.sleep, self.jitter = sleep, jitter
         self.stop = Event()
         self.max_calls: int | None = None
+        self.connection_window = FailureWindow(label='Unknown-charge/connection failures')
 
     def invoke(self, provider: str, payload: dict[str, Any], ids: list[str], stage: str,
                parse: Callable[[dict[str, Any]], dict[str, Any]], role: str = "enrich",
@@ -48,6 +51,7 @@ class Calls:
         attempt = max((event["attempt"] for event in previous), default=0)
         malformed = sum(str(event.get("error", "")).startswith("Invalid output:") for event in previous)
         transient = sum(str(event.get("error", "")) in {"HTTP 429", "HTTP 529", "429"} for event in previous)
+        uncertain = sum(event.get('accounting') == 'pessimistic_unknown_charge' for event in previous)
         if malformed > controls["invalid_output_retries"]:
             raise InvalidOutput("Persisted invalid-output retry limit reached")
         if transient >= controls["max_transient_attempts"]:
@@ -57,6 +61,8 @@ class Calls:
         while True:
             if self.stop.is_set():
                 raise SpendStop("Admission stopped by another worker")
+            if controls.get('pessimistic_connection_retries', False) and (uncertain >= controls.get('connection_max_attempts', 3) or attempt >= controls.get('per_item_call_limit', 4)):
+                raise ProviderError('Persisted connection/total attempt limit reached', transient=True)
             attempt += 1
             if self.max_calls is not None:
                 with self.state.connect() as db:
@@ -86,7 +92,11 @@ class Calls:
                 if not delay:
                     break
                 self.sleep(min(delay, 1.0))
-            self.ledger.reserve(request_id, self.run_id, reservation, controls["run_api_cap_usd"])
+            try:
+                self.ledger.reserve(request_id, self.run_id, reservation, controls["run_api_cap_usd"], latch_stop=True)
+            except SpendStop:
+                self.stop.set()
+                raise
             if self.stop.is_set():
                 self.ledger.settle(request_id, 0, "cancelled_before_dispatch")
                 raise SpendStop("Admission stopped before dispatch")
@@ -95,17 +105,19 @@ class Calls:
                 "review_ids": ids, "provider": provider, "model": payload["model"],
                 "phase": self.phase, "outcome": "failed", "label_config": self.state.label_config,
                 "input_tokens": None, "output_tokens": None, "attempt": attempt,
-                "prompt_version": prompt_version or (self.config["enrichment"].get("jev_prompt", "jev-v1.json").removesuffix(".json") if provider == "typesafe" else "luna-enrich-v1"),
-                "schema_version": schema_version, "settings": self.config["models"],
+                "prompt_version": prompt_version or (self.config["enrichment"].get("jev_prompt", "jev-v1.json").removesuffix(".json") if provider == "typesafe" else self.config['enrichment'].get('luna_prompt','luna-enrich-v1.txt').removesuffix('.txt')),
+                "schema_version": record_schema(self.config) if schema_version == 'record-v1' else schema_version, "settings": self.config["models"],
                 "service_tier_requested": payload.get("service_tier", "standard"),
                 "service_tier": None, "simulated": self.simulated,
                 "reservation_nanodollars": reservation, "accounting": "unknown_charge",
                 "error": "dispatch_started_outcome_unresolved", "request": payload,
+                "started_at_utc": datetime.now(UTC).isoformat(),
             }
             self.state.save_call(event)
             started = time.monotonic()
             response: dict[str, Any] | None = None
             settled = False
+            connection_failure = False
             try:
                 response = self.transport.request(provider, payload)
                 event["response"] = response
@@ -146,13 +158,29 @@ class Calls:
                 return result
             except ProviderError as exc:
                 event["error"] = str(exc)
+                event['exception_type'] = type(exc).__name__
+                event['transport_diagnostic'] = getattr(exc, 'diagnostic', None)
                 if exc.known_uncharged:
                     self.ledger.settle(request_id, 0, "provider_rejection_no_inference")
                     settled = True
                     event["accounting"] = "provider_rejection_no_inference"
                 if exc.unknown_charge:
-                    event["accounting"] = "unknown_charge_reservation_retained"
-                    raise
+                    if not controls.get('pessimistic_connection_retries', False):
+                        event["accounting"] = "unknown_charge_reservation_retained"
+                        raise
+                    connection_failure = True
+                    uncertain += 1
+                    self.ledger.settle(request_id, reservation, 'pessimistic_unknown_charge')
+                    settled = True
+                    event.update(original_error=str(exc), outcome='failed',
+                                 error='connection error, charge unknown, accounted as charged',
+                                 reason='connection error, charge unknown, accounted as charged',
+                                 accounting='pessimistic_unknown_charge', cost_nanodollars=reservation,
+                                 cost_basis='reserved_worst_case_not_measured')
+                    if uncertain >= controls.get('connection_max_attempts', 3) or attempt >= controls.get('per_item_call_limit', 4):
+                        raise ProviderError('Connection attempts exhausted; charges pessimistically accounted', transient=True) from None
+                    self.sleep(min(controls['backoff_max_seconds'], controls['backoff_base_seconds'] * 2 ** (uncertain-1) + self.jitter()*controls['backoff_jitter_seconds']))
+                    continue
                 transient += 1
                 if not exc.transient or transient >= controls["max_transient_attempts"]:
                     raise
@@ -175,5 +203,12 @@ class Calls:
                 if response is None and not settled:
                     event["accounting"] = "unknown_charge_reservation_retained"
                 event["latency_seconds"] = time.monotonic() - started
+                event['finished_at_utc'] = datetime.now(UTC).isoformat()
                 event["reservation_settled"] = settled
                 self.state.save_call(event)
+                if controls.get('pessimistic_connection_retries', False):
+                    try:
+                        self.connection_window.record(request_id, connection_failure)
+                    except SystemicFailure:
+                        self.stop.set()
+                        raise

@@ -11,7 +11,7 @@ from pipeline.classify import (
     parse_luna_batch,
 )
 from pipeline.providers import ProviderError
-from pipeline.schema import canonical
+from pipeline.schema import canonical, record_schema
 from pipeline.spend import SpendStop
 from pipeline.state import ConfigMismatch, State
 
@@ -54,7 +54,7 @@ def resolve_luna(state: State, calls: Calls, items: list[dict[str, Any]],
             return calls.invoke("openai", luna_batch_payload(batch, labels, config, extraction),
                                 list(sources), stage,
                                 lambda reply: parse_luna_batch(reply, sources, labels, extraction,
-                                                               state.label_config), repair_output=False)
+                                                               state.label_config, require_reasons=record_schema(config)=='record-v2'), repair_output=False)
         except InvalidOutput as exc:
             return {"valid": {}, "errors": {rid: str(exc) for rid in sources}}
         except ProviderError as exc:
@@ -108,6 +108,8 @@ def resolve_luna(state: State, calls: Calls, items: list[dict[str, Any]],
 
 def enrich_batch(state: State, calls: Calls, items: list[dict[str, Any]],
                  config: dict[str, Any], quota: int) -> None:
+    if config['enrichment'].get('fallback_selection_policy') == 'lowest-confidence-v1' and not calls.simulated:
+        raise ValueError('Frozen deterministic config requires run_deterministic, not first-admission batching')
     labels: dict[str, dict[str, Any]] = {}
     extracts, fallbacks = [], []
     routing = config["enrichment"]
@@ -138,7 +140,7 @@ def enrich_batch(state: State, calls: Calls, items: list[dict[str, Any]],
                 extracts.append(item)
             else:
                 record = {key: values[key] for key in (
-                    "topic", "intent", "severity", "sentiment", "needs_review")}
+                    "topic", "intent", "severity", "sentiment", "needs_review", 'needs_review_reasons')}
                 record.update(review_id=source["review_id"], source_sha256=source["source_sha256"],
                               status="completed", label_config=state.label_config,
                               evidence_quote=source["review_text"],

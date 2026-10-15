@@ -1,0 +1,14 @@
+{
+  "total": 500,
+  "sign_disagreements": 37,
+  "near_zero_either": 54,
+  "near_zero_sign_disagreements": 37,
+  "far_sign_disagreements": 0,
+  "neutral_vs_nonzero_disagreements": 33,
+  "opposite_nonzero_sign_disagreements": 4,
+  "near_zero_definition": "abs(sentiment) < 0.2 on either side; sign -1/0/+1 with exact zero neutral",
+  "near_disagreement_rate": 0.6851851851851852,
+  "far_disagreement_rate": 0.0,
+  "share_sign_disagreements_near_zero": 1.0,
+  "share_all_rows_near_zero": 0.108
+}

@@ -28,7 +28,7 @@ def test_four_question_prompt_states_declared_rules_once() -> None:
     import tomllib
 
     config = tomllib.loads(Path("config.toml").read_text())
-    assert config["enrichment"]["jev_prompt"] == "jev-v2.json"
+    config["enrichment"]["jev_prompt"] = "jev-v2.json"  # preserved historical four-question prompt
     candidate = jev_payload("synthetic input", config)
     assert set(candidate["questions"]) == {"topic", "intent", "severity", "sentiment"}
     assert json.dumps(candidate).count("concrete financial loss") == 1

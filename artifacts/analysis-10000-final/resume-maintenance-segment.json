@@ -1,0 +1,42 @@
+{
+  "status": "failed",
+  "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "run_id": "acc64da9-4fcf-4e20-85e0-4d882f589011",
+  "workers": 8,
+  "cap_nanodollars": 1494586788,
+  "initial_counts": {
+    "completed": 1436,
+    "pending": 8563,
+    "quarantined": 1
+  },
+  "initial_pending_distinct_texts": 7969,
+  "health_window_reset": true,
+  "connect_timeout_seconds": 15,
+  "read_timeout_seconds": 60,
+  "cache_condition": "Resume: completed records and 79 saved new Jev results reused; provider prompt-cache billing measured, not assumed.",
+  "error": "KeyError: 'cause'",
+  "wall_seconds": 272.71423060000234,
+  "counts": {
+    "completed": 1436,
+    "pending": 8563,
+    "quarantined": 1
+  },
+  "ledger": {
+    "spent_nanodollars": 380105850,
+    "reserved_nanodollars": 0
+  },
+  "new_attempts": 1653,
+  "pending_leases": 0,
+  "new_api_cost_nanodollars": 80329200,
+  "reported_usage_cost_nanodollars": 80329200,
+  "pessimistic_cost_nanodollars": 0,
+  "connection_failures_by_phase": {
+    "connect": 0,
+    "send": 0,
+    "post_send": 0
+  },
+  "retry_calls": 10,
+  "new_completed_rows": 0,
+  "rows_per_second": 0.0,
+  "new_terminal_rows": 0
+}

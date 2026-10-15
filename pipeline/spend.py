@@ -1,5 +1,6 @@
 """Shared SQLite spend reservations and rolling request/token admission."""
 
+import json
 import math
 import sqlite3
 import time
@@ -60,7 +61,11 @@ class Ledger:
                 CREATE TABLE IF NOT EXISTS rate_events(
                     provider TEXT NOT NULL,at REAL NOT NULL,tokens INTEGER NOT NULL);
                 CREATE INDEX IF NOT EXISTS rate_time ON rate_events(provider,at);
+                CREATE TABLE IF NOT EXISTS admission_stops(run_id TEXT PRIMARY KEY,details TEXT NOT NULL);
                 CREATE TABLE IF NOT EXISTS fallback_jobs(key TEXT PRIMARY KEY,run_id TEXT NOT NULL);
+                CREATE TABLE IF NOT EXISTS fallback_allocations(
+                    key TEXT NOT NULL,run_id TEXT NOT NULL,PRIMARY KEY(key,run_id));
+                INSERT OR IGNORE INTO fallback_allocations SELECT key,run_id FROM fallback_jobs;
             """)
 
     @contextmanager
@@ -83,20 +88,39 @@ class Ledger:
             raise ValueError("Unknown reservation")
         return row
 
-    def reserve(self, request_id: str, run_id: str, amount: int, run_cap: float) -> None:
+    def run_stop(self, run_id: str):
+        with self.connect() as db:
+            row = db.execute('SELECT details FROM admission_stops WHERE run_id=?',(run_id,)).fetchone()
+        return json.loads(row[0]) if row else None
+
+    def reserve(self, request_id: str, run_id: str, amount: int, run_cap: float, latch_stop: bool = False) -> None:
         if type(amount) is not int or amount < 0:
             raise ValueError("Invalid reservation")
+        denied = None
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
+            prior = db.execute('SELECT details FROM admission_stops WHERE run_id=?',(run_id,)).fetchone()
             total = db.execute("SELECT COALESCE(SUM(spent + CASE WHEN state='reserved' "
                                "THEN amount ELSE 0 END),0) FROM reservations").fetchone()[0]
             run_total = db.execute("SELECT COALESCE(SUM(spent + CASE WHEN state='reserved' "
                                    "THEN amount ELSE 0 END),0) FROM reservations WHERE run_id=?",
                                    (run_id,)).fetchone()[0]
-            if total + amount > self.cap or run_total + amount > money(run_cap):
-                raise SpendStop("Spent + reserved + next reservation exceeds project/run cap")
-            db.execute("INSERT INTO reservations(id,run_id,amount) VALUES (?,?,?)",
-                       (request_id, run_id, amount))
+            if prior:
+                denied = json.loads(prior[0])
+            elif total + amount > self.cap or run_total + amount > money(run_cap):
+                denied = {'cause':'project_cap' if total+amount>self.cap else 'invocation_cap',
+                          'project_committed_nanodollars':total,'run_committed_nanodollars':run_total,
+                          'next_reservation_nanodollars':amount,'project_cap_nanodollars':self.cap,
+                          'run_cap_nanodollars':money(run_cap)}
+                if latch_stop:
+                    db.execute('INSERT INTO admission_stops VALUES (?,?)',(run_id,json.dumps(denied)))
+            else:
+                db.execute("INSERT INTO reservations(id,run_id,amount) VALUES (?,?,?)",
+                           (request_id, run_id, amount))
+        # Commit the stop before raising: other workers cannot admit a new request
+        # after an in-flight reservation settles and frees headroom.
+        if denied:
+            raise SpendStop('Admission stopped: '+denied['cause']+'; spent + reserved + next reservation exceeds cap')
 
     def settle(self, request_id: str, actual: int | None, accounting: str) -> None:
         # None means possibly billed: retain the worst-case reservation indefinitely.
@@ -120,12 +144,12 @@ class Ledger:
     def allow_fallback(self, key: str, run_id: str, quota: int) -> bool:
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
-            if db.execute("SELECT 1 FROM fallback_jobs WHERE key=?", (key,)).fetchone():
+            if db.execute("SELECT 1 FROM fallback_allocations WHERE key=? AND run_id=?", (key, run_id)).fetchone():
                 return True
-            count = db.execute("SELECT COUNT(*) FROM fallback_jobs WHERE run_id=?", (run_id,)).fetchone()[0]
+            count = db.execute("SELECT COUNT(*) FROM fallback_allocations WHERE run_id=?", (run_id,)).fetchone()[0]
             if count >= quota:
                 return False
-            db.execute("INSERT INTO fallback_jobs VALUES (?,?)", (key, run_id))
+            db.execute("INSERT INTO fallback_allocations VALUES (?,?)", (key, run_id))
             return True
 
     def admit(self, provider: str, tokens: int, rps: int, tps: int, rpm: int, tpm: int,

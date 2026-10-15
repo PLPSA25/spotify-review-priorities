@@ -1,0 +1,13 @@
+{
+  "analysis_rows": 10000,
+  "scope_ids": 100041,
+  "inside_scope_by_original_id": 1490,
+  "outside_scope_by_original_id": 8510,
+  "outside_ids_whose_text_is_in_scope": 2046,
+  "inside_or_exact_text_reused_rows": 3536,
+  "analysis_distinct_texts": 8448,
+  "analysis_distinct_texts_reused_in_scope": 1995,
+  "analysis_distinct_texts_outside_scope_texts": 6453,
+  "reuse_status": "Potential reuse only; development work not paid yet. Requires identical frozen hash, succeeded enrich evidence and direct cache provenance.",
+  "label_config": "c79a70421de9caad53c9932393f0eb6420f6d80e249cb9097dd5af3eb9d8eba9"
+}

@@ -1,0 +1,45 @@
+{
+  "status": "proposal only; awaiting yes; human labels not read",
+  "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "source": "data\\golden_50_to_label.csv",
+  "source_sha256": "1a125c3e509f58b0246ba16d0ea332675a53ffadb1928be4338a0bd7053a11c7",
+  "base_state": "artifacts\\analysis-10000-final\\state.sqlite3",
+  "base_state_sha256": "a37ae49e7844fe630040b9ebd281172325661cacea6fee69fc1cadea9cf7c9bc",
+  "output": "artifacts\\golden-final",
+  "golden_ids": 50,
+  "distinct_golden_texts": 49,
+  "reusable_golden_ids": 6,
+  "new_golden_ids": 44,
+  "new_distinct_texts": 44,
+  "initial_jev_calls": 44,
+  "long_new_texts": 3,
+  "fallback_quota": 4,
+  "luna_enrichment_ids_upper": 7,
+  "per_item_call_limit": 4,
+  "connection_max_attempts": 3,
+  "maximum_calls": 204,
+  "cost_bounds_nanodollars": {
+    "jev": 45916248,
+    "luna_enrich": 29639500,
+    "verify": 0
+  },
+  "worst_case_nanodollars": 75555748,
+  "worst_case_usd": 0.075555748,
+  "invocation_cap_usd": "0.075555748",
+  "workers": 8,
+  "planning_rates": {
+    "confirmed_date": "2026-10-13",
+    "jev_input_per_million": 0.042,
+    "jev_output_per_million": 0.0,
+    "luna_input_per_million": 0.1,
+    "luna_cached_input_per_million": 0.01,
+    "luna_output_per_million": 0.5,
+    "luna_cache_write_per_million": 0.125
+  },
+  "exclusions": [
+    "No new verifier/group/memo calls",
+    "No human labels in model inputs",
+    "Entities not evaluated"
+  ],
+  "evaluation": "After predictions freeze, evaluation code only compares human labels. Missing/terminal predictions count as wrong in denominator50. No changes to prompts, thresholds or routing from golden results."
+}

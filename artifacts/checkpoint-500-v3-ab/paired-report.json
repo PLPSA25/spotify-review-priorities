@@ -1,0 +1,320 @@
+{
+  "v2": {
+    "rows": 500,
+    "core_jev_fields": {
+      "topic": {
+        "disagreements": 54,
+        "denominator": 500,
+        "rate": 0.108
+      },
+      "intent": {
+        "disagreements": 37,
+        "denominator": 500,
+        "rate": 0.074
+      },
+      "severity_exact": {
+        "disagreements": 64,
+        "denominator": 500,
+        "rate": 0.128
+      },
+      "severity_beyond_one": {
+        "disagreements": 5,
+        "denominator": 500,
+        "rate": 0.01
+      },
+      "sentiment_sign": {
+        "disagreements": 40,
+        "denominator": 500,
+        "rate": 0.08
+      },
+      "sentiment_tolerance_025": {
+        "disagreements": 61,
+        "denominator": 500,
+        "rate": 0.122
+      }
+    },
+    "final_enrichment_rows": 500,
+    "final_enrichment_fields": {
+      "topic": {
+        "disagreements": 54,
+        "denominator": 500,
+        "rate": 0.108
+      },
+      "intent": {
+        "disagreements": 34,
+        "denominator": 500,
+        "rate": 0.068
+      },
+      "severity_exact": {
+        "disagreements": 60,
+        "denominator": 500,
+        "rate": 0.12
+      },
+      "severity_beyond_one": {
+        "disagreements": 5,
+        "denominator": 500,
+        "rate": 0.01
+      },
+      "sentiment_sign": {
+        "disagreements": 37,
+        "denominator": 500,
+        "rate": 0.074
+      },
+      "sentiment_tolerance_025": {
+        "disagreements": 54,
+        "denominator": 500,
+        "rate": 0.108
+      }
+    },
+    "core_composite_disagreements": 173,
+    "final_composite_disagreements": 161
+  },
+  "v3": {
+    "rows": 500,
+    "core_jev_fields": {
+      "topic": {
+        "disagreements": 53,
+        "denominator": 500,
+        "rate": 0.106
+      },
+      "intent": {
+        "disagreements": 39,
+        "denominator": 500,
+        "rate": 0.078
+      },
+      "severity_exact": {
+        "disagreements": 68,
+        "denominator": 500,
+        "rate": 0.136
+      },
+      "severity_beyond_one": {
+        "disagreements": 4,
+        "denominator": 500,
+        "rate": 0.008
+      },
+      "sentiment_sign": {
+        "disagreements": 42,
+        "denominator": 500,
+        "rate": 0.084
+      },
+      "sentiment_tolerance_025": {
+        "disagreements": 56,
+        "denominator": 500,
+        "rate": 0.112
+      }
+    },
+    "final_enrichment_rows": 499,
+    "final_enrichment_fields": {
+      "topic": {
+        "disagreements": 55,
+        "denominator": 499,
+        "rate": 0.11022044088176353
+      },
+      "intent": {
+        "disagreements": 40,
+        "denominator": 499,
+        "rate": 0.08016032064128256
+      },
+      "severity_exact": {
+        "disagreements": 59,
+        "denominator": 499,
+        "rate": 0.11823647294589178
+      },
+      "severity_beyond_one": {
+        "disagreements": 1,
+        "denominator": 499,
+        "rate": 0.002004008016032064
+      },
+      "sentiment_sign": {
+        "disagreements": 37,
+        "denominator": 499,
+        "rate": 0.07414829659318638
+      },
+      "sentiment_tolerance_025": {
+        "disagreements": 54,
+        "denominator": 499,
+        "rate": 0.10821643286573146
+      }
+    },
+    "core_composite_disagreements": 174,
+    "final_composite_disagreements": 163
+  },
+  "paired_final_enrichment": {
+    "v2": {
+      "rows": 499,
+      "core_jev_fields": {
+        "topic": {
+          "disagreements": 54,
+          "denominator": 499,
+          "rate": 0.10821643286573146
+        },
+        "intent": {
+          "disagreements": 37,
+          "denominator": 499,
+          "rate": 0.07414829659318638
+        },
+        "severity_exact": {
+          "disagreements": 63,
+          "denominator": 499,
+          "rate": 0.12625250501002003
+        },
+        "severity_beyond_one": {
+          "disagreements": 4,
+          "denominator": 499,
+          "rate": 0.008016032064128256
+        },
+        "sentiment_sign": {
+          "disagreements": 40,
+          "denominator": 499,
+          "rate": 0.08016032064128256
+        },
+        "sentiment_tolerance_025": {
+          "disagreements": 61,
+          "denominator": 499,
+          "rate": 0.12224448897795591
+        }
+      },
+      "final_enrichment_rows": 499,
+      "final_enrichment_fields": {
+        "topic": {
+          "disagreements": 54,
+          "denominator": 499,
+          "rate": 0.10821643286573146
+        },
+        "intent": {
+          "disagreements": 34,
+          "denominator": 499,
+          "rate": 0.06813627254509018
+        },
+        "severity_exact": {
+          "disagreements": 59,
+          "denominator": 499,
+          "rate": 0.11823647294589178
+        },
+        "severity_beyond_one": {
+          "disagreements": 4,
+          "denominator": 499,
+          "rate": 0.008016032064128256
+        },
+        "sentiment_sign": {
+          "disagreements": 37,
+          "denominator": 499,
+          "rate": 0.07414829659318638
+        },
+        "sentiment_tolerance_025": {
+          "disagreements": 54,
+          "denominator": 499,
+          "rate": 0.10821643286573146
+        }
+      },
+      "core_composite_disagreements": 172,
+      "final_composite_disagreements": 160
+    },
+    "v3": {
+      "rows": 499,
+      "core_jev_fields": {
+        "topic": {
+          "disagreements": 53,
+          "denominator": 499,
+          "rate": 0.1062124248496994
+        },
+        "intent": {
+          "disagreements": 39,
+          "denominator": 499,
+          "rate": 0.0781563126252505
+        },
+        "severity_exact": {
+          "disagreements": 67,
+          "denominator": 499,
+          "rate": 0.1342685370741483
+        },
+        "severity_beyond_one": {
+          "disagreements": 3,
+          "denominator": 499,
+          "rate": 0.006012024048096192
+        },
+        "sentiment_sign": {
+          "disagreements": 42,
+          "denominator": 499,
+          "rate": 0.0841683366733467
+        },
+        "sentiment_tolerance_025": {
+          "disagreements": 56,
+          "denominator": 499,
+          "rate": 0.11222444889779559
+        }
+      },
+      "final_enrichment_rows": 499,
+      "final_enrichment_fields": {
+        "topic": {
+          "disagreements": 55,
+          "denominator": 499,
+          "rate": 0.11022044088176353
+        },
+        "intent": {
+          "disagreements": 40,
+          "denominator": 499,
+          "rate": 0.08016032064128256
+        },
+        "severity_exact": {
+          "disagreements": 59,
+          "denominator": 499,
+          "rate": 0.11823647294589178
+        },
+        "severity_beyond_one": {
+          "disagreements": 1,
+          "denominator": 499,
+          "rate": 0.002004008016032064
+        },
+        "sentiment_sign": {
+          "disagreements": 37,
+          "denominator": 499,
+          "rate": 0.07414829659318638
+        },
+        "sentiment_tolerance_025": {
+          "disagreements": 54,
+          "denominator": 499,
+          "rate": 0.10821643286573146
+        }
+      },
+      "core_composite_disagreements": 173,
+      "final_composite_disagreements": 163
+    }
+  },
+  "excluded_terminal_rows": 1,
+  "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "status": "A/B gate; remaining analysis_10000 not dispatched",
+  "report_correction": "Core-Jev denominator is all 500 valid raw predictions, independent of 499 final enriched completions. Original initial report used final-completion subset; criterion unchanged.",
+  "pass_result": {
+    "status": "pass",
+    "passes": true,
+    "fields": {
+      "topic": {
+        "v2_disagreements": 54,
+        "v3_disagreements": 53,
+        "denominator": 500,
+        "change_percentage_points": -0.2,
+        "maximum_v3_disagreements": 69,
+        "passes": true
+      },
+      "intent": {
+        "v2_disagreements": 37,
+        "v3_disagreements": 39,
+        "denominator": 500,
+        "change_percentage_points": 0.4,
+        "maximum_v3_disagreements": 52,
+        "passes": true
+      }
+    },
+    "predeclared_criterion": {
+      "endpoint": "core-Jev disagreement against fixed blinded verifier on the same 500 rows",
+      "fields": [
+        "topic",
+        "intent"
+      ],
+      "maximum_worsening_percentage_points_each": 3,
+      "required_shared_rows": 500,
+      "decision": "Both fields must satisfy the limit; otherwise fail. Incomplete shared data cannot pass."
+    }
+  }
+}

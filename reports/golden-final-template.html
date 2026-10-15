@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Spotify · final-hash evaluation gate</title>
+<style>
+:root{color-scheme:light dark;--ink:CanvasText;--surface:Canvas;--line:color-mix(in srgb,CanvasText 18%,Canvas);--quiet:color-mix(in srgb,CanvasText 72%,Canvas)}
+body{font:15px/1.55 system-ui,sans-serif;color:var(--ink);background:var(--surface);margin:0}
+main{max-width:1100px;margin:auto;padding:28px 24px 60px}h1{font-size:24px;font-weight:600;margin:4px 0 12px}h2{font-size:19px;font-weight:600;margin:30px 0 10px}p{max-width:900px}.meta,.caption{color:var(--quiet);font-size:13px}.meta{letter-spacing:.04em;text-transform:uppercase}a{color:LinkText}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:right}th:first-child,td:first-child{text-align:left}th{font-weight:600}caption{text-align:left;padding:8px 0;color:var(--quiet)}.scroll{overflow-x:auto}.right{background:color-mix(in srgb,CanvasText 6%,Canvas)}.zero{color:var(--quiet)}
+.controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:12px 0}select{font:inherit;padding:8px;max-width:100%;background:var(--surface);color:var(--ink);border:1px solid var(--line)}code{overflow-wrap:anywhere;font-size:12px}details{margin-top:22px}summary{cursor:default;font-weight:600}.recommendation{padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+@media(max-width:600px){main{padding:20px 12px 40px}th,td{padding:8px}h1{font-size:22px}}
+@media print{select{display:none}main{max-width:none}.scroll{overflow:visible}}
+</style></head><body><main id="golden-final-gate">
+<div class="meta">Spotify · evaluation gate · October 14, 2026</div>
+<h1>Final-hash golden evaluation</h1>
+<p id="execution"></p>
+<p class="caption">50 owner-labeled IDs; entities excluded because they were not hand-labeled. Four labels were revised after an AI-assisted contract check; final decisions were the owner’s. Golden results do not tune prompts, thresholds or routing.</p>
+<h2>Accuracy by field</h2>
+<div class="scroll"><table id="accuracy"><caption>Correct / denominator (accuracy). Groups use actual classification-fallback ancestry; extraction-only is not fallback.</caption><thead><tr><th>Field</th><th>Overall (n=50)</th><th>Luna fallback (n=4)</th><th>No fallback (n=46)</th></tr></thead><tbody></tbody></table></div>
+<p class="caption">Fallback n=4 is very small and routed by confidence, not randomized. Group differences do not measure the causal benefit of fallback.</p>
+<h2>Confusion tables</h2>
+<div class="controls"><label for="group">Group</label><select id="group"><option value="overall">Overall · 50</option><option value="luna_fallback">Luna fallback · 4</option><option value="no_luna_fallback">No fallback · 46</option></select><label for="field">Field</label><select id="field"><option value="topic">Topic</option><option value="intent">Intent</option><option value="severity">Severity exact</option><option value="severity_within_one">Severity within ±1</option><option value="sentiment_sign">Sentiment sign</option><option value="needs_review">needs_review</option></select></div>
+<div class="scroll"><table id="confusion" aria-live="polite"></table></div>
+<p class="caption" id="matrix-source"></p>
+<h2>Fallback-cap decision · development evidence only</h2>
+<p id="development"></p>
+<div class="scroll"><table id="options"><caption>Modeled remaining 100k enrichment at 8 workers; 75,874 pending texts. No 20% or 30% paid run was made.</caption><thead><tr><th>Cap</th><th>Fallback slots</th><th>Base cost</th><th>Base time</th><th>Proposed spend limit</th></tr></thead><tbody></tbody></table></div>
+<p class="recommendation" id="recommendation"></p>
+<p class="caption">More changed labels do not imply more correct labels. Unselected eligible rows have a blinded-verifier proxy, not observed alternative fallback responses. Added fallback replaces extraction on long texts or local completion on short texts. Time assumes observed batching/repairs and 1 request/s Luna pacing transfer.</p>
+<details><summary>Evidence, exclusions and frozen configuration</summary><p id="budget"></p><p>Source files: <a href="report.json">evaluation JSON</a>; confusion CSVs are saved beside it and in the <code>luna_fallback/</code> and <code>no_luna_fallback/</code> folders. Reproduce offline with <code>python -m pipeline evaluate-golden</code>.</p><p>Golden predictions were collected before evaluation. Development recommendation was frozen before the first golden comparison. No golden evidence feeds its recommendation.</p><p>Missing predictions remain wrong in accuracy denominators. None are missing here. Semantic quote support is not established by substring validity. The 20 human verdicts are a selected disagreement sample, not overall model accuracy.</p><p>Hash: <code id="hash"></code>. Actual fallback control remains 10%; recommendation is not applied. No 100k run or local pre-run commit has occurred.</p></details>
+</main>
+<script id="report-data" type="application/json">__GOLDEN_DATA__</script>
+<script>
+(()=>{
+const root=document.getElementById('golden-final-gate'),d=JSON.parse(document.getElementById('report-data').textContent);
+const e=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
+const names={topic:'Topic',intent:'Intent',severity:'Severity exact',severity_within_one:'Severity within ±1',sentiment_sign:'Sentiment sign',needs_review:'needs_review'};
+const fields=Object.keys(names),groups={overall:d.golden,...d.golden.by_fallback};
+const fmt=m=>`${m.agree}/${m.denominator} (${(100*m.agreement).toFixed(1)}%)`;
+root.querySelector('#accuracy tbody').innerHTML=fields.map(f=>`<tr><th scope="row">${e(names[f])}</th>${Object.keys(groups).map(g=>`<td>${fmt(groups[g].agreement[f])}</td>`).join('')}</tr>`).join('');
+function draw(){const g=root.querySelector('#group').value,f=root.querySelector('#field').value,t=groups[g].confusion[f];let s=`<caption>${e(names[f])} · rows: human label · columns: prediction · counts</caption><thead><tr><th>Human / prediction</th>${t.columns_prediction.map(x=>`<th scope="col">${e(x)}</th>`).join('')}</tr></thead><tbody>`;t.rows_human.forEach((label,i)=>{s+=`<tr><th scope="row">${e(label)}</th>`+t.counts[i].map((n,j)=>`<td class="${n===0?'zero ':''}${(f==='severity_within_one'?j===0:label===t.columns_prediction[j])?'right':''}">${n}</td>`).join('')+'</tr>'});root.querySelector('#confusion').innerHTML=s+'</tbody>';root.querySelector('#matrix-source').textContent=`Source: frozen final-hash predictions vs owner labels · n=${groups[g].agreement.topic.denominator} · matched cells shaded. Severity ±1 uses within/beyond bands.`}
+root.querySelector('#group').addEventListener('change',draw);root.querySelector('#field').addEventListener('change',draw);draw();
+root.querySelector('#execution').textContent=`50/50 predictions complete · 6 reused IDs · 44 new texts · ${d.execution.calls} requests · ${d.execution.seconds.toFixed(2)} s · $${d.execution.cost.toFixed(9)} reported usage (approved cap $0.076).`;
+const actual=d.development.actual_fallback_eligible_label_changes,proxy=d.development.eligible_jev_vs_blinded_luna_verifier,paired=d.development.actual_fallback_paired_against_verifier;
+root.querySelector('#development').textContent=`Actual fallback changed ≥1 core label in ${actual.any_core_label_changed}/${actual.n} texts (${(actual.any_core_change_rate*100).toFixed(1)}%). Blinded Luna verifier differs from Jev in ${proxy.any_core_label_changed}/${proxy.n} eligible unique texts (${(proxy.any_core_change_rate*100).toFixed(1)}%). On ${paired.n} paired fallback texts, verifier disagreement went ${paired.jev_vs_verifier.any_core_label_changed} → ${paired.fallback_vs_verifier.any_core_label_changed}. Human verdicts: Jev right 5, verifier right 12, both wrong 3; eligible subset: 4 / 6 / 2 across12 cases.`;
+root.querySelector('#options tbody').innerHTML=d.development.scenarios.map(o=>`<tr><th scope="row">${Math.round(o.fallback_fraction*100)}%</th><td>${o.future_fallback_quota.toLocaleString()}</td><td>$${o.base_cost_usd.toFixed(2)}</td><td>${o.base_hours.toFixed(2)} h</td><td>$${(o.fallback_fraction===.1?6.80:o.cap_1_5x_rounded_up_cents_usd).toFixed(2)}</td></tr>`).join('');
+root.querySelector('#recommendation').textContent='Proposed: 20% fallback with a $7.28 total invocation cap, not applied. Estimated +$0.35 and +6.5 minutes versus10%. Moderate expansion is supported by development agreement; human intent disagreements warn against treating Luna as truth. No measured accuracy gain is claimed for20% or30%.';
+root.querySelector('#budget').textContent=`Project accounted spend: $${d.execution.project_spend.toFixed(9)} / $10. Proposed $7.28 production cap would bring maximum project spend to $${(d.execution.project_spend+7.28).toFixed(9)} before later separately approved work. Actual OpenAI organization headroom is not verified; the project has logged $${d.execution.openai_local.toFixed(9)}, which is not the organization total.`;
+root.querySelector('#hash').textContent=d.golden.label_config;
+})();
+</script></body></html>
