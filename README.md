@@ -1,12 +1,14 @@
 # Spotify Insight Pipeline
 
-Phases 1–3 are complete. Phase 4 provider preflight and the recovered cold/warm
-100-review pilot are complete; see docs/phase4-status.md and cost/report.md.
+Phases 1–6 are complete through the approved partial production enrichment and
+offline propagation gate. Group/rank/claims/memo await approval. Current measured
+results: [Phase 6 gate](docs/phase6-completion-gate.md). Earlier dated gate notes
+below preserve history and are superseded by that completion report.
 Python 3.11+; developed on Windows with Python 3.12.
 
 ## Approved scope
 
-Ingest all 660,622 source rows. Later classify the first 100,000 nonempty IDs of a saved,
+Ingest all 660,622 source rows. Classify the first 100,000 nonempty IDs of a saved,
 seeded permutation, union the golden 50, and propagate validated labels by exact text.
 Keep every original ID. Export all other nonempty rows as quarantined with
 `not_classified_partial_run`; empty texts use `empty_review_text`.
@@ -14,9 +16,10 @@ Keep every original ID. Export all other nonempty rows as quarantined with
 This deliberately conflicts with the course contract's full-classification requirement.
 The owner approved this partial scope. The final checker will report
 `unfinished_classification`; benchmark omissions count as incorrect. Coverage credit is
-reduced. The preliminary 36% completion / 0.62 coverage-point estimate is not measured.
-Actual sampling and propagation counts will be reported in a later phase, along with a
-random-sample-only ranking to expose repeated-text selection bias.
+reduced. Actual offline propagation completed **237,722 / 660,609 nonempty rows
+(35.9853%)**, with 159,848 valid direct cache reuses. The checker coverage-point
+candidate is **0.6159**, not an assigned grade. A random-sample-only secondary ranking
+will accompany the baseline to expose repeated-text selection bias.
 
 ## Windows setup and offline run
 
@@ -258,3 +261,45 @@ Updated user-reported preflight: OpenAI October spend $0.18 / $20 org limit; pre
 
 
 Production setup is prepared offline. Use [the exact PowerShell operator guide](docs/100k-production-commands.md) and [the pinned plan](docs/100k-production-plan.json). The contract explicitly requires a short recording and both checkpoints (data/GRADING_CONTRACT.md:16–17). A graceful stop at about five minutes preserves Jev scores; final completed growth may occur much later after resume. Nothing paid starts before the owner approves the $7.28 shared invocation cap.
+
+
+## Production completion, evidence and submission limitations
+
+The selected scope ended at **100,001 completed / 40 terminal IDs** (100,041 total).
+After exact-text propagation the full export accounts for every original ID:
+237,722 completed, 422,845 nonempty rows quarantined as `not_classified_partial_run`,
+42 terminal-failure rows, and 13 `empty_review_text` rows. Terminal selected IDs
+break down as 31 invalid exact quotes, four refused/truncated batches, one
+missing/duplicate returned ID, and four Jev near-tie probability/choice mismatches
+(three distinct texts). Permitted repairs were exhausted; these remain failures.
+
+Ten failed TypeSafe connection calls have **unavailable input and output token
+usage** (null fields), producing 20 `invalid_usage` flags. They were pessimistically
+charged at their reserved worst case; we did not invent zero usage or reconcile
+provider dashboards. Contract line 90 explicitly permits disclosure of unavailable
+usage and says the checker reports it. Project spend is **$5.604212288 / $10**;
+production invocation spend **$4.834135303 / $7.28**, including pessimistic failures.
+
+The full supplied checker ran and returns `review_required`. Besides unavailable
+usage and partial scope, this interim export flags pending grouping for 70,239
+complaint/cancellation IDs, missing claims, and missing verify/group/memo calls in
+the current production export. Prior blinded verifier evidence is stored separately;
+its transparent import is proposed at the next gate. Business CSVs currently contain
+headers only and run.json declares them pending. This is not a final submission.
+No duplicate, missing, invalid record, cache-origin or resume-proof errors were found.
+
+**Recording disclosure:** clip 1's malformed pasted command did not save a before
+checkpoint. `checkpoint_before.reconstructed.json` was reconstructed later from the
+retained pause receipt and pinned base-state intersection (19,719 IDs); it is not a
+file saved during the video. Its separately preserved provenance accompanies the
+canonical grading copy. Clip 2 saved the immutable after checkpoint (22,227 IDs),
+then hit a database lock during audit. Offline `scope-proof` now passes against
+those unchanged snapshots: before strictly contained in after, after contained in
+completed, no before IDs in resume enrichment calls, 2,508 new direct paid resume
+records. A short clip 3 can rerun that proof. Recordings remain ignored/local;
+no video is committed or uploaded.
+
+See [full completion and checker explanations](docs/phase6-completion-gate.md),
+[large-file inventory and unapplied gzip measurements](docs/submission-large-files.json),
+and [the next paid gate proposal](docs/phase7-proposal.md). Large JSONLs are currently
+ignored and uncompressed. Gzip/release packaging is proposed, not applied.

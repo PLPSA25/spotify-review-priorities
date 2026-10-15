@@ -10,3 +10,7 @@
 
 Inventory recorded from file metadata only. The running pipeline was not accessed,
 interrupted, or modified.
+
+Second recording, inventoried after completion from metadata only:
+`Recording 2026-10-14 225019.mp4`, **156,550,325 bytes** (156.550 MB).
+Both videos remain local and ignored; neither was inspected, committed or uploaded.

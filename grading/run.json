@@ -1,0 +1,14 @@
+{
+  "version": "a5-audit-v1",
+  "analysis_count": 660622,
+  "analysis_sha256": "1fc85de68a304dd8978b537cfa58793d5f41cbaf417fa32cb53899f83a2fcef6",
+  "classification_input_fields": [
+    "review_text"
+  ],
+  "allow_multi_issue": false,
+  "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "sample_prefix": 100000,
+  "business_stages": "pending: group/rank/claims/memo; empty CSV headers are interim only",
+  "before_checkpoint": "Post-hoc reconstruction; see checkpoint_before.provenance.json; not saved during clip 1",
+  "cache": "exact-text saved results; not provider prompt caching"
+}

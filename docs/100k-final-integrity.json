@@ -1,0 +1,382 @@
+{
+  "sqlite_integrity": "ok",
+  "sqlite_call_count": 85941,
+  "jsonl_unique_calls": 85941,
+  "jsonl_duplicate_request_ids": [],
+  "jsonl_differing_events": [],
+  "missing_jsonl_events": 0,
+  "saved_new_jev_scores": 75871,
+  "production_succeeded_jev_unique_ids": 75871,
+  "roles": {
+    "enrich": 85941
+  },
+  "stages": {
+    "typesafe/jev/succeeded": 84363,
+    "openai/extract/succeeded": 520,
+    "openai/fallback/succeeded": 920,
+    "openai/fallback/failed": 18,
+    "typesafe/jev/failed": 92,
+    "openai/extract/failed": 28
+  },
+  "failed_call_errors": {
+    "Invalid batch results": 37,
+    "connection error, charge unknown, accounted as charged": 10,
+    "Invalid output: Choice differs from highest-probability option": 82,
+    "Invalid output: Luna refused or truncated batch": 9
+  },
+  "unavailable_usage_calls": {
+    "typesafe/connection error, charge unknown, accounted as charged": 10
+  },
+  "scoped_terminal_last_errors": {
+    "openai/extract/Quote must be a nonempty exact source substring": 18,
+    "typesafe/jev/Invalid output: Choice differs from highest-probability option": 3,
+    "openai/extract/Missing or duplicate returned ID": 1,
+    "openai/extract/Invalid output: Luna refused or truncated batch": 2,
+    "openai/fallback/Quote must be a nonempty exact source substring": 13,
+    "openai/fallback/Invalid output: Luna refused or truncated batch": 2
+  },
+  "terminal_items": [
+    {
+      "review_id": "014df5d4-c2dc-4e7c-9a18-d874bd80fef5",
+      "stage": "jev",
+      "provider": "typesafe",
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "origin_id": "014df5d4-c2dc-4e7c-9a18-d874bd80fef5",
+      "work_key": "cb6d06cf55fb1f2e471047fe90dee2358f3097d706565cc81066db550bd3cfd0"
+    },
+    {
+      "review_id": "0ddc49f1-95d5-4a50-9d13-432a576e4b38",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "0ddc49f1-95d5-4a50-9d13-432a576e4b38",
+      "work_key": "f81ceb554fb79552f2cf712e98cf60b3b5c94d726dbfe4b21dfd3bcbc7ab0fdf"
+    },
+    {
+      "review_id": "10ad2ced-fca3-4f9f-a2a1-96643dca94ba",
+      "stage": "fallback",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "10ad2ced-fca3-4f9f-a2a1-96643dca94ba",
+      "work_key": "e2faf1022dceff8a8a527a9ed58f294b66c2f6f3ccabb84f122cb6423a4bc93e"
+    },
+    {
+      "review_id": "11c58842-3942-4fff-9470-782f9cdf3c2d",
+      "stage": "fallback",
+      "provider": "openai",
+      "error": "Invalid output: Luna refused or truncated batch",
+      "origin_id": "11c58842-3942-4fff-9470-782f9cdf3c2d",
+      "work_key": "d3f3796a4a942ddcda86b4000250839b488f97e4b6094c98678777176c4d7b91"
+    },
+    {
+      "review_id": "16609127-453a-40ee-bc09-83f279ed9d4a",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "16609127-453a-40ee-bc09-83f279ed9d4a",
+      "work_key": "b8c7bfb1a105c048ab3fd0633a2d5136da9efea2662abe41e89b88a6ccd50bc1"
+    },
+    {
+      "review_id": "17e3ed51-65ee-45a1-9b21-7081cef60722",
+      "stage": "fallback",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "17e3ed51-65ee-45a1-9b21-7081cef60722",
+      "work_key": "5f5ca609bea42db6085ac6998cb45eda71fa2393bbbdcc51926c6aff96f9359d"
+    },
+    {
+      "review_id": "22cf0114-5c78-418b-9039-fccec462c56e",
+      "stage": "fallback",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "22cf0114-5c78-418b-9039-fccec462c56e",
+      "work_key": "65398dbe73c17beffe0dba52ade1b4a044fa2a6f647817651b4d49bf91e5e129"
+    },
+    {
+      "review_id": "2dea9882-2520-444d-8f22-609b8142536b",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "2dea9882-2520-444d-8f22-609b8142536b",
+      "work_key": "b0d41ba56247465d649fbcbe258bfaede39bec58375fc57bbd381f5e3cdfa223"
+    },
+    {
+      "review_id": "32b4417f-ff24-42fb-be8a-f3a9403a59f4",
+      "stage": "fallback",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "32b4417f-ff24-42fb-be8a-f3a9403a59f4",
+      "work_key": "567467824cc7a95a1f3cbf1b4b3b188d21287ff355e1ec0be95bff99b451b673"
+    },
+    {
+      "review_id": "346a6686-fe36-4a8b-98eb-fbc492045b47",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "346a6686-fe36-4a8b-98eb-fbc492045b47",
+      "work_key": "2d75888ec4c209da189690acf84c6d9cbacf508c88b69d996298a9f9ac8b6e6c"
+    },
+    {
+      "review_id": "37d5b7ed-32cc-47bb-836c-340e83cf7c71",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "37d5b7ed-32cc-47bb-836c-340e83cf7c71",
+      "work_key": "cd4686f177604cea775a61517c3ce3a094fedcc6d58c83a384a95bb1fca377fc"
+    },
+    {
+      "review_id": "3bbab369-2722-48ea-8ab2-0739a9b3d5f7",
+      "stage": "jev",
+      "provider": "typesafe",
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "origin_id": "3bbab369-2722-48ea-8ab2-0739a9b3d5f7",
+      "work_key": "ac17030ba8205a569622d7e87f6ae2d102bfc050056fe4db3018fcc5f9807eb8"
+    },
+    {
+      "review_id": "3cffd487-0ce5-4cdb-a330-b917a2314bac",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "3cffd487-0ce5-4cdb-a330-b917a2314bac",
+      "work_key": "bde5a865c3147e8799d9f1f5e088161c0e9947e0eafecc5a2a2cb3c5888639b3"
+    },
+    {
+      "review_id": "3ef844b2-8120-4f5b-a3e7-1e0c0ee8b31e",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "3ef844b2-8120-4f5b-a3e7-1e0c0ee8b31e",
+      "work_key": "7248ad2ba0b546627ef6fb02a9b0465c11acfc1195161b604afbcf516d0b6356"
+    },
+    {
+      "review_id": "3fab5f61-44d9-45cd-9c18-31c2c79614fd",
+      "stage": "fallback",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "3fab5f61-44d9-45cd-9c18-31c2c79614fd",
+      "work_key": "ddff15b7a934756cb2913ff186b90cc3a612bf5e599ade292a4c5275c4ae6cf7"
+    },
+    {
+      "review_id": "4f164af4-fdc0-44c1-830b-bb1f0d38df83",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "4f164af4-fdc0-44c1-830b-bb1f0d38df83",
+      "work_key": "812aaabf5cc2d7156f9d9065427097359ab51ce7f80d1208b3532a704942a32d"
+    },
+    {
+      "review_id": "52673182-f225-47cb-a4a2-8a082a61befd",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "52673182-f225-47cb-a4a2-8a082a61befd",
+      "work_key": "9643afc985783029eb4553edd812808b3c649e6367bfdabe444292a39291343c"
+    },
+    {
+      "review_id": "5d844542-593c-4c13-b253-f3ba848d0e2a",
+      "stage": "fallback",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "5d844542-593c-4c13-b253-f3ba848d0e2a",
+      "work_key": "c78c1368bb75f015734a2aef40fdd228c5ce83b729a6d4c04d71e5451eea2fea"
+    },
+    {
+      "review_id": "675a087f-f600-42bb-8bec-84e2015d872a",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Invalid output: Luna refused or truncated batch",
+      "origin_id": "675a087f-f600-42bb-8bec-84e2015d872a",
+      "work_key": "511fa9fec3349349e6acd93c23a428bb5893b31210e36faddd61ef3d0c93116d"
+    },
+    {
+      "review_id": "6aede001-ff07-472e-b16b-57540ef07216",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "6aede001-ff07-472e-b16b-57540ef07216",
+      "work_key": "40749c97c6ecc55c3be6e28b601d2e8c9b2579a670993d3f9cf1eecb4a5b8f22"
+    },
+    {
+      "review_id": "6ea0ee6d-05d1-4730-b4b5-5c2553a6b2fa",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "6ea0ee6d-05d1-4730-b4b5-5c2553a6b2fa",
+      "work_key": "5246bd28864f18d24e9c86f460b302216077dfb01df0cf7f645a75d697ea47eb"
+    },
+    {
+      "review_id": "6ee89fe5-6900-43ce-9c54-43078ac506e1",
+      "stage": "jev",
+      "provider": "typesafe",
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "origin_id": "6ee89fe5-6900-43ce-9c54-43078ac506e1",
+      "work_key": "b4d2ba0426a1c19ae1e9ef19830cb7bdd2347c09ba7bc5492a5d6d02b9e15250"
+    },
+    {
+      "review_id": "75febc80-7602-4b80-b4d9-a387d3801fb9",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "75febc80-7602-4b80-b4d9-a387d3801fb9",
+      "work_key": "bbd59693704980504c9b5fa5c206c12c0f0d425da336048c80bf7266db19f407"
+    },
+    {
+      "review_id": "89732301-e7dd-4b81-8209-fae40b5e6c6d",
+      "stage": "fallback",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "89732301-e7dd-4b81-8209-fae40b5e6c6d",
+      "work_key": "7421a486ce21650a81fc2ff74e7cdaa8500bb1ed8bdd40f8834d220f6602bb1f"
+    },
+    {
+      "review_id": "920de75b-5cb6-4cf0-b495-b1780cdd952e",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Invalid output: Luna refused or truncated batch",
+      "origin_id": "920de75b-5cb6-4cf0-b495-b1780cdd952e",
+      "work_key": "eeec6a8e817df8cf249972cac2564de7ad4be41538aa1d432a11d281d5ec3625"
+    },
+    {
+      "review_id": "929cd59f-a906-4b12-9da0-51664b363796",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "929cd59f-a906-4b12-9da0-51664b363796",
+      "work_key": "f030ffdbaeec01e362b72c361befea9d30fd133a99541bdf13e01aa04879a1bb"
+    },
+    {
+      "review_id": "9fb5fb7c-3e03-4c6f-8b77-f9c4eeb0a4ba",
+      "stage": "fallback",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "9fb5fb7c-3e03-4c6f-8b77-f9c4eeb0a4ba",
+      "work_key": "0fc65000886c9e4f794c9bccc705d7bbe22dfb5bf8a0e2c61a2c73e5f44bc362"
+    },
+    {
+      "review_id": "a83ee12b-df6a-4388-99dc-4c64d4369127",
+      "stage": "fallback",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "a83ee12b-df6a-4388-99dc-4c64d4369127",
+      "work_key": "5617decce8b0ead73b3b6f3c671ec076c815712ce8657f50c5c90cb2c38bb532"
+    },
+    {
+      "review_id": "aba2d9fa-ca4c-45f0-8ca3-1eeab58e571e",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "aba2d9fa-ca4c-45f0-8ca3-1eeab58e571e",
+      "work_key": "24d0bf1bdd2f4570b8424ade139d072777772f42f6f6cbb38ea50c0c3228e5fb"
+    },
+    {
+      "review_id": "ad5f72c8-46a5-4d6c-8dea-2469ee0b2ed0",
+      "stage": "jev",
+      "provider": "typesafe",
+      "error": "Invalid output: Choice differs from highest-probability option",
+      "origin_id": "014df5d4-c2dc-4e7c-9a18-d874bd80fef5",
+      "work_key": "cb6d06cf55fb1f2e471047fe90dee2358f3097d706565cc81066db550bd3cfd0"
+    },
+    {
+      "review_id": "b93ad5c9-26e9-4306-b6b0-e76244ea9b5c",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Missing or duplicate returned ID",
+      "origin_id": "b93ad5c9-26e9-4306-b6b0-e76244ea9b5c",
+      "work_key": "4b7a487b1657565eefced76fef56a73e354968aaa040a104a320ca8b0bfb4ea1"
+    },
+    {
+      "review_id": "c35da7be-7dd1-4599-9954-2faa86f0e6fa",
+      "stage": "fallback",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "c35da7be-7dd1-4599-9954-2faa86f0e6fa",
+      "work_key": "fe42c8e6c07c2ea39004d2bdd2b4645372f54546dab31136157c7a9ee2105a53"
+    },
+    {
+      "review_id": "c8537752-36af-44bf-81e3-e9ba2666b222",
+      "stage": "fallback",
+      "provider": "openai",
+      "error": "Invalid output: Luna refused or truncated batch",
+      "origin_id": "c8537752-36af-44bf-81e3-e9ba2666b222",
+      "work_key": "e4ac45dd1dba2d9169f29a2dbde3acf74f814f5b6380ea07d2adf8c4afd75e32"
+    },
+    {
+      "review_id": "cc5c108a-2c0b-48c9-9168-256c8f6a3349",
+      "stage": "fallback",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "cc5c108a-2c0b-48c9-9168-256c8f6a3349",
+      "work_key": "56cf67d8d631ba2c6d3906e14f4bdaf76608e06f6cd3c99320ac71fd26cf60c7"
+    },
+    {
+      "review_id": "d6b5e429-3589-4f68-9a57-017d0c9cd3ad",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "d6b5e429-3589-4f68-9a57-017d0c9cd3ad",
+      "work_key": "ca3fe06bcfad85540951da3b76976604f8b42478c67a2c1cb5497625f8b37dd6"
+    },
+    {
+      "review_id": "dbe7f220-7bbf-4895-b1c0-d28df92e00ad",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "dbe7f220-7bbf-4895-b1c0-d28df92e00ad",
+      "work_key": "924c72b4942eea586d6c82872b8261c6467b80f72e768144e1ec6d6897748590"
+    },
+    {
+      "review_id": "ec2b3779-3962-4921-a58e-1e0b6e284806",
+      "stage": "fallback",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "ec2b3779-3962-4921-a58e-1e0b6e284806",
+      "work_key": "2b326224ea4f0d0b3ecfde8fd6b68793e35fef4ae89db2da6223ef47c07c09fe"
+    },
+    {
+      "review_id": "f290a058-dbb9-4e38-81e5-6c625c418b84",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "f290a058-dbb9-4e38-81e5-6c625c418b84",
+      "work_key": "3ffbaa61b74ae6edf17eb29d42b2ca958eadacb802962040787001008884fbce"
+    },
+    {
+      "review_id": "f3906454-9abc-4ab6-9a8f-fbc2e6a57164",
+      "stage": "extract",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "f3906454-9abc-4ab6-9a8f-fbc2e6a57164",
+      "work_key": "fc5277e4328305f2a86d4ddf70d149ec43df95096f0463b5bf22965598ea311b"
+    },
+    {
+      "review_id": "fa309c96-1c3d-44df-9a7f-578263111952",
+      "stage": "fallback",
+      "provider": "openai",
+      "error": "Quote must be a nonempty exact source substring",
+      "origin_id": "fa309c96-1c3d-44df-9a7f-578263111952",
+      "work_key": "8aa7ec531fef7b878b2daaf90b59bf647cb0a594b34648fc40d1ab1ff5142170"
+    }
+  ],
+  "scoped_terminal_rows_by_error": {
+    "openai/extract/Quote must be a nonempty exact source substring": 18,
+    "typesafe/jev/Invalid output: Choice differs from highest-probability option": 4,
+    "openai/fallback/Quote must be a nonempty exact source substring": 13,
+    "openai/fallback/Invalid output: Luna refused or truncated batch": 2,
+    "openai/extract/Invalid output: Luna refused or truncated batch": 2,
+    "openai/extract/Missing or duplicate returned ID": 1
+  },
+  "scoped_terminal_distinct_by_error": {
+    "openai/extract/Quote must be a nonempty exact source substring": 18,
+    "typesafe/jev/Invalid output: Choice differs from highest-probability option": 3,
+    "openai/extract/Missing or duplicate returned ID": 1,
+    "openai/extract/Invalid output: Luna refused or truncated batch": 2,
+    "openai/fallback/Quote must be a nonempty exact source substring": 13,
+    "openai/fallback/Invalid output: Luna refused or truncated batch": 2
+  },
+  "scoped_terminal_rows": 40,
+  "scoped_terminal_distinct_texts": 39,
+  "current_config_matches_frozen": true,
+  "ledger_integrity": "ok",
+  "ledger_project_spent_usd": 5.604212288,
+  "ledger_invocation_spent_usd": 4.834135303
+}

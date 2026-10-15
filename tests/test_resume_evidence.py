@@ -1,4 +1,5 @@
 import json
+import sqlite3
 
 import pytest
 
@@ -62,3 +63,27 @@ def test_snapshot_keeps_only_declared_scope_ids(tmp_path):
     saved = snapshot(state.path,tmp_path/'checkpoint.json',source)
     assert saved['completed_ids']==['1']
     atomic_json(tmp_path/'check.json',saved)
+
+
+def test_snapshot_recovers_writer_contention_before_publishing(tmp_path, monkeypatch):
+    _, _, state, _, _ = environment(tmp_path, ('first',))
+    finish(state, state.claim(300))
+    writer = sqlite3.connect(state.path)
+    writer.execute('BEGIN EXCLUSIVE')
+    pauses = []
+
+    def release(delay):
+        pauses.append(delay)
+        writer.commit()
+
+    from pipeline.sqlite_read import read_connection
+    monkeypatch.setattr('pipeline.resume_evidence.read_connection', lambda path: read_connection(path, timeout=0.001))
+    monkeypatch.setattr('pipeline.sqlite_read.time.sleep', release)
+    try:
+        destination = tmp_path/'locked-checkpoint.json'
+        result = snapshot(state.path, destination)
+        assert pauses == [0.25]
+        assert json.loads(destination.read_text()) == result
+        assert result['completed_ids'] == ['0']
+    finally:
+        writer.close()

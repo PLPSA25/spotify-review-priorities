@@ -1,11 +1,11 @@
 """Offline recording snapshots and no-relabel evidence; no provider imports."""
 import csv
 import json
-import sqlite3
 from contextlib import closing
 from pathlib import Path
 
 from pipeline.prepare import atomic_json
+from pipeline.sqlite_read import read_connection
 
 
 def snapshot(state, destination, scope_csv=None):
@@ -15,7 +15,7 @@ def snapshot(state, destination, scope_csv=None):
     if scope_csv:
         with scope_csv.open(encoding='utf-8-sig',newline='') as stream:
             selected = {row['review_id'] for row in csv.DictReader(stream)}
-    with closing(sqlite3.connect(f'file:{state.as_posix()}?mode=ro',uri=True)) as db:
+    with closing(read_connection(state)) as db:
         config = db.execute("SELECT value FROM metadata WHERE key='label_config'").fetchone()[0]
         completed = {rid for rid, in db.execute("SELECT review_id FROM reviews WHERE status='completed'")}
     if selected is not None:
@@ -34,7 +34,7 @@ def audit(state, before_path, after_path, run_ids, output):
     after = json.loads(after_path.read_text(encoding='utf-8'))
     b, a = set(before['completed_ids']), set(after['completed_ids'])
     added = a-b
-    with closing(sqlite3.connect(f'file:{state.as_posix()}?mode=ro',uri=True)) as db:
+    with closing(read_connection(state)) as db:
         config = db.execute("SELECT value FROM metadata WHERE key='label_config'").fetchone()[0]
         records = {rid:json.loads(record) for rid,record in db.execute("SELECT review_id,result FROM reviews WHERE status='completed'")}
         touched, new_paid = set(), set()

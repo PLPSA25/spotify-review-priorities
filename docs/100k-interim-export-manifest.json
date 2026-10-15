@@ -1,0 +1,61 @@
+{
+  "status": "interim; business stages pending",
+  "files": [
+    {
+      "path": "grading\\run.json",
+      "bytes": 623,
+      "sha256": "853a7fc008af5d722eb3d52718c48eb729c8227cdd47ec9682a05d6c6f5fabb0"
+    },
+    {
+      "path": "grading\\ingestion.json",
+      "bytes": 994,
+      "sha256": "68f7995588296dc3e2cce2674e9aa44009b1d5b1c489be021e981d2c6e3323d3"
+    },
+    {
+      "path": "grading\\records.jsonl",
+      "bytes": 196196656,
+      "sha256": "4638e9fc178f86a9c3d842fad04566190793b50ccf540eafdba589363015d75b"
+    },
+    {
+      "path": "grading\\calls.jsonl",
+      "bytes": 488704196,
+      "sha256": "066f997a5ce7228e0b7e5c3ba28d3377cd68a90936d0559ed5c4580256596918"
+    },
+    {
+      "path": "grading\\checkpoint_before.json",
+      "bytes": 867750,
+      "sha256": "39252683567643d0c967477f874739aa0a65bb98a0faee47752f3435c140fef3"
+    },
+    {
+      "path": "grading\\checkpoint_after.json",
+      "bytes": 978102,
+      "sha256": "026e0cbdd1b07802a1df2ce9879295e060ced6d5a0602c51b040a3c38e9d2f8b"
+    },
+    {
+      "path": "grading\\checkpoint_before.provenance.json",
+      "bytes": 1155,
+      "sha256": "954e05ffdfc2506a69a1cb3e9ffb1627df4cbf70ff4eb6bdc874608eed955756"
+    },
+    {
+      "path": "grading\\coverage.json",
+      "bytes": 449,
+      "sha256": "74070ab31a009502b93c9b51e79597d674c9df349cc6be21717d82bb586cda76"
+    },
+    {
+      "path": "grading\\membership.csv",
+      "bytes": 20,
+      "sha256": "21394e72cafc2d7eb1711853e66ccd8932acaf8ee268cda6d24d5991c2e4b7f1"
+    },
+    {
+      "path": "grading\\ranking.csv",
+      "bytes": 73,
+      "sha256": "441d540dc7d0ecbd4b98f6b02eb2a92ac58006e4b33a0bef0fa24feef58df4f1"
+    },
+    {
+      "path": "grading\\claims.csv",
+      "bytes": 32,
+      "sha256": "9b9666babafce11ad187fcb8fcfdba1c371c3061bb4c88b1c46d081e477f5fc0"
+    }
+  ],
+  "api_calls_this_export": 0
+}

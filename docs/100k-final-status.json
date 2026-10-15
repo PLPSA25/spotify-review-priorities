@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "phase": "resume",
+  "invocation_id": "7180188e-0938-4d2f-8e2b-6bf412cf77ca",
+  "workers": 8,
+  "fallback_fraction": 0.2,
+  "scope_counts": {
+    "completed": 100001,
+    "quarantined": 40
+  },
+  "new_distinct_counts": {
+    "completed": 75836,
+    "quarantined": 38
+  },
+  "saved_new_jev_scores": 75871,
+  "leases": 0,
+  "shared_cap_usd": 7.28,
+  "elapsed_segment_seconds": 2384.9588170999996,
+  "project_spent_usd": 5.604212288,
+  "reserved_usd": 0.0,
+  "invocation_committed_usd": 4.834135303,
+  "invocation_remaining_usd": 2.445864697,
+  "cap_latched": false,
+  "safe_to_resume": false,
+  "safe_to_continue_recovery": false
+}

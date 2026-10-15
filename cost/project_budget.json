@@ -79,5 +79,16 @@
       "total_project_usd": 6.60456807646,
       "assumptions": "Pilot enrichment and verifier usage per review extrapolated; three future group/memo runs; unchanged-config cache reuse. Not a guarantee."
     }
-  ]
+  ],
+  "historical_estimates_note": "Earlier scenarios are preserved pilot-era projections, not current measurements or ledger reservations.",
+  "latest_measured_status": {
+    "date": "2026-10-15",
+    "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+    "project_spent_usd": 5.604212288,
+    "project_cap_usd": 10,
+    "production_invocation_spent_usd": 4.834135303,
+    "production_invocation_cap_usd": 7.28,
+    "reserved_usd": 0,
+    "status": "production enrichment complete; offline propagation audited; next gate pending"
+  }
 }

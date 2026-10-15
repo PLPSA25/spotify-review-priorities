@@ -16,6 +16,7 @@ from pipeline.labeler import atomic_csv
 from pipeline.prepare import atomic_json, course_helper
 from pipeline.resume_evidence import audit, snapshot
 from pipeline.schema import configuration
+from pipeline.sqlite_read import read_connection
 from pipeline.state import State
 
 PLAN = Path('docs/100k-production-plan.json')
@@ -129,7 +130,7 @@ def check_authorization(plan_path, plan, resume=False):
 
 def status(output=OUTPUT):
     """Read-only allow-listed counters: never print payloads, reviews or keys."""
-    with closing(sqlite3.connect(f'file:{(output/"state.sqlite3").as_posix()}?mode=ro',uri=True)) as db:
+    with closing(read_connection(output/"state.sqlite3")) as db:
         counts = dict(db.execute('SELECT r.status,COUNT(*) FROM reviews r JOIN production_scope s USING(review_id) GROUP BY r.status'))
         row = db.execute("SELECT result FROM artifacts WHERE key='graceful-invocation'").fetchone()
         saved = json.loads(row[0]) if row else {}
@@ -143,7 +144,7 @@ def status(output=OUTPUT):
               'elapsed_segment_seconds':round(time.time()-saved['started_epoch'],1) if saved.get('status')=='running' else saved.get('wall_seconds')}
     config = tomllib.loads(Path('config.toml').read_text(encoding='utf-8'))
     path = Path(config['controls']['ledger_path'])
-    with closing(sqlite3.connect(f'file:{path.as_posix()}?mode=ro',uri=True)) as db:
+    with closing(read_connection(path)) as db:
         spent,reserved = db.execute("SELECT COALESCE(SUM(spent),0),COALESCE(SUM(CASE WHEN state='reserved' THEN amount ELSE 0 END),0) FROM reservations").fetchone()
         own = db.execute("SELECT COALESCE(SUM(spent+CASE WHEN state='reserved' THEN amount ELSE 0 END),0) FROM reservations WHERE run_id=?",(saved.get('run_id',''),)).fetchone()[0]
         stop = db.execute('SELECT details FROM admission_stops WHERE run_id=?',(saved.get('run_id',''),)).fetchone()
@@ -163,13 +164,13 @@ def evidence(which, output=OUTPUT):
         raise ValueError('Choose before or after')
     if target.exists():
         raise ValueError('Immutable checkpoint already exists; do not overwrite')
-    with closing(sqlite3.connect(f'file:{(output/"state.sqlite3").as_posix()}?mode=ro',uri=True)) as db:
+    with closing(read_connection(output/"state.sqlite3")) as db:
         receipt = json.loads(db.execute("SELECT result FROM artifacts WHERE key='graceful-invocation'").fetchone()[0])
     if which=='before' and (receipt['status']!='stopped_user' or not receipt['drained']):
         raise ValueError('Before snapshot requires a drained voluntary pause')
     if which=='after':
         before = set(json.loads(before_checkpoint(output).read_text(encoding='utf-8'))['completed_ids'])
-        with closing(sqlite3.connect(f'file:{(output/"state.sqlite3").as_posix()}?mode=ro',uri=True)) as db:
+        with closing(read_connection(output/"state.sqlite3")) as db:
             completed = {rid for rid, in db.execute("SELECT r.review_id FROM reviews r JOIN production_scope s USING(review_id) WHERE r.status='completed'")}
             events = (json.loads(e) for e, in db.execute('SELECT event FROM calls ORDER BY rowid DESC'))
             paid = any(e['run_id']==receipt['run_id'] and e['phase']=='resume' and e['outcome']=='succeeded' and not e.get('simulated') and e.get('cost_nanodollars',0)>0 and set(e['review_ids']) & (completed-before) for e in events)
@@ -187,7 +188,7 @@ def evidence(which, output=OUTPUT):
 
 
 def proof(output=OUTPUT):
-    with closing(sqlite3.connect(f'file:{(output/"state.sqlite3").as_posix()}?mode=ro',uri=True)) as db:
+    with closing(read_connection(output/"state.sqlite3")) as db:
         receipt = json.loads(db.execute("SELECT result FROM artifacts WHERE key='graceful-invocation'").fetchone()[0])
     result = audit(output/'state.sqlite3',before_checkpoint(output),output/'checkpoint_after.json',
                    {receipt['run_id']},output/'resume-audit.json')

@@ -1,0 +1,117 @@
+{
+  "threshold_bytes": 50000000,
+  "files": [
+    {
+      "path": "Recording 2026-10-14 200325.mp4",
+      "bytes": 281644901,
+      "MiB": 268.6,
+      "tracked": false,
+      "grading_export": false
+    },
+    {
+      "path": "Recording 2026-10-14 225019.mp4",
+      "bytes": 156550325,
+      "MiB": 149.3,
+      "tracked": false,
+      "grading_export": false
+    },
+    {
+      "path": "artifacts/analysis-10000-final/state.sqlite3",
+      "bytes": 101830656,
+      "MiB": 97.11,
+      "tracked": false,
+      "grading_export": false
+    },
+    {
+      "path": "artifacts/golden-final/state.sqlite3",
+      "bytes": 101892096,
+      "MiB": 97.17,
+      "tracked": false,
+      "grading_export": false
+    },
+    {
+      "path": "artifacts/ingestion/state.sqlite3",
+      "bytes": 310214656,
+      "MiB": 295.84,
+      "tracked": false,
+      "grading_export": false
+    },
+    {
+      "path": "artifacts/scope-100k/calls.jsonl",
+      "bytes": 487875908,
+      "MiB": 465.27,
+      "tracked": false,
+      "grading_export": false
+    },
+    {
+      "path": "artifacts/scope-100k/enriched.jsonl",
+      "bytes": 51206322,
+      "MiB": 48.83,
+      "tracked": false,
+      "grading_export": false
+    },
+    {
+      "path": "artifacts/scope-100k/recovery/state.before-recovery.sqlite3",
+      "bytes": 887099392,
+      "MiB": 846.0,
+      "tracked": false,
+      "grading_export": false
+    },
+    {
+      "path": "artifacts/scope-100k/state.sqlite3",
+      "bytes": 1072365568,
+      "MiB": 1022.69,
+      "tracked": false,
+      "grading_export": false
+    },
+    {
+      "path": "data/spotify_reviews_18months.csv",
+      "bytes": 97400616,
+      "MiB": 92.89,
+      "tracked": false,
+      "grading_export": false
+    },
+    {
+      "path": "grading/calls.jsonl",
+      "bytes": 488704196,
+      "MiB": 466.06,
+      "tracked": false,
+      "grading_export": true
+    },
+    {
+      "path": "grading/records.jsonl",
+      "bytes": 196196656,
+      "MiB": 187.11,
+      "tracked": false,
+      "grading_export": true
+    },
+    {
+      "path": "local-reference.json",
+      "bytes": 164162495,
+      "MiB": 156.56,
+      "tracked": false,
+      "grading_export": false
+    }
+  ],
+  "gzip_measurements": [
+    {
+      "path": "grading/calls.jsonl",
+      "gzip_level": 6,
+      "estimated_gzip_bytes_from_discarded_stream": 27368226,
+      "compressed_file_created": false
+    },
+    {
+      "path": "grading/records.jsonl",
+      "gzip_level": 6,
+      "estimated_gzip_bytes_from_discarded_stream": 53350340,
+      "compressed_file_created": false
+    },
+    {
+      "path": "artifacts/scope-100k/calls.jsonl",
+      "gzip_level": 6,
+      "estimated_gzip_bytes_from_discarded_stream": 27361618,
+      "compressed_file_created": false
+    }
+  ],
+  "external_backup_accessed": false
+}

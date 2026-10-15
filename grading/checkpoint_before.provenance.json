@@ -1,0 +1,20 @@
+{
+  "created_at_utc": "2026-10-15T05:30:34.803621+00:00",
+  "kind": "post-hoc reconstruction; not saved during clip-1",
+  "owner_account": "A paste produced scope-evidence beforeSet-Location C:\\dev\\Spotify; argparse rejected it and no before file was written.",
+  "recording_observed_state": {
+    "status": "stopped_user",
+    "phase": "initial",
+    "drained": true,
+    "scoped_completed": 19719,
+    "saved_new_jev_scores": 5570,
+    "safe_to_resume": true,
+    "run_id": "7180188e-0938-4d2f-8e2b-6bf412cf77ca"
+  },
+  "method": "Intersect pinned selected review IDs with completed exact texts in preserved pre-run base. Initial pause receipt proves no new final completions then; current later completions are not used to infer the before cohort.",
+  "base_state_sha256": "88e762ac239d6850430cd2f71c7178ea6e208b62ca03c87cba2a2e88cb9ff011",
+  "selected_csv_sha256": "dfe95bffe8541de1dce2c37846993e19da89e554d7389c08e8607a1bdf75a040",
+  "original_pause_receipt_sha256": "b40fa39359c16bce96ba6f3bf3e4a43e085e16ead0a787c3b016bc098feec861",
+  "count": 19719,
+  "reconstructed_sha256": "39252683567643d0c967477f874739aa0a65bb98a0faee47752f3435c140fef3"
+}

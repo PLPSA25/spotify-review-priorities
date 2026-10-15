@@ -1,0 +1,19 @@
+{
+  "status": "pass",
+  "before_count": 19719,
+  "after_count": 22227,
+  "new_completed_ids": 2508,
+  "before_strict_subset_after": true,
+  "after_subset_completed": true,
+  "resume_enrich_ids_in_before": [],
+  "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "demo_run_ids": [
+    "7180188e-0938-4d2f-8e2b-6bf412cf77ca"
+  ],
+  "model_calls": 0,
+  "note": "Audits explicit production demo run IDs only. Final grading adapter must preserve source_phase and map imported development-call phase to initial relative to this recording; raw historical logs remain unchanged.",
+  "new_direct_paid_resume_count": 2508,
+  "checkpoint_before_sha256": "39252683567643d0c967477f874739aa0a65bb98a0faee47752f3435c140fef3",
+  "checkpoint_after_sha256": "026e0cbdd1b07802a1df2ce9879295e060ced6d5a0602c51b040a3c38e9d2f8b",
+  "both_checkpoint_sets_inside_selected_scope": true
+}

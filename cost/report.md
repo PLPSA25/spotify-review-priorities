@@ -72,3 +72,19 @@ Caching means the pipeline's exact-text **result cache** under an unchanged labe
 Fallback and verifier both use Luna: blinded verification hides Jev output but remains correlated with fallback. Verifier-agreement gains partly reflect self-agreement; the 20 owner verdicts are independent human evidence, not a random accuracy estimate. The owner approved a 20% fallback cap for 100k pending the prompt decision; the offline recommendation keeps the frozen prompt. Current config remains 10% until an approved production setup. No paid start is authorized.
 
 Updated user-reported preflight: OpenAI October spend $0.18 / $20 org limit; prepaid balance $9.82 is the real ceiling before unposted charges. TypeSafe $10.41. Recheck remaining credits/limits before dispatch. See docs/offline-preproduction-gate.md and docs/100k-run-plan-draft.md.
+
+
+## Measured production completion — October 15, 2026
+
+This supersedes earlier production estimates: invocation **$4.834135303 / $7.28**,
+project ledger **$5.604212288 / $10**, reserved **$0**, leases **0**.
+Unknown-charge failures remain pessimistically charged; unavailable token fields
+are not replaced with invented usage. No paid calls were made during the offline
+completion audit/export. Final resume segment: **2384.9588171 seconds**, not total
+scoring-plus-resume wall time. Scope completed **100001** IDs, terminal **40**;
+after propagation **237722/660609** nonempty rows completed.
+
+Next proposed group/memo gate is two root Luna calls, up to eight attempts under
+**$0.027424 worst-case / $0.03 proposed invocation cap**. No new verifier/Jev calls.
+Project at that proposed cap: **$5.634212288**. See docs/phase7-proposal.md for bounded
+inputs, retry assumptions, deterministic secondary ranking and approval boundary.

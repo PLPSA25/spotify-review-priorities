@@ -25,5 +25,16 @@
     "counts": {
       "completed": 100
     }
+  },
+  "production_100k_completion": {
+    "resume_segment_seconds": 2384.9588171,
+    "segment_is_not_whole_run_time": true,
+    "selected_completed": 100001,
+    "selected_quarantined": 40,
+    "full_completed_after_propagation": 237722,
+    "nonempty_rows": 660609,
+    "invocation_spend_usd": 4.834135303,
+    "project_spend_usd": 5.604212288,
+    "report": "docs/phase6-completion-gate.md"
   }
 }

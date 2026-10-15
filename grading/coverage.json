@@ -1,0 +1,17 @@
+{
+  "counts": {
+    "quarantined": 422900,
+    "cache_reuses": 159848,
+    "completed": 237722
+  },
+  "quarantine_reasons": {
+    "not_classified_partial_run": 422845,
+    "invalid_model_output_after_retry": 42,
+    "empty_review_text": 13
+  },
+  "completed_distinct_texts": 77874,
+  "source_sha256": "1fc85de68a304dd8978b537cfa58793d5f41cbaf417fa32cb53899f83a2fcef6",
+  "nonempty_rows": 660609,
+  "model_calls": 0,
+  "business_stages_run": false
+}
