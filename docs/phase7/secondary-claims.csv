@@ -1,0 +1,13 @@
+claim_id,scope,issue_id,metric,value,source
+S1,baseline,cross-topic--free-tier-premium-controls,rank,2,ranking.csv
+S2,random_prefix,cross-topic--free-tier-premium-controls,rank,2,sample_ranking.csv
+S3,random_prefix,cross-topic--free-tier-premium-controls,complaint_count,4440,sample_ranking.csv
+S4,random_prefix,cross-topic--free-tier-premium-controls,severity_sum,13865,sample_ranking.csv
+S5,random_prefix,usability--ad-interruptions,complaint_count,4088,sample_ranking.csv
+S6,random_prefix,usability--ad-interruptions,severity_sum,9071,sample_ranking.csv
+S7,random_prefix,cross-topic--free-tier-premium-controls,controls_to_ads_severity_ratio,1.528497,S4 / S6
+S8,scope,scope,coverage_percent,35.985280,extended-claims.csv
+S9,scope,scope,unspecified_percent,65.413801,extended-claims.csv
+S10,baseline,other--unspecified,rank,1,ranking.csv
+S11,baseline_minus_random_prefix,usability--ad-interruptions,additional_complaint_rows,1949,B4 - S5: baseline minus random-prefix complaint_count
+S12,baseline_minus_random_prefix,cross-topic--free-tier-premium-controls,additional_complaint_rows,4,B2 - S3: baseline minus random-prefix complaint_count

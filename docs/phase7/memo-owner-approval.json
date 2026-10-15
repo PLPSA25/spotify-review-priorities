@@ -1,0 +1,9 @@
+{
+  "status": "owner_approved",
+  "basis": "Explicit owner instruction: apply three edits then mark approved",
+  "approved_on": "2026-10-15",
+  "memo_sha256": "51a5ac40c839d4d1bda75eb453aaeb28d39e8fba9857644197787f765a463c98",
+  "editorial_wording_correction": "1949 additional ad rows includes 1947 exact-text duplicates and 2 texts absent from prefix; do not describe all as duplicates.",
+  "api_calls_for_edits": 0,
+  "deployment_status": "proposal_only"
+}

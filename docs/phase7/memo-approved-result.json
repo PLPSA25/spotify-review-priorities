@@ -1,0 +1,10 @@
+{
+  "claim_related_flags": {},
+  "all_checker_flags": {
+    "invalid_usage": 20,
+    "unfinished_classification": 1
+  },
+  "working_submission": "artifacts/phase7/grading-check",
+  "new_api_calls": 0,
+  "owner_approved": true
+}

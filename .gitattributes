@@ -3,3 +3,9 @@
 data/** -text
 *.pdf -text
 grading/*.jsonl.gz -text
+
+# Frozen grouping provenance and owner approval hash exact bytes, including EOLs.
+pipeline/issue_preview.py -text whitespace=cr-at-eol
+pipeline/issue_cohorts_v2.py -text whitespace=cr-at-eol
+pipeline/issue_cohorts_v3.py -text whitespace=cr-at-eol
+docs/phase7-memo-draft.md -text whitespace=cr-at-eol

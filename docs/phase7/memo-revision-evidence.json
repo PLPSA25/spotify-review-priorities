@@ -1,0 +1,19 @@
+{
+  "method": "Owner-directed offline editing of saved memo-role draft; no API calls",
+  "original_model_output": "memo-draft.json",
+  "quote_id": "7e271329-4c82-403b-a59a-7fd8b6c40405",
+  "quote": "to play in order buy premium",
+  "quote_exact_substring": true,
+  "ad_example_exact_text": "Too many ads",
+  "ad_example_baseline_count": 620,
+  "ad_example_prefix_count": 97,
+  "claim_policy": "Main claims are baseline-only allowed metrics; separately labeled secondary evidence is not submitted as baseline claims.",
+  "owner_approved": true,
+  "additional_rows_exact_text_breakdown": {
+    "('usability--ad-interruptions', True)": 1947,
+    "('usability--ad-interruptions', False)": 2,
+    "('cross-topic--free-tier-premium-controls', True)": 1,
+    "('cross-topic--free-tier-premium-controls', False)": 3
+  },
+  "owner_edit_wording_correction": "Additional ad rows, not all duplicated: exact-text audit found 1947 matching prefix texts and 2 absent from prefix."
+}

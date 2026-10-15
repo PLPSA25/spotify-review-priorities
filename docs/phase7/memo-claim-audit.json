@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "claim_references": [
+    "B1",
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "B6",
+    "B7",
+    "S1",
+    "S10",
+    "S11",
+    "S12",
+    "S2",
+    "S3",
+    "S4",
+    "S5",
+    "S6",
+    "S7",
+    "S8",
+    "S9"
+  ],
+  "unresolved_claim_references": [],
+  "baseline_allowed_metrics_only": true,
+  "secondary_claims_are_separately_labeled": true,
+  "rounded_values_derived_from_saved_claims": true,
+  "quote_verified_as_exact_substring": true,
+  "scope": "Local editorial validation, supplementary to supplied baseline checker; not human accuracy"
+}

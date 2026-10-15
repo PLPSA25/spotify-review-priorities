@@ -1,0 +1,15 @@
+{
+  "pipeline_flagged": 399,
+  "verifier_flagged": 69,
+  "pipeline_verifier_confusion": {
+    "True/True": 69,
+    "True/False": 330,
+    "False/False": 101
+  },
+  "pipeline_reason_counts_overlapping": {
+    "language_non_english": 16,
+    "missing_context": 368,
+    "low_confidence": 90,
+    "language_not_understood": 31
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "overall": {
+    "n": 500,
+    "fields": {
+      "topic": {
+        "agree": 471,
+        "denominator": 500,
+        "agreement": 0.942
+      },
+      "intent": {
+        "agree": 465,
+        "denominator": 500,
+        "agreement": 0.93
+      },
+      "severity_exact": {
+        "agree": 453,
+        "denominator": 500,
+        "agreement": 0.906
+      },
+      "severity_within_one": {
+        "agree": 499,
+        "denominator": 500,
+        "agreement": 0.998
+      },
+      "sentiment_sign": {
+        "agree": 469,
+        "denominator": 500,
+        "agreement": 0.938
+      },
+      "needs_review": {
+        "agree": 170,
+        "denominator": 500,
+        "agreement": 0.34
+      }
+    }
+  },
+  "flagged": {
+    "n": 399,
+    "fields": {
+      "topic": {
+        "agree": 378,
+        "denominator": 399,
+        "agreement": 0.9473684210526315
+      },
+      "intent": {
+        "agree": 369,
+        "denominator": 399,
+        "agreement": 0.924812030075188
+      },
+      "severity_exact": {
+        "agree": 361,
+        "denominator": 399,
+        "agreement": 0.9047619047619048
+      },
+      "severity_within_one": {
+        "agree": 398,
+        "denominator": 399,
+        "agreement": 0.9974937343358395
+      },
+      "sentiment_sign": {
+        "agree": 370,
+        "denominator": 399,
+        "agreement": 0.9273182957393483
+      },
+      "needs_review": {
+        "agree": 69,
+        "denominator": 399,
+        "agreement": 0.17293233082706766
+      }
+    }
+  },
+  "unflagged": {
+    "n": 101,
+    "fields": {
+      "topic": {
+        "agree": 93,
+        "denominator": 101,
+        "agreement": 0.9207920792079208
+      },
+      "intent": {
+        "agree": 96,
+        "denominator": 101,
+        "agreement": 0.9504950495049505
+      },
+      "severity_exact": {
+        "agree": 92,
+        "denominator": 101,
+        "agreement": 0.9108910891089109
+      },
+      "severity_within_one": {
+        "agree": 101,
+        "denominator": 101,
+        "agreement": 1.0
+      },
+      "sentiment_sign": {
+        "agree": 99,
+        "denominator": 101,
+        "agreement": 0.9801980198019802
+      },
+      "needs_review": {
+        "agree": 101,
+        "denominator": 101,
+        "agreement": 1.0
+      }
+    }
+  },
+  "fallback": {
+    "n": 38,
+    "fields": {
+      "topic": {
+        "agree": 33,
+        "denominator": 38,
+        "agreement": 0.868421052631579
+      },
+      "intent": {
+        "agree": 32,
+        "denominator": 38,
+        "agreement": 0.8421052631578947
+      },
+      "severity_exact": {
+        "agree": 35,
+        "denominator": 38,
+        "agreement": 0.9210526315789473
+      },
+      "severity_within_one": {
+        "agree": 38,
+        "denominator": 38,
+        "agreement": 1.0
+      },
+      "sentiment_sign": {
+        "agree": 36,
+        "denominator": 38,
+        "agreement": 0.9473684210526315
+      },
+      "needs_review": {
+        "agree": 22,
+        "denominator": 38,
+        "agreement": 0.5789473684210527
+      }
+    }
+  },
+  "no_fallback": {
+    "n": 462,
+    "fields": {
+      "topic": {
+        "agree": 438,
+        "denominator": 462,
+        "agreement": 0.948051948051948
+      },
+      "intent": {
+        "agree": 433,
+        "denominator": 462,
+        "agreement": 0.9372294372294372
+      },
+      "severity_exact": {
+        "agree": 418,
+        "denominator": 462,
+        "agreement": 0.9047619047619048
+      },
+      "severity_within_one": {
+        "agree": 461,
+        "denominator": 462,
+        "agreement": 0.9978354978354979
+      },
+      "sentiment_sign": {
+        "agree": 433,
+        "denominator": 462,
+        "agreement": 0.9372294372294372
+      },
+      "needs_review": {
+        "agree": 148,
+        "denominator": 462,
+        "agreement": 0.3203463203463203
+      }
+    }
+  },
+  "interpretation": "Blinded Luna agreement, not human accuracy; fallback also uses Luna. Duplicate texts induce dependence. Entities excluded.",
+  "terminal_verifier_items": 0,
+  "sampled": 500
+}

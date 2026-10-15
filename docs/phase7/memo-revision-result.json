@@ -1,0 +1,11 @@
+{
+  "claim_related_flags": {},
+  "all_checker_flags": {
+    "invalid_usage": 20,
+    "unfinished_classification": 1
+  },
+  "working_submission": "artifacts/phase7/grading-check",
+  "checker_does_not_read_memo_prose": true,
+  "secondary_claims_checked_by_local_editorial_audit_not_baseline_checker": true,
+  "new_api_calls": 0
+}

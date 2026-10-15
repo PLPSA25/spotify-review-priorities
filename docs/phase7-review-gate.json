@@ -1,0 +1,28 @@
+{
+  "status": "owner_approved",
+  "basis": "Explicit owner instruction: apply three edits then mark approved",
+  "approved_on": "2026-10-15",
+  "memo_sha256": "51a5ac40c839d4d1bda75eb453aaeb28d39e8fba9857644197787f765a463c98",
+  "editorial_wording_correction": "1949 additional ad rows includes 1947 exact-text duplicates and 2 texts absent from prefix; do not describe all as duplicates.",
+  "api_calls_for_edits": 0,
+  "deployment_status": "proposal_only",
+  "previous_gate": {
+    "status": "memo_draft_awaiting_owner_review",
+    "reason": "Approved stages completed; no further paid work authorized at this gate.",
+    "run_id": "9fc5979c-a5ee-4311-968b-c8237fe62b5e",
+    "invocation_spent_usd": 0.025751725,
+    "cap_usd": 1.58,
+    "previous_authorization": {
+      "status": "approved_v3_through_memo_draft",
+      "reason": "Owner explicitly approved final v3 recall fixes then production verifier, group, memberships/ranking/claims and memo draft under shared cap; stop after draft. Fresh sample does not reopen tuning.",
+      "cap_usd": 1.58,
+      "previous_gate": {
+        "status": "hold_all_paid_stages",
+        "reason": "Owner correction: review v2 cross-topic cohort spot-check before verifier, group and memo calls",
+        "paid_phase7_calls": 0,
+        "previously_approved_cap_usd": 1.58,
+        "memo_review_approved": false
+      }
+    }
+  }
+}

@@ -44,5 +44,6 @@ evals/golden_50_human.backup.csv
 *.backup.*
 *~
 artifacts/scope-100k/
+artifacts/phase7/
 artifacts/scaling-proposal/*.csv
 artifacts/scaling/verifier-transfer-sample.csv

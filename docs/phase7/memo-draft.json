@@ -1,0 +1,35 @@
+{
+  "top_bucket_explanation": "The largest bucket is general dissatisfaction with no stated cause, not a specific actionable defect. Its prominence describes an unclassified complaint, so it should not be treated as a product fix. [other--unspecified:complaint_count] [other--unspecified:rank]",
+  "recommended_issue_id": "cross-topic--free-tier-premium-controls",
+  "recommendation": "Prioritize investigating free-tier playback controls locked behind Premium, the top specific actionable issue. It ranks ahead of the other specific issues in the baseline, with a higher severity-weighted priority score than intrusive advertisements, unspecified usability complaints, or premium-upgrade mentions. [cross-topic--free-tier-premium-controls:rank] [cross-topic--free-tier-premium-controls:priority_score] [usability--ad-interruptions:priority_score] [usability--unspecified:priority_score] [billing--premium-upgrade-mentions:priority_score]",
+  "random_prefix_comparison": "The random-prefix-only ranking also places free-tier playback controls locked behind Premium above the other specific actionable issues. It differs in ordering the next two: unspecified usability complaints precede intrusive advertisements in that ranking, whereas advertisements precede unspecified usability in the baseline. The broad no-stated-cause bucket remains first in both rankings, but is not an actionable recommendation. [sample:cross-topic--free-tier-premium-controls:rank] [sample:usability--unspecified:rank] [sample:usability--ad-interruptions:rank] [cross-topic--free-tier-premium-controls:rank] [usability--ad-interruptions:rank] [usability--unspecified:rank] [sample:other--unspecified:rank] [other--unspecified:rank]",
+  "limitations": "Coverage is partial: the supplied claims show completed rows against a larger set of nonempty rows, and a substantial share of complaint rows is unspecified. These limitations mean the classified issue mix should not be read as a complete account of all feedback. [scope:completed_rows] [scope:nonempty_rows] [scope:coverage_percent] [scope:complaint_rows] [scope:unspecified_complaint_rows] [scope:unspecified_percent] The ranking may be affected by duplicate-text weighting and uncertain lexical cohorts; classifier errors are preserved rather than corrected. Verifier and fallback results may be correlated. Complaints expressing cancellation are not evidence of observed churn, and failed-call usage is unknown. Before-checkpoint provenance is reconstructed, not independently established. These constraints preclude causal, revenue, or churn estimates.",
+  "alternatives": [
+    "Investigate intrusive or frequent advertisements as the next specific actionable alternative; it ranks below the recommended issue in the baseline and below it in the random-prefix ranking. [usability--ad-interruptions:rank] [sample:usability--ad-interruptions:rank]",
+    "Unspecified usability complaints are another alternative but do not identify a concrete defect; their relative position versus advertisements changes in the random-prefix ranking. [usability--unspecified:rank] [sample:usability--unspecified:rank] [usability--ad-interruptions:rank] [sample:usability--ad-interruptions:rank]",
+    "Premium subscription and upgrade complaints rank lower among the supplied specific issues in both views. [billing--premium-upgrade-mentions:rank] [sample:billing--premium-upgrade-mentions:rank]"
+  ],
+  "claim_ids": [
+    "other--unspecified:complaint_count",
+    "other--unspecified:rank",
+    "cross-topic--free-tier-premium-controls:rank",
+    "cross-topic--free-tier-premium-controls:priority_score",
+    "usability--ad-interruptions:priority_score",
+    "usability--unspecified:priority_score",
+    "billing--premium-upgrade-mentions:priority_score",
+    "sample:cross-topic--free-tier-premium-controls:rank",
+    "sample:usability--unspecified:rank",
+    "sample:usability--ad-interruptions:rank",
+    "sample:other--unspecified:rank",
+    "usability--ad-interruptions:rank",
+    "usability--unspecified:rank",
+    "scope:completed_rows",
+    "scope:nonempty_rows",
+    "scope:coverage_percent",
+    "scope:complaint_rows",
+    "scope:unspecified_complaint_rows",
+    "scope:unspecified_percent",
+    "billing--premium-upgrade-mentions:rank",
+    "sample:billing--premium-upgrade-mentions:rank"
+  ]
+}

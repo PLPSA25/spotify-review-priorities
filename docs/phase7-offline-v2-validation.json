@@ -1,0 +1,19 @@
+{
+  "phase7_calls": 0,
+  "phase7_spend_usd": 0.0,
+  "project_spend_usd": 5.604212288,
+  "receipt_status": "prepared",
+  "classifier_hash": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "grading_gzip_hashes_unchanged": {
+    "grading/calls.jsonl.gz": true,
+    "grading/records.jsonl.gz": true
+  },
+  "all_paid_stages_held": true,
+  "cross_topic_checker_fixture": "passed actual supplied checker; synthetic offline only",
+  "new_issue_sample_size": 10,
+  "residual_cohorts_sampled": 29,
+  "residual_examples_total": 145,
+  "tests_passed": 200,
+  "ruff": "passed",
+  "graded_gzip_recommits_since_owner_instruction": 0
+}

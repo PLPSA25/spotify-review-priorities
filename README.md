@@ -396,3 +396,88 @@ No production membership, rank, claim or memo has been applied.
 [verifier bounds](docs/phase7-production-verifier-proposal.json);
 [combined gate](docs/phase7-proposal.md). Combined worst case **$1.5704785**,
 proposed separate cap **$1.58**; no paid calls before new approval.
+
+
+### Phase 7 current gate: offline cohort v2 review
+
+The owner approved the $1.58 ceiling, then paused verifier/group/memo calls for
+cohort corrections. **Zero Phase 7 API calls and zero new spend.** The prepared
+runner is blocked by `docs/phase7-review-gate.json` before any paid dispatch.
+
+[Review the v2 spot-check](docs/phase7-cohort-spotcheck-v2.md): ten random members
+of the proposed cross-topic free-tier control restriction issue, plus five random
+remaining members from every cohort that loses rows. Counts and old/new rankings
+are in [the reproducible analysis](docs/phase7-cohort-v2-analysis.json). Primary
+labels and frozen hash stay unchanged; each eligible original ID still gets one
+issue. The supplied contract/checker permits an issue to span primary topics.
+Explicit versus inferred Premium attribution is disclosed rather than assumed.
+
+Tracked grading gzip files have not changed or been recommitted. Per owner
+instruction, regenerate/recommit them only once at final submission export.
+The [video compression proposal](docs/video-compression-proposal.md) targets
+45 MB / 45 MB / 5.80 MB, subject to actual encoding/readability checks. No video
+was read, encoded, committed or uploaded; no ffmpeg package was installed.
+
+### Final Phase 7 grouping revision (v3)
+
+The final v3 rule revision fixed only recall errors found in random development spot-checks, never using golden labels. V1 had no unified cross-topic issue (0 members); v2 unified 3,407 rows with severity_sum 10,598; final v3 contains 4,444 rows with severity_sum 13,877. V2 owner spot-check precision was 10/10 in a selected qualitative sample, not a population accuracy estimate. V3 was frozen before calculating counts or viewing fresh samples and is final regardless of ranking. Classifier prompt and label_config remain unchanged. Residual Premium cohort: Premium subscription and upgrade complaints. See docs/phase7-cohort-spotcheck-v3.md for all twelve recall checks, ten fresh examples and both rankings.
+
+The latest owner approval supersedes the earlier v2 paid-stage hold: proceed through the memo draft only, using the shared Phase 7 $1.58 cap. Verifier and fallback use the same Luna model, so agreement partly reflects self-agreement; the twenty human verdicts are independent evidence. Caching here means exact-text saved-result caching; no provider prompt-cache savings are claimed. Tracked grading gzip exports remain unchanged until the final submission export.
+
+Phase 7 reached its memo-draft gate: [measured report](docs/phase7-gate.md),
+[draft memo](docs/phase7-memo-draft.md), and [full claims](docs/phase7/claims.csv).
+Actual Phase 7 API spend was $0.025751725 against $1.58; cumulative project spend
+was $5.629964013 against $10, with zero reserved. All 500 production verifier
+items were valid after one singleton repair; agreement is not human accuracy.
+Final rules leave 45,946 of 70,239 complaint/cancellation rows unspecified
+(65.413801%), replacing the earlier approximate 67% figure. Completed coverage
+remains 237,722 of 660,609 nonempty rows (35.985280%). The working checker leaves
+only declared partial coverage and 20 unknown token-usage fields from ten
+historical connection failures. The memo and export are awaiting owner review;
+tracked grading gzip files have not yet been refreshed with Phase 7 calls.
+
+### Owner-directed memo revision
+
+The original memo-role output is preserved in
+[docs/phase7/memo-draft.json](docs/phase7/memo-draft.json). The revised
+[decision memo](docs/phase7-memo-draft.md) was edited offline at the owner's
+request: recommendation first, a source-checked quote, explicit baseline versus
+random-prefix figures, mean severity, proposed control-restoration and ad-cap
+experiments, shorter decision limitations, and correction of “an complaint.”
+No additional model call was made or logged as if these edits were model output.
+The claim that controls are relatively understated by unclassified unique texts
+was qualified because their issue mix is unknown. See the
+[claims/checker policy](docs/memo-claims-policy.md) and
+[editorial evidence](docs/phase7/memo-revision-evidence.json).
+
+Engineering caveats remain here rather than in the product memo: the before
+checkpoint was reconstructed from the recorded pause receipt after the clip-1
+paste error, not saved successfully during that clip; the provenance and subset
+audit are disclosed in the checkpoint documentation. Ten historical connection
+failures have unknown charged token usage, accounted pessimistically; their
+twenty null input/output fields remain disclosed checker flags, never fabricated
+zeros. Original model output, execution evidence and owner edits are distinct.
+The revised working submission has [zero claim-related checker flags](docs/phase7/memo-revision-result.json).
+The main claims file contains only baseline metrics; secondary memo figures are
+explicitly separated and documented under the contract's secondary-analysis provision.
+
+The memo is now **owner approved** after the requested final edits: quote
+`7e271329` (“to play in order buy premium”), the baseline/prefix comparison,
+and the conversion-versus-complaints experiment sentence. The original model
+response remains unchanged; all subsequent editorial changes are owner-directed,
+not new model outputs. S11 and S12 derive the additional rows as 6,037 − 4,088 =
+1,949 ads and 4,444 − 4,440 = 4 controls. An exact-text audit found 1,947 of those
+ad rows repeat prefix texts and two do not, so the memo says **additional** rather
+than describing all 1,949 as duplicated. For controls, one additional row repeats
+a prefix text and three do not. The random prefix itself is a uniform draw; its
+observed ranking excludes 40 terminally failed IDs, and classifier errors remain
+possible. Approval and the memo hash are in
+[memo-owner-approval.json](docs/phase7/memo-owner-approval.json).
+Git attributes preserve the exact bytes of the frozen grouping sources and
+approved memo so their provenance hashes remain valid after checkout; no rule
+or classifier change is involved.
+
+[Phase 8 deployment proposal](docs/phase8-deployment-proposal.md): Neon read-only
+dashboard dataset + Vercel, both rankings, approved memo and stored AI outputs,
+visible partial scope, no live model calls. Console instructions and free-plan
+cost assumptions are included. Deployment has not started.

@@ -1,0 +1,13 @@
+{
+  "version": "cross-topic-controls-v3-final",
+  "rule_hash": "06add6fd69f3f55fccdbdd1dbd37b5068ae86a681d0d46f6eebdbd7d572cdbc2",
+  "frozen_at_utc": "2026-10-15T19:57:39.082900+00:00",
+  "frozen_before_v3_counts_and_sample": true,
+  "final_regardless_of_ranking_or_new_sample_results": true,
+  "reason": "Owner-requested fixes for recall errors found in random development spot-checks; no golden labels used",
+  "file_sha256": {
+    "pipeline\\issue_cohorts_v3.py": "826c72c7d967f34a7549351d14dea376767fec4deb71e79888797d8e75cd4961",
+    "pipeline\\issue_cohorts_v2.py": "b674059a2ea4e60372533db727df6538a5dddca85540a563e7719c9f5fb4f309",
+    "pipeline\\issue_preview.py": "d05802b398a48d659835855a179fb61dcdec65cbe0f77c9794818f8c7184e3e8"
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "group-01": {
+    "issues": [
+      {
+        "issue_id": "other--unspecified",
+        "name": "General dissatisfaction — no stated cause"
+      },
+      {
+        "issue_id": "cross-topic--free-tier-premium-controls",
+        "name": "Restrictions on song choice and playback controls"
+      },
+      {
+        "issue_id": "usability--ad-interruptions",
+        "name": "Frequent or intrusive advertisements"
+      },
+      {
+        "issue_id": "usability--unspecified",
+        "name": "Usability complaints with no specific cause stated"
+      },
+      {
+        "issue_id": "billing--premium-upgrade-mentions",
+        "name": "Premium subscription and upgrade complaints"
+      },
+      {
+        "issue_id": "playback--unspecified",
+        "name": "Playback complaints with no specific cause stated"
+      },
+      {
+        "issue_id": "playback--stops-skips-wont-play",
+        "name": "Playback stops, skips, or songs won't play"
+      },
+      {
+        "issue_id": "usability--queue-playlist-controls",
+        "name": "Playlist and queue problems"
+      },
+      {
+        "issue_id": "access--login-credentials",
+        "name": "Login and sign-in problems"
+      },
+      {
+        "issue_id": "catalog--unspecified",
+        "name": "Catalog complaints with no specific cause stated"
+      },
+      {
+        "issue_id": "billing--unspecified",
+        "name": "Billing complaints with no specific cause stated"
+      },
+      {
+        "issue_id": "playback--buffering-connectivity",
+        "name": "Buffering, loading, or connectivity problems"
+      },
+      {
+        "issue_id": "playback--crashes-freezes",
+        "name": "App crashes or freezes"
+      },
+      {
+        "issue_id": "billing--price-paywalls",
+        "name": "Prices and paywalls"
+      },
+      {
+        "issue_id": "downloads--download-failure",
+        "name": "Download problems"
+      },
+      {
+        "issue_id": "catalog--lyrics",
+        "name": "Lyrics unavailable or restricted"
+      },
+      {
+        "issue_id": "usability--interface-navigation",
+        "name": "Interface and navigation problems"
+      },
+      {
+        "issue_id": "access--unspecified",
+        "name": "Access complaints with no specific cause stated"
+      },
+      {
+        "issue_id": "usability--shuffle-controls",
+        "name": "Shuffle and repeat controls not working as expected"
+      },
+      {
+        "issue_id": "catalog--search-results",
+        "name": "Search and finding music problems"
+      },
+      {
+        "issue_id": "billing--subscription-cancellation",
+        "name": "Subscription cancellation and renewal complaints"
+      },
+      {
+        "issue_id": "downloads--offline-access",
+        "name": "Downloaded music or podcasts unavailable offline"
+      },
+      {
+        "issue_id": "playback--audio-quality-volume",
+        "name": "Bluetooth playback and audio quality problems"
+      },
+      {
+        "issue_id": "billing--charges-refunds",
+        "name": "Payment, charge, and refund problems"
+      },
+      {
+        "issue_id": "catalog--availability-selection",
+        "name": "Missing or removed content and limited selection"
+      }
+    ]
+  },
+  "group-02": {
+    "issues": [
+      {
+        "issue_id": "catalog--discovery-recommendations",
+        "name": "Unwanted or inconvenient recommendations and discovery"
+      },
+      {
+        "issue_id": "downloads--unspecified",
+        "name": "Download problems — unspecified"
+      },
+      {
+        "issue_id": "playback--background-resources",
+        "name": "Battery, memory, or background resource drain"
+      },
+      {
+        "issue_id": "support--unspecified",
+        "name": "Support complaints — unspecified"
+      },
+      {
+        "issue_id": "access--account-security",
+        "name": "Hacked or compromised accounts"
+      },
+      {
+        "issue_id": "access--signup-registration",
+        "name": "Sign-up and registration problems"
+      },
+      {
+        "issue_id": "downloads--missing-downloads",
+        "name": "Downloaded songs or files disappearing or missing"
+      },
+      {
+        "issue_id": "support--resolution-quality",
+        "name": "Poor support and unresolved issues"
+      },
+      {
+        "issue_id": "support--contact-response",
+        "name": "Problems contacting support or getting a response"
+      },
+      {
+        "issue_id": "access--account-restrictions",
+        "name": "Accounts blocked, disabled, or locked"
+      }
+    ]
+  }
+}

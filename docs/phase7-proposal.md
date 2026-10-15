@@ -1,4 +1,10 @@
-# Revised Phase 7 gate — not approved, no paid calls
+# Revised Phase 7 gate — offline v2 review hold
+
+> Current owner gate: the $1.58 cap was approved, then **all paid stages were held**
+> pending the offline v2 cohort correction and spot-check. No Phase 7 calls ran.
+> See [v2 spot-check](phase7-cohort-spotcheck-v2.md) and
+> [review latch](phase7-review-gate.json). The v1 taxonomy/runner below is historical
+> and must be adapted after v2 review; it is not authorization to dispatch.
 
 This supersedes the earlier two-call/$0.03 proposal. Keep the frozen classifier
 prompt, 0.60/0 flags and hash unchanged. No new Jev/enrichment calls or golden
@@ -148,3 +154,24 @@ Offline validation at this revised gate: **176 tests passed**;
 `ruff check pipeline tests` passed. Gzip grader results match the plain export
 except filename/hash inventory. Production ledger still $5.604212288, no reserved
 funds or pending leases, frozen classification hash unchanged.
+# Current authorization — final v3
+
+The latest owner instruction supersedes historical holds below. Proceed through
+production verification, two group naming calls, deterministic memberships,
+rankings/claims, and a memo draft; stop for owner review after the draft.
+All stages share invocation `9fc5979c-a5ee-4311-968b-c8237fe62b5e`, cap $1.58.
+The combined guarded worst case is $1.5704785, including bounded repairs/retries:
+verification $1.5238865, each of two group stages $0.016096, memo $0.0144.
+Starting project spend $5.604212288; project spend cannot exceed $7.184212288
+under this invocation cap, below the $10 project cap. No Jev classification calls.
+Offline preflight: group input byte/token bounds 14,912 and 8,126, below 24,000.
+Tests before dispatch: 219 passed; targeted Ruff checks passed.
+
+Final v3 grouping hash and immutable code hashes are in frozen-grouping-v3.json.
+Classifier label_config remains unchanged. V3 captured all twelve cited recall
+cases, with 4,444 members / severity_sum 13,877. Rules remain final regardless
+of rankings or fresh samples. The ten fresh samples are in
+phase7-cohort-spotcheck-v3.md; `d9312090` is a visible ambiguity: no-shuffle station
+repetition is not clear evidence of controls being locked behind Premium. This
+limitation is retained, not used to reopen tuning. Inferred restrictions are not
+proof of a subscription cause. Tracked grading gzip exports remain unchanged.

@@ -1,0 +1,55 @@
+{
+  "cap_usd": 1.58,
+  "grouping_rule_hash": "06add6fd69f3f55fccdbdd1dbd37b5068ae86a681d0d46f6eebdbd7d572cdbc2",
+  "label_config": "21e3786452ae54d189d625badf85d2d04b212b7ffab3517896a83484509ec19c",
+  "run_id": "9fc5979c-a5ee-4311-968b-c8237fe62b5e",
+  "source_gzip_sha256": {
+    "grading\\calls.jsonl.gz": "04edb5664e691ec6c954cf2fa1657fde4aae3f9dbc76ea51c1be07cade1c8df1",
+    "grading\\records.jsonl.gz": "7adf3b3491fde42589fc3f340956c4ec9800eb56a5c3b95fb2e14bdeb569dd95"
+  },
+  "status": "ready_for_memo_draft",
+  "v3_final": true,
+  "checker_flags": {
+    "invalid_usage": 20,
+    "missing_model_roles": 1,
+    "unfinished_classification": 1
+  },
+  "last_segment_seconds": 463.6804869000043,
+  "connection_window": {
+    "outcomes": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "seen": [
+      "02f5227c-7d31-4944-96ca-8d046d205505",
+      "0df27bd9-dba3-4ab4-80fd-f6da5629e0fd",
+      "13b36497-99c9-4e93-8706-221fb8d27bbc",
+      "456404e0-b6aa-41a5-b316-b965c2b7b0d0",
+      "5934747a-244a-4125-982c-3f0225ebfd0e",
+      "818524eb-76eb-4aff-a4c5-db13fcd09b35",
+      "84c02c0b-7eb2-4e21-b240-6357437a974f",
+      "881e7579-45e7-4f96-bd9c-dbff53b502ab",
+      "8cb2e88c-efa5-4234-89d0-cecbd6ab3bad",
+      "9c82a04f-d47a-4ec5-99ed-0fb0e04f652c",
+      "a3032939-c44b-4971-96f8-e47ed1b383e7",
+      "aa18ec3a-53aa-41bf-b581-96f9f269f136",
+      "f81ccd07-2caa-4076-8f54-313fc3999a67"
+    ]
+  },
+  "ledger": {
+    "spent_nanodollars": 5629132463,
+    "reserved_nanodollars": 0
+  },
+  "invocation_spent_usd": 0.024920175
+}
