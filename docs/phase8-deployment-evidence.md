@@ -205,3 +205,36 @@ signed-out UI accessibility, mobile behavior or billing status. The final
 files-and-Git-history secrets scan, README completion, final grading refresh and
 owner-reviewed videos remain final-submission work. Earlier step-1 build/browser
 results are historical and were not rerun for this evidence review.
+
+## Final export
+
+This section supersedes the earlier interim/header-only grading comparison.
+The final export is present locally but is not yet committed.
+
+| Grading file | SHA-256 |
+|---|---|
+| `records.jsonl.gz` | `7adf3b3491fde42589fc3f340956c4ec9800eb56a5c3b95fb2e14bdeb569dd95` |
+| `calls.jsonl.gz` | `e22349ca0297848c8a71b0533b8240a5936e0d479d536eac75950c52ab2e8d2e` |
+| `membership.csv` | `1b1012daedaba09851d03f16989bab79f3ccf39912985b0374184fb4ff861237` |
+| `ranking.csv` | `939bce5c0a239a9dccc0c8d92f885d4bbc04973eca83205105d9ad10dd16f725` |
+| `claims.csv` | `f0c289dfa4ed37f4aefa490a5a74db7cee7f3e5eb8c5f642227ceac0fecf5bbe` |
+| `run.json` | `bd13f1cb2b68e9e01b18c2d32e15bbe692f608b3151da40c7ab0d723896f2d15` |
+| `ingestion.json` | `68f7995588296dc3e2cce2674e9aa44009b1d5b1c489be021e981d2c6e3323d3` |
+
+The snapshot ID remains `2d29566238c93179d4518f4eb08cc5c0e45e0f125fe1a9d103a0ce0ff6b0282e`.
+The grading-derived source hashes still match the validated repo snapshot;
+no re-import was needed. Saved live baseline ranking: **35/35 issues exactly
+match** grading complaint_count, severity_sum and mean_severity (105 values).
+Saved live baseline claims: **140/140 parsed rows exactly match** grading claims.
+Membership: **70,239 data rows**, equal to the dashboard's 66,537
+complaints plus 3,702 cancellations and to the baseline ranking total.
+All 35 per-issue membership counts match, with no duplicate membership pairs.
+
+Final checker flags are **disclosed**: `invalid_usage: 20`
+(`input_tokens: 10`, `output_tokens: 10`) and `unfinished_classification: 1`.
+No new flags appeared; the report is `artifacts/final-checks/self-check.json`.
+
+Independent rerun into `artifacts/final-export-verify/` was not performed:
+`pipeline/final_export.py` hardcodes `artifacts/export-dryrun/` and refuses
+existing outputs. It has no alternate-output option. The prior dry-run hashes
+are recorded above, but this is not a new independent reproducibility run.
