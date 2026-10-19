@@ -1,5 +1,5 @@
-import { loadSnapshot } from "../../../lib/data";
-import { parseScope } from "../../../lib/model";
+import { loadSnapshot, snapshotJson } from "../../../lib/data.ts";
+import { parseScope } from "../../../lib/model.ts";
 export const dynamic = "force-dynamic";
 export async function GET(request: Request) {
   const scope = new URL(request.url).searchParams.get("scope");
@@ -7,9 +7,7 @@ export async function GET(request: Request) {
     return Response.json({ error: "Invalid ranking scope" }, { status: 400 });
   try {
     const snapshot = await loadSnapshot();
-    return Response.json(snapshot, {
-      headers: { "Cache-Control": "no-store" },
-    });
+    return snapshotJson(snapshot, snapshot.meta);
   } catch {
     return Response.json(
       {

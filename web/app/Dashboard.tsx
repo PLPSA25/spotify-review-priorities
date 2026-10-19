@@ -69,7 +69,8 @@ function Distribution({
 }
 
 export default function Dashboard() {
-  const [data, setData] = useState<Snapshot | null>(null);
+  type Report = Snapshot & { meta: { source: "neon" | "local-file"; snapshot_id: string; imported_at: string | null } };
+  const [data, setData] = useState<Report | null>(null);
   const [error, setError] = useState(false);
   const [reload, setReload] = useState(0);
   const [scope, setScope] = useState<Scope>("baseline");
@@ -83,7 +84,7 @@ export default function Dashboard() {
     fetch("/api/dashboard", { signal: controller.signal })
       .then(async (r) => {
         if (!r.ok) throw new Error("Unavailable");
-        const value: Snapshot = await r.json();
+        const value: Report = await r.json();
         if (active) setData(value);
       })
       .catch(() => {
@@ -807,13 +808,14 @@ export default function Dashboard() {
               <pre>{JSON.stringify(p.meta.source_hashes, null, 2)}</pre>
             </details>
             <p>
-              Human-evaluation summary source: <code>{humanCheck.source}</code>;
+              Human-evaluation figures are a bundled saved summary, not read from the database. Source: <code>{humanCheck.source}</code>;
               SHA-256 <code>{humanCheck.source_sha256}</code>.
             </p>
           </details>
         </section>
         <footer>
           Spotify Google Play reviews · partial analysis · no live AI calls
+          <p>Report data: {data.meta.source === "neon" ? "Neon" : "local file"} · snapshot {data.meta.snapshot_id} · imported {data.meta.imported_at ?? "not applicable (local file)"}</p>
         </footer>
       </main>
     </>

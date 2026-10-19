@@ -15,6 +15,7 @@ if (!process.argv.includes("--confirm-import")) {
     }),
   );
 } else {
+  let step = "read credential";
   try {
     const raw = await readFile(resolve(root, ".env.neon-import.local"), "utf8");
     const line = raw
@@ -25,6 +26,7 @@ if (!process.argv.includes("--confirm-import")) {
       .trim()
       .replace(/^(['"])(.*)\1$/, "$2");
     if (!connectionString) throw new Error("Missing local import credential");
+    step = "TLS check";
     const url = new URL(connectionString);
     if (
       !["require", "verify-full"].includes(
@@ -39,7 +41,9 @@ if (!process.argv.includes("--confirm-import")) {
       statement_timeout: 30000,
     });
     try {
+      step = "connect";
       await client.connect();
+      step = "transaction";
       await client.query("BEGIN");
       await client.query("SELECT pg_advisory_xact_lock(18273645)");
       await client.query(
@@ -52,11 +56,13 @@ if (!process.argv.includes("--confirm-import")) {
         "INSERT INTO dashboard.snapshots(snapshot_id,payload,published) VALUES($1,$2::jsonb,true) ON CONFLICT(snapshot_id) DO UPDATE SET published=true",
         [snapshot.snapshot_id, JSON.stringify(snapshot)],
       );
+      step = "readback";
       const result = await client.query(
         "SELECT payload,pg_database_size(current_database()) AS database_bytes FROM dashboard.snapshots WHERE snapshot_id=$1",
         [snapshot.snapshot_id],
       );
       checkedSnapshot(result.rows[0].payload);
+      step = "transaction";
       await client.query("COMMIT");
       console.log(
         JSON.stringify({
@@ -68,11 +74,10 @@ if (!process.argv.includes("--confirm-import")) {
     } finally {
       await client.end();
     }
-  } catch {
+  } catch (err) {
     // Do not include provider exceptions: they may contain credentials/DSNs.
-    console.error(
-      "Import failed safely. Check the local credential, TLS settings and database grants; no credentials are logged.",
-    );
+    const code = typeof err?.code === "string" && /^(?:E[A-Z0-9_]{2,31}|[0-9A-Z]{5})$/.test(err.code) ? ` ${err.code}` : "";
+    console.error(`${step}${code}`);
     process.exitCode = 1;
   }
 }

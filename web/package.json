@@ -14,7 +14,8 @@
     "test": "node --experimental-strip-types --test tests/contract.test.ts",
     "test:e2e": "playwright test",
     "scan": "node scripts/scan.mjs",
-    "import:snapshot": "node scripts/import-snapshot.mjs"
+    "import:snapshot": "node scripts/import-snapshot.mjs",
+    "verify:reader": "node scripts/verify-reader.mjs"
   },
   "dependencies": {
     "@neondatabase/serverless": "1.2.0",
