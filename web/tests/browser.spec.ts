@@ -207,7 +207,7 @@ test("Plain-language sections preserve evidence and expose technical details on 
   await expect(page.locator(".claim-reference").first()).toBeVisible();
   await expect(page.locator(".claim-reference a").first()).toHaveAttribute(
     "href",
-    /\/api\/claims\?scope=/,
+    /^#claim-[BS]\d+$/,
   );
   const method = page.locator("#methodology");
   expect(await method.getAttribute("open")).toBeNull();
@@ -217,6 +217,67 @@ test("Plain-language sections preserve evidence and expose technical details on 
   await method.locator(":scope > summary").click();
   await expect(page.getByText("Cache alias", { exact: true })).toBeVisible();
   await expect(method).toContainText("not provider prompt caching");
+});
+
+test("Every memo citation opens its exact snapshot claim, including keyboard activation", async ({ page, request }) => {
+  const snapshot = await (await request.get("/api/dashboard")).json();
+  const payload = snapshot.payload;
+  await page.goto("/");
+  const citations = page.locator("#memo .claim-reference a");
+  await expect(citations).toHaveCount(19);
+  const ids = await citations.allTextContents();
+  expect(new Set(ids)).toEqual(new Set([
+    ...Array.from({ length: 7 }, (_, i) => `B${i + 1}`),
+    ...Array.from({ length: 12 }, (_, i) => `S${i + 1}`),
+  ]));
+  const labels: Record<string, string> = {
+    complaint_count: "Complaint/cancellation reviews",
+    severity_sum: "Severity sum",
+    mean_severity: "Mean severity",
+    rank: "Rank",
+    controls_to_ads_severity_ratio: "Controls / ads severity ratio",
+    coverage_percent: "Completed share of nonempty reviews (%)",
+    unspecified_percent: "Complaint/cancellation rows with no specific cause (%)",
+    additional_complaint_rows: "Additional complaint rows (baseline minus random prefix)",
+  };
+  const details = page.locator("#cited-claims");
+  for (const id of ids) {
+    if (await details.getAttribute("open") !== null)
+      await details.locator(":scope > summary").click();
+    const citation = citations.filter({ hasText: new RegExp(`^${id}$`) });
+    await expect(citation).toHaveAttribute("href", `#claim-${id}`);
+    await citation.focus();
+    await page.keyboard.press("Enter");
+    await expect(details).toHaveAttribute("open", "");
+    const row = page.locator(`#claim-${id}`);
+    await expect(row).toBeVisible();
+    await expect(page).toHaveURL(new RegExp(`#claim-${id}$`));
+    const csvScope = id.startsWith("B") ? "baseline" : "secondary";
+    const claim = payload.claims[csvScope].find((c: { claim_id: string }) => c.claim_id === id);
+    const issue = claim.issue_id === "scope" ? "All classified reviews" :
+      payload.rankings.baseline.find((r: { issue_id: string }) => r.issue_id === claim.issue_id).name;
+    expect(labels[claim.metric]).toBeDefined();
+    await expect(row.locator("th")).toHaveText(id);
+    await expect(row.locator("td")).toHaveText([
+      issue, labels[claim.metric], csvScope === "baseline" ? "baseline" : claim.scope,
+      claim.value, csvScope === "baseline" ? `Baseline claims CSV (${id})` : claim.source,
+    ]);
+    await expect(row.getByRole("link")).toHaveAttribute("href", `/api/claims?scope=${csvScope}`);
+  }
+  await expect(details.locator("tbody tr")).toHaveCount(19);
+  for (const scope of ["baseline", "secondary"]) {
+    const links = page.getByRole("link", { name: `Download full ${scope} claims CSV`, exact: true });
+    await expect(links).toHaveCount(2);
+    for (const link of await links.all()) {
+      await expect(link).toHaveAttribute("href", `/api/claims?scope=${scope}`);
+      const response = await request.get((await link.getAttribute("href"))!);
+      expect(response.status()).toBe(200);
+      expect(response.headers()["content-type"]).toContain("text/csv");
+      expect((await response.text()).split(/\r?\n/, 1)[0].split(",")[0]).toBe("claim_id");
+    }
+  }
+  await page.setViewportSize({ width: 390, height: 844 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
 test("Capture every revised section for owner review", async ({ page }) => {

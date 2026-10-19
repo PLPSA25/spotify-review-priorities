@@ -1,11 +1,21 @@
 "use client";
-import { useEffect, useState } from "react";
+import { Children, useEffect, useRef, useState } from "react";
 import Markdown from "react-markdown";
 import humanCheck from "../lib/human-check.json";
 import { filteredRanking, type Scope, type Snapshot } from "../lib/model";
 
 const CONTROLS = "cross-topic--free-tier-premium-controls";
 const ADS = "usability--ad-interruptions";
+const metricLabels: Record<string, string> = {
+  complaint_count: "Complaint/cancellation reviews",
+  severity_sum: "Severity sum",
+  mean_severity: "Mean severity",
+  rank: "Rank",
+  controls_to_ads_severity_ratio: "Controls / ads severity ratio",
+  coverage_percent: "Completed share of nonempty reviews (%)",
+  unspecified_percent: "Complaint/cancellation rows with no specific cause (%)",
+  additional_complaint_rows: "Additional complaint rows (baseline minus random prefix)",
+};
 const number = (value: number | string) =>
   Number(value).toLocaleString("en-US");
 const percent = (numerator: number, denominator: number) =>
@@ -76,6 +86,7 @@ export default function Dashboard() {
   const [scope, setScope] = useState<Scope>("baseline");
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState(CONTROLS);
+  const claimsDetails = useRef<HTMLDetailsElement>(null);
   useEffect(() => {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 20000);
@@ -139,6 +150,15 @@ export default function Dashboard() {
   const titleById = Object.fromEntries(
     p.rankings.baseline.map((r) => [r.issue_id, r.name]),
   );
+  const citedIds = [...new Set(
+    [...p.artifacts.memo.matchAll(/\[([BS]\d+)\]\(phase7\/(?:secondary-)?claims\.csv\)/g)]
+      .map((match) => match[1]),
+  )];
+  const claimsById = new Map(
+    (["baseline", "secondary"] as const).flatMap((csvScope) =>
+      p.claims[csvScope].map((claim) => [claim.claim_id, { claim, csvScope }] as const),
+    ),
+  );
   const maximum = Math.max(
     ...p.rankings.baseline
       .filter((r) => [CONTROLS, ADS].includes(r.issue_id))
@@ -151,16 +171,14 @@ export default function Dashboard() {
     href?: string;
     children?: React.ReactNode;
   }) => {
-    if (href === "phase7/claims.csv")
+    const claimId = Children.toArray(children).join("");
+    if ((href === "phase7/claims.csv" || href === "phase7/secondary-claims.csv") &&
+        citedIds.includes(claimId))
       return (
         <sup className="claim-reference">
-          <a href="/api/claims?scope=baseline">{children}</a>
-        </sup>
-      );
-    if (href === "phase7/secondary-claims.csv")
-      return (
-        <sup className="claim-reference">
-          <a href="/api/claims?scope=secondary">{children}</a>
+          <a href={`#claim-${claimId}`} onClick={() => {
+            if (claimsDetails.current) claimsDetails.current.open = true;
+          }}>{children}</a>
         </sup>
       );
     if (href?.includes("phase7-cohort-spotcheck-v3"))
@@ -623,17 +641,51 @@ export default function Dashboard() {
               {p.artifacts.memo.replace(/^# .+\n/, "")}
             </Markdown>
           </article>
+          <details ref={claimsDetails} id="cited-claims">
+            <summary>Claims cited in the recommendation</summary>
+            <div className="table-scroll">
+              <table>
+                <caption className="sr-only">Claims cited in the recommendation</caption>
+                <thead>
+                  <tr>
+                    {["ID", "Issue", "Metric", "Scope", "Value", "Source"].map((label) => (
+                      <th scope="col" key={label}>{label}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {citedIds.map((id) => {
+                    const entry = claimsById.get(id);
+                    if (!entry) return null;
+                    const { claim, csvScope } = entry;
+                    return (
+                      <tr key={id} id={`claim-${id}`} tabIndex={-1}>
+                        <th scope="row">{id}</th>
+                        <td>{claim.issue_id === "scope" ? "All classified reviews" : titleById[claim.issue_id]}</td>
+                        <td>{metricLabels[claim.metric] ?? claim.metric}</td>
+                        <td>{csvScope === "baseline" ? "baseline" : claim.scope}</td>
+                        <td>{claim.value}</td>
+                        <td><a href={`/api/claims?scope=${csvScope}`}>
+                          {csvScope === "baseline" ? `Baseline claims CSV (${id})` : claim.source}
+                        </a></td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </details>
           <div className="downloads">
             <span>
               Claim references: B ={" "}
-              <a href="/api/claims?scope=baseline">all analyzed reviews</a>; S ={" "}
+              <a href="/api/claims?scope=baseline">Download full baseline claims CSV</a>; S ={" "}
               <a href="/api/claims?scope=secondary">
-                random-sample and secondary evidence
+                Download full secondary claims CSV
               </a>
               .
             </span>
-            <a href="/api/claims?scope=baseline">Baseline claims CSV</a>
-            <a href="/api/claims?scope=secondary">Secondary evidence CSV</a>
+            <a href="/api/claims?scope=baseline">Download full baseline claims CSV</a>
+            <a href="/api/claims?scope=secondary">Download full secondary claims CSV</a>
           </div>
         </section>
         <section className="provenance" data-section="12-methodology">
