@@ -11,6 +11,10 @@ const passed = new Set();
 function fail(err) {
   failed = true;
   process.exitCode = 1;
+  if (err?.code === "ERR_VERIFY_MARKER") {
+    console.error(`FAIL: ${step}: transaction-probes marker must occur exactly once`);
+    return;
+  }
   const code = typeof err?.code === "string" && /^(?:E[A-Z0-9_]{2,31}|[0-9A-Z]{5})$/.test(err.code) ? ` ${err.code}` : "";
   console.error(`FAIL: ${step}${code}`);
 }
@@ -58,11 +62,12 @@ try {
   });
   step = "connect";
   await client.connect();
-  step = "verification";
+  step = "verification: informational part";
   const sql = await readFile(resolve(web, "db/02-verify-reader.sql"), "utf8");
-  // One simple-query script, including its own BEGIN and final ROLLBACK.
-  const response = await client.query(sql);
-  const results = Array.isArray(response) ? response : [response];
+  const parts = sql.split(/^-- ===== TRANSACTION PROBES =====\r?$/m);
+  if (parts.length !== 2) {
+    throw Object.assign(new Error(), { code: "ERR_VERIFY_MARKER" });
+  }
   const fields = new Set([
     "current_user", "session_user", "rolname", "rolcanlogin", "rolsuper",
     "rolcreaterole", "rolcreatedb", "rolbypassrls", "rolreplication", "rolinherit",
@@ -78,14 +83,22 @@ try {
     if (key !== "snapshot_id" && key !== "imported_at" && /^[A-Za-z0-9_$-]{1,63}$/.test(value)) return value;
     throw new Error();
   }
-  for (const [index, result] of results.entries()) {
-    if (!result.fields?.length) continue;
-    if (result.fields.some((field) => !fields.has(field.name))) throw new Error();
-    const rows = result.rows.map((row) => Object.fromEntries(
-      Object.entries(row).map(([key, value]) => [key, safeValue(key, value)]),
-    ));
-    console.log(JSON.stringify({ result_set: index + 1, columns: result.fields.map((field) => field.name), rows }));
+  let resultSet = 0;
+  function printResults(response) {
+    const results = Array.isArray(response) ? response : [response];
+    for (const result of results) {
+      if (!result.fields?.length) continue;
+      if (result.fields.some((field) => !fields.has(field.name))) throw new Error();
+      const rows = result.rows.map((row) => Object.fromEntries(
+        Object.entries(row).map(([key, value]) => [key, safeValue(key, value)]),
+      ));
+      console.log(JSON.stringify({ result_set: ++resultSet, columns: result.fields.map((field) => field.name), rows }));
+    }
   }
+  // Finish the informational implicit transaction before BEGIN in part 2.
+  printResults(await client.query(parts[0]));
+  step = "verification: probe part";
+  printResults(await client.query(parts[1]));
   if (passed.size !== probes.length) throw new Error();
   if (!failed) console.log("PASS: reader verification complete (7/7 denial probes)");
 } catch (err) {

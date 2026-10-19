@@ -23,6 +23,7 @@ SELECT COALESCE((SELECT pg_has_role(current_user, oid, 'MEMBER')
 SHOW default_transaction_read_only;
 SHOW statement_timeout;
 
+-- ===== TRANSACTION PROBES =====
 BEGIN;
 -- Deliberately turn off the secondary default so failures prove ACL enforcement,
 -- rather than merely proving a read-only transaction blocks all writes.
