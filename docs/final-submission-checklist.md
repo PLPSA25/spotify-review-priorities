@@ -13,8 +13,11 @@
   Clip 1 is unedited. Preserve the unrecorded gap and reconstructed-checkpoint disclosure.
 - [ ] Inspect Vercel production build log.
 - [ ] Verify Neon/Vercel billing consoles and current plan settings.
-- [ ] Complete the full secrets/personal-details scan of final files and Git history,
-  including gzip contents and document/video review. Earlier bundle scans are narrower.
+- [x] Final secrets/personal-details text scan completed 2026-10-19: tracked files
+  (including gzip contents as covered by the scanner), Git history (prior full scan
+  plus the Round 6 incremental scan since `c66b8d6`), and tracked paths. Only
+  previously triaged benign matches remained. Recordings were reviewed visually
+  by the owner, not by the text scanner; no broader document/media review is claimed.
 - [ ] Review the exact staged publication surface and all binary evidence.
 - [ ] Owner approves a local commit; no commit is implied by staging.
 - [ ] Final authorized public push after full secrets scan and publication review.

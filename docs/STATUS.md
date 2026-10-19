@@ -6,7 +6,7 @@ Use the [root README](../README.md) as the single current entry point. This inde
 
 - The final grading export and script verification are committed; current evidence is [deployment evidence](phase8-deployment-evidence.md) and [reader verification](phase8-reader-verification.txt).
 - Model/usage limitations remain disclosed. A mechanical review_required result is expected; it is not an assigned grade.
-- Signed-out alias UI: owner-verified 2026-10-19 (incognito); phone: owner-verified 2026-10-19; Protection: Standard Protection, access confirmed signed out, owner screenshots 2026-10-19; production build log: owner-verified Ready, 2026-10-19 19:04-19:05 UTC (Next.js 16.4.2, webpack, compile 6.5s, TypeScript finished, 3/3 static pages). Alias headers still report Neon and the unchanged snapshot ID. These deployment checks are owner verification. Billing-console checks and the final secrets/personal-details scan remain open; the three approved recordings are tracked.
+- Signed-out alias UI: owner-verified 2026-10-19 (incognito); phone: owner-verified 2026-10-19; Protection: Standard Protection, access confirmed signed out, owner screenshots 2026-10-19; production build log: owner-verified Ready, 2026-10-19 19:04-19:05 UTC (Next.js 16.4.2, webpack, compile 6.5s, TypeScript finished, 3/3 static pages). Alias headers still report Neon and the unchanged snapshot ID. These deployment checks are owner verification. Only billing-console checks remain open (not verified by the owner; disclosed). The final text scan of tracked files and Git history was completed 2026-10-19 with only previously triaged benign matches; see [checklist scope](final-submission-checklist.md). The three approved recordings are tracked.
 - Current offline checks (2026-10-19): 230 Python tests, 9 web contract tests and 8 browser tests passed; typecheck and production webpack build passed. Browser coverage verifies all 19 inline memo citations, exact snapshot values, metric labels and CSV downloads.
 - Replay scripts: [baseline](../scripts/replay_baseline_ranking.py) uses tracked records/membership; [two-scope](../scripts/replay_phase7_rankings.py) uses tracked inputs plus the supplied raw CSV and matches both Phase 7 rankings (35/35 each, six fields and order), with no model calls. The sampling permutation is tracked.
 - Local commits: `c66b8d6` (grader README and recordings), `c9b1791` (two-scope replay and tests), `92010d1` (inline memo claim table and CSV labels).
@@ -79,7 +79,7 @@ it does not mean the evidence is invalid or should be rewritten.
 | [fallback-options-development.json](fallback-options-development.json) | Historical | Preserve | Historical receipt/proposal; not current authorization. |
 | [final-config-gate.md](final-config-gate.md) | Historical | Preserve | Historical receipt/proposal; not current authorization. |
 | [final-flag-offline-projection.json](final-flag-offline-projection.json) | Historical | Preserve | Historical receipt/proposal; not current authorization. |
-| [final-submission-checklist.md](final-submission-checklist.md) | Current evidence | Preserve | Current evidence-backed checklist; open build/billing/scan/push gates remain visible. |
+| [final-submission-checklist.md](final-submission-checklist.md) | Current evidence | Preserve | Current evidence-backed checklist; build log owner-verified; final tracked-file/history text scan completed 2026-10-19 with only previously triaged benign matches; billing-console checks remain open (not verified by the owner; disclosed). |
 | [frozen-calibration.md](frozen-calibration.md) | Historical | Preserve | Historical receipt/proposal; not current authorization. |
 | [frozen-grouping-v3.json](frozen-grouping-v3.json) | Current evidence | Frozen | Frozen source/provenance; no rerun implied. |
 | [frozen-label-config-before-reasons.json](frozen-label-config-before-reasons.json) | Historical | Preserve | Historical receipt/proposal; not current authorization. |
@@ -159,8 +159,11 @@ it does not mean the evidence is invalid or should be rewritten.
 
 The current README and web README document deployed behavior and setup. The final
 checklist records export/verification work; the current deployment addendum
-supersedes its earlier build-log status. Billing, full secrets/personal-details
-scan and public push remain separate open gates. The gzip
+supersedes its earlier build-log status: the build log is owner-verified. The final
+text scan of tracked files and Git history was completed 2026-10-19 with only
+previously triaged benign matches; the checklist records its scope and the
+separate owner visual review of recordings. Only billing-console checks remain
+open (not verified by the owner; disclosed). The gzip
 manifest describes current archives; the large-file inventory retains its original
 measurements and adds current packaging/recording pointers.
 

@@ -56,7 +56,4 @@ Database size measured during import: 8,257,536 bytes. Reader verification passe
 7/7 denials, dangerous flags false, zero memberships; see the
 [reader transcript](../docs/phase8-reader-verification.txt).
 
-Production deployment 2026-10-19 19:04-19:05 UTC: `next build --webpack` on Next.js 16.4.2, Compiled successfully in 6.5s, TypeScript finished, 3/3 static pages, routes /, /api/claims, /api/dashboard, /api/examples, status Ready; alias response headers X-Dashboard-Data-Source: neon and snapshot id 2d295662...0282e unchanged (owner-run `vercel inspect --logs` and curl, 2026-10-19).
-
-Vercel and Neon billing-console checks remain open. Full file/history secrets
-scanning and the public push remain separate gates.
+Vercel and Neon billing-console checks remain open (not verified by the owner; disclosed). The final text scan of tracked files and Git history was run 2026-10-19; only previously triaged benign matches remained (see [docs/final-submission-checklist.md](../docs/final-submission-checklist.md)).
