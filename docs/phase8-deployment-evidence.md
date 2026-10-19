@@ -209,7 +209,7 @@ results are historical and were not rerun for this evidence review.
 ## Final export
 
 This section supersedes the earlier interim/header-only grading comparison.
-The final export is present locally but is not yet committed.
+The final export was committed locally as `5b32f5c`.
 
 | Grading file | SHA-256 |
 |---|---|
@@ -234,7 +234,22 @@ Final checker flags are **disclosed**: `invalid_usage: 20`
 (`input_tokens: 10`, `output_tokens: 10`) and `unfinished_classification: 1`.
 No new flags appeared; the report is `artifacts/final-checks/self-check.json`.
 
-Independent rerun into `artifacts/final-export-verify/` was not performed:
-`pipeline/final_export.py` hardcodes `artifacts/export-dryrun/` and refuses
-existing outputs. It has no alternate-output option. The prior dry-run hashes
-are recorded above, but this is not a new independent reproducibility run.
+Independent rerun completed using `pipeline.final_export --out
+artifacts/final-export-verify/run-01` in 98.5 seconds, offline with zero API calls
+and $0 model cost. All **10 final files in submission/** have SHA-256 values
+identical to their same-name files in `grading/`: both gzip archives, membership,
+ranking, claims, run, coverage, both checkpoints and checkpoint provenance.
+Both repeated gzip compressions were byte-identical (level 9, mtime 0, no embedded
+filename). All grading files remained unchanged. The exporter does not produce
+ingestion.json; its separately profiled hash remains recorded above.
+
+The comparison also covered intermediate and diagnostic outputs. Four raw
+checkpoint/coverage files match grading. Four raw files deliberately differ:
+`raw/claims.csv`, `raw/membership.csv`, `raw/ranking.csv` are interim header-only
+CSVs, and `raw/run.json` declares the interim pending business stages. These
+precede the Phase 7 overlay and are not final submission files. Raw uncompressed
+calls/records and the two diagnostic JSON receipts have no same-name grading
+counterpart. Full comparison: `artifacts/final-export-verify/comparison.json`.
+Pier clarified the gate: the four raw intermediate differences are expected
+because they predate the Phase 7 overlay. The required final-submission comparison
+passes: **10/10 final submission files match grading/**. No network was used.

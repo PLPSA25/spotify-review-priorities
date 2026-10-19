@@ -5,16 +5,19 @@ approved membership/ranking/claims, and package reproducible gzip level 9 files.
 Inputs: grading/ (read only), artifacts/scope-100k/state.sqlite3 and checkpoints,
 data/spotify_reviews_18months.csv and course helpers/manifest,
 artifacts/phase7/{membership.csv,calls.jsonl}, and docs/phase7/{ranking.csv,claims.csv}.
-Outputs: artifacts/export-dryrun/raw/, submission/, grading-before.json, and
+Outputs: --out DIR (default artifacts/export-dryrun): raw/, submission/, grading-before.json, and
 build-result.json. Creates no ingestion.json; run the course profile separately.
 Offline: blocks socket connections, makes zero API/paid calls, never reads .env
 files, and verifies grading/ bytes remain unchanged. Refuses existing raw/ or
-submission/ outputs. Create artifacts/export-dryrun/ beforehand if absent.
+submission/ outputs. Create the output directory beforehand if absent.
 Exact command from C:/dev/Spotify:
     .\.venv\Scripts\python.exe -B -m pipeline.final_export
+Optional independent verification output:
+    .\.venv\Scripts\python.exe -B -m pipeline.final_export --out artifacts/final-export-verify/run-01
 This preserves the dry-run adapter behavior; it does not promote or commit files.
 """
 import gzip
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -24,7 +27,9 @@ import sys
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = ROOT / "artifacts/export-dryrun"
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--out', type=Path, default=ROOT / 'artifacts/export-dryrun')
+BASE = parser.parse_args().out
 if Path.cwd().resolve() != ROOT:
     raise SystemExit('Run from the repository root')
 sys.path.insert(0, str(ROOT))
