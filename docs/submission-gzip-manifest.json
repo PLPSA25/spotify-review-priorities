@@ -3,12 +3,13 @@
   "files": [
     {
       "file": "grading/calls.jsonl.gz",
-      "bytes": 26686127,
+      "bytes": 26799243,
       "compresslevel": 9,
       "mtime": 0,
-      "sha256": "04edb5664e691ec6c954cf2fa1657fde4aae3f9dbc76ea51c1be07cade1c8df1",
-      "uncompressed_sha256": "066f997a5ce7228e0b7e5c3ba28d3377cd68a90936d0559ed5c4580256596918",
-      "raw_local": "artifacts/scope-100k/submission-raw/calls.jsonl"
+      "sha256": "e22349ca0297848c8a71b0533b8240a5936e0d479d536eac75950c52ab2e8d2e",
+      "uncompressed_sha256": "245ca0b022e2115ca280ddf693293cfce06534937926aca71068197edb8abd24",
+      "raw_local": "artifacts/scope-100k/submission-raw/calls.jsonl",
+      "raw_local_note": "Historical pre-overlay raw file, not in the repository; current archive includes the final Phase 7 overlay. See current_evidence."
     },
     {
       "file": "grading/records.jsonl.gz",
@@ -21,5 +22,6 @@
     }
   ],
   "field_removal": false,
-  "decompressed_bytes_verified": true
+  "decompressed_bytes_verified": true,
+  "current_evidence": "docs/phase8-deployment-evidence.md#final-export"
 }

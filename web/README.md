@@ -1,62 +1,60 @@
 # Spotify review dashboard
 
-Local step-1 build only. No Vercel or Neon login, provisioning or deployment yet.
-This app reads a small versioned aggregate/sample snapshot, not all records.
+Live report: https://spotify-review-priorities.vercel.app — open signed out.
+Owner verified incognito and phone access on 2026-10-19. Standard Protection is
+configured; access was confirmed signed out (owner screenshots 2026-10-19).
+Build-log inspection: **[NOT YET]**. See [deployment evidence](../docs/phase8-deployment-evidence.md).
 
-From `C:\dev\Spotify`:
+The backend reads the saved aggregate/sample snapshot from Neon, not the full
+production row store. Human-evaluation figures are bundled separately. There are
+no page-load model calls, and no fallback when the database is unavailable.
+Only server-side `DATABASE_URL_READONLY` is used in Production (Sensitive);
+no NEXT_PUBLIC database variable or owner credential belongs in deployment.
+The footer and API headers expose the data source and snapshot ID.
 
+## Local setup and verification
+
+Use Node 24.x and the committed lockfile, from web/:
 ```powershell
-.venv\Scripts\python.exe -m pipeline.dashboard_snapshot
-Set-Location C:\dev\Spotify\web
-npm.cmd ci --ignore-scripts
-npm.cmd run build
+npm.cmd ci
 npm.cmd test
 npm.cmd run typecheck
+npm.cmd run build
 npm.cmd run test:e2e
-npm.cmd run scan
 npm.cmd run preview:local
 ```
+POSIX: replace npm.cmd with npm. Dependency installation requires network access.
+Explicit local preview reads web/.local/dashboard.json (not in the repository);
+that mode is prohibited on Vercel. Snapshot regeneration is an offline owner
+operation: `python -B -m pipeline.dashboard_snapshot` from the repository root.
 
-Local production preview: `http://127.0.0.1:3000`. It reads
-`web/.local/dashboard.json` explicitly; that mode is forbidden on Vercel. The
-default cloud mode requires `DATABASE_URL_READONLY` using the `dashboard_reader`
-role over TLS. Missing data returns a sanitized unavailable response, with no
-model calls or sample fallback. The browser sees only intended public report data.
+## Database setup and snapshot publication
 
-## Later deployment session — not performed in step 1
+1. Owner imports from web/ with `npm.cmd run import:snapshot -- --confirm-import`.
+   Without --confirm-import the command validates offline only. The owner privately
+   sets NEON_IMPORT_DATABASE_URL in the ignored root credential file; never print
+   that value. The import creates dashboard.snapshots and publishes the immutable
+   JSONB snapshot transactionally, checking its hash and readback.
+2. In Neon SQL Editor, run [reader role SQL](db/01-reader-role.sql). It creates a
+   restricted LOGIN role and checks dangerous flags/memberships fail closed. The
+   owner sets its password privately; there is no password in the SQL. Do not use
+   the earlier NOLOGIN instruction or broad managed-schema privilege sweep.
+3. Owner supplies NEON_READER_DATABASE_URL in the ignored root reader credential
+   file, then runs `npm.cmd run verify:reader` from web/. The helper requires
+   dashboard_reader and TLS, sanitizes failures, and executes informational SQL
+   separately from BEGIN/ROLLBACK transaction probes. All seven denial probes,
+   dangerous-role flags, memberships and snapshot identity must pass.
+4. Configure only DATABASE_URL_READONLY in Production as Sensitive. Use the reader
+   credential, never the owner/import credential. The owner runs Vercel login,
+   link and deploy personally with the CLI's default configuration location.
+   Deploy web/ only; [.vercelignore](.vercelignore) limits its upload surface.
+5. Re-save response headers and compare snapshot IDs after any payload change.
+   Follow the [re-import rule](../docs/phase8-deployment-evidence.md).
 
-- Use **Berkeley Granata (Hobby)**. The owner will run `vercel login` and complete
-  browser login personally. Never request a Vercel token.
-- Deploy only this `web/` directory via the local CLI; no GitHub push is needed
-  for deployment. `.vercelignore` excludes tests/fixtures, local data, env files,
-  import/scanning scripts and build output. Never deploy the whole repository.
-- Before import, the owner creates exactly
-  **`C:\dev\Spotify\.env.neon-import.local`**, pasting the private owner/import URL
-  after **`NEON_IMPORT_DATABASE_URL=`**. The root `.env.*` rule ignores it. The
-  app never reads that file or variable. Do not paste the URL in chat or print it.
-- `npm.cmd run import:snapshot` is offline validation only. The future explicit
-  `npm.cmd run import:snapshot -- --confirm-import` contacts the DB, creates the
-  schema and transactionally publishes the immutable snapshot. It reads the
-  ignored owner credential locally and reports only snapshot ID and DB size.
-- SQL-created `dashboard_reader` initially has NOLOGIN. The owner will privately
-  enable LOGIN/set a password during provisioning. Test the resulting role's
-  SELECT access and denial of writes/CREATE; no owner URL goes into Vercel.
-- Only `DATABASE_URL_READONLY` belongs in Vercel server-side settings. No
-  `NEXT_PUBLIC_` DB variable, provider keys or import credentials. The DB uses one
-  `dashboard.snapshots` JSONB table to store the versioned small read model,
-  simplifying the earlier multi-table proposal without importing full records.
-- **Deployment Protection OFF** for the final production URL; owner verifies
-  access in incognito while signed out.
+Read-only default/timeout are secondary safeguards; grants are the boundary.
+Database size measured during import: 8,257,536 bytes. Reader verification passed
+7/7 denials, dangerous flags false, zero memberships; see the
+[reader transcript](../docs/phase8-reader-verification.txt).
 
-The database permission test, measured Postgres disk size and real DB connection
-are intentionally deferred. Snapshot file size is not Postgres storage size.
-The free plan's allowance must be confirmed in the actual Neon plan picker.
-
-## Submission is a later phase
-
-After deployment: full secrets scan of submitted files **and Git history**, then
-the authorized public GitHub push. Complete the README with live URL,
-rubric-to-evidence map, end-to-end trace, failed case and limitations. Refresh
-grading gzip archives only once at final export; raw originals stay local. Produce
-and review the compressed videos for sensitive content before committing them.
-Do not treat the step-1 bundle scan as the full submission/history scan.
+The owner-verified access above does not establish build-log or billing-console
+checks. Full file/history secrets scanning and public push remain separate gates.

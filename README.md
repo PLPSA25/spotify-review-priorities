@@ -1,500 +1,250 @@
-# Spotify Insight Pipeline
+# Spotify review priorities
 
-Phases 1–6 are complete through the approved partial production enrichment and
-offline propagation gate. Group/rank/claims/memo await approval. Current measured
-results: [Phase 6 gate](docs/phase6-completion-gate.md). Earlier dated gate notes
-below preserve history and are superseded by that completion report.
-Python 3.11+; developed on Windows with Python 3.12.
+A pipeline that turns Spotify Google Play reviews into a product-priority recommendation.
+It preserves original IDs, saved model evidence, deterministic rankings and an owner-approved memo.
+The dashboard serves saved aggregate results; it does not classify reviews on demand.
 
-## Approved scope
+**Recommendation:** test restoring back, seek and repeat controls for free users, measuring complaints alongside Premium conversion. Controls rank second with 4,444 complaints/cancellations and 13,877 severity points; Other--unspecified ranks first but supplies no specific fix target ([grading/ranking.csv](grading/ranking.csv)). Controls also rank second in the seeded random-prefix view, with 4,440 rows and 13,865 points ([docs/phase7/sample_ranking.csv](docs/phase7/sample_ranking.csv)). This supports an experiment, not a causal or revenue claim. See the [owner-approved memo](docs/phase7-memo-draft.md).
 
-Ingest all 660,622 source rows. Classify the first 100,000 nonempty IDs of a saved,
-seeded permutation, union the golden 50, and propagate validated labels by exact text.
-Keep every original ID. Export all other nonempty rows as quarantined with
-`not_classified_partial_run`; empty texts use `empty_review_text`.
+> **Start here:** [Decision memo](docs/phase7-memo-draft.md) and [live dashboard](https://spotify-review-priorities.vercel.app).
+> - [Ten-point rubric-to-evidence map](#rubric-to-evidence-map).
+> - Zero-API profile: `python -B data/check_submission.py profile --full data/spotify_reviews_18months.csv --out <outside-repo>/ingestion.json`.
+> - Zero-API reference: `python -B data/check_submission.py reference --full data/spotify_reviews_18months.csv --analysis data/spotify_reviews_18months.csv --out <outside-repo>/local-reference.json`.
+> - Zero-API check: `python -B data/check_submission.py check --reference <outside-repo>/local-reference.json --submission grading --out <outside-repo>/self-check.json`.
+> - [Ranking replay](scripts/replay_baseline_ranking.py): `python -B scripts/replay_baseline_ranking.py --out artifacts/ranking-replay` (output not in the repository).
 
-This deliberately conflicts with the course contract's full-classification requirement.
-The owner approved this partial scope. The final checker will report
-`unfinished_classification`; benchmark omissions count as incorrect. Coverage credit is
-reduced. Actual offline propagation completed **237,722 / 660,609 nonempty rows
-(35.9853%)**, with 159,848 valid direct cache reuses. The checker coverage-point
-candidate is **0.6159**, not an assigned grade. A random-sample-only secondary ranking
-will accompany the baseline to expose repeated-text selection bias.
+## Live dashboard
 
-## Windows setup and offline run
+**https://spotify-review-priorities.vercel.app** -- open signed out; no login should be required. Signed-out alias UI: **owner-verified 2026-10-19 (incognito)**; phone: **owner-verified 2026-10-19**; Protection: **Standard Protection; access confirmed signed out; owner screenshots 2026-10-19**; build log: **[NOT YET]**. These UI/access checks are owner-verified, not machine-verified.
+
+The app reads a saved aggregate snapshot from Neon through `dashboard_reader`, a read-only role, and makes no model calls on page load ([web/lib/data.ts](web/lib/data.ts), [web/app/Dashboard.tsx](web/app/Dashboard.tsx)). Its footer identifies the data source and snapshot ID:
+
+`2d29566238c93179d4518f4eb08cc5c0e45e0f125fe1a9d103a0ce0ff6b0282e`
+
+Source: [docs/phase8-snapshot-manifest.json](docs/phase8-snapshot-manifest.json). Saved HTTP evidence reports Neon; the saved HTTP evidence is complemented by the owner verification above. The human-evaluation summary is bundled in [web/lib/human-check.json](web/lib/human-check.json), not read from the database. [Deployment evidence and remaining checks](docs/phase8-deployment-evidence.md).
+
+## Rubric-to-evidence map
+
+**Deliverable quality (4): points 1-4; Testing & evaluation (3): points 5-7; Working result (3): points 8-10.** One row per point in the assignment's Grading Rubric (10 points). Status is our evidence assessment, not an awarded score.
+
+| Point / criterion | Self-assessed evidence status (not a grade) | Evidence and actual outcome |
+|---|---|---|
+| 1. Accessible code/setup and artifacts | Partial | [Setup](#setup-and-offline-commands), [grading](grading/), [contract](data/GRADING_CONTRACT.md). Code and final submission artifacts are available locally; source CSV and private store are not bundled; recordings are included under evidence/recordings/. |
+| 2. Clear architecture, shared schema and provenance | Complete | [Schema](pipeline/schema.py), [configuration](config.toml), [manifest](data/manifest.json), [checkpoint provenance](grading/checkpoint_before.provenance.json), [snapshot exporter](pipeline/dashboard_snapshot.py). IDs, source hashes and label configuration connect stages. |
+| 3. Memo numbers linked to correct calculations and source evidence | Complete | [Memo](docs/phase7-memo-draft.md), [claims](docs/phase7/claims.csv), [secondary claims](docs/phase7/secondary-claims.csv), [arithmetic](pipeline/rank.py), [final comparison](docs/phase8-deployment-evidence.md). All 35 baseline issues and 140 baseline claims match saved deployed evidence; UI links currently download CSVs rather than explaining claims inline. |
+| 4. Coherent recommendation, alternatives and limitations | Complete | [Approved memo](docs/phase7-memo-draft.md), [original model memo](docs/phase7/memo-draft.json), disclosures below. Controls experiment weighed against ad-cap alternative; no causal revenue inference; owner edits preserved separately. |
+| 5. 50 human labels, per-field comparisons and error analysis | Complete | [Golden report](evals/golden-final-evaluation/report.html), [error analysis](docs/golden-error-analysis.md), [label revisions](docs/golden-human-accuracy-gate.md). Topic 37/50; intent 42/50; exact severity 36/50; severity within one 48/50; sentiment sign 41/50; needs_review 23/50; severity MAE 0.34; sentiment MAE 0.1857 (report.json). Errors remain; entities were not human-labeled. |
+| 6. Independent verification plus planted-error and injection tests | Partial | [Verifier agreement](docs/phase7/verifier-agreement.json), [planted error](tests/test_human_review.py), [injection boundary](tests/test_enrichment.py). Of 500 blinded verifier rows, 462 had Jev labels checked by Luna (different model); 38 had Luna fallback labels checked by Luna (same model). Different-model verification is meaningful, but neither subset is human accuracy and duplicate texts induce dependence. Planted-error test detects wrong/missing predictions; injection test uses MockTransport and checks untrusted-input separation, not live adversarial robustness. |
+| 7. A real 100-review cold/warm pilot, correct offline cost/runtime calculator, and demonstrated retry, spending and recovery controls (T3) | Partial | [Measurements](cost/measurements.json), [replay](cost/replay.json), [calculator tests](tests/test_calculator.py), [retry tests](tests/test_enrichment.py), [spend controls](tests/test_controls.py), [recovery](docs/100k-halt-recovery-gate.md). Cold run classified 100 but memo failed after 58.6224091s; memo-only continuation succeeded in 5.265659s. Warm run 0.0212832s, zero new calls/spend. Pilot API $0.007171879; local compute cost unknown. Real stop/resume, halt and lock failures are disclosed, not hidden as a clean first attempt. |
+| 8. Full ingestion, record coverage and successful classification | Partial | [Profile](grading/ingestion.json), [records](grading/records.jsonl.gz), [completion gate](docs/phase6-completion-gate.md). All 660,622 IDs accounted for; only 237,722 of 660,609 nonempty rows classified. 422,845 out-of-scope, 42 terminal and 13 empty quarantines. 237,722 valid classification records, of which 77,874 are direct model classifications (62,542 Jev + 15,332 Luna fallback) and 159,848 are exact-text reuse of a saved result; whether reuse counts toward the 100,000 minimum in the Definition of Done is the instructor's decision. |
+| 9. A runnable staged program with bounded calls, saved handoffs and demonstrated resume | Partial | [CLI](pipeline/__main__.py), [operator guide](docs/100k-production-commands.md), [recovery guide](docs/100k-recovery-operator-guide.md), [proof](grading/checkpoint_before.provenance.json). Bounded stages and persisted resume exist; one generic arbitrary-CSV command covering enrichment through memo is missing. Recorded proof grows 19,719 to 22,227 completed with 2,508 new paid records and no before-ID relabels. |
+| 10. Reproducible baseline ranking and a usable deployed dashboard, connected through a backend to the processed data in a database, with grounded AI-generated recommendations | Partial | [Ranking](grading/ranking.csv), [API](web/app/api/dashboard/route.ts), [data layer](web/lib/data.ts), [deployment evidence](docs/phase8-deployment-evidence.md), [memo](docs/phase7-memo-draft.md). Saved HTTP evidence proves Neon snapshot reads; reader passed 7/7 denial probes. Database holds processed aggregates, not the full row store. Owner verified signed-out/phone access and Protection; build-log inspection remains open; AI memo is owner-edited. |
+
+## Setup and offline commands
+
+Source: [Kaggle dataset, version 2](https://www.kaggle.com/datasets/bwandowando/3-4-million-spotify-google-store-reviews). The assignment CSV is a transformed date-window subset, not the downloaded archive. Its SHA-256 is `1fc85de68a304dd8978b537cfa58793d5f41cbaf417fa32cb53899f83a2fcef6`; archive SHA-256 is `7b351f41fef9de9d8cba07ac40a300d20fd605ff0298a1885df0dbf0d66b3cbc` ([data/manifest.json](data/manifest.json)). Grader supplies the subset at the path above; the source identity is recorded in the manifest. The local copy matched the expected SHA-256.
+
+Python 3.11+ ([pyproject.toml](pyproject.toml)); verified interpreter Python 3.12.10. The minimum is justified by standard-library tomllib and datetime.UTC imports, not an execution test on 3.11; pipeline/checker use the standard library. [requirements-dev.txt](requirements-dev.txt) pins pytest/ruff and their supporting packages; there is no requirements.txt. The checker imports only argparse, csv, hashlib, gzip, json, math, sys, collections, decimal and pathlib: **no third-party packages required**. Web requires Node 24.x and the committed package-lock.json ([web/package.json](web/package.json)). Dependency installation requires internet access; the verification and replay commands are offline. Role prompts: [Jev v3](prompts/jev-v3.json), [Luna enrichment v2](prompts/luna-enrich-v2.txt), [verifier/group/memo instructions](pipeline/pilot_stages.py), [production role instructions](pipeline/phase7.py). Label definitions: [docs/labels.md](docs/labels.md), [schema](pipeline/schema.py), [contract](data/GRADING_CONTRACT.md). Ignore policy: [.gitignore](.gitignore). `.env.example` passed a content-safe structural check: 3 lines, each a comment or an uppercase variable name followed by `=` with no value. No line content was printed. Database setup: [web/README.md](web/README.md), read alongside the corrected [reader SQL](web/db/01-reader-role.sql) and [verification evidence](docs/phase8-reader-verification.txt); the web README documents the deployed snapshot, restricted LOGIN role and verification procedure.
+
+PowerShell (repository root):
+```powershell
+py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
+Push-Location web
+npm.cmd ci
+Pop-Location
+.\.venv\Scripts\python.exe -B -m pytest -p no:cacheprovider -q
+Push-Location web
+npm.cmd test
+npm.cmd run typecheck
+Pop-Location
+```
+POSIX shell (repository root):
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-dev.txt
+(cd web && npm ci)
+.venv/bin/python -B -m pytest -p no:cacheprovider -q
+(cd web && npm test && npm run typecheck)
+```
+Offline validation (2026-10-19): **226 Python tests passed**; **9 web contract tests passed**, typecheck passed. Web results are from the preceding unchanged-app check. Production build/browser verification is recorded separately in [deployment evidence](docs/phase8-deployment-evidence.md); build-log inspection remains open. Commands/tests: [tests/](tests/), [web/package.json](web/package.json).
+
+CSV-path staged entry point, no manual pasting (offline mock, enrichment only; [CLI](pipeline/__main__.py)):
+```powershell
+.\.venv\Scripts\python.exe -B -m pipeline enrich --input data/cost_100.csv --output artifacts/verify/mock-enrich --mock  # output not in the repository
+```
+```sh
+.venv/bin/python -B -m pipeline enrich --input data/cost_100.csv --output artifacts/verify/mock-enrich --mock  # output not in the repository
+```
+Verified result: `SIMULATED enrichment states: {'completed': 100}`, exit 0; data/cost_100.csv is tracked. This does not demonstrate paid-model quality.
+
+**Missing:** one generic CSV-path command running all stages through verified grouping/ranking/memo. Paid mode is deliberately gated; do not infer authorization from these examples.
+
+Offline baseline regeneration from tracked saved membership and enriched records ([replay script](scripts/replay_baseline_ranking.py), [aggregation](pipeline/rank.py)). The output directory must not exist; output is local and not in the repository.
+```powershell
+.\.venv\Scripts\python.exe -B scripts/replay_baseline_ranking.py --out artifacts/ranking-replay  # output not in the repository
+```
+```sh
+.venv/bin/python -B scripts/replay_baseline_ranking.py --out artifacts/ranking-replay  # output not in the repository
+```
+The replay checks all six fields and issue order against grading/ranking.csv. It requires no raw CSV, sampling permutation, private database or model call. The random-prefix secondary view separately requires the private sampling permutation (not in the repository).
+
+Offline calculator replay in a fresh copy of cost/ ([calculator](pipeline/calculator.py)). These output directories are not in the repository; neither command changes the saved cost reports:
+```powershell
+New-Item -ItemType Directory -Path artifacts/cost-replay -ErrorAction Stop | Out-Null  # output not in the repository
+Copy-Item -LiteralPath cost -Destination artifacts/cost-replay/cost -Recurse  # output not in the repository
+.\.venv\Scripts\python.exe -B -m pipeline cost --directory artifacts/cost-replay/cost  # output not in the repository
+```
+```sh
+mkdir -p artifacts
+mkdir artifacts/cost-replay  # output not in the repository
+cp -R cost artifacts/cost-replay/cost  # output not in the repository
+.venv/bin/python -B -m pipeline cost --directory artifacts/cost-replay/cost  # output not in the repository
+```
+Copy the supplied cost folder without adding credential files to it. Replay dispatches no models. [Saved replay](cost/replay.json), [rate-sensitivity tests](tests/test_calculator.py). Unknown local compute cost stays unknown; projected runtime is not measured full-run runtime.
+
+## Grader quick start
+
+Supply the unchanged `data/spotify_reviews_18months.csv`; it is intentionally excluded from Git. Its expected identity is in [data/manifest.json](data/manifest.json). Create the project venv using the setup section above before running these zero-API checks.
+
+From the repository root in PowerShell, send generated reports outside the repo. The saved reference is 164,162,495 bytes, approximately 164 MB (measured file: `artifacts/final-checks/local-reference.json (not in the repository)`, local-only).
 
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements-dev.txt
-python -m pipeline prepare --input data/spotify_reviews_18months.csv
-python -m pytest
-python -m ruff check pipeline tests
+$checks = Join-Path $env:TEMP 'spotify-grading-checks'
+if (-not (Test-Path -LiteralPath $checks)) { New-Item -ItemType Directory -Path $checks | Out-Null }
+.\.venv\Scripts\python.exe -B data\check_submission.py profile --full data\spotify_reviews_18months.csv --out "$checks\ingestion.json"
+.\.venv\Scripts\python.exe -B data\check_submission.py reference --full data\spotify_reviews_18months.csv --analysis data\spotify_reviews_18months.csv --out "$checks\local-reference.json"
+.\.venv\Scripts\python.exe -B data\check_submission.py check --reference "$checks\local-reference.json" --submission grading --out "$checks\self-check.json"
 ```
 
-Activation is optional: use `.\.venv\Scripts\python.exe` directly if PowerShell policy
-blocks activation. No credentials are needed for preparation or tests. Paid commands
-are not implemented in Phase 1. Never paste credentials into chat. Maintain `.env`
-yourself; only blank `.env.example` belongs in Git.
+POSIX shell equivalent (repository root):
+```sh
+checks="$(mktemp -d /tmp/spotify-grading-checks.XXXXXX)"
+.venv/bin/python -B data/check_submission.py profile --full data/spotify_reviews_18months.csv --out "$checks/ingestion.json"
+.venv/bin/python -B data/check_submission.py reference --full data/spotify_reviews_18months.csv --analysis data/spotify_reviews_18months.csv --out "$checks/local-reference.json"
+.venv/bin/python -B data/check_submission.py check --reference "$checks/local-reference.json" --submission grading --out "$checks/self-check.json"
+```
 
-Outputs in `artifacts/ingestion/`: `data_manifest.json`, `ingestion_report.json`, exact
-course-helper `ingestion.json`, and local `state.sqlite3`. The database retains original
-field strings, helper row hashes, pending/quarantined statuses, attempts and reasons.
-Preparation validates course checksums before ingestion and confirms them afterwards.
-The command builds a fresh ingestion store; it is not the eventual enrichment/resume
-command. Do not run preparation over a future active enrichment store.
+The profile command does not overwrite submitted evidence. Compare its parsed JSON with `grading/ingestion.json`; the check command checks the submitted profile against the reference. The checker reads the two gzip JSONLs directly: do not extract plain counterparts into `grading/` ([data/GRADING_CONTRACT.md](data/GRADING_CONTRACT.md), [data/check_submission.py](data/check_submission.py)).
 
-## Source and preserved course files
+Expected result: **`review_required`**, with exactly `invalid_usage: 20` and `unfinished_classification: 1`; the unavailable fields are `input_tokens: 10` and `output_tokens: 10`. Source: `artifacts/final-checks/self-check.json (not in the repository)` and [docs/phase8-deployment-evidence.md](docs/phase8-deployment-evidence.md). These are disclosed below, not a clean pass or an assigned grade. Any additional flag needs investigation.
 
-The eleven course files are unchanged in `data/`; the assignment PDF remains in root.
-See `data/README.md`, `data/GRADING_CONTRACT.md`, `data/COST_CALCULATOR.md` and
-`data/manifest.json`. Do not edit or regenerate supplied CSVs.
+## Final production/export and coverage
 
-Source: [BwandoWando Spotify reviews, version 2](https://www.kaggle.com/datasets/bwandowando/3-4-million-spotify-google-store-reviews).
-Full CSV SHA-256: `1fc85de68a304dd8978b537cfa58793d5f41cbaf417fa32cb53899f83a2fcef6`.
-The raw CSV and local database are excluded from Git.
+Final production invocation: `7180188e-0938-4d2f-8e2b-6bf412cf77ca` ([docs/100k-final-status.json](docs/100k-final-status.json)). This ingests the full corpus but classifies a budgeted partial scope. Final [grading/records.jsonl.gz](grading/records.jsonl.gz) contains 237,722 completed; 422,845 out-of-scope quarantined; 42 terminal-failure quarantined; 13 empty quarantined ([completion gate](docs/phase6-completion-gate.md)). 237,722 valid classification records, of which 77,874 are direct model classifications (62,542 Jev + 15,332 Luna fallback) and 159,848 are exact-text reuse of a saved result; whether reuse counts toward the 100,000 minimum in the Definition of Done is the instructor's decision. The 100,001 figure is completed rows within the selected 100,041-ID production scope (100,000 seeded prefix plus forced golden IDs, with overlap); 40 selected rows were terminal. The 237,722 total also includes prior/imported work and exact-text propagation beyond that scope.  Quarantined rows are in the same archive, not discarded. Total quarantined 422,900; total rows 660,622; nonempty denominator 660,609 ([profile](grading/ingestion.json), local `artifacts/final-checks/self-check.json (not in the repository)`).
 
-## Next phases and gates
+Coverage-point arithmetic: **0.2 x 1 + 0.2 x (237,722 + 422,900) / 660,622 + 0.6 x 237,722 / 660,609 = approximately 0.615912**. This assumes profile match and accepts the checker's valid completed/quarantined rows; **our arithmetic; the instructor decides** ([contract/checker](data/check_submission.py), saved self-check). It does not award the full rubric score.
 
-Prepare → Classify → Verify → Group → Rank → Recommend. Python controls accounting,
-validation, caching, SQLite work state, budgets and deterministic arithmetic. Jev makes
-fixed label judgments; Luna performs bounded extraction/fallback, blinded verification,
-group naming and grounded writing. No business findings exist yet.
-
-See `docs/approved-plan.md` and `config.toml` for accepted controls and unresolved items.
-Phase 4 begins only after Phase 3 approval. The final README will add actual evaluation,
-cost and resume evidence, rubric links, a traced review, memo and live dashboard URL.
-
-## Golden labels (final human evaluation set)
-
-Four golden labels were revised after an AI-assisted check against the contract rules; final labels are my decisions.
-
-The owner completed and froze all 50 human labels. Offline validation on October 14,
-2026 passed 50/50 records. Do not edit the original CSVs or use Excel. Validate offline:
-
+Final export instructions and private-input requirements: [pipeline/final_export.py](pipeline/final_export.py). Fresh output only; no promotion is implied:
 ```powershell
-python -m pipeline validate-golden
+New-Item -ItemType Directory -Path artifacts/final-export-new  # output not in the repository
+.\.venv\Scripts\python.exe -B -m pipeline.final_export --out artifacts/final-export-new  # output not in the repository
 ```
-
-The report identifies IDs and field errors, without proposing answers. A successful
-schema check does not establish semantic accuracy. Golden answers are evaluation-only
-and never model inputs. `golden-template` can create a new copy at an explicitly chosen
-output path and refuses to overwrite existing human work.
-
-Entities were not hand-labeled: empty arrays are intentional and entities must be
-excluded from golden evaluation. Golden labels are never threshold/routing calibration
-data. Final-hash golden evaluation is complete; see `docs/golden-final-evaluation-gate.md`.
-
-The final-hash human-accuracy gate completed all 50 predictions: six golden IDs
-reused exact-text results and 44 new texts were classified. Actual cost $0.002603841.
-See `evals/golden-final-evaluation/report.html` for overall/fallback splits and all
-confusion tables, and `docs/golden-final-evaluation-gate.md` for measured evidence. Golden metrics
-and confusion CSVs are produced only by the offline `evaluate-golden` command
-after predictions are frozen; golden results never tune prompts, thresholds or routing.
-
-Use `python -m pipeline review-disagreements` for the offline human adjudication
-of up to 20 blinded-verifier disagreements. It shows one review and both labels,
-accepts Jev right / verifier right / both wrong / unclear for the displayed field,
-and saves atomically to `evals/verifier-human-review.json` with a summary sibling.
-`q` stops safely; rerun to resume. Golden IDs/texts and terminal rows are excluded.
-The 100k execution/recording plan is draft-only in `docs/100k-run-plan-draft.md`.
-
-The owner completed all 20 development disagreement verdicts: Jev right 5,
-verifier right 12, both wrong 3, unclear 0. The field breakdown and limitations
-are in `docs/human-verifier-review-gate.md`. This selected disagreement sample
-does not estimate corpus accuracy and did not change the frozen configuration.
-
-Tests use per-test workspace temporary directories and remove them automatically,
-including after failures. PDFs are ignored. Jev's configured request limit is 60/s;
-the account's published 80/s limit is recorded separately in the approved plan.
-
-## Enrichment and resume
-
-See `docs/enrichment.md` for explicit mock/live commands, controls, cache provenance,
-interruption/resume and charge reconciliation. Providers use standard-library HTTP
-with no hidden retries. Provider preflight and the 100-review pilot are complete.
-The Class 7 date is unknown. The two-worker enricher completed all 500 checkpoint
-reviews; verifier recovery completed all 500 valid predictions. See
-`docs/checkpoint-500-recovery-gate.md` for measured cost/time, terminal-failure policy,
-full-field calibration and the smaller scaling proposal. The initial quota/failure
-audit remains in `docs/checkpoint-500-gate.md`. Three approved disjoint 1,000-row
-analysis_10000 slices have now completed; no golden agreement evaluation has run.
-
-## Frozen calibration and next paid gate
-
-Approved confidence 0.60, margin 0; explicit language/context judgments and deterministic
-fallback allocation are frozen in `docs/frozen-label-config.json`. See
-`docs/frozen-calibration.md` and its 35-pair/field CSVs for verifier comparisons (not
-human accuracy), sentiment near-zero diagnostic and selection/resume tests. Old pilot
-and checkpoint caches retain their historical hash and are not mixed into new outputs.
-`docs/frozen-scaling-proposal.md` records the approved three-slice bounds.
-`docs/scaling-gate.md` reports measured 1/2/8-worker results, v2/v3 flag drift and
-updated costs. Stopped at the scaling gate before remaining 10k work. A proposed
-500-row blinded v3 transfer verifier has now completed with 500 valid predictions.
-See `docs/v3-verifier-gate.md` for auxiliary reasons, language confirmation, the
-35-pair core grid and a proposed final flag rule. The proposal is not applied;
-the frozen hash remains unchanged and remaining analysis_10000 is paused at the gate.
-`docs/checkpoint-500-v3-ab-proposal.md` records the earlier contract/provisional
-flags, proposes a same-row v2/v3 comparison and describes the offline flag-reason
-export. Final fallback reasons include an unattributed category; initial signals
-are not presented as known final causes. No A/B paid run has been approved yet.
-The user subsequently approved explicit reasons and persistent missing-context
-signals from either model. `docs/final-config-gate.md` and
-`docs/frozen-label-config.json` are the current final policy/hash; historical
-snapshots and paid outputs retain their old hashes. The revised A/B proposal is
-$0.430210238 worst case was approved and the A/B has completed. V3 passed the
-predeclared core topic/intent criterion on all 500 rows; final enrichment has
-499 completed and one terminal quote failure. See `docs/checkpoint-v3-ab-gate.md`
-for field comparisons and the proposed 8-worker analysis_10000 gate: $7.441328042
-worst case was superseded by the user's $1.50 invocation approval. The analysis
-attempt stopped on seven unknown-charge connection outcomes before that cap,
-with 79 valid new Jev results saved and no new finalized records. See
-`docs/analysis-10000-stopped-gate.md` for measured accounting, provisional 100k
-estimates and the reconciliation gate. No automatic retry/resume occurred.
-
-The subsequent user-approved eight-worker keep-alive resume has reached its gate:
-9,994 analysis rows completed, six terminal failures total (five new), and no
-pending work. See `docs/analysis-10000-resume-gate.md` for measured timing,
-connect/send/post-send failure counts, retry breakdown, actual usage cost and the
-estimated 100k time/cost. The label hash is unchanged. The seven original unknown
-charges were pessimistically accounted without provider-dashboard reconciliation.
-No golden evaluation, 100k run or downstream paid stage was dispatched.
-
-The owner approved 20% fallback and accepted the frozen prompt; the cap is applied.
-The offline recommendation is to retain the frozen prompt. At eight workers: estimated
-$4.85 / 1.89h, with a $7.28 total invocation cap across interruption/resume. It was
-frozen from development verifier data and human verdicts before golden evaluation.
-It is now applied to controls at 20%, with the frozen prompt and hash unchanged. See
-`docs/100k-run-plan-draft.md` and `docs/100k-run-proposal-draft.json`. No 100k run
-or pre-run commit has occurred. OpenAI organization headroom still requires a live
-preflight check; project spend alone is not an org balance.
-
-
-### Offline pre-production clarification
-
-#### Terminal near-tie validation failures in the 100k scoring pass
-
-Three distinct exact texts remain terminal after two rejected Jev attempts each
-(six failed attempts; four source IDs including one exact-text alias). All carry
-`invalid_model_output_after_retry`; they are retained, excluded from calibration,
-and not retried or reclassified during recovery:
-
-- `3bbab369-2722-48ea-8ab2-0739a9b3d5f7`: topic choice billing 0.42 versus
-  highest-probability usability 0.43, twice.
-- `6ee89fe5-6900-43ce-9c54-43078ac506e1`: billing 0.46 versus usability
-  0.47000000000000003, twice.
-- `014df5d4-c2dc-4e7c-9a18-d874bd80fef5`: language choice nonenglish_understood
-  0.45999999999999996 versus english 0.46, twice. This was a machine-precision
-  false rejection; alias `ad5f72c8-46a5-4d6c-8dea-2469ee0b2ed0` shares the terminal
-  result. The numerical validator is fixed for future work, but this frozen run's
-  existing terminal status is deliberately retained. This is not a semantic label
-  disagreement or a new golden error.
-
-#### Clip-1 checkpoint disclosure
-
-Clip-1 shows the interruption and resume, but the before-checkpoint command did
-not succeed: a paste produced `scope-evidence beforeSet-Location C:\dev\Spotify`,
-which argparse rejected. **No before checkpoint file was saved during that clip.**
-The owner reports that the clip shows `stopped_user`, `drained: True`, scoped
-completed 19,719, saved new Jev scores 5,570 and invocation `7180188e-…`; the saved
-initial pause receipt corroborates the state. The video has not been independently
-inspected by the assistant and remains local/ignored pending publication choice.
-
-After the later halt, `checkpoint_before.reconstructed.json` was reconstructed
-offline by intersecting the pinned selected IDs with completed exact texts in the
-preserved pre-run base. It contains **19,719 IDs**, SHA-256
-`39252683567643d0c967477f874739aa0a65bb98a0faee47752f3435c140fef3`.
-The separate provenance note records the paste error, reconstruction timestamp,
-base/selection/pause-receipt hashes and method. **This is post-hoc evidence, not a
-claim that the file existed during the recording.**
-
-The offline-recovery after snapshot is separately named
-`checkpoint_after.offline-recovery.json`; it includes only validated existing paid
-responses. `scope-evidence after` will create the later continuation snapshot and
-automatically use the reconstructed before file. Resume audits check strict set
-growth, inclusion in completed records, zero before IDs in production resume calls,
-and new paid non-cache originals. The supplied checker's resume section is tested
-using the declared grading view: historical imported calls retain source phase/run
-identity and are mapped to initial relative to this recording; incompatible old
-enrichment configurations remain raw provenance. Raw call logs are unchanged.
-Passing those consistency rules does not attest when a file was created, certify
-the recording, or constitute a full grading-submission pass.
-The checker separately reports 20 unavailable token-usage fields on ten
-pessimistically accounted calls. These are not resume-rule failures; no token usage
-is fabricated and no provider reconciliation is performed.
-
-#### Semantic rule-violation audit counts
-
-The semantic audit counts confirmed pipeline rule violations separately from model
-disagreement. These are reviewed subsets, **not corpus accuracy estimates**:
-
-- **Golden, 50 records:** one clear severity violation: a pure feature request received
-  severity 3 (`b58dd6f0`), whereas the contract specifies severity 1 (line 43).
-  There are **zero confirmed topic/intent rule violations among the 21 field errors**
-  (13 topic + 8 intent): **0/21 = 0% confirmed**, **20/21 = 95.2% interpretation/judgment
-  disagreements**, and **1/21 = 4.8% conditional, translation-dependent intent violation**
-  (`ac6cd66d`). Do not count that conditional case as confirmed, or silently combine
-  it with judgment calls. Some interpretation disagreements favor the pipeline under
-  the literal contract; disagreement with golden alone is not a pipeline violation.
-- **Development, 975 unique verified texts screened:** manual review confirmed 13 core-Jev
-  cases of generic criticism assigned severity 1 instead of 2 (contract lines 39/44).
-  **12 remain violations in final records; fallback corrected one.** Human verdict 3
-  independently confirms one of these cases; it is not an additional count.
-- **Development Premium mention versus actual defect:** one independently human-confirmed
-  topic violation (`a7b7539a`, review 6): billing rather than playback for music that would
-  not play. The error remains in both core and final output (contract line 36).
-  Zero confirmed golden cases of this same specific error; golden billing disagreements
-  are interpretation disputes. No additional “confirmed” counts are inferred from the
-  broad lexical screens for ads, catalog/lyrics, mixed issues or non-English text.
-
-See [the full golden audit](docs/golden-error-analysis.md),
-[counted limitations](docs/confirmed-rule-limitations.json), and
-[development evidence](docs/development-pattern-evidence.json). Golden labels were not
-revised, and these findings did not tune prompts, thresholds or routing. The owner
-accepted the frozen prompt and hash. A hypothetical prompt improvement remains untested.
-
-Caching means the pipeline's exact-text **result cache** under an unchanged label_config, not provider prompt caching. OpenAI reports 0% prompt-cache hits; no prompt-cache savings are claimed or implemented. Saved Jev stages are reused on resume.
-
-Fallback and verifier both use Luna: blinded verification hides Jev output but remains correlated with fallback. Verifier-agreement gains partly reflect self-agreement; the 20 owner verdicts are independent human evidence, not a random accuracy estimate. The owner approved a 20% fallback cap for 100k pending the prompt decision; the offline recommendation keeps the frozen prompt. Current fallback control is 20%; the paid production invocation still awaits yes. No paid start is authorized.
-
-Updated user-reported preflight: OpenAI October spend $0.18 / $20 org limit; prepaid balance $9.82 is the real ceiling before unposted charges. TypeSafe $10.41. Recheck remaining credits/limits before dispatch. See docs/offline-preproduction-gate.md and docs/100k-run-plan-draft.md.
-
-
-Production setup is prepared offline. Use [the exact PowerShell operator guide](docs/100k-production-commands.md) and [the pinned plan](docs/100k-production-plan.json). The contract explicitly requires a short recording and both checkpoints (data/GRADING_CONTRACT.md:16–17). A graceful stop at about five minutes preserves Jev scores; final completed growth may occur much later after resume. Nothing paid starts before the owner approves the $7.28 shared invocation cap.
-
-
-## Production completion, evidence and submission limitations
-
-The selected scope ended at **100,001 completed / 40 terminal IDs** (100,041 total).
-After exact-text propagation the full export accounts for every original ID:
-237,722 completed, 422,845 nonempty rows quarantined as `not_classified_partial_run`,
-42 terminal-failure rows, and 13 `empty_review_text` rows. Terminal selected IDs
-break down as 31 invalid exact quotes, four refused/truncated batches, one
-missing/duplicate returned ID, and four Jev near-tie probability/choice mismatches
-(three distinct texts). Permitted repairs were exhausted; these remain failures.
-
-Ten failed TypeSafe connection calls have **unavailable input and output token
-usage** (null fields), producing 20 `invalid_usage` flags. They were pessimistically
-charged at their reserved worst case; we did not invent zero usage or reconcile
-provider dashboards. Contract line 90 explicitly permits disclosure of unavailable
-usage and says the checker reports it. Project spend is **$5.604212288 / $10**;
-production invocation spend **$4.834135303 / $7.28**, including pessimistic failures.
-
-The full supplied checker ran and returns `review_required`. Besides unavailable
-usage and partial scope, this interim export flags pending grouping for 70,239
-complaint/cancellation IDs, missing claims, and missing verify/group/memo calls in
-the current production export. Prior blinded verifier evidence remains separate. The owner requested a fresh
-500-record production verifier proposal instead; no development verifier evidence
-will be imported to satisfy the production role. Business CSVs currently contain
-headers only and run.json declares them pending. This is not a final submission.
-No duplicate, missing, invalid record, cache-origin or resume-proof errors were found.
-
-**Recording disclosure:** clip 1's malformed pasted command did not save a before
-checkpoint. `checkpoint_before.reconstructed.json` was reconstructed later from the
-retained pause receipt and pinned base-state intersection (19,719 IDs); it is not a
-file saved during the video. Its separately preserved provenance accompanies the
-canonical grading copy. Clip 2 saved the immutable after checkpoint (22,227 IDs),
-then hit a database lock during audit. Offline `scope-proof` now passes against
-those unchanged snapshots: before strictly contained in after, after contained in
-completed, no before IDs in resume enrichment calls, 2,508 new direct paid resume
-records. A short clip 3 can rerun that proof. Recordings remain ignored/local;
-no video is committed or uploaded.
-
-See [full completion and checker explanations](docs/phase6-completion-gate.md),
-[large-file inventory and unapplied gzip measurements](docs/submission-large-files.json),
-and [the next paid gate proposal](docs/phase7-proposal.md). The two full grading JSONLs are now gzip level 9 and committed directly below
-100 MB each; raw originals remain local and ignored. No release asset is needed.
-
-
-## Current grading package and exact grader command
-
-`grading/calls.jsonl.gz` (**26,686,127 bytes**) and `grading/records.jsonl.gz`
-(**52,450,579 bytes**) are complete, maximum gzip level 9 exports, committed directly.
-No JSON fields were removed. Decompressed SHA-256 values match the raw originals;
-see [the gzip manifest](docs/submission-gzip-manifest.json). The explicit owner
-instruction permits the records gzip above the earlier 50 MB commit limit.
-Raw originals remain local/untracked under `artifacts/scope-100k/submission-raw/`.
-
-The supplied `data/check_submission.py:152–158` reads these `.gz` files from
-`grading/` **as-is**, with no manual extraction. Do not put a plain counterpart in
-that folder: providing both causes `ambiguous_file`. From `C:\dev\Spotify`, with
-the unchanged full course CSV available, create the local reference if necessary:
-
-```powershell
-.venv\Scripts\python.exe data\check_submission.py reference --full data\spotify_reviews_18months.csv --analysis data\spotify_reviews_18months.csv --out local-reference.json
+```sh
+mkdir artifacts/final-export-new  # output not in the repository
+.venv/bin/python -B -m pipeline.final_export --out artifacts/final-export-new  # output not in the repository
 ```
+Ten final submission files matched grading/ in the independent saved replay; four raw pre-overlay intermediates differed as expected ([export evidence](docs/phase8-deployment-evidence.md)). Profile is generated separately by the grader command above. No re-import was needed: snapshot ID stayed unchanged.
 
-Exact grader command:
+## Cost summary
 
-```powershell
-.venv\Scripts\python.exe data\check_submission.py check --reference local-reference.json --submission grading --out self-check.json
-```
+Model API spend: **$5.629964013** = `ledger.spent_nanodollars: 5629964013` in [final Phase 7 receipt](docs/phase7/receipt.json); confirmed against read-only SUM(spent) in private artifacts/spend.sqlite3 (not in the repository), reservations table. Not a provider invoice.
+Production invocation: **$4.834135303 / $7.28 cap** = `invocation_committed_usd` / `shared_cap_usd` in [final production status](docs/100k-final-status.json); spent amount also confirmed against the invocation's 4,834,135,303 ledger nanodollars.
+Project: **$5.629964013 / $10 cap**; same final receipt ledger total and `controls.project_api_cap_usd` in [config.toml](config.toml). Earlier production status predates Phase 7: $5.604212288 + final receipt `invocation_spent_usd` $0.025751725 = $5.629964013. Local compute and hosting billing are separate/unreconciled.
 
-This check ran against the gzip files. All coverage, call/token totals and flags
-match the earlier plain export; only the input-file hash inventory changes.
-Current status remains `review_required` because Phase 7 is still pending, scope
-is deliberately partial, and failed-call usage is genuinely unavailable. See
-[the gzip check](docs/submission-gzip-self-check.json) and
-[the equivalence proof](docs/submission-gzip-check-equivalence.json).
+## Glossary
 
-### Failed-call token usage disclosure
+- **Jev:** configured `jev-1.13.0`, fixed label judgments ([config.toml](config.toml), [pipeline](pipeline/)).
+- **Luna:** configured `gpt-6-luna`, bounded extraction/fallback, blinded verification, grouping and memo ([config.toml](config.toml), [pipeline](pipeline/)).
+- **Scope:** seeded partial production selection, distinct from full-corpus ingestion ([config.toml](config.toml), [scope plan](docs/100k-production-plan.json)).
+- **Checkpoint:** saved completed-ID/evidence boundary used to prove resume without paid relabeling ([provenance](grading/checkpoint_before.provenance.json)).
+- **Cohort/issue:** deterministic grouping of complaint/cancellation records; cross-topic rules can differ from primary topic ([frozen rules](docs/frozen-grouping-v3.json)).
+- **severity_sum:** sum of severities for an issue's complaint/cancellation rows; the baseline priority score ([pipeline/rank.py](pipeline/rank.py)).
+- **Cache alias:** another original ID reusing an exact-text saved result under unchanged label_config; not provider prompt caching ([completion gate](docs/phase6-completion-gate.md)).
+- **Terminal failure:** bounded attempts exhausted or unrecoverable validation failure, retained as a quarantined row rather than silently retried forever ([halt gate](docs/100k-halt-recovery-gate.md)).
 
-Ten TypeSafe connection attempts failed without a response containing usage.
-Their `input_tokens` and `output_tokens` remain `null` (20 unavailable fields).
-Every attempt is logged as failed and pessimistically charged at its reserved
-worst case. These charges are **accounting bounds, not measured token usage**.
-No zeroes or estimates have been substituted into token fields.
+## One review, end to end
 
-`data/GRADING_CONTRACT.md:90` says: “Usage/cost claims must be real or clearly
-marked unavailable in the README; the checker reports missing usage rather than
-inventing it.” The supplied checker at lines 345–347 requires nonnegative integer
-usage on **every** event, with no exception for failed calls. Therefore these
-20 `invalid_usage` flags are retained honestly. Compression does not clear them.
-New production verification/group/memo calls will have their own actual usage or
-similarly disclosed unknown values; historical failed-call evidence is not rewritten.
+Review ID: `7e271329-4c82-403b-a59a-7fd8b6c40405`.
 
-### Recording description draft — links/commit pending owner decision
+| Step | Actual saved evidence | Source |
+|---|---|---|
+| Original text | "New update is worst we can't skip song from a particular timing to a particular instant and also i am not able to play songs in order it is in shuffle mode and to play in order buy premium this is the worst update ever." | `data/spotify_reviews_18months.csv`; public bounded copy in the dashboard snapshot, selected by `pipeline/dashboard_snapshot.py` |
+| Labels | Completed; topic `usability`; intent `complaint`; severity 3; sentiment -0.99; entities `["premium"]`; `needs_review: true`, reason `low_confidence`. Evidence quote is the original text. | [grading/records.jsonl.gz](grading/records.jsonl.gz), original ID above |
+| Group | `cross-topic--free-tier-premium-controls`: Free-tier playback controls locked behind Premium. The cross-topic grouping does not rewrite the primary label. | [grading/membership.csv](grading/membership.csv), [names](docs/phase7/group-names.json), [frozen rules](docs/frozen-grouping-v3.json) |
+| Baseline rank | Rank 2; count 4,444; severity_sum/priority 13,877; mean 3.122637. | [grading/ranking.csv](grading/ranking.csv), matching issue ID |
+| Claims | B2 = count 4,444; B3 = severity_sum 13,877; B6 = mean 3.122637; `cross-topic--free-tier-premium-controls:priority_score` = 13,877. | [grading/claims.csv](grading/claims.csv) |
+| Recommendation | The memo quotes "to play in order buy premium" and proposes a controlled test restoring back, seek and repeat, considering Premium conversion alongside complaints. | [Owner-approved memo](docs/phase7-memo-draft.md); original model output [memo-draft.json](docs/phase7/memo-draft.json) is preserved separately |
 
-The descriptions below follow the owner's account; the recordings have not been
-opened or inspected. All three are ignored and uncommitted at this gate.
+## Recordings and timestamp index
 
-- **Clip 1:** `Recording 2026-10-14 200325.mp4` — **281,644,901 bytes**.
-  Shows start, voluntary interruption/drain and resume. A pasted command became
-  `scope-evidence beforeSet-Location C:\dev\Spotify` and argparse rejected it;
-  no before checkpoint file was saved in this clip. The later, explicitly named
-  `checkpoint_before.reconstructed.json` contains 19,719 IDs reconstructed from the
-  retained pause receipt and pinned pre-run completed-state intersection with scope.
-  It is **post-hoc evidence**, not a file written during the recording. Provenance
-  accompanies the canonical grading copy. Proposed delivery: owner-supplied unlisted
-  link (pending), referenced here after upload.
-- **Clip 2:** `Recording 2026-10-14 225019.mp4` — **156,550,325 bytes**.
-  Shows continuation and after-checkpoint attempts. A successful snapshot write
-  preserved 22,227 after IDs, but audit encountered a live SQLite lock; a later
-  attempt refused to overwrite the immutable checkpoint. Proposed delivery:
-  owner-supplied unlisted link (pending), referenced here after upload.
-- **Clip 3:** `Recording 2026-10-15 120822.mp4` — **7,246,223 bytes**.
-  Shows `scope-proof` passing against unchanged checkpoints: reconstructed before
-  19,719 strictly contained in after 22,227, after contained in completed, no before
-  IDs in resume enrich calls, and 2,508 newly completed direct paid resume records.
-  Proposed delivery: commit this small clip after explicit owner approval; then
-  replace this draft delivery note with its repository link. An unlisted link is
-  also acceptable if the owner prefers all three hosted together.
+The three recordings are included under evidence/recordings/. Timing facts are verified by frame review; times approximate, about 10 seconds. Clip 1 is the owner's chosen **unedited, compressed, silent, 7:12 recording**. The PC taskbar clock on 10/14/2026 and on-screen counters are the real-time reference.
 
-The first two files exceed GitHub's 100 MB limit. No uploads, video reads, video
-commits or fabricated hosted links occurred. See [metadata inventory](docs/recording-inventory.md).
+| Clip | Approximate time | Frame-reviewed event |
+|---|---|---|
+| [Clip 1: run, stop, resume](evidence/recordings/clip1-run-stop-resume_2026-10-14.mp4) | 0:00 | 7:53 PM; blank terminal and Codex window with operator instructions. |
+| Same | ~0:12 | Multi-line paste warning. |
+| Same | ~0:18 | git rev-parse 8d2592a; scope-status prepared: completed 19,719, pending 80,321, quarantined 1, saved_new_jev_scores 0, cap $7.28. |
+| Same | ~0:24 | scope-authorize --acknowledge-spend: "authorized offline; zero calls"; scope-run --confirm-spend starts. |
+| Same | ~0:30 | Right terminal scope-status --watch: running, invocation 7180188e-0938-4d2f-8e2b-6bf412cf77ca, saved_new_jev_scores 19. |
+| Same | 0:36-5:06 | 7:53-7:59 PM; saved scores about 109 to 4,764; project_spent_usd about 0.775 to 1.003; cap_latched false. |
+| Same | ~5:06 | Monitor output ends at 4,764; elapsed_segment_seconds 303.3. |
+| Same | ~5:54-6:00 | 7:59 PM; New-Item artifacts/scope-100k/stop.request (not in the repository); last write 7:59 PM. |
+| Same | ~6:00 | 8:01 PM; scope-run stopped_user, drained True, wall_seconds 349.4; scope-status stopped_user, saved_new_jev_scores 5,570, safe_to_resume true. |
+| Same | ~6:06-6:48 | scope-evidence before typed, not run. |
+| Same | ~6:54 | 8:02 PM; paste error "invalid choice: 'beforeSet-Location'", no before file saved; scope-run --resume typed; monitor phase resume/running, scores 6,570. |
+| Same | 7:06-7:12 | Resume continues, scores 6,653 then 6,738; clip ends mid-run. |
+| [Clip 2: SystemicFailure and recovery](evidence/recordings/clip2-systemicfailure-recovery_2026-10-14.mp4), duration 2:40 | 0:00 | History shows SystemicFailure; recovery_ready with 19,876 scoped completed. |
+| Same | ~0:32 | scope-continue --recovery; completed rises from 20,813 to 20,856. |
+| Same | ~1:04 | AI-chat window visible; completed passes 21,000; owner reviewed the clip; no sensitive content reported. |
+| Same | ~1:36 | scope-evidence after typed; completed 21,375. |
+| Same | ~2:08-2:30 | Two database-is-locked failures, then Immutable checkpoint already exists. |
+| [Clip 3: scope proof](evidence/recordings/clip3-scope-proof_2026-10-15.mp4), duration 0:48 | ~0:10-end | scope-proof pass: before 19,719; after 22,227; no before IDs in resume calls; 2,508 new paid records. |
 
-### Revised Phase 7 proposal (not approved)
+There is an **unrecorded gap between Clips 1 and 2**; these are not a continuous recording. Saved receipts and recovery evidence document that gap but cannot prove what was on screen. Sources for timestamps: the supplied verified frame-review index; file sizes and hashes are recorded in the submission inventory.
 
-Fresh blinded verification of 500 completed production IDs, ten batches of 50,
-golden IDs excluded; do not substitute development verifier logs. The estimate is
-Luna agreement with final records, not human accuracy, because fallback also uses
-Luna. The frozen classifier and hash stay unchanged. The proposed finer taxonomy
-has 34 topic/sub-issue cohorts; 46,907 of 70,239 eligible rows remain unspecified.
-No production membership, rank, claim or memo has been applied.
+The scope-run stop receipt's `counts` covers the whole imported reviews table; scope-status `scope_counts` covers only the production_scope join. Thus 28,224 completed / 80,321 pending / 6 quarantined in the former and 19,719 completed / 1 quarantined in the latter have different denominators, not contradictory progress. Sources: [run_segment](pipeline/graceful.py), [State.counts](pipeline/state.py), [production.status](pipeline/production.py).
 
-[Full taxonomy/top-ten examples](docs/phase7-taxonomy-preview.md);
-[verifier bounds](docs/phase7-production-verifier-proposal.json);
-[combined gate](docs/phase7-proposal.md). Combined worst case **$1.5704785**,
-proposed separate cap **$1.58**; no paid calls before new approval.
+## Disclosures and limitations
 
+- **Partial scope:** 237,722 / 660,609 nonempty reviews completed, **35.99% rounded**; every original ID remains accounted for. Quarantined benchmark omissions count as incorrect. Exact-text propagation weights repeated text; compare both ranking scopes. Sources: [deployment evidence](docs/phase8-deployment-evidence.md), [secondary claims](docs/phase7/secondary-claims.csv).
+- **Reconstructed before-checkpoint:** a pasted scope-evidence command was rejected; no before file was saved in Clip 1. The before set was reconstructed afterward with provenance, not presented as contemporaneous video evidence. Sources: [checkpoint provenance](grading/checkpoint_before.provenance.json), [recovery guide](docs/100k-recovery-operator-guide.md).
+- **SystemicFailure halt:** the mixed-stage monitor double-attributed Jev terminal failures to finalization, producing a false finalization failure signal. At that diagnostic gate there were 78 failed Jev attempts: 75 invalid-output attempts and 3 HTTP 499 responses, not 78 terminal reviews. An additional persistence defect left 133 valid outputs saved but unfinalized; they were recovered offline without new calls. Fixes separated stage monitoring, persisted valid siblings before propagating a halt, and handled floating-point ties; the historical gate reports 162 passing regression tests. Approved continuation retained the same invocation, total cap, history and terminal quarantines. Sources: [halt diagnosis](docs/100k-halt-recovery-gate.md), [applied recovery](docs/100k-offline-recovery-result.json), [continuation guide](docs/100k-recovery-operator-guide.md). Historical counts are not final corpus accuracy.
+- **Unrecorded gap:** there is a gap between Clips 1 and 2. Clip 1 is unedited; the taskbar clock and counters are the real-time reference. The timing index was verified by frame review.
+- **Locked DB:** the recorded after-checkpoint/audit attempts hit SQLite locks. Read-only status/proof access now has a 5,000 ms busy timeout and at most four attempts with bounded backoff; writes and model calls are not replayed. Source: [phase6-completion-gate.md, Live-read repair](docs/phase6-completion-gate.md).
+- **Unavailable tokens:** ten historical failed calls have unknown input/output usage: 20 fields remain null, split 10 input_tokens and 10 output_tokens. Costs were pessimistically accounted; no fabricated zeros or dashboard reconciliation. Sources: [deployment evidence](docs/phase8-deployment-evidence.md), [historical usage disclosure](docs/phase6-completion-gate.md).
+- **V1 to V3 grouping:** recall fixes came from development spot-checks, not golden labels. V3 was frozen; no ranking-driven reopening. Lexical cohorts can still miss or misassign cases. Source: [phase7-gate.md](docs/phase7-gate.md), [frozen rules](docs/frozen-grouping-v3.json).
+- **Golden-label revisions:** four labels were revised after an AI-assisted contract-rule check; final decisions were the owner's. Golden labels were excluded from prompts/routing/calibration; entities were not hand-labeled and were excluded from evaluation. Source: [golden-human-accuracy-gate.md](docs/golden-human-accuracy-gate.md).
+- **Owner-edited memo:** the original model draft and owner-approved edits are separate artifacts; editorial work was not logged as a new model call. Sources: [approval](docs/phase7/memo-owner-approval.json), [original output](docs/phase7/memo-draft.json), [approved memo](docs/phase7-memo-draft.md).
+- **Verifier self-agreement:** of the 500 blinded verifier rows, **462 were Jev-labeled and checked by Luna** (different model), and **38 were Luna fallback-labeled and checked by Luna** (same model). These are row counts, not distinct-text counts; duplicate texts induce dependence. Verification supplies a second model on 462 rows, while the 38-row subset partly reflects self-agreement; neither is human accuracy. Source: [verifier-agreement.json](docs/phase7/verifier-agreement.json).
+- **Verifier bug 25001:** sending informational queries and transaction probes together prevented the transaction-mode change. Splitting into separate query parts fixed the observed run; reader verification passed all denial probes. Source: [deployment evidence](docs/phase8-deployment-evidence.md), [reader transcript](docs/phase8-reader-verification.txt).
+- **Reader-password incident:** the owner reports a read-only password was exposed in a chat screenshot and rotated before production use. No values are reproduced; rotation was not independently inspected. Source: [deployment evidence](docs/phase8-deployment-evidence.md).
+- **Bundled human evaluation:** the app imports a saved aggregate summary; it is not fetched from Neon. Sources: [web/lib/human-check.json](web/lib/human-check.json), [web/app/Dashboard.tsx](web/app/Dashboard.tsx).
+- **Documented failed case:** review `014df5d4-c2dc-4e7c-9a18-d874bd80fef5` hit a machine-precision argmax rejection; the validator was repaired for future acceptance, but this frozen run retained the terminal outcome. Semantic rule errors also remain documented. Sources: [halt diagnosis](docs/100k-halt-recovery-gate.md), [golden error analysis](docs/golden-error-analysis.md), [counted limitations](docs/confirmed-rule-limitations.json).
+- **AI assistance (owner-confirmed):** code was written with ChatGPT Codex and reviewed with Claude under owner direction, with all spend and decisions owner-approved. Source: owner-confirmed disclosure.
+- **Deployment checks:** signed-out alias UI owner-verified 2026-10-19 (incognito); phone owner-verified 2026-10-19; Protection: Standard Protection, access confirmed signed out, owner screenshots 2026-10-19. Build log [NOT YET]; billing consoles remain unverified. These are owner checks, not machine verification. Source: [deployment evidence](docs/phase8-deployment-evidence.md).
 
-### Phase 7 current gate: offline cohort v2 review
+## Repository layout
 
-The owner approved the $1.58 ceiling, then paused verifier/group/memo calls for
-cohort corrections. **Zero Phase 7 API calls and zero new spend.** The prepared
-runner is blocked by `docs/phase7-review-gate.json` before any paid dispatch.
+| Path | Purpose |
+|---|---|
+| `pipeline/` | Ingestion, classification, recovery, grouping and export code; `final_export.py` documents the saved-evidence adapter. |
+| `grading/` | Submitted gzip records/calls, profile, membership, ranking, baseline claims and checkpoint evidence. |
+| `cost/` | Saved pilot, editable rates, calculator/replay evidence; [instructions](cost/README.md). |
+| `data/` | Course contract/checker/manifests; graders supply the ignored original CSV. |
+| `evals/` | Golden evaluation and human-review evidence. |
+| `web/` | Dashboard source, server-only read model and bundled aggregate evaluation. |
+| `tests/` | Offline Python tests; app contract/browser tests are under `web/tests/`. |
+| `docs/` | Evidence and indexed historical records; see [STATUS](docs/STATUS.md). |
+| `artifacts/` | Local runtime/private state and temporary checks; not a public reproduction dependency bundle. |
 
-[Review the v2 spot-check](docs/phase7-cohort-spotcheck-v2.md): ten random members
-of the proposed cross-topic free-tier control restriction issue, plus five random
-remaining members from every cohort that loses rows. Counts and old/new rankings
-are in [the reproducible analysis](docs/phase7-cohort-v2-analysis.json). Primary
-labels and frozen hash stay unchanged; each eligible original ID still gets one
-issue. The supplied contract/checker permits an issue to span primary topics.
-Explicit versus inferred Premium attribution is disclosed rather than assumed.
+## Reproducibility limits
 
-Tracked grading gzip files have not changed or been recommitted. Per owner
-instruction, regenerate/recommit them only once at final submission export.
-The [video compression proposal](docs/video-compression-proposal.md) targets
-45 MB / 45 MB / 5.80 MB, subject to actual encoding/readability checks. No video
-was read, encoded, committed or uploaded; no ffmpeg package was installed.
+The submitted `grading/` can be checked using the supplied source CSV and course checker without model calls. Full regeneration needs the private local production SQLite store, checkpoints and saved Phase 7 call/membership artifacts; they are not all included in Git. **The Neon database contains only the aggregate/sample dashboard snapshot, not that production store.** [pipeline/final_export.py](pipeline/final_export.py) documents its exact inputs, offline command, optional output directory and overwrite refusal.
 
-### Final Phase 7 grouping revision (v3)
+Identical gzip packaging was independently verified for the final submission outputs, with fixed gzip metadata. An arbitrary new model run is not promised to reproduce labels, latency or costs. A changed snapshot payload requires offline validation and the [re-import rule](docs/phase8-deployment-evidence.md); unchanged payloads must retain the published snapshot ID.
 
-The final v3 rule revision fixed only recall errors found in random development spot-checks, never using golden labels. V1 had no unified cross-topic issue (0 members); v2 unified 3,407 rows with severity_sum 10,598; final v3 contains 4,444 rows with severity_sum 13,877. V2 owner spot-check precision was 10/10 in a selected qualitative sample, not a population accuracy estimate. V3 was frozen before calculating counts or viewing fresh samples and is final regardless of ranking. Classifier prompt and label_config remain unchanged. Residual Premium cohort: Premium subscription and upgrade complaints. See docs/phase7-cohort-spotcheck-v3.md for all twelve recall checks, ten fresh examples and both rankings.
+## Documentation status
 
-The latest owner approval supersedes the earlier v2 paid-stage hold: proceed through the memo draft only, using the shared Phase 7 $1.58 cap. Verifier and fallback use the same Luna model, so agreement partly reflects self-agreement; the twenty human verdicts are independent evidence. Caching here means exact-text saved-result caching; no provider prompt-cache savings are claimed. Tracked grading gzip exports remain unchanged until the final submission export.
+[docs/STATUS.md](docs/STATUS.md) distinguishes current evidence from historical/superseded records and identifies frozen sources. [docs/build-log.md](docs/build-log.md) preserves the historical development log; use this README for current instructions.
 
-Phase 7 reached its memo-draft gate: [measured report](docs/phase7-gate.md),
-[draft memo](docs/phase7-memo-draft.md), and [full claims](docs/phase7/claims.csv).
-Actual Phase 7 API spend was $0.025751725 against $1.58; cumulative project spend
-was $5.629964013 against $10, with zero reserved. All 500 production verifier
-items were valid after one singleton repair; agreement is not human accuracy.
-Final rules leave 45,946 of 70,239 complaint/cancellation rows unspecified
-(65.413801%), replacing the earlier approximate 67% figure. Completed coverage
-remains 237,722 of 660,609 nonempty rows (35.985280%). The working checker leaves
-only declared partial coverage and 20 unknown token-usage fields from ten
-historical connection failures. The memo and export are awaiting owner review;
-tracked grading gzip files have not yet been refreshed with Phase 7 calls.
-
-### Owner-directed memo revision
-
-The original memo-role output is preserved in
-[docs/phase7/memo-draft.json](docs/phase7/memo-draft.json). The revised
-[decision memo](docs/phase7-memo-draft.md) was edited offline at the owner's
-request: recommendation first, a source-checked quote, explicit baseline versus
-random-prefix figures, mean severity, proposed control-restoration and ad-cap
-experiments, shorter decision limitations, and correction of “an complaint.”
-No additional model call was made or logged as if these edits were model output.
-The claim that controls are relatively understated by unclassified unique texts
-was qualified because their issue mix is unknown. See the
-[claims/checker policy](docs/memo-claims-policy.md) and
-[editorial evidence](docs/phase7/memo-revision-evidence.json).
-
-Engineering caveats remain here rather than in the product memo: the before
-checkpoint was reconstructed from the recorded pause receipt after the clip-1
-paste error, not saved successfully during that clip; the provenance and subset
-audit are disclosed in the checkpoint documentation. Ten historical connection
-failures have unknown charged token usage, accounted pessimistically; their
-twenty null input/output fields remain disclosed checker flags, never fabricated
-zeros. Original model output, execution evidence and owner edits are distinct.
-The revised working submission has [zero claim-related checker flags](docs/phase7/memo-revision-result.json).
-The main claims file contains only baseline metrics; secondary memo figures are
-explicitly separated and documented under the contract's secondary-analysis provision.
-
-The memo is now **owner approved** after the requested final edits: quote
-`7e271329` (“to play in order buy premium”), the baseline/prefix comparison,
-and the conversion-versus-complaints experiment sentence. The original model
-response remains unchanged; all subsequent editorial changes are owner-directed,
-not new model outputs. S11 and S12 derive the additional rows as 6,037 − 4,088 =
-1,949 ads and 4,444 − 4,440 = 4 controls. An exact-text audit found 1,947 of those
-ad rows repeat prefix texts and two do not, so the memo says **additional** rather
-than describing all 1,949 as duplicated. For controls, one additional row repeats
-a prefix text and three do not. The random prefix itself is a uniform draw; its
-observed ranking excludes 40 terminally failed IDs, and classifier errors remain
-possible. Approval and the memo hash are in
-[memo-owner-approval.json](docs/phase7/memo-owner-approval.json).
-Git attributes preserve the exact bytes of the frozen grouping sources and
-approved memo so their provenance hashes remain valid after checkout; no rule
-or classifier change is involved.
-
-[Phase 8 deployment proposal](docs/phase8-deployment-proposal.md): Neon read-only
-dashboard dataset + Vercel, both rankings, approved memo and stored AI outputs,
-visible partial scope, no live model calls. Console instructions and free-plan
-cost assumptions are included. Deployment has not started.
-
-### Dashboard local build — step 1 complete
-
-The [local build gate](docs/phase8-step1-gate.md) records the tested Next.js app,
-snapshot and limited deployment/client-bundle secret scan. The snapshot is
-**72,076 bytes**, containing aggregates, both rankings, saved AI outputs, claims
-and 71 selected examples—not full records. No cloud setup or model calls occurred.
-Local preview: `http://127.0.0.1:3000`; commands are in [web/README.md](web/README.md).
-
-Later, use **Berkeley Granata (Hobby)** and the owner's browser-based
-`vercel login`; never request a token. The owner privately creates ignored
-`C:\dev\Spotify\.env.neon-import.local` with `NEON_IMPORT_DATABASE_URL=` for
-the import credential, never pasting it into chat. Vercel runtime receives only
-the read-only server credential. Deployment Protection must be OFF and the final
-URL tested incognito/signed-out. The [final submission checklist](docs/final-submission-checklist.md)
-retains the full files + Git-history secrets scan before the public GitHub push,
-the live-URL/evidence README, final gzip export and owner-reviewed compressed videos.

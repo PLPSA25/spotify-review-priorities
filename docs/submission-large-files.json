@@ -114,5 +114,27 @@
     }
   ],
   "external_backup_accessed": false,
-  "snapshot_kind": "Historical pre-gzip Phase 6 inventory. Current gzip files/sizes are in docs/submission-gzip-manifest.json; original grading plain JSONLs moved to ignored artifacts/scope-100k/submission-raw/."
+  "snapshot_kind": "Historical pre-gzip Phase 6 inventory. Current gzip files/sizes are in docs/submission-gzip-manifest.json; original grading plain JSONLs moved to ignored artifacts/scope-100k/submission-raw/.",
+  "current_state": {
+    "evidence": "docs/phase8-deployment-evidence.md#final-export",
+    "gzip_manifest": "docs/submission-gzip-manifest.json",
+    "calls_gzip_bytes": 26799243,
+    "recordings": [
+      {
+        "path": "evidence/recordings/clip1-run-stop-resume_2026-10-14.mp4",
+        "bytes": 16829278,
+        "sha256": "932f0a83580b320e2a6f8deae064753c3d31a7174fc9dc36196bbbbc36aec819"
+      },
+      {
+        "path": "evidence/recordings/clip2-systemicfailure-recovery_2026-10-14.mp4",
+        "bytes": 10463011,
+        "sha256": "ca18ab99838b72284d82de3c49295d24ca66759c540c8bfbe21ba9702ce8e28b"
+      },
+      {
+        "path": "evidence/recordings/clip3-scope-proof_2026-10-15.mp4",
+        "bytes": 7246223,
+        "sha256": "4029c827e28ce2c4b8aacb18e9e6b91f261eb0127a29017e8899b57e26d62df8"
+      }
+    ]
+  }
 }

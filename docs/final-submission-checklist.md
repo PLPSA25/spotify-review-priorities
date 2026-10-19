@@ -1,30 +1,25 @@
-# Final submission — after deployment
+# Final submission checklist
 
-This is a later phase, not authorized for execution by the step-1 app build.
+- [x] Live alias and signed-out incognito access: owner-verified 2026-10-19.
+- [x] Phone access: owner-verified 2026-10-19. Standard Protection, access confirmed
+  signed out; owner screenshots 2026-10-19. These are owner, not machine checks.
+- [x] Current README: setup/check commands, rubric map, traced review, failed case,
+  costs, limitations and disclosures; [README](../README.md), [STATUS](STATUS.md).
+- [x] Final grading export includes Phase 7 calls, fixed gzip metadata and maximum
+  compression; profile/reference/check flags disclosed. Ten final export files
+  matched the independent replay; [evidence](phase8-deployment-evidence.md#final-export).
+- [x] Three selected compressed recordings copied with original files preserved;
+  links and frame-reviewed timestamp index in [README](../README.md#recordings-and-timestamp-index).
+  Clip 1 is unedited. Preserve the unrecorded gap and reconstructed-checkpoint disclosure.
+- [ ] Inspect Vercel production build log.
+- [ ] Verify Neon/Vercel billing consoles and current plan settings.
+- [ ] Complete the full secrets/personal-details scan of final files and Git history,
+  including gzip contents and document/video review. Earlier bundle scans are narrower.
+- [ ] Review the exact staged publication surface and all binary evidence.
+- [ ] Owner approves a local commit; no commit is implied by staging.
+- [ ] Final authorized public push after full secrets scan and publication review.
 
-1. Verify live URL with **Deployment Protection OFF**, incognito/signed-out.
-2. Finish README: live URL; results; rubric-to-evidence map; architecture; one
-   original review traced through labels, group, rank, claim and recommendation;
-   one failed/ambiguous case; partial scope, accuracy and engineering limitations.
-3. Refresh final grading exports including production verify/group/memo calls;
-   recompress grading/*.gz once at maximum compression. Run all required checks,
-   keep full required fields and disclose every legitimate remaining flag.
-4. Compress the three local videos using the approved project-local pinned
-   package approach if supported. Measure sizes/readability, then have the owner
-   review every clip for sensitive content before any video commit or upload.
-   Preserve the paste-error/reconstructed-checkpoint disclosure.
-5. Run the **full secrets scan of final files and Git history** before any public
-   push, including allowed binary archives/video handling. The local dashboard
-   deployment/client-bundle scan is narrower and does not replace this scan.
-6. Review exactly what will be published: approved source, lockfiles, small
-   evidence/docs, final grading gzip exports, cost artifacts and owner-reviewed
-   compressed videos/links. Exclude .env files, credentials, raw CSV/PDF, backups,
-   private notes, local databases, caches, node_modules and build output.
-7. Publish/push the public GitHub repository only after those checks and the final
-   submission phase gate. No GitHub push is required for the local CLI deployment.
-
-Later credentials: owner performs Vercel browser login personally; no token
-request. Neon import secret goes only into ignored
-`C:\dev\Spotify\.env.neon-import.local`, variable `NEON_IMPORT_DATABASE_URL`,
-entered by the owner, never into chat. Vercel runtime uses only the restricted
-`DATABASE_URL_READONLY` server-side variable.
+Exclude credentials, .env files, raw CSV/PDF, backups, private notes, local databases,
+caches, node_modules and build output. Only the three explicitly approved clips
+belong in evidence/recordings/. No owner/import credential belongs in Vercel;
+DATABASE_URL_READONLY is the restricted server-side runtime variable.

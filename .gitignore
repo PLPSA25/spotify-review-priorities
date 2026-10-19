@@ -57,3 +57,8 @@ web/.local/
 web/test-results/
 web/playwright-report/
 artifacts/dashboard/
+
+# Approved submission recordings
+!/evidence/recordings/clip1-run-stop-resume_2026-10-14.mp4
+!/evidence/recordings/clip2-systemicfailure-recovery_2026-10-14.mp4
+!/evidence/recordings/clip3-scope-proof_2026-10-15.mp4
