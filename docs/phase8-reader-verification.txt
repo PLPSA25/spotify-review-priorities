@@ -1,0 +1,20 @@
+﻿
+> spotify-review-dashboard@1.0.0 verify:reader
+> node scripts/verify-reader.mjs
+
+{"result_set":1,"columns":["current_user","session_user"],"rows":[{"current_user":"dashboard_reader","session_user":"dashboard_reader"}]}
+{"result_set":2,"columns":["rolname","rolcanlogin","rolsuper","rolcreaterole","rolcreatedb","rolbypassrls","rolreplication","rolinherit"],"rows":[{"rolname":"dashboard_reader","rolcanlogin":true,"rolsuper":false,"rolcreaterole":false,"rolcreatedb":false,"rolbypassrls":false,"rolreplication":false,"rolinherit":false}]}
+{"result_set":3,"columns":["direct_or_transitive_membership"],"rows":[]}
+{"result_set":4,"columns":["direct_membership_count"],"rows":[{"direct_membership_count":"0"}]}
+{"result_set":5,"columns":["neon_superuser_member"],"rows":[{"neon_superuser_member":false}]}
+{"result_set":6,"columns":["default_transaction_read_only"],"rows":[{"default_transaction_read_only":"on"}]}
+{"result_set":7,"columns":["statement_timeout"],"rows":[{"statement_timeout":"5s"}]}
+PASS: denied (42501): INSERT dashboard.snapshots
+PASS: denied (42501): UPDATE dashboard.snapshots
+PASS: denied (42501): DELETE dashboard.snapshots
+PASS: denied (42501): CREATE TABLE dashboard
+PASS: denied (42501): CREATE TABLE public
+PASS: denied (42501): CREATE SCHEMA
+PASS: denied (42501): CREATE TEMP TABLE
+{"result_set":8,"columns":["snapshot_id","imported_at"],"rows":[{"snapshot_id":"2d29566238c93179d4518f4eb08cc5c0e45e0f125fe1a9d103a0ce0ff6b0282e","imported_at":"2026-10-19T12:00:03.412Z"}]}
+PASS: reader verification complete (7/7 denial probes)
