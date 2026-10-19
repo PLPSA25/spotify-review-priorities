@@ -253,3 +253,30 @@ counterpart. Full comparison: `artifacts/final-export-verify/comparison.json`.
 Pier clarified the gate: the four raw intermediate differences are expected
 because they predate the Phase 7 overlay. The required final-submission comparison
 passes: **10/10 final submission files match grading/**. No network was used.
+
+## Addendum 2026-10-19
+
+This addendum supersedes the earlier open build-log, signed-out UI, phone and
+Protection checks; historical evidence above is preserved.
+
+The owner deployed the claims-table update (deployment host identifier
+`gck1wxycp`) and updated the production alias
+https://spotify-review-priorities.vercel.app. The inline "Claims cited in the
+recommendation" table resolves all 19 memo citations (B1-B7, S1-S12) with issue,
+metric, scope, exact snapshot value and source, plus full claims CSV links.
+Owner check and 8 passing local browser tests verified the claim navigation;
+local contract tests (9), typecheck and webpack production build also passed.
+
+Production deployment 2026-10-19 19:04-19:05 UTC: `next build --webpack` on Next.js 16.4.2, Compiled successfully in 6.5s, TypeScript finished, 3/3 static pages, routes /, /api/claims, /api/dashboard, /api/examples, status Ready; alias response headers X-Dashboard-Data-Source: neon and snapshot id 2d295662...0282e unchanged (owner-run `vercel inspect --logs` and curl, 2026-10-19).
+
+The owner-run alias header check reports `X-Dashboard-Data-Source: neon` and
+`X-Dashboard-Snapshot-Id` equal to the unchanged full snapshot ID:
+`2d29566238c93179d4518f4eb08cc5c0e45e0f125fe1a9d103a0ce0ff6b0282e`.
+No snapshot payload change or database re-import was needed. These deployment
+facts were supplied by the owner; this documentation update made no network
+requests.
+
+Signed-out alias UI was owner-verified in incognito on 2026-10-19; phone access
+was owner-verified the same day. Standard Protection was configured, with access
+confirmed signed out (owner screenshots 2026-10-19). Vercel and Neon billing
+consoles and the public push remain separate open checks.

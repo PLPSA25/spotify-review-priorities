@@ -3,7 +3,7 @@
 Live report: https://spotify-review-priorities.vercel.app — open signed out.
 Owner verified incognito and phone access on 2026-10-19. Standard Protection is
 configured; access was confirmed signed out (owner screenshots 2026-10-19).
-Build-log inspection: **[NOT YET]**. See [deployment evidence](../docs/phase8-deployment-evidence.md).
+Production deployment 2026-10-19 19:04-19:05 UTC: `next build --webpack` on Next.js 16.4.2, Compiled successfully in 6.5s, TypeScript finished, 3/3 static pages, routes /, /api/claims, /api/dashboard, /api/examples, status Ready; alias response headers X-Dashboard-Data-Source: neon and snapshot id 2d295662...0282e unchanged (owner-run `vercel inspect --logs` and curl, 2026-10-19). See [deployment evidence](../docs/phase8-deployment-evidence.md).
 
 The backend reads the saved aggregate/sample snapshot from Neon, not the full
 production row store. Human-evaluation figures are bundled separately. There are
@@ -56,5 +56,7 @@ Database size measured during import: 8,257,536 bytes. Reader verification passe
 7/7 denials, dangerous flags false, zero memberships; see the
 [reader transcript](../docs/phase8-reader-verification.txt).
 
-The owner-verified access above does not establish build-log or billing-console
-checks. Full file/history secrets scanning and public push remain separate gates.
+Production deployment 2026-10-19 19:04-19:05 UTC: `next build --webpack` on Next.js 16.4.2, Compiled successfully in 6.5s, TypeScript finished, 3/3 static pages, routes /, /api/claims, /api/dashboard, /api/examples, status Ready; alias response headers X-Dashboard-Data-Source: neon and snapshot id 2d295662...0282e unchanged (owner-run `vercel inspect --logs` and curl, 2026-10-19).
+
+Vercel and Neon billing-console checks remain open. Full file/history secrets
+scanning and the public push remain separate gates.

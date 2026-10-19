@@ -6,8 +6,10 @@ Use the [root README](../README.md) as the single current entry point. This inde
 
 - The final grading export and script verification are committed; current evidence is [deployment evidence](phase8-deployment-evidence.md) and [reader verification](phase8-reader-verification.txt).
 - Model/usage limitations remain disclosed. A mechanical review_required result is expected; it is not an assigned grade.
-- Signed-out alias UI: owner-verified 2026-10-19 (incognito); phone: owner-verified 2026-10-19; Protection: Standard Protection, access confirmed signed out, owner screenshots 2026-10-19; build log: [NOT YET]. These are owner checks, not machine verification. Billing checks, recording inclusion and final secrets scan remain incomplete.
-- Current offline checks (2026-10-19): 226 Python tests and 9 web contract tests passed; typecheck passed. Build-log inspection remains open; web counts are from the preceding unchanged-app check.
+- Signed-out alias UI: owner-verified 2026-10-19 (incognito); phone: owner-verified 2026-10-19; Protection: Standard Protection, access confirmed signed out, owner screenshots 2026-10-19; production build log: owner-verified Ready, 2026-10-19 19:04-19:05 UTC (Next.js 16.4.2, webpack, compile 6.5s, TypeScript finished, 3/3 static pages). Alias headers still report Neon and the unchanged snapshot ID. These deployment checks are owner verification. Billing-console checks and the final secrets/personal-details scan remain open; the three approved recordings are tracked.
+- Current offline checks (2026-10-19): 230 Python tests, 9 web contract tests and 8 browser tests passed; typecheck and production webpack build passed. Browser coverage verifies all 19 inline memo citations, exact snapshot values, metric labels and CSV downloads.
+- Replay scripts: [baseline](../scripts/replay_baseline_ranking.py) uses tracked records/membership; [two-scope](../scripts/replay_phase7_rankings.py) uses tracked inputs plus the supplied raw CSV and matches both Phase 7 rankings (35/35 each, six fields and order), with no model calls. The sampling permutation is tracked.
+- Local commits: `c66b8d6` (grader README and recordings), `c9b1791` (two-scope replay and tests), `92010d1` (inline memo claim table and CSV labels).
 - The ten-point README map distinguishes complete evidence from partial classification, correlated verification and the missing generic all-stage CSV command.
 - Recording timing facts are frame-review verified (approximate to 10 seconds); the chosen Clip 1 is unedited, compressed, silent and 7:12. Three approved recordings are included under evidence/recordings/. AI-assistance disclosure is owner-confirmed.
 - [Historical build log](build-log.md) preserves the former README with a superseded banner and rebased links.
@@ -156,8 +158,9 @@ it does not mean the evidence is invalid or should be rewritten.
 ## Operational boundaries
 
 The current README and web README document deployed behavior and setup. The final
-checklist distinguishes completed export/verification work from open build-log,
-billing, full secrets/personal-details scan and public-push gates. The gzip
+checklist records export/verification work; the current deployment addendum
+supersedes its earlier build-log status. Billing, full secrets/personal-details
+scan and public push remain separate open gates. The gzip
 manifest describes current archives; the large-file inventory retains its original
 measurements and adds current packaging/recording pointers.
 
